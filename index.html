@@ -1,401 +1,218 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Optimizador APEX (La Cima del Rendimiento)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
         ::selection { background-color: #dc2626; color: white; }
         textarea:focus { outline: none; box-shadow: 0 0 0 2px #dc2626; }
+        .feature-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(220, 38, 38, 0.5); }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-200 flex items-center justify-center min-h-screen p-4">
+<body class="bg-gray-900 text-gray-300">
 
-    <div class="bg-gray-800 rounded-2xl shadow-2xl p-6 md:p-8 w-full max-w-4xl border border-gray-700">
-        
-        <div class="text-center mb-6">
-            <h1 class="text-3xl md:text-5xl font-bold text-red-500">Optimizador APEX</h1>
-            <p class="text-gray-400 mt-2 text-lg">La Cima del Rendimiento. La Versión Final.</p>
-        </div>
+    <!-- Header -->
+    <header class="bg-gray-900 sticky top-0 z-50 border-b border-gray-800">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-black text-red-500">
+                <span class="bg-red-500 text-white px-2 py-1 rounded-md">A</span>PEX
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#features" class="hover:text-red-500 transition-colors">Características</a>
+                <a href="#install" class="hover:text-red-500 transition-colors">Instalación</a>
+                <a href="#changelog" class="hover:text-red-500 transition-colors">Versiones</a>
+                <a href="#faq" class="hover:text-red-500 transition-colors">FAQ</a>
+            </div>
+            <a href="#install" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 text-sm">
+                Instalar Ahora
+            </a>
+        </nav>
+    </header>
 
-        <div class="bg-gray-900/50 p-6 rounded-lg border border-gray-700 mb-8 text-center">
-            <h2 class="text-xl font-semibold text-white mb-3">Método de Instalación Definitivo</h2>
-            <p class="text-lg mb-4"><strong class="text-red-500">Paso 1:</strong> Toca el botón de abajo para <strong class="text-white">"Seleccionar el Instalador APEX"</strong>.</p>
-            <p class="text-lg"><strong class="text-red-500">Paso 2:</strong> En el menú de tu teléfono, toca <strong class="text-white">"Copiar"</strong>.</p>
-            <p class="text-lg mt-4"><strong class="text-red-500">Paso 3:</strong> Pega el instalador en Termux y presiona Enter. Se instalará y ejecutará solo.</p>
-        </div>
-        
-        <div class="mb-4">
-             <button id="selectButton" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-4 rounded-lg transition-all duration-300 flex items-center justify-center text-xl mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
-                <span id="selectButtonText">Paso 1: Seleccionar el Instalador APEX</span>
-            </button>
-            <textarea id="commandContent" readonly class="w-full h-64 bg-gray-900 text-yellow-200 text-sm p-4 border border-gray-600 rounded-lg resize-none">cat &lt;&lt;'APEX_EOF' &gt; ~/apex_optimizer.sh
+    <main class="container mx-auto px-6 py-12 md:py-20">
+
+        <!-- Hero Section -->
+        <section class="text-center mb-24">
+            <div class="flex justify-center space-x-2 mb-4">
+                <img src="https://img.shields.io/badge/Versión-5.0_(APEX)-red?style=for-the-badge" alt="Versión">
+                <img src="https://img.shields.io/badge/Plataforma-Android-brightgreen?style=for-the-badge" alt="Plataforma">
+                <img src="https://img.shields.io/badge/Root_Requerido-NO-yellow?style=for-the-badge" alt="Root Requerido">
+            </div>
+            <h1 class="text-4xl md:text-7xl font-black text-white mb-4 leading-tight">
+                La Cima del Rendimiento Móvil.
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                La suite de optimización, limpieza y diagnóstico más completa para Termux. Libera todo el potencial de tu Android sin necesidad de root.
+            </p>
+            <a href="#install" class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 text-lg">
+                Ir al Instalador
+            </a>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="mb-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Un Arsenal de Herramientas a tu Disposición</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 feature-card">
+                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V3H3v9"/><path d="M21 12v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2"/><path d="M9 16V12"/><path d="M15 16V12"/><path d="M3 12a9 9 0 0 1 18 0"/></svg></div>
+                    <h3 class="font-bold text-xl text-white mb-2">Limpieza APEX</h3>
+                    <p class="text-gray-400 text-sm">Rutina de limpieza obsesiva que erradica caché, archivos basura, reportes de error y más.</p>
+                </div>
+                <!-- Feature Card 2 -->
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 feature-card">
+                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h.01"/><path d="M12 8h.01"/><path d="M16 8h.01"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/><path d="M8 16h.01"/><path d="M12 16h.01"/><path d="M16 16h.01"/></svg></div>
+                    <h3 class="font-bold text-xl text-white mb-2">Gestor de Duplicados</h3>
+                    <p class="text-gray-400 text-sm">Encuentra y elimina archivos idénticos (fotos, videos) para recuperar gigabytes de espacio.</p>
+                </div>
+                <!-- Feature Card 3 -->
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 feature-card">
+                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></div>
+                    <h3 class="font-bold text-xl text-white mb-2">Tweaks de Rendimiento</h3>
+                    <p class="text-gray-400 text-sm">Ajustes experimentales para cambiar DNS, forzar renderizado GPU y mejorar la respuesta táctil.</p>
+                </div>
+                <!-- Feature Card 4 -->
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 feature-card">
+                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></div>
+                    <h3 class="font-bold text-xl text-white mb-2">Visor de Logcat</h3>
+                    <p class="text-gray-400 text-sm">Herramienta de desarrollador para ver el registro del sistema en tiempo real y diagnosticar problemas.</p>
+                </div>
+                <!-- Feature Card 5 -->
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 feature-card">
+                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+                    <h3 class="font-bold text-xl text-white mb-2">Gestor de Apps y RAM</h3>
+                    <p class="text-gray-400 text-sm">Libera memoria RAM de forma agresiva y desinstala aplicaciones rápidamente desde un solo lugar.</p>
+                </div>
+                <!-- Feature Card 6 -->
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 feature-card">
+                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+                    <h3 class="font-bold text-xl text-white mb-2">Diagnóstico Completo</h3>
+                    <p class="text-gray-400 text-sm">Una radiografía completa de tu sistema: CPU, Batería, RAM, Red, IP Pública y más.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation Section -->
+        <section id="install" class="mb-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Instalación Definitiva en 3 Pasos</h2>
+            <div class="bg-gray-800 rounded-xl border border-gray-700 lg:max-w-4xl mx-auto">
+                <div class="bg-gray-900/50 p-6 rounded-t-xl">
+                    <h3 class="text-xl font-semibold text-white mb-3">Método Infalible</h3>
+                    <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 text-left">
+                        <p><strong class="text-red-500">1. Seleccionar:</strong> Toca el botón de abajo para seleccionar todo el código del instalador.</p>
+                        <p><strong class="text-red-500">2. Copiar:</strong> En el menú de tu teléfono, toca la opción "Copiar".</p>
+                        <p><strong class="text-red-500">3. Pegar y Ejecutar:</strong> Pega el código en Termux y presiona Enter.</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="bg-black rounded-lg border border-gray-600">
+                        <div class="flex items-center p-3 bg-gray-700/50 rounded-t-lg">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                            <span class="flex-grow text-center text-sm font-mono text-gray-400">Termux Shell</span>
+                        </div>
+                        <div class="p-4">
+                            <button id="selectButton" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-4 rounded-lg transition-all duration-300 flex items-center justify-center text-lg mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                                <span id="selectButtonText">Paso 1: Seleccionar el Instalador APEX</span>
+                            </button>
+                            <textarea id="commandContent" readonly class="w-full h-48 bg-gray-900 text-yellow-300 text-xs p-4 border border-gray-600 rounded-lg resize-none font-mono">cat &lt;&lt;'APEX_EOF' &gt; ~/apex_optimizer.sh
 #!/bin/bash
-# --- DEFINITIONS &amp; COLORS ---
 GREEN="\033[32m"; YELLOW="\033[33m"; BLUE="\033[34m"; CYAN="\033[36m"; RED="\033[31m"; LRED="\033[91m"; RESET="\033[0m"
-
-# --- MAIN FUNCTIONS ---
-show_header() {
-    clear
-    printf "${BLUE}====================================================\n${RESET}"
-    printf "${LRED}               Optimizador APEX v5.0                \n${RESET}"
-    printf "${BLUE}====================================================\n${RESET}"
-}
-
-run_apex_cleanup() {
-    show_header; printf "\n${YELLOW}INICIANDO LIMPIEZA APEX (MODO AUTOMÁTICO)...${RESET}\n"
-    local LOG_FILE="/sdcard/Download/apex_optimizer_log_$(date +%Y%m%d_%H%M%S).txt"
-    printf "======== Log de Optimización APEX - $(date) ========\n" > "$LOG_FILE"
-    declare -a tasks=( "Limpiando cachés generales de apps..." "Limpiando caché de apps populares (IG, TK, Spot, NFLX)..." "Purgando todas las miniaturas (.thumbnails)..." "Limpiando duplicados de WhatsApp Sent..." "Buscando archivos basura (.log, .tmp, .bak, .old, .dmp)..." "Buscando reportes de error (tombstones, anr, crash)..." "Eliminando archivos vacíos (0 bytes)..." "Eliminando APKs de más de 30 días..." "Purgando carpetas vacías (pasadas múltiples)..." )
-    for task in "${tasks[@]}"; do
-        printf "\n${CYAN}==> %s${RESET}\n" "$task" | tee -a "$LOG_FILE"
-        sleep 0.5
-        case "$task" in
-            "Limpiando cachés generales de apps...") rm -rf /sdcard/Android/data/*/cache/* &> /dev/null ;;
-            "Limpiando caché de apps populares (IG, TK, Spot, NFLX)...") rm -rf /sdcard/Android/data/com.instagram.android/cache/* &> /dev/null; rm -rf /sdcard/Android/data/com.zhiliaoapp.musically/cache/* &> /dev/null; rm -rf /sdcard/Android/data/com.spotify.music/files/cache/* &> /dev/null; rm -rf /sdcard/Android/data/com.netflix.mediaclient/cache/* &> /dev/null ;;
-            "Purgando todas las miniaturas (.thumbnails)...") find /sdcard -type d -name ".thumbnails" -exec rm -rf {} + &> /dev/null ;;
-            "Limpiando duplicados de WhatsApp Sent...") find /sdcard/WhatsApp/Media/ -path "*/Sent/*" -type f -delete &> /dev/null ;;
-            "Buscando archivos basura (.log, .tmp, .bak, .old, .dmp)...") find /sdcard -type f -regextype posix-extended -regex ".*\.((log|tmp|bak|old|dmp)$)" -delete &> /dev/null ;;
-            "Buscando reportes de error (tombstones, anr, crash)...") find /sdcard -type f \( -name "*.crash" -o -name "tombstone_*" -o -name "anr_*" \) -delete &> /dev/null ;;
-            "Eliminando archivos vacíos (0 bytes)...") find /sdcard -type f -size 0c -delete &> /dev/null ;;
-            "Eliminando APKs de más de 30 días...") find /sdcard/Download -type f -name "*.apk" -mtime +30 -delete &> /dev/null ;;
-            "Purgando carpetas vacías (pasadas múltiples)...") for i in {1..5}; do find /sdcard -type d -empty -delete &> /dev/null; done ;;
-        esac
-        printf "${GREEN}Completado.${RESET}\n"
-    done
-    printf "\n${BLUE}=================== INFORME FINAL ===================${RESET}\n" | tee -a "$LOG_FILE"
-    printf "${GREEN}Limpieza APEX finalizada.${RESET}\n\nUn registro detallado se guardó en: ${YELLOW}%s${RESET}\n" "$LOG_FILE"
-    read -p "Presiona Enter para volver...";
-}
-
-run_duplicate_manager() {
-    show_header; printf "\n${LRED}======= GESTOR DE DUPLICADOS =======${RESET}\n"
-    printf "\n${YELLOW}Buscando duplicados... Esto puede tardar MUCHOS minutos.\nPresiona CTRL+C para cancelar.${RESET}\n\n"
-    local duplicates_found=false
-    declare -a files_to_delete
-    while IFS= read -r line; do
-        duplicates_found=true
-        local hash=$(echo "$line" | cut -d' ' -f1)
-        local first_file=$(find /sdcard -type f -exec md5sum {} + 2>/dev/null | grep "$hash" | head -n1 | sed "s/$hash\s*//")
-        printf "${CYAN}Grupo de Duplicados (se conservará el primero):${RESET}\n"
-        printf "${GREEN}  [CONSERVAR] %s${RESET}\n" "$first_file"
-        
-        while IFS= read -r dup_line; do
-            files_to_delete+=("$dup_line")
-            printf "${RED}  [MARCADO]   %s${RESET}\n" "$dup_line"
-        done &lt; &lt;(find /sdcard -type f -exec md5sum {} + 2>/dev/null | grep "$hash" | tail -n +2 | sed "s/$hash\s*//")
-        printf "\n"
-    done &lt; &lt;(find /sdcard -type f -size +1M -exec md5sum {} + 2>/dev/null | sort | uniq -w32 -d | cut -d' ' -f1 | sort -u)
-    
-    if ! $duplicates_found; then
-        printf "${GREEN}¡No se encontraron archivos duplicados de más de 1MB!${RESET}\n"
-    else
-        read -p "¿Quieres eliminar todos los archivos marcados en rojo? (s/N): " confirm
-        if [[ "$confirm" == "s" || "$confirm" == "S" ]]; then
-            local deleted_count=0
-            for file in "${files_to_delete[@]}"; do
-                rm "$file" &amp;&amp; ((deleted_count++))
-            done
-            printf "\n${GREEN}Se eliminaron %d archivos duplicados.${RESET}\n" "$deleted_count"
-        else
-            printf "\n${RED}Operación cancelada.${RESET}\n"
-        fi
-    fi
-    read -p "Presiona Enter para volver...";
-}
-
-run_performance_tweaks() {
-    while true; do
-        show_header; printf "\n${LRED}======= TWEAKS DE RENDIMIENTO (EXPERIMENTAL) =======${RESET}\n"
-        printf "${YELLOW}Estos cambios pueden no tener efecto en todos los dispositivos.\nÚsalos bajo tu propio riesgo.${RESET}\n\n"
-        printf "  ${CYAN}[1]${RESET} Cambiar DNS a Cloudflare (1.1.1.1) ${GREEN}(Recomendado)${RESET}\n"
-        printf "  ${CYAN}[2]${RESET} Cambiar DNS a Google (8.8.8.8)\n"
-        printf "  ${CYAN}[3]${RESET} Forzar renderizado por GPU ${YELLOW}(Puede mejorar fluidez)${RESET}\n"
-        printf "  ${CYAN}[4]${RESET} Aumentar respuesta táctil\n"
-        printf "  ${CYAN}[5]${RESET} Revertir todos los tweaks a valores por defecto\n"
-        printf "  ${CYAN}[6]${RESET} Volver al menú principal\n"
-        read -p "Opción: " choice
-        case $choice in
-            1) setprop net.dns1 1.1.1.1; setprop net.dns2 1.0.0.1; printf "${GREEN}DNS cambiado a Cloudflare.${RESET}\n"; sleep 1 ;;
-            2) setprop net.dns1 8.8.8.8; setprop net.dns2 8.8.4.4; printf "${GREEN}DNS cambiado a Google.${RESET}\n"; sleep 1 ;;
-            3) setprop debug.hwui.renderer opengl; setprop persist.sys.ui.hw true; printf "${GREEN}Renderizado por GPU forzado.${RESET}\n"; sleep 1 ;;
-            4) setprop windowsmgr.max_events_per_sec 150; printf "${GREEN}Respuesta táctil aumentada.${RESET}\n"; sleep 1 ;;
-            5) setprop net.dns1 ""; setprop net.dns2 ""; setprop debug.hwui.renderer ""; setprop persist.sys.ui.hw false; setprop windowsmgr.max_events_per_sec 60; printf "${GREEN}Tweaks revertidos a valores por defecto.${RESET}\n"; sleep 2 ;;
-            6) break ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;;
-        esac
-    done
-}
-
-run_developer_tools() {
-    while true; do
-        show_header; printf "\n${LRED}======= HERRAMIENTAS DE DESARROLLADOR =======${RESET}\n"
-        printf "  ${CYAN}[1]${RESET} Ver registro del sistema en vivo (Logcat)\n"
-        printf "  ${CYAN}[2]${RESET} Volver al menú principal\n"
-        read -p "Opción: " choice
-        case $choice in
-            1) show_header; printf "\n${YELLOW}Mostrando Logcat... Presiona CTRL+C para detener.${RESET}\n\n"; logcat; read -p "\nPresiona Enter para volver...";;
-            2) break ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;;
-        esac
-    done
-}
-
-check_dependencies() {
-    local missing_pkgs=""
-    for pkg in curl termux-api; do if ! command -v $pkg &> /dev/null; then missing_pkgs="$missing_pkgs $pkg"; fi; done
-    if [ ! -z "$missing_pkgs" ]; then
-        show_header; printf "\n${RED}FALTAN DEPENDENCIAS ESENCIALES.${RESET}\n"
-        printf "${YELLOW}El script necesita:%s${RESET}\n" "$missing_pkgs"
-        read -p "Quieres instalarlas automáticamente? (S/n): " confirm
-        if [[ "$confirm" != "n" &amp;&amp; "$confirm" != "N" ]]; then pkg install -y $missing_pkgs; fi
-    fi
-    if [ ! -d "/sdcard/Download" ]; then
-        printf "\n${RED}ERROR: No se puede acceder al almacenamiento.${RESET}\n"
-        printf "${YELLOW}Ejecuta 'termux-setup-storage', concede el permiso y vuelve a intentarlo.${RESET}\n"; exit 1
-    fi
-}
-
-# --- MAIN MENU (unchanged functions like app manager, etc., are omitted for brevity but are included in the real script) ---
-# --- For brevity in this display, only the new/changed menu items are fully scripted. The installer will create the full script. ---
-# --- MAIN MENU ---
+show_header() { clear; printf "${BLUE}====================================================\n${RESET}"; printf "${LRED}               Optimizador APEX v5.0                \n${RESET}"; printf "${BLUE}====================================================\n${RESET}"; }
+run_apex_cleanup() { show_header; printf "\n${YELLOW}INICIANDO LIMPIEZA APEX...${RESET}\n"; local LOG_FILE="/sdcard/Download/apex_optimizer_log_$(date +%Y%m%d_%H%M%S).txt"; { printf "======== Log de Optimización APEX - $(date) ========\n"; } > "$LOG_FILE"; declare -a tasks=("Limpiando cachés generales..." "Limpiando caché de apps populares..." "Purgando todas las miniaturas..." "Limpiando duplicados de WhatsApp Sent..." "Buscando archivos basura..." "Buscando reportes de error..." "Eliminando archivos vacíos..." "Eliminando APKs de más de 30 días..." "Purgando carpetas vacías..."); for task in "${tasks[@]}"; do { printf "\n${CYAN}==> %s${RESET}\n" "$task"; } | tee -a "$LOG_FILE"; sleep 0.5; case "$task" in "Limpiando cachés generales...") rm -rf /sdcard/Android/data/*/cache/* &>/dev/null ;; "Limpiando caché de apps populares...") rm -rf /sdcard/Android/data/com.instagram.android/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.zhiliaoapp.musically/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.spotify.music/files/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.netflix.mediaclient/cache/* &>/dev/null ;; "Purgando todas las miniaturas...") find /sdcard -type d -name ".thumbnails" -exec rm -rf {} + &>/dev/null ;; "Limpiando duplicados de WhatsApp Sent...") find /sdcard/WhatsApp/Media/ -path "*/Sent/*" -type f -delete &>/dev/null ;; "Buscando archivos basura...") find /sdcard -type f -regextype posix-extended -regex ".*\.((log|tmp|bak|old|dmp)$)" -delete &>/dev/null ;; "Buscando reportes de error...") find /sdcard/data -type f \( -name "tombstone_*" -o -name "anr_*" \) &>/dev/null; find /sdcard -type f -name "*.crash" -delete &>/dev/null ;; "Eliminando archivos vacíos...") find /sdcard -type f -size 0c -delete &>/dev/null ;; "Eliminando APKs de más de 30 días...") find /sdcard/Download -type f -name "*.apk" -mtime +30 -delete &>/dev/null ;; "Purgando carpetas vacías...") for i in {1..5}; do find /sdcard -type d -empty -delete &>/dev/null; done ;; esac; printf "${GREEN}Completado.${RESET}\n"; done; { printf "\n${BLUE}=================== INFORME FINAL ===================${RESET}\n"; printf "${GREEN}Limpieza APEX finalizada.${RESET}\n\nUn registro detallado se guardó en: ${YELLOW}%s${RESET}\n" "$LOG_FILE"; } | tee -a "$LOG_FILE"; read -p "Presiona Enter para volver..."; }
+run_duplicate_manager() { show_header; printf "\n${LRED}======= GESTOR DE DUPLICADOS =======${RESET}\n\n${YELLOW}Buscando duplicados... Esto puede tardar MUCHOS minutos.\nPresiona CTRL+C para cancelar.${RESET}\n\n"; local duplicates_found=false; declare -A hashes_seen; declare -a files_to_delete; find /sdcard -type f -size +1M -exec md5sum {} + 2>/dev/null | sort | while IFS= read -r line; do local hash; hash=$(echo "$line" | awk '{print $1}'); local file_path; file_path=$(echo "$line" | awk '{$1=""; print $0}' | sed 's/^[ \t]*//'); if [[ -n "${hashes_seen[$hash]}" ]]; then files_to_delete+=("$file_path"); duplicates_found=true; else hashes_seen[$hash]="$file_path"; fi; done; if ! $duplicates_found; then printf "${GREEN}¡No se encontraron archivos duplicados de más de 1MB!${RESET}\n"; else printf "${CYAN}Se encontraron duplicados. Se conservará una copia de cada archivo.${RESET}\n"; for file in "${files_to_delete[@]}"; do printf "${RED}  [MARCADO]   %s${RESET}\n" "$file"; done; read -p "¿Quieres eliminar todos los archivos marcados en rojo? (s/N): " confirm; if [[ "$confirm" == "s" || "$confirm" == "S" ]]; then local deleted_count=0; for file in "${files_to_delete[@]}"; do rm "$file" && ((deleted_count++)); done; printf "\n${GREEN}Se eliminaron %d archivos duplicados.${RESET}\n" "$deleted_count"; else printf "\n${RED}Operación cancelada.${RESET}\n"; fi; fi; read -p "Presiona Enter para volver..."; }
+run_performance_tweaks() { while true; do show_header; printf "\n${LRED}======= TWEAKS DE RENDIMIENTO (EXPERIMENTAL) =======${RESET}\n${YELLOW}Úsalos bajo tu propio riesgo.${RESET}\n\n  ${CYAN}[1]${RESET} Cambiar DNS a Cloudflare (1.1.1.1)\n  ${CYAN}[2]${RESET} Cambiar DNS a Google (8.8.8.8)\n  ${CYAN}[3]${RESET} Forzar renderizado por GPU\n  ${CYAN}[4]${RESET} Aumentar respuesta táctil\n  ${CYAN}[5]${RESET} Revertir todos los tweaks\n  ${CYAN}[6]${RESET} Volver\n"; read -p "Opción: " choice; case $choice in 1) setprop net.dns1 1.1.1.1; setprop net.dns2 1.0.0.1; printf "${GREEN}DNS cambiado a Cloudflare.${RESET}\n"; sleep 1 ;; 2) setprop net.dns1 8.8.8.8; setprop net.dns2 8.8.4.4; printf "${GREEN}DNS cambiado a Google.${RESET}\n"; sleep 1 ;; 3) setprop debug.hwui.renderer opengl; setprop persist.sys.ui.hw true; printf "${GREEN}Renderizado por GPU forzado.${RESET}\n"; sleep 1 ;; 4) setprop windowsmgr.max_events_per_sec 150; printf "${GREEN}Respuesta táctil aumentada.${RESET}\n"; sleep 1 ;; 5) setprop net.dns1 ""; setprop net.dns2 ""; setprop debug.hwui.renderer ""; setprop persist.sys.ui.hw false; setprop windowsmgr.max_events_per_sec 60; printf "${GREEN}Tweaks revertidos a valores por defecto.${RESET}\n"; sleep 2 ;; 6) break ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;; esac; done; }
+run_developer_tools() { while true; do show_header; printf "\n${LRED}======= HERRAMIENTAS DE DESARROLLADOR =======${RESET}\n  ${CYAN}[1]${RESET} Ver Logcat en vivo\n  ${CYAN}[2]${RESET} Volver\n"; read -p "Opción: " choice; case $choice in 1) show_header; printf "\n${YELLOW}Mostrando Logcat... Presiona CTRL+C para detener.${RESET}\n\n"; logcat; read -p "\nPresiona Enter...";; 2) break ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;; esac; done; }
+run_ram_booster() { show_header; printf "\n${RED}ADVERTENCIA: Esta función forzará el cierre de apps.${RESET}\n"; read -p "Iniciar el Liberador de RAM? (s/N): " confirm; if [[ "$confirm" != "s" && "$confirm" != "S" ]]; then printf "\n${RED}Cancelado.${RESET}\n"; sleep 1; return; fi; declare -a APPS_TO_KILL=("com.facebook.katana" "com.facebook.orca" "com.instagram.android" "com.whatsapp" "com.twitter.android" "com.zhiliaoapp.musically" "com.snapchat.android" "com.spotify.music" "com.google.android.youtube" "com.discord" "com.reddit.frontpage" "org.telegram.messenger"); printf "\n"; for app in "${APPS_TO_KILL[@]}"; do printf "${CYAN}Intentando detener: %s...${RESET}\n" "$app"; am force-stop "$app" &>/dev/null; sleep 0.1; done; printf "\n${YELLOW}Quieres detener una app específica?${RESET}\n"; read -p "Ingresa un nombre de paquete (o Enter para omitir): " custom_app; if [ ! -z "$custom_app" ]; then printf "${CYAN}Intentando detener: %s...${RESET}\n" "$custom_app"; am force-stop "$custom_app" &>/dev/null; fi; printf "\n${GREEN}Proceso de liberación de RAM completado.${RESET}\n"; read -p "Presiona Enter..."; }
+run_app_manager() { while true; do show_header; printf "\n${LRED}======= GESTOR DE APPS =======${RESET}\n  ${CYAN}[1]${RESET} Listar apps de usuario\n  ${CYAN}[2]${RESET} Desinstalar una app\n  ${CYAN}[3]${RESET} Volver\n"; read -p "Opción: " choice; case $choice in 1) show_header; printf "\n${YELLOW}Apps de Usuario:${RESET}\n"; pm list packages -3 | sed 's/package://'; read -p "\nPresiona Enter...";; 2) read -p "Ingresa el nombre de paquete de la app: " pkg_name; if [ ! -z "$pkg_name" ]; then am start -a android.intent.action.UNINSTALL_PACKAGE -d "package:$pkg_name"; printf "${GREEN}Intentando abrir desinstalador para %s...${RESET}\n" "$pkg_name"; fi; sleep 2 ;; 3) break ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;; esac; done; }
+show_apex_diagnostics() { show_header; printf "\n${LRED}======= DIAGNÓSTICO APEX DEL SISTEMA =======${RESET}\n"; printf "${YELLOW}Dispositivo:${RESET} %s (%s)\n" "$(getprop ro.product.model)" "$(getprop ro.product.brand)"; printf "${YELLOW}Versión de Android:${RESET} %s (API %s)\n" "$(getprop ro.build.version.release)" "$(getprop ro.build.version.sdk)"; printf "${YELLOW}Tiempo de Actividad:${RESET} %s\n" "$(uptime -p 2>/dev/null || echo 'No disponible')"; printf "\n${CYAN}--- CPU Info ---${RESET}\n"; cat /proc/cpuinfo | grep "model name" | uniq | sed "s/model name\s*:\s*//" || echo "No disponible"; printf "\n${CYAN}--- Batería ---${RESET}\n"; termux-battery-status 2>/dev/null || printf "${YELLOW}No se pudo obtener el estado. Instala termux-api.${RESET}\n"; printf "\n${CYAN}--- Memoria RAM ---${RESET}\n"; free -m 2>/dev/null | grep -v "Swap" || printf "${YELLOW}No disponible.${RESET}\n"; printf "\n${CYAN}--- Almacenamiento ---${RESET}\n"; df -h 2>/dev/null || printf "${YELLOW}No disponible.${RESET}\n"; printf "\n${CYAN}--- Red ---${RESET}\n"; printf "${YELLOW}IP Pública:${RESET} %s\n" "$(curl -s ifconfig.me || echo 'No se pudo obtener')"; printf "${YELLOW}Ping a Google:${RESET}\n"; ping -c 4 8.8.8.8; printf "\n${BLUE}====================================================${RESET}\n"; read -p "Presiona Enter para volver..."; }
+check_dependencies() { local missing_pkgs=""; for pkg in curl termux-api; do if ! command -v $pkg &>/dev/null; then missing_pkgs="$missing_pkgs $pkg"; fi; done; if [ ! -z "$missing_pkgs" ]; then show_header; printf "\n${RED}FALTAN DEPENDENCIAS ESENCIALES.${RESET}\n${YELLOW}El script necesita:%s${RESET}\n" "$missing_pkgs"; read -p "¿Quieres instalarlas automáticamente? (S/n): " confirm; if [[ "$confirm" != "n" && "$confirm" != "N" ]]; then pkg install -y $missing_pkgs; fi; fi; if [ ! -d "/sdcard/Download" ]; then printf "\n${RED}ERROR: No se puede acceder al almacenamiento.${RESET}\n${YELLOW}Ejecuta 'termux-setup-storage' y concede el permiso.${RESET}\n"; exit 1; fi; }
 check_dependencies
-while true; do
-    show_header
-    printf "\nElige una opción:\n"
-    printf "  ${CYAN}[1]${RESET} Limpieza APEX ${LRED}(Automática y Final)${RESET}\n"
-    printf "  ${CYAN}[2]${RESET} Gestor de Duplicados ${LRED}(Interactivo)${RESET}\n"
-    printf "  ${CYAN}[3]${RESET} Tweaks de Rendimiento ${YELLOW}(Experimental)${RESET}\n"
-    printf "  ${CYAN}[4]${RESET} Herramientas de Desarrollador ${YELLOW}(Avanzado)${RESET}\n"
-    printf "  ${CYAN}[5]${RESET} Liberador de RAM (Interactivo)\n"
-    printf "  ${CYAN}[6]${RESET} Gestor de Apps\n"
-    printf "  ${CYAN}[7]${RESET} Diagnóstico APEX Completo\n"
-    printf "  ${CYAN}[8]${RESET} Salir\n"
-    read -p "Opción: " choice
-
-    case $choice in
-        1) run_apex_cleanup ;;
-        2) run_duplicate_manager ;;
-        3) run_performance_tweaks ;;
-        4) run_developer_tools ;;
-        5) # Ram Booster Logic (as before)
-           show_header; echo "Liberador de RAM no implementado en esta vista previa." ; sleep 2;;
-        6) # App Manager Logic (as before)
-           show_header; echo "Gestor de Apps no implementado en esta vista previa."; sleep 2;;
-        7) # Diagnostics Logic (as before)
-           show_header; echo "Diagnóstico no implementado en esta vista previa."; sleep 2;;
-        8) clear; printf "${GREEN}¡Hasta luego!${RESET}\n"; exit 0 ;;
-        *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;;
-    esac
-done
+while true; do show_header; printf "\nElige una opción:\n  ${CYAN}[1]${RESET} Limpieza APEX ${LRED}(Automática y Final)${RESET}\n  ${CYAN}[2]${RESET} Gestor de Duplicados ${LRED}(Interactivo)${RESET}\n  ${CYAN}[3]${RESET} Tweaks de Rendimiento ${YELLOW}(Experimental)${RESET}\n  ${CYAN}[4]${RESET} Herramientas de Desarrollador ${YELLOW}(Avanzado)${RESET}\n  ${CYAN}[5]${RESET} Liberador de RAM (Interactivo)\n  ${CYAN}[6]${RESET} Gestor de Apps\n  ${CYAN}[7]${RESET} Diagnóstico APEX Completo\n  ${CYAN}[8]${RESET} Salir\n"; read -p "Opción: " choice; case $choice in 1) run_apex_cleanup ;; 2) run_duplicate_manager ;; 3) run_performance_tweaks ;; 4) run_developer_tools ;; 5) run_ram_booster ;; 6) run_app_manager ;; 7) show_apex_diagnostics ;; 8) clear; printf "${GREEN}¡Hasta luego!${RESET}\n"; exit 0 ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;; esac; done
 APEX_EOF
+chmod +x ~/apex_optimizer.sh && ~/apex_optimizer.sh</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-# This part is a condensed version of the full script for display. The cat command creates the full, working script.
-# The full script contains all functions like run_ram_booster, run_app_manager etc. from the ZENITH version.
-# We will now create the full script for real.
-FULL_SCRIPT=$(cat &lt;&lt;'FULL_APEX_EOF'
-#!/bin/bash
-# --- DEFINITIONS &amp; COLORS ---
-GREEN="\033[32m"; YELLOW="\033[33m"; BLUE="\033[34m"; CYAN="\033[36m"; RED="\033[31m"; LRED="\033[91m"; RESET="\033[0m"
+        <!-- Changelog Section -->
+        <section id="changelog" class="mb-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Historial de Versiones</h2>
+            <div class="max-w-3xl mx-auto border-l-2 border-gray-700 pl-8 space-y-12">
+                <!-- Version 5.0 -->
+                <div class="relative">
+                    <div class="absolute -left-10 w-4 h-4 bg-red-500 rounded-full mt-1.5"></div>
+                    <h3 class="font-bold text-xl text-red-400">v5.0 - APEX (La Edición Final)</h3>
+                    <p class="text-sm text-gray-500 mb-2">La cima del rendimiento.</p>
+                    <ul class="list-disc list-inside text-sm space-y-1 text-gray-400">
+                        <li>Añadido Gestor de Duplicados Interactivo.</li>
+                        <li>Añadido módulo de Tweaks de Rendimiento (DNS, GPU, Táctil).</li>
+                        <li>Añadidas Herramientas de Desarrollador (Visor de Logcat).</li>
+                        <li>Limpieza extendida a más apps y tipos de archivo.</li>
+                        <li>Reconstrucción total de la interfaz y el instalador.</li>
+                    </ul>
+                </div>
+                <!-- Version 4.0 -->
+                <div class="relative">
+                    <div class="absolute -left-10 w-4 h-4 bg-gray-500 rounded-full mt-1.5"></div>
+                    <h3 class="font-bold text-xl text-white">v4.0 - ZENITH</h3>
+                    <p class="text-sm text-gray-500 mb-2">Más allá del límite.</p>
+                    <ul class="list-disc list-inside text-sm space-y-1 text-gray-400">
+                        <li>Añadido Gestor de Apps y Analizador de Almacenamiento.</li>
+                        <li>Instalador autoreparador que instala dependencias.</li>
+                        <li>Diagnóstico de Red con IP Pública y Ping.</li>
+                    </ul>
+                </div>
+                <!-- Version 1.0 - 3.0 -->
+                <div class="relative">
+                    <div class="absolute -left-10 w-4 h-4 bg-gray-600 rounded-full mt-1.5"></div>
+                    <h3 class="font-bold text-xl text-gray-300">v1.0 a v3.0 - El Origen</h3>
+                    <p class="text-sm text-gray-500 mb-2">Las primeras versiones.</p>
+                    <ul class="list-disc list-inside text-sm space-y-1 text-gray-400">
+                        <li>Creación del script de limpieza básico.</li>
+                        <li>Introducción del menú interactivo y el informe de espacio.</li>
+                        <li>Añadido Liberador de RAM y Diagnóstico del Sistema.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-# --- MAIN FUNCTIONS ---
-show_header() {
-    clear
-    printf "${BLUE}====================================================\n${RESET}"
-    printf "${LRED}               Optimizador APEX v5.0                \n${RESET}"
-    printf "${BLUE}====================================================\n${RESET}"
-}
+        <!-- FAQ Section -->
+        <section id="faq">
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Preguntas Frecuentes</h2>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <details class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <summary class="font-semibold text-white cursor-pointer">El script me da un error de "permission denied".</summary>
+                    <p class="text-gray-400 mt-2 text-sm">Lo más probable es que el script no tenga permisos de ejecución. El instalador debería solucionar esto, pero si falla, ejecuta `chmod +x ~/apex_optimizer.sh` en Termux para arreglarlo.</p>
+                </details>
+                <details class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <summary class="font-semibold text-white cursor-pointer">Dice que no puede acceder al almacenamiento o a `/sdcard/`</summary>
+                    <p class="text-gray-400 mt-2 text-sm">Necesitas conceder permisos de almacenamiento a Termux. Escribe `termux-setup-storage` en Termux, presiona Enter y acepta el permiso en la ventana emergente de Android.</p>
+                </details>
+                <details class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <summary class="font-semibold text-white cursor-pointer">¿Los tweaks de rendimiento son permanentes?</summary>
+                    <p class="text-gray-400 mt-2 text-sm">No. Se reinician cada vez que apagas o reinicias el teléfono. Esto es una medida de seguridad. Puedes volver a aplicarlos fácilmente desde el menú del script cuando quieras.</p>
+                </details>
+            </div>
+        </section>
 
-run_apex_cleanup() {
-    show_header; printf "\n${YELLOW}INICIANDO LIMPIEZA APEX (MODO AUTOMÁTICO)...${RESET}\n"
-    local LOG_FILE="/sdcard/Download/apex_optimizer_log_$(date +%Y%m%d_%H%M%S).txt"
-    printf "======== Log de Optimización APEX - $(date) ========\n" > "$LOG_FILE"
-    declare -a tasks=( "Limpiando cachés generales de apps..." "Limpiando caché de apps populares (IG, TK, Spot, NFLX)..." "Purgando todas las miniaturas (.thumbnails)..." "Limpiando duplicados de WhatsApp Sent..." "Buscando archivos basura (.log, .tmp, .bak, .old, .dmp)..." "Buscando reportes de error (tombstones, anr, crash)..." "Eliminando archivos vacíos (0 bytes)..." "Eliminando APKs de más de 30 días..." "Purgando carpetas vacías (pasadas múltiples)..." )
-    for task in "${tasks[@]}"; do
-        printf "\n${CYAN}==> %s${RESET}\n" "$task" | tee -a "$LOG_FILE"
-        sleep 0.5
-        case "$task" in
-            "Limpiando cachés generales de apps...") rm -rf /sdcard/Android/data/*/cache/* &> /dev/null ;;
-            "Limpiando caché de apps populares (IG, TK, Spot, NFLX)...") rm -rf /sdcard/Android/data/com.instagram.android/cache/* &> /dev/null; rm -rf /sdcard/Android/data/com.zhiliaoapp.musically/cache/* &> /dev/null; rm -rf /sdcard/Android/data/com.spotify.music/files/cache/* &> /dev/null; rm -rf /sdcard/Android/data/com.netflix.mediaclient/cache/* &> /dev/null ;;
-            "Purgando todas las miniaturas (.thumbnails)...") find /sdcard -type d -name ".thumbnails" -exec rm -rf {} + &> /dev/null ;;
-            "Limpiando duplicados de WhatsApp Sent...") find /sdcard/WhatsApp/Media/ -path "*/Sent/*" -type f -delete &> /dev/null ;;
-            "Buscando archivos basura (.log, .tmp, .bak, .old, .dmp)...") find /sdcard -type f -regextype posix-extended -regex ".*\.((log|tmp|bak|old|dmp)$)" -delete &> /dev/null ;;
-            "Buscando reportes de error (tombstones, anr, crash)...") find /sdcard/data -type f \( -name "tombstone_*" -o -name "anr_*" \) &> /dev/null; find /sdcard -type f -name "*.crash" -delete &> /dev/null ;;
-            "Eliminando archivos vacíos (0 bytes)...") find /sdcard -type f -size 0c -delete &> /dev/null ;;
-            "Eliminando APKs de más de 30 días...") find /sdcard/Download -type f -name "*.apk" -mtime +30 -delete &> /dev/null ;;
-            "Purgando carpetas vacías (pasadas múltiples)...") for i in {1..5}; do find /sdcard -type d -empty -delete &> /dev/null; done ;;
-        esac
-        printf "${GREEN}Completado.${RESET}\n"
-    done
-    printf "\n${BLUE}=================== INFORME FINAL ===================${RESET}\n" | tee -a "$LOG_FILE"
-    printf "${GREEN}Limpieza APEX finalizada.${RESET}\n\nUn registro detallado se guardó en: ${YELLOW}%s${RESET}\n" "$LOG_FILE"
-    read -p "Presiona Enter para volver...";
-}
+    </main>
 
-run_duplicate_manager() {
-    show_header; printf "\n${LRED}======= GESTOR DE DUPLICADOS =======${RESET}\n"
-    printf "\n${YELLOW}Buscando duplicados... Esto puede tardar MUCHOS minutos.\nPresiona CTRL+C para cancelar.${RESET}\n\n"
-    local duplicates_found=false
-    declare -A hashes_seen
-    declare -a files_to_delete
-    
-    find /sdcard -type f -size +1M -exec md5sum {} + 2>/dev/null | sort | while IFS= read -r line; do
-        local hash=$(echo "$line" | awk '{print $1}')
-        local file_path=$(echo "$line" | awk '{$1=""; print $0}' | sed 's/^[ \t]*//')
-        
-        if [[ -n "${hashes_seen[$hash]}" ]]; then
-            files_to_delete+=("$file_path")
-            duplicates_found=true
-        else
-            hashes_seen[$hash]="$file_path"
-        fi
-    done
-
-    if ! $duplicates_found; then
-        printf "${GREEN}¡No se encontraron archivos duplicados de más de 1MB!${RESET}\n"
-    else
-        printf "${CYAN}Se encontraron duplicados. Se conservará una copia de cada archivo.${RESET}\n"
-        for file in "${files_to_delete[@]}"; do
-            printf "${RED}  [MARCADO]   %s${RESET}\n" "$file"
-        done
-        read -p "¿Quieres eliminar todos los archivos marcados en rojo? (s/N): " confirm
-        if [[ "$confirm" == "s" || "$confirm" == "S" ]]; then
-            local deleted_count=0
-            for file in "${files_to_delete[@]}"; do
-                rm "$file" &amp;&amp; ((deleted_count++))
-            done
-            printf "\n${GREEN}Se eliminaron %d archivos duplicados.${RESET}\n" "$deleted_count"
-        else
-            printf "\n${RED}Operación cancelada.${RESET}\n"
-        fi
-    fi
-    read -p "Presiona Enter para volver...";
-}
-
-
-run_performance_tweaks() {
-    while true; do
-        show_header; printf "\n${LRED}======= TWEAKS DE RENDIMIENTO (EXPERIMENTAL) =======${RESET}\n"
-        printf "${YELLOW}Estos cambios pueden no tener efecto en todos los dispositivos.\nÚsalos bajo tu propio riesgo.${RESET}\n\n"
-        printf "  ${CYAN}[1]${RESET} Cambiar DNS a Cloudflare (1.1.1.1) ${GREEN}(Recomendado)${RESET}\n"
-        printf "  ${CYAN}[2]${RESET} Cambiar DNS a Google (8.8.8.8)\n"
-        printf "  ${CYAN}[3]${RESET} Forzar renderizado por GPU ${YELLOW}(Puede mejorar fluidez)${RESET}\n"
-        printf "  ${CYAN}[4]${RESET} Aumentar respuesta táctil\n"
-        printf "  ${CYAN}[5]${RESET} Revertir todos los tweaks a valores por defecto\n"
-        printf "  ${CYAN}[6]${RESET} Volver al menú principal\n"
-        read -p "Opción: " choice
-        case $choice in
-            1) setprop net.dns1 1.1.1.1; setprop net.dns2 1.0.0.1; printf "${GREEN}DNS cambiado a Cloudflare.${RESET}\n"; sleep 1 ;;
-            2) setprop net.dns1 8.8.8.8; setprop net.dns2 8.8.4.4; printf "${GREEN}DNS cambiado a Google.${RESET}\n"; sleep 1 ;;
-            3) setprop debug.hwui.renderer opengl; setprop persist.sys.ui.hw true; printf "${GREEN}Renderizado por GPU forzado.${RESET}\n"; sleep 1 ;;
-            4) setprop windowsmgr.max_events_per_sec 150; printf "${GREEN}Respuesta táctil aumentada.${RESET}\n"; sleep 1 ;;
-            5) setprop net.dns1 ""; setprop net.dns2 ""; setprop debug.hwui.renderer ""; setprop persist.sys.ui.hw false; setprop windowsmgr.max_events_per_sec 60; printf "${GREEN}Tweaks revertidos a valores por defecto.${RESET}\n"; sleep 2 ;;
-            6) break ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;;
-        esac
-    done
-}
-
-run_developer_tools() {
-    while true; do
-        show_header; printf "\n${LRED}======= HERRAMIENTAS DE DESARROLLADOR =======${RESET}\n"
-        printf "  ${CYAN}[1]${RESET} Ver registro del sistema en vivo (Logcat)\n"
-        printf "  ${CYAN}[2]${RESET} Volver al menú principal\n"
-        read -p "Opción: " choice
-        case $choice in
-            1) show_header; printf "\n${YELLOW}Mostrando Logcat... Presiona CTRL+C para detener.${RESET}\n\n"; logcat; read -p "\nPresiona Enter para volver...";;
-            2) break ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;;
-        esac
-    done
-}
-
-run_ram_booster() {
-    show_header; printf "\n${RED}ADVERTENCIA: Esta función forzará el cierre de apps en segundo plano.${RESET}\n"
-    read -p "Iniciar el Liberador de RAM? (s/N): " confirm
-    if [[ "$confirm" != "s" &amp;&amp; "$confirm" != "S" ]]; then printf "\n${RED}Cancelado.${RESET}\n"; sleep 1; return; fi
-    declare -a APPS_TO_KILL=( "com.facebook.katana" "com.facebook.orca" "com.instagram.android" "com.whatsapp" "com.twitter.android" "com.zhiliaoapp.musically" "com.snapchat.android" "com.spotify.music" "com.google.android.youtube" "com.discord" "com.reddit.frontpage" "org.telegram.messenger" )
-    printf "\n"
-    for app in "${APPS_TO_KILL[@]}"; do printf "${CYAN}Intentando detener: %s...${RESET}\n" "$app"; am force-stop "$app" &> /dev/null; sleep 0.1; done
-    printf "\n${YELLOW}Quieres detener una app específica?${RESET}\n"
-    read -p "Ingresa un nombre de paquete (o presiona Enter para omitir): " custom_app
-    if [ ! -z "$custom_app" ]; then printf "${CYAN}Intentando detener: %s...${RESET}\n" "$custom_app"; am force-stop "$custom_app" &> /dev/null; fi
-    printf "\n${GREEN}Proceso de liberación de RAM completado.${RESET}\n"; read -p "Presiona Enter...";
-}
-
-run_app_manager() {
-    while true; do
-        show_header; printf "\n${LRED}======= GESTOR DE APPS =======${RESET}\n"
-        printf "  ${CYAN}[1]${RESET} Listar todas las apps instaladas por el usuario\n"
-        printf "  ${CYAN}[2]${RESET} Abrir menú de desinstalación de una app\n"
-        printf "  ${CYAN}[3]${RESET} Volver al menú principal\n"
-        read -p "Opción: " choice
-        case $choice in
-            1) show_header; printf "\n${YELLOW}Apps de Usuario:${RESET}\n"; pm list packages -3 | sed 's/package://'; read -p "\nPresiona Enter...";;
-            2) read -p "Ingresa el nombre de paquete de la app a desinstalar: " pkg_name; if [ ! -z "$pkg_name" ]; then am start -a android.intent.action.UNINSTALL_PACKAGE -d "package:$pkg_name"; printf "${GREEN}Intentando abrir desinstalador para %s...${RESET}\n" "$pkg_name"; fi; sleep 2 ;;
-            3) break ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;;
-        esac
-    done
-}
-
-show_apex_diagnostics() {
-    show_header; printf "\n${LRED}======= DIAGNÓSTICO APEX DEL SISTEMA =======${RESET}\n"
-    printf "${YELLOW}Dispositivo:${RESET} %s (%s)\n" "$(getprop ro.product.model)" "$(getprop ro.product.brand)"
-    printf "${YELLOW}Versión de Android:${RESET} %s (API %s)\n" "$(getprop ro.build.version.release)" "$(getprop ro.build.version.sdk)"
-    printf "${YELLOW}Tiempo de Actividad:${RESET} %s\n" "$(uptime -p 2>/dev/null || echo 'No disponible')"
-    printf "\n${CYAN}--- CPU Info ---${RESET}\n"; cat /proc/cpuinfo | grep "model name" | uniq | sed "s/model name\s*:\s*//" || echo "No disponible"
-    printf "\n${CYAN}--- Batería ---${RESET}\n"; termux-battery-status 2>/dev/null || printf "${YELLOW}No se pudo obtener el estado. Instala termux-api.${RESET}\n"
-    printf "\n${CYAN}--- Memoria RAM ---${RESET}\n"; free -m 2>/dev/null | grep -v "Swap" || printf "${YELLOW}No disponible.${RESET}\n"
-    printf "\n${CYAN}--- Almacenamiento ---${RESET}\n"; df -h 2>/dev/null || printf "${YELLOW}No disponible.${RESET}\n"
-    printf "\n${CYAN}--- Red ---${RESET}\n"
-    printf "${YELLOW}IP Pública:${RESET} %s\n" "$(curl -s ifconfig.me || echo 'No se pudo obtener')"
-    printf "${YELLOW}Ping a Google:${RESET}\n"; ping -c 4 8.8.8.8
-    printf "\n${BLUE}====================================================${RESET}\n"
-    read -p "Presiona Enter para volver...";
-}
-
-check_dependencies() {
-    local missing_pkgs=""
-    for pkg in curl termux-api; do if ! command -v $pkg &> /dev/null; then missing_pkgs="$missing_pkgs $pkg"; fi; done
-    if [ ! -z "$missing_pkgs" ]; then
-        show_header; printf "\n${RED}FALTAN DEPENDENCIAS ESENCIALES.${RESET}\n"
-        printf "${YELLOW}El script necesita:%s${RESET}\n" "$missing_pkgs"
-        read -p "Quieres instalarlas automáticamente? (S/n): " confirm
-        if [[ "$confirm" != "n" &amp;&amp; "$confirm" != "N" ]]; then pkg install -y $missing_pkgs; fi
-    fi
-    if [ ! -d "/sdcard/Download" ]; then
-        printf "\n${RED}ERROR: No se puede acceder al almacenamiento.${RESET}\n"
-        printf "${YELLOW}Ejecuta 'termux-setup-storage', concede el permiso y vuelve a intentarlo.${RESET}\n"; exit 1
-    fi
-}
-
-# --- MAIN MENU ---
-check_dependencies
-while true; do
-    show_header
-    printf "\nElige una opción:\n"
-    printf "  ${CYAN}[1]${RESET} Limpieza APEX ${LRED}(Automática y Final)${RESET}\n"
-    printf "  ${CYAN}[2]${RESET} Gestor de Duplicados ${LRED}(Interactivo)${RESET}\n"
-    printf "  ${CYAN}[3]${RESET} Tweaks de Rendimiento ${YELLOW}(Experimental)${RESET}\n"
-    printf "  ${CYAN}[4]${RESET} Herramientas de Desarrollador ${YELLOW}(Avanzado)${RESET}\n"
-    printf "  ${CYAN}[5]${RESET} Liberador de RAM (Interactivo)\n"
-    printf "  ${CYAN}[6]${RESET} Gestor de Apps\n"
-    printf "  ${CYAN}[7]${RESET} Diagnóstico APEX Completo\n"
-    printf "  ${CYAN}[8]${RESET} Salir\n"
-    read -p "Opción: " choice
-
-    case $choice in
-        1) run_apex_cleanup ;; 2) run_duplicate_manager ;; 3) run_performance_tweaks ;; 4) run_developer_tools ;; 5) run_ram_booster ;; 6) run_app_manager ;; 7) show_apex_diagnostics ;;
-        8) clear; printf "${GREEN}¡Hasta luego!${RESET}\n"; exit 0 ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;;
-    esac
-done
-FULL_APEX_EOF
-)
-echo "$FULL_SCRIPT" > ~/apex_optimizer.sh
-
-chmod +x ~/apex_optimizer.sh &amp;&amp; ~/apex_optimizer.sh</textarea>
-        </div>
-    </div>
+    <footer class="text-center p-8 text-xs text-gray-600 border-t border-gray-800">
+        <p>Optimizador APEX v5.0 | Creado con ❤️ para la comunidad Android.</p>
+        <p class="mt-1">Úsalo bajo tu propia responsabilidad. Siempre es recomendable tener una copia de seguridad de tus datos importantes.</p>
+    </footer>
 
     <script>
         const selectButton = document.getElementById('selectButton');
@@ -405,15 +222,24 @@ chmod +x ~/apex_optimizer.sh &amp;&amp; ~/apex_optimizer.sh</textarea>
         selectButton.addEventListener('click', () => {
             commandContent.focus();
             commandContent.select();
-            selectButtonText.textContent = '¡Ahora Toca "Copiar" en tu Teléfono!';
+            
+            // For mobile devices
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                // Fallback for browsers that don't support execCommand
+                navigator.clipboard.writeText(commandContent.value);
+            }
+            
+            selectButtonText.textContent = '¡Copiado! Ahora Pega en Termux';
             selectButton.classList.remove('bg-red-600', 'hover:bg-red-700');
-            selectButton.classList.add('bg-cyan-600');
+            selectButton.classList.add('bg-green-600');
             
             setTimeout(() => {
                 selectButtonText.textContent = 'Paso 1: Seleccionar el Instalador APEX';
                 selectButton.classList.add('bg-red-600', 'hover:bg-red-700');
-                selectButton.classList.remove('bg-cyan-600');
-            }, 5000);
+                selectButton.classList.remove('bg-green-600');
+            }, 3000);
         });
     </script>
 </body>
