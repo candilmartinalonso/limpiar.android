@@ -7,28 +7,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { 
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            background-image: radial-gradient(circle at 1px 1px, #374151 1px, transparent 0);
+            background-size: 20px 20px;
+        }
         ::selection { background-color: #dc2626; color: white; }
         textarea:focus { outline: none; box-shadow: 0 0 0 2px #dc2626; }
-        .feature-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .feature-card, .tab-button { transition: all 0.3s ease; }
         .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(220, 38, 38, 0.5); }
+        .tab-button.active { background-color: #dc2626; color: white; }
+        .tab-button:not(.active):hover { background-color: #374151; }
+        .faq-item[open] summary svg { transform: rotate(180deg); }
+        .faq-item summary svg { transition: transform 0.2s ease-out; }
+        .terminal-cursor { animation: blink 1s step-end infinite; }
+        @keyframes blink { from, to { color: transparent } 50% { color: #fef08a; } }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-300">
+<body class="text-gray-300">
 
     <!-- Header -->
-    <header class="bg-gray-900 sticky top-0 z-50 border-b border-gray-800">
+    <header class="bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-800">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-black text-red-500">
                 <span class="bg-red-500 text-white px-2 py-1 rounded-md">A</span>PEX
             </div>
             <div class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="#features" class="hover:text-red-500 transition-colors">Características</a>
+                <a href="#why-apex" class="hover:text-red-500 transition-colors">¿Por qué APEX?</a>
+                <a href="#features" class="hover:text-red-500 transition-colors">Módulos</a>
                 <a href="#install" class="hover:text-red-500 transition-colors">Instalación</a>
-                <a href="#changelog" class="hover:text-red-500 transition-colors">Versiones</a>
                 <a href="#faq" class="hover:text-red-500 transition-colors">FAQ</a>
             </div>
-            <a href="#install" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 text-sm">
+            <a href="#install" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 text-sm shadow-lg shadow-red-500/20">
                 Instalar Ahora
             </a>
         </nav>
@@ -38,170 +49,138 @@
 
         <!-- Hero Section -->
         <section class="text-center mb-24">
-            <div class="flex justify-center space-x-2 mb-4">
-                <img src="https://img.shields.io/badge/Versión-5.0_(APEX)-red?style=for-the-badge" alt="Versión">
-                <img src="https://img.shields.io/badge/Plataforma-Android-brightgreen?style=for-the-badge" alt="Plataforma">
-                <img src="https://img.shields.io/badge/Root_Requerido-NO-yellow?style=for-the-badge" alt="Root Requerido">
-            </div>
             <h1 class="text-4xl md:text-7xl font-black text-white mb-4 leading-tight">
                 La Cima del Rendimiento Móvil.
             </h1>
             <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8">
                 La suite de optimización, limpieza y diagnóstico más completa para Termux. Libera todo el potencial de tu Android sin necesidad de root.
             </p>
-            <a href="#install" class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 text-lg">
-                Ir al Instalador
-            </a>
+            <div class="flex justify-center space-x-2 mb-8">
+                <img src="https://img.shields.io/badge/Versión-5.0_(APEX)-red?style=for-the-badge" alt="Versión">
+                <img src="https://img.shields.io/badge/Root_Requerido-NO-yellow?style=for-the-badge" alt="Root Requerido">
+            </div>
         </section>
+
+        <!-- Why Apex Section -->
+        <section id="why-apex" class="mb-24 bg-gray-800/50 p-8 rounded-xl border border-gray-700">
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-8">¿Es Optimizador APEX para ti?</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+                <div class="flex items-start space-x-3"><div class="text-green-400 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p>¿Sientes que tu teléfono está <strong class="text-white">más lento</strong> que antes?</p></div>
+                <div class="flex items-start space-x-3"><div class="text-green-400 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p>¿Te quedas constantemente <strong class="text-white">sin espacio</strong> de almacenamiento?</p></div>
+                <div class="flex items-start space-x-3"><div class="text-green-400 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p>¿Quieres <strong class="text-white">control total</strong> sobre tu dispositivo sin root?</p></div>
+                <div class="flex items-start space-x-3"><div class="text-green-400 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p>¿Te gusta encontrar y eliminar <strong class="text-white">archivos duplicados</strong>?</p></div>
+                <div class="flex items-start space-x-3"><div class="text-green-400 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p>¿Eres un <strong class="text-white">usuario avanzado</strong> que quiere herramientas de diagnóstico?</p></div>
+                <div class="flex items-start space-x-3"><div class="text-green-400 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><p>¿Valoras la <strong class="text-white">seguridad</strong> y quieres una herramienta que no necesite root?</p></div>
+            </div>
+            <p class="text-center mt-8 text-lg">Si respondiste <strong class="text-white">sí</strong> a alguna de estas preguntas, APEX es para ti.</p>
+        </section>
+
 
         <!-- Features Section -->
         <section id="features" class="mb-24">
-            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Un Arsenal de Herramientas a tu Disposición</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature Card 1 -->
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 feature-card">
-                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V3H3v9"/><path d="M21 12v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2"/><path d="M9 16V12"/><path d="M15 16V12"/><path d="M3 12a9 9 0 0 1 18 0"/></svg></div>
-                    <h3 class="font-bold text-xl text-white mb-2">Limpieza APEX</h3>
-                    <p class="text-gray-400 text-sm">Rutina de limpieza obsesiva que erradica caché, archivos basura, reportes de error y más.</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Explora los Módulos APEX</h2>
+            <div x-data="{ activeTab: 1 }" class="max-w-4xl mx-auto">
+                <div class="flex justify-center space-x-2 md:space-x-4 mb-8 p-1 bg-gray-800 rounded-lg">
+                    <button @click="activeTab = 1" :class="{ 'active': activeTab === 1 }" class="tab-button w-full text-sm md:text-base px-4 py-2 rounded-md font-semibold">🧹 Limpieza</button>
+                    <button @click="activeTab = 2" :class="{ 'active': activeTab === 2 }" class="tab-button w-full text-sm md:text-base px-4 py-2 rounded-md font-semibold">📂 Duplicados</button>
+                    <button @click="activeTab = 3" :class="{ 'active': activeTab === 3 }" class="tab-button w-full text-sm md:text-base px-4 py-2 rounded-md font-semibold">⚡ Tweaks</button>
+                    <button @click="activeTab = 4" :class="{ 'active': activeTab === 4 }" class="tab-button w-full text-sm md:text-base px-4 py-2 rounded-md font-semibold">🩺 Diagnóstico</button>
                 </div>
-                <!-- Feature Card 2 -->
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 feature-card">
-                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h.01"/><path d="M12 8h.01"/><path d="M16 8h.01"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/><path d="M8 16h.01"/><path d="M12 16h.01"/><path d="M16 16h.01"/></svg></div>
-                    <h3 class="font-bold text-xl text-white mb-2">Gestor de Duplicados</h3>
-                    <p class="text-gray-400 text-sm">Encuentra y elimina archivos idénticos (fotos, videos) para recuperar gigabytes de espacio.</p>
-                </div>
-                <!-- Feature Card 3 -->
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 feature-card">
-                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></div>
-                    <h3 class="font-bold text-xl text-white mb-2">Tweaks de Rendimiento</h3>
-                    <p class="text-gray-400 text-sm">Ajustes experimentales para cambiar DNS, forzar renderizado GPU y mejorar la respuesta táctil.</p>
-                </div>
-                <!-- Feature Card 4 -->
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 feature-card">
-                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></div>
-                    <h3 class="font-bold text-xl text-white mb-2">Visor de Logcat</h3>
-                    <p class="text-gray-400 text-sm">Herramienta de desarrollador para ver el registro del sistema en tiempo real y diagnosticar problemas.</p>
-                </div>
-                <!-- Feature Card 5 -->
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 feature-card">
-                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
-                    <h3 class="font-bold text-xl text-white mb-2">Gestor de Apps y RAM</h3>
-                    <p class="text-gray-400 text-sm">Libera memoria RAM de forma agresiva y desinstala aplicaciones rápidamente desde un solo lugar.</p>
-                </div>
-                <!-- Feature Card 6 -->
-                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 feature-card">
-                    <div class="text-red-500 mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
-                    <h3 class="font-bold text-xl text-white mb-2">Diagnóstico Completo</h3>
-                    <p class="text-gray-400 text-sm">Una radiografía completa de tu sistema: CPU, Batería, RAM, Red, IP Pública y más.</p>
+                <div class="bg-gray-800/50 p-8 rounded-xl border border-gray-700 min-h-[200px]">
+                    <div x-show="activeTab === 1">
+                        <h3 class="font-bold text-2xl text-white mb-3">Limpieza APEX (Automática y Final)</h3>
+                        <p class="text-gray-400">La rutina de limpieza más obsesiva. Erradica caché (general y de apps como IG, TikTok, Spotify), archivos basura, reportes de error, duplicados de WhatsApp y miniaturas, liberando el máximo espacio posible.</p>
+                    </div>
+                    <div x-show="activeTab === 2">
+                        <h3 class="font-bold text-2xl text-white mb-3">Gestor de Duplicados (Interactivo)</h3>
+                        <p class="text-gray-400">Recupera gigabytes de espacio perdido. Escanea tu memoria en busca de archivos idénticos (fotos, videos, etc.) y te permite seleccionar y eliminar los duplicados de forma segura con tu confirmación.</p>
+                    </div>
+                    <div x-show="activeTab === 3">
+                        <h3 class="font-bold text-2xl text-white mb-3">Tweaks de Rendimiento (Experimental)</h3>
+                        <p class="text-gray-400">Lleva tu dispositivo al límite. Cambia a DNS más rápidos para acelerar la navegación, fuerza el renderizado por GPU para una mayor fluidez y aumenta la respuesta táctil. Todo es 100% reversible.</p>
+                    </div>
+                    <div x-show="activeTab === 4">
+                        <h3 class="font-bold text-2xl text-white mb-3">Diagnóstico APEX Completo</h3>
+                        <p class="text-gray-400">Una radiografía completa de tu sistema: información de CPU, estado de la batería en tiempo real, uso detallado de RAM y almacenamiento, tu IP pública y una prueba de conectividad a internet.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Installation Section -->
         <section id="install" class="mb-24">
-            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Instalación Definitiva en 3 Pasos</h2>
-            <div class="bg-gray-800 rounded-xl border border-gray-700 lg:max-w-4xl mx-auto">
-                <div class="bg-gray-900/50 p-6 rounded-t-xl">
-                    <h3 class="text-xl font-semibold text-white mb-3">Método Infalible</h3>
-                    <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 text-left">
-                        <p><strong class="text-red-500">1. Seleccionar:</strong> Toca el botón de abajo para seleccionar todo el código del instalador.</p>
-                        <p><strong class="text-red-500">2. Copiar:</strong> En el menú de tu teléfono, toca la opción "Copiar".</p>
-                        <p><strong class="text-red-500">3. Pegar y Ejecutar:</strong> Pega el código en Termux y presiona Enter.</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Instalación Definitiva</h2>
+            <div class="bg-gray-800 rounded-xl border border-gray-700 lg:max-w-4xl mx-auto shadow-2xl shadow-red-900/20">
+                <div class="bg-black rounded-t-lg">
+                    <div class="flex items-center p-3 bg-gray-700/50 rounded-t-lg">
+                        <div class="flex space-x-2"><div class="w-3 h-3 bg-red-500 rounded-full"></div><div class="w-3 h-3 bg-yellow-500 rounded-full"></div><div class="w-3 h-3 bg-green-500 rounded-full"></div></div>
+                        <span class="flex-grow text-center text-sm font-mono text-gray-400">Termux Shell</span>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <p class="font-mono text-sm text-gray-400 mb-4">$ <span class="text-white">Sigue las instrucciones para instalar APEX...</span><span class="terminal-cursor">_</span></p>
+                        <button id="selectButton" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-4 rounded-lg transition-all duration-300 flex items-center justify-center text-lg mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                            <span id="selectButtonText">Paso 1: Seleccionar y Copiar Instalador</span>
+                        </button>
+                        <textarea id="commandContent" readonly class="w-full h-24 bg-gray-900 text-yellow-300 text-xs p-4 border border-gray-600 rounded-lg resize-none font-mono">cat &lt;&lt;'APEX_EOF'&gt;~/apex_optimizer.sh;echo 'IyEvYmluL2Jhc2gKIyAtLS0gREVGSU5JVElPTlMgJiBDT0xPUlMgLS0tCmdyZWVuPSJcMDMzWzMybSI7IHllbGxvdz0iXDAzM1szM20iOyBibHVlPSJcMDMzWzM0bSI7IGN5YW49IlwwMzNbMzZtIjsgcmVkPSJcMDMzWzMxbSI7IGxyZWQ9IlwwMzNbOTFtIjsgcmVzZXQ9IlwwMzNbMG0iOwpzaG93X2hlYWRlcigpIHsgY2xlYXI7IHByaW50ZiAiJHtibHVlfT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG4ke3Jlc2V0fSI7IHByaW50ZiAiJHtscmVkfSAgICAgICAgICAgICAgIE9wdGltaXphZG9yIEFQRVggdjUuMCAgICAgICAgICAgICAgIFxuJHtibHVlfT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT05XG4ke3Jlc2V0fSI7IH0KcnVuX2FwZXhfY2xlYW51cCgpIHsgc2hvd19oZWFkZXI7IHByaW50ZiAiXG4ke3llbGxvd31JTklDSUFORE8gTElNUElFWkEgQVBFWC4uLhxuJHt9IjsgbG9jYWwgTE9HX0ZJTEU9Ii9zZGNhcmQvRG93bmxvYWQvYXBleF9vcHRpbWl6ZXJfbG9nXyQoZGF0ZSArJVltZF8lSE1TSykudHh0IjsgeyBwcmludGYgIj09PT09PT09IExvZyBkZSBPcHRpbWl6YWNp824gQVBFWCAtICQoZGF0ZSkgPT09PT09PT1cbiI7IH0gPiAiJExPR19GSUxFIjsgZGVjbGFyZSAtYSB0YXNrcz0oIkxpbXBpYW5kbyBjYWNo6XMgZ2VuZXJhbGVzLi4uIiAiTGltcGlhbmRvIGNhY2j6IGRlIGFwcHMgcG9wdWxhcmVzLi4uIiAiUHVyZ2FuZG8gdG9kYXMgbGFzIG1pbmlhdHVyYXMuLi4iICJMaW1waWFuZG8gZHVwbGljYWRvcyBkZSBXaGF0c0FwcCBTZW50Li4uIiAiQnVzY2FuZG8gYXJjaGl2b3MgYmFzdXJhLi4uIiAiQnVzY2FuZG8gcmVwb3J0ZXMgZGUgZXJyb3IuLi4iICJFbGltaW5hbmRvIGFyY2hpdm9zIHZhY/1zcy4uLiIgIkVsaW1pbmFuZG8gQVBLcyBkZSBt4XMgZGUgMzAgZPNhcy4uLiIgIlB1cmdhbmRvIGNhcnBldGFzIHZhY/1hcy4uLiIpOyBmb3IgdGFzayBpbiAiJHt0YXNrc1tAXX0iOyBkbyB7IHByaW50ZiAiXG4ke2N5YW59PT0+ICVzXG4ke3Jlc2V0fSIgIiR0YXNrIjsgfCB0ZWUgLWEgIiRMT0dfRklMRSI7IHNsZWVwIDAuNTsgY2FzZSAiJHRhc2siIGluICJMaW1waWFuZG8gY2FjaOlzIGdlbmVyYWxlcy4uLiIpIHJtIC1yZiAvc2RjYXJkL0FuZHJvaWQvZGF0YS8qL2NhY2hlLyogJj4vZGV2L251bGwgOzsgIkxpbXBpYW5kbyBjYWNo6SBkZSBhcHBzIHBvcHVsYXJlcy4uLiIpIHJtIC1yZiAvc2RjYXJkL0FuZHJvaWQvZGF0YS9jb20uaW5zdGFncmFtLmFuZHJvaWQvY2FjaGUvKiAmPi9kZXYvbnVsbDsgcm0gLXJmIC9zZGNhcmQvQW5kcm9pZC9kYXRhL2NvbS56aGlsaWFvYXBwLm11c2ljYWxseS9jYWNoZS8qICY+L2Rldi9udWxsOyBybSAtcmYgL3NkY2FyZC9BbmRyb2lkL2RhdGEvY29tLnNwb3RpZnkubXVzaWMvZmlsZXMvY2FjaGUvKiAmPi9kZXYvbnVsbDsgcm0gLXJmIC9zZGNhcmQvQW5kcm9pZC9kYXRhL2NvbS5uZXRmbGl4Lm1lZGlhY2xpZW50L2NhY2hlLyogJj4vZGV2L251bGwgOzsgIlB1cmdhbmRvIHRvZGFzIGxhcyBtaW5pYXR1cmFzLi4uIikgZmluZCAvc2RjYXJkIC10eXBlIGQgLW5hbWUgIi50aHVtYm5haWxzIiAtZXhlYyBybSAtcmYge30gKyAmPi9kZXYvbnVsbCA7OyAiTGltcGlhbmRvIGR1cGxpY2Fkb3MgZGUgV2hhdHNBcHAgU2VudC4uLiIpIGZpbmQgL3NkY2FyZC9XaGF0c0FwcC9NZWRpYS8gLXNlbnQvKiIgLXR5cGUgZiAtZGVsZXRlICY+L2Rldi9udWxsIDsgOyAiQnVzY2FuZG8gYXJjaGl2b3MgYmFzdXJhLi4uIikgZmluZCAvc2RjYXJkIC10eXBlIGYgLXJlZ2V4dHlwZSBwb3NpeC1leHRlbmRlZCAtcmVnZXggIi4qXC4oKGxvZ3x0bXB8YmFrfG9sZHxkbXApJCkiIC1kZWxldGUgJj4vZGV2L251bGwgOzsgIkJ1c2NhbmRvIHJlcG9ydGVzIGRlIGVycm9yLi4uIikgZmluZCAvc2RjYXJkL2RhdGEgLXR5cGUgZiBcKCAtbmFtZSAidG9tYnN0b25lXyoiIC1vIC1uYW1lICJhbnJfKiIgXCkgJj4vZGV2L251bGw7IGZpbmQgL3NkY2FyZCAtVHlwZSBmIC1uYW1lICIqLmNyYXNoIiAtZGVsZXRlICY+L2Rldi9udWxsIDsgOyAiRWxpbWluYW5kbyBhcmNoaXZvcyB2YWPtc3MuLi4iKSBmaW5kIC9zZGNhcmQgLXR5cGUgZiAtc2l6ZSAwYyAtZGVsZXRlICY+L2Rldi9udWxsIDsgOyAiRWxpbWluYW5kbyBBUEtzIGRlIG3hcyBkZSAzMCBkz2FzLi4uIikgZmluZCAvc2RjYXJkL0Rvd25sb2FkIC10eXBlIGYgLW5hbWUgIiouYXBrIiAtbXRpbWUgKzMwIC1kZWxldGUgJj4vZGV2L251bGwgOzsgIlB1cmdhbmRvIGNhcnBldGFzIHZhY/1hcy4uLiIpIGZvciBpIGluIHsxfDIxfDN8NHw1fTsgZG8gZmluZCAvc2RjYXJkIC10eXBlIGQgLWVtcHR5IC1kZWxldGUgJj4vZGV2L251bGw7IGRvbmUgOzsgZXNhYzsgcHJpbnRmICIkZ3JlZW59Q29tcGxldGFkby5cbiR7cmVzZXR9IjsgZG9uZTsgeyBwcmludGYgIlxuJHtibHVlfT09PT09PT09PT09PT09PT09PSBJTkZPUk1FIRklOQUwgPT09PT09PT09PT09PT09PT09XG4ke3Jlc2V0fSI7IHByaW50ZiAiJHt9TGlscGllemEgQVBFWC1maW5hbGl6YWRhLlxuXG5VbiByZWdpc3RybyBkZXRhbGxhZG8gc2UgZ3VhcmTzIGVuOiAke3llbGxvd30lc1xuJHt9IiAiJExPR19GSUxFIjsgfCB0ZWUgLWEgIiRMT0dfRklMRSI7IHJlYWQgLXAgIlByZXNpb25hIEVudGVyIHBhcmEgdm9sdmVyLi4uIjsgfQpydW5fZHVwbGljYXRlX21hbmFnZXIoKSB7IHN1b3faGVhZGVyOyBwcmludGYgIlxuJHtscmVkfT09PT09PT0gR0VTVE9SIERFIERVUExJQ0FET1MgPT09PT09PT1cbiR7cmVzZXR9XG5cbiR7eWVsbG93fUJ1c2NhbmRvIGR1cGxpY2Fkb3MuLi4gRXN0byBwdWVkZSB0YXJkYXIgTVVDSE9TIG1pbnV0b3MuXG5QcmVzaW9uYSBDVFJMK0MgcGFyYSBjYW5jZWxhci5cbiR7cmVzZXR9XG5cbiI7IGxvY2FsIGR1cGxpY2F0ZXNfZm91bmQ9ZmFsc2U7IGRlY2xhcmUgLUEgaGFzaGVzX3NlZW47IGRlY2xhcmUgLWEgZmlsZXNfdG9fZGVsZXRlOyBmaW5kIC9zZGNhcmQgLXR5cGUgZiAtc2l6ZSArMU0gLWV4ZWMgbWQ1c3VtIHt9ICsgMj4vZGV2L251bGwgfCBzb3J0IHwgd2hpbGUgSUZTPSByZWFkIC1yIGxpbmU7IGRvIGxvY2FsIGhhc2g7IGhhc2g9JCgoZWNobyAiJGxpbmUiIHwgYXdrICd7cHJpbnQgJDF9JykpOyBsb2NhbCBmaWxlX3BhdGg7IGZpbGVfcGF0aD0kKChlY2hvICIkxpbmUiIHwgYXdrICd7JDE9IiI7IHByaW50ICQwfScgfCBzZWQgJ3MvXlsgXHRdKi8vJyk7IGlmIFtbIC1uICIke2hhc2hlc19zZWVuWyRoYXNoXX0iIF1dOyB0aGVuIGZpbGVzX3RvX2RlbGV0ZSsoIiRmaWxlX3BhdGgiKTsgZHVwbGljYXRlc19mb3VuZD10cnVlOyBlbHNlIGhhc2hlc19zZWVuWyRoYXNoXSA9IiRmaWxlX3BhdGgiOyBmaTsgZG9uZTsgaWYgISAkZHVwbGljYXRlc19mb3VuZDsgdGhlbiBwcmludGYgIiR7Z3JlZW59wqFObyBzZSBlbmNvbnRyYXJvbiBhcmNoaXZvcyBkdXBsaWNhZG9zIGRlIG3hcyBkZSAxTUIhwqFcbiR7cmVzZXR9IjsgZWxzZSBwcmludGYgIiR7Y3lhbn1TIGVuY29udHJhcm9uIGR1cGxpY2Fkb3MuIFNlIGNvbnNlcnZhcuEgVW5hIGNvcGlhIGRlIGNhZGEgYXJjaGl2by5cbiR7cmVzZXR9IjsgZm9yIGZpbGUgaW4gIiRmaWxlc190b19kZWxldGVbQF19IjsgZG8gcHJpbnRmICIkcmVkfSAgW01BUkNBRE9dICAgJXBcbiR7cmVzZXR9IiAiJGZpbGUiOyBkb25lOyByZWFkIC1wICLCv1F1aWVyZXMgZWxpbWluYXIgZG9zIGxvcyBhcmNoaXZvcyBtYXJjYWRvcz8gKHMvTik6ICIgY29uZmlybTsgaWYgW1sgIiRjb25maXJtIiA9PSAiYyIgfHwgIiRjb25maXJtIiA9PSAiUyIgXV07IHRoZW4gbG9jYWwgZGVsZXRlZF9jb3VudD0wOyBmb3IgZmlsZSBpbiAiJHtmaWxlc190b19kZWxldGVbQF19IjsgZG8gcm0gIiRmaWxlIiAmJiAoKGRlbGV0ZWRfY291bnQrKykpOyBkb25lOyBwcmludGYgIlxuJHt9U2UgZWxpbWluYXJvbiAlZCBhcmNoaXZvcyBkdXBsaWNhZG9zLlxuJHt9IiAiJGRlbGV0ZWRfY291bnQiOyBlbHNlIHByaW50ZiAiXG4ke3JlZH1PQ2VywNzjbiBjYW5jZWxhZGEuXG4ke3Jlc2V0fSI7IGZpOyBmaTsgcmVhZCAtcCByZXNpb25hIEVudGVyIHBhcmEgdm9sdmVyLi4uIjsgfQpydW5fcGVyZm9ybWFuY2VfdHdlYWtzKCkgeyB3aGlsZSB0cnVlOyBkbyBzaG93aGVhZGVyOyBwcmludGYgIlxuJHtscmVkfT09PT09PT0gVFdFQUtTIERFIFJFTkRJTUlFTlRPIChFWFBFUklNRU5UQUwpID09PT09PT09XG4ke3Jlc2V0fVxuc3llbGxvd31FdG9zIGNhbWJpb3MgcHVlZGVuIG5vIHRlbmVyIGVmZWN0byBlbiB0b2RvcyBsb3MgZGlzcG9zaXRpdm9zLlxu+c2Fsb3MgYmFqbyB0dSByb3BpbyByaWVzZ28uXG4ke3Jlc2V0fVxuXG4gICR7Y3lhbn1bMV0ke3Jlc2V0fSBhbWJpYXIgRE5TIGEgQ2xvdWRmbGFyZSAoMS4xLjEuMSlcbiAgJHtjeWFufe0ke3Jlc2V0fSBDYW1iaWFyIEROIGEgR29vZ2xlICg4LjguOC44KVxuICAnJHtjeWFufe1dJHt9IEZvcnphciByZW5kZXJpemFkbyBwb3IgR1BVXG4gICR7Y3lhbn1bNF0ke3Jlc2V0fSBBdW1lbnRhciByZXNwdWVzdGEgdOFjdGlsXG4gICR7Y3lhbn1bNV0ke3Jlc2V0fSBSZXZlcnRpciB0b2RvcyBsb3MgdHdlYWtzXG4gICR7Y3lhbn1bNl0ke3Jlc2V0fSBvbHZlclxuIjsgcmVhZCAtcCBPcGPzbjogIiBjaG9pY2U7IGNhc2UgJGNob2ljZSBpbiAxKSBzZXRwcm9wIG5ldC5kbnMxIDEuMS4xLjE7IHNldHByb3AgbmV0LmRuczIgMS4wLjAuMTsgcHJpbnRmICIkZ3JlZW59RE5TIGNhbWJpYWRvIGEgQ2xvdWRmbGFyZS5cbiR7cmVzZXR9Ijsgc2xlZXAgMSA7OyAyKSBzZXRwcm9wIG5ldC5kbnMxIDguOC44Ljg7IHNldHByb3AgbmV0LmRuczIgOC44LjQuNDsgcHJpbnRmICIkZ3JlZW59RE5TIGNhbWJpYWRvIGEgR29vZ2xlLlxuJHt9Ijsgc2xlZXAgMSA7OyAzKSBzZXRwcm9wIGRlYnVnLmh3dWkucmVuZGVyZXIgb3BlbmdsOyBzZXRwcm9wIHBlcnNpc3Quc3lzLnVpLmh3IHRydWU7IHByaW50ZiAiJHt9UmVuZGVyaXphZG8gcG9yIEdQVSBmb3J6YWRvLlxuJHt9Ijsgc2xlZXAgMSA7OyA0KSBzZXRwcm9wIHdpbmRvd3NtZ3IubWF4X2V2ZW50c19wZXJfc2VjIDE1MDsgcHJpbnRmICIkZ3JlZW59UmVzdWVzdGEgdOFjdGlsIGF1bWVudGFkYS5cbiR7cmVzZXR9Ijsgc2xlZXAgMSA7OyA1KSBzZXRwcm9wIG5ldC5kbnMxICIiOyBzZXRwcm9wIG5ldC5kbnMyICIiOyBzZXRwcm9wIGRlYnVnLmh3dWkucmVuZGVyZXIgIiI7IHNldHByb3AgcGVyc2lzdC5zeXMudWkuaHcgZmFsc2U7IHNldHByb3Agd2luZG93c21nci5tYXhfZXZlbnRzX3Blcl9zZWMgNjA7IHByaW50ZiAiJHt9VHdlYWtzIHJldmVydGlkb3MgYSB2YWxvcmVzIHBvciBkZWZlY3RvLlxuJHt9Ijsgc2xlZXAgMiA7OyA2KSBicmVhayA7OyAqKSBwcmludGYgIlxuJHt9T3Bj824gbm8gduFsaWRhLlxuJHt9Ijsgc2xlZXAgMSA7OyBlc2FjOyBkb25lOyB9CnJ1bl9kZXZlbG9wZXJfdG9vbHMoKSB7IHdoaWxlIHRydWU7IGRvIHNpG93aGVhZGVyOyBwcmludGYgIlxuJHtscmVkfT09PT09PT0gSEVSUkFNSUVOVEFTIERFIERFU0FSUk9MTEFET1IgPT09PT09PT1cbiR7cmVzZXR9XG4gICR7Y3lhbn1bMV0ke3Jlc2V0fSBWZXIgTG9nY2F0IGVuIHZpdm9cbiAgJHtjeWFufe1dJHt9IFZvbHZlclxuIjsgcmVhZCAtcCBPcGPzbjogIiBjaG9pY2U7IGNhc2UgJGNob2ljZSBpbiAxKSBzaG93aGVhZGVyOyBwcmludGYgIlxuJHt5ZWxsb3d9TW9zdHJhbmRvIExvZ2NhdC4uLiBQcmVzaW9uYSBDVFJMK0MgcGFyYSBkZXRlbmVyLlxuJHt9XG5cbiI7IGxvZ2NhdDsgcmVhZCAtcCAnXG5QcmVzaW9uYSBFbnRlciBwYXJhIHZvbHZlci4uLicgOzsgMikgYnJlYWsgOzsgKikgcHJpbnRmICJcbiR7cmVkfU9wY/zbiBubyB24WxpZGEuXG4ke3Jlc2V0fSI7IHNsZWVwIDEgOzsgZXNhYzsgZG9uZTsgfQpydW5fcmFtX2Jvb3N0ZXIoKSB7IHNpG93aGVhZGVyOyBwcmludGYgIlxuJHt9QURWRVJURU5DSUE6IEVzdGEgZnVuY/zbiBmb3J6YXLhIGVsIGNpZXJyZSBkZSBhcHBzLlxuJHt9IjsgcmVhZCAtcCJJbmljaWFyIGVsIExpYmVyYWRvciBkZSBSQU0/IChzL04pOiAiIGNvbmZpcm07IGlmIFtbICIkY29uZmlybSIgIT0gInMiICYmICIkY29uZmlybSIgIT0gIlMiIF1dOyB0aGVuIHByaW50ZiAiXG4ke3JlZH1DYW5jZWxhZG8uXG4ke3Jlc2V0fSI7IHNsZWVwIDE7IHJldHVybjsgZmk7IGRlY2xhcmUgLWEgQVBTX1RPX0tJTEw9KCJjb20uZmFjZWJvb2sua2F0YW5hIiAiY29tLmZhY2Vib29rLm9yY2EiICJjb20uaW5zdGFncmFtLmFuZHJvaWQiICJjb20ud2hhdHNhcHAiICJjb20udHdpdHRlci5hbmRyb2lkIiAiY29tLnpoaWxpYW9hcHAubXVzaWNhbGx5IiAiY29tLnNuYXBjaGF0LmFuZHJvaWQiICJjb20uc3BvdGlmeS5tdXNpYyIgImNvbS5nb29nbGUuYW5kcm9pZC55b3V0dWJlIiAiY29tLmRpc2NvcmQiICJjb20ucmVkZGl0LmZyb250cGFnZSIgIm9yZy50ZWxlZ3JhbS5tZXNzZW5nZXIiKTsgcHJpbnRmICJcbiI7IGZvciBhcHAgaW4gIiR7QVBQU19UT19LSUxMW0BdfSI7IGRvIHByaW50ZiAiJHtjeWFufe1lbnRhbmRvIGRldGVuZXI6ICVzLi4uXG4ke3Jlc2V0fSIgIiRhcHAiOyBhbSBmb3JjZS1zdG9wICIkYXBwIiAmPi9kZXYvbnVsbDsgc2xlZXAgMC4xOyBkb25lOyBwcmludGYgIlxuJHt5ZWxsb3d9wqRRdWllcmVzIGRldGVuZXIgdW5hIGFwcCBlc3BlY/1pY2E/XG4ke3Jlc2V0fSI7IHJlYWQgLXAgIkluZ3Jlc2EgdW4gbm9tYnJlIGRlIHBhcXVldGUgKG8gRW50ZXIgcGFyYSBvbWl0aXIpOiAiIGN1c3RvbV9hcHA7IGlmIFsgISAteiAiJGN1c3RvbV9hcHAiIF07IHRoZW4gcHJpbnRmICIkY3lhbne1lbnRhbmRvIGRldGVuZXI6ICVzLi4uXG4ke3Jlc2V0fSIgIiRjdXN0b21fYXBwIjsgYW0gZm9yY2Utc3RvcCAiJGN1c3RvbV9hcHAiICY+L2Rldi9udWxsOyBmaTsgcHJpbnRmICJcbiR7Z3JlZW59UHJvY2VzbyBkZSBsaWJlcmFj824gZGUgUkFNIGNvbXBsZXRhZG8uXG4ke3Jlc2V0fSI7IHJlYWQgLXAgIlByZXNpb25hIEVudGVyLi4uIjsgfQpydW5fYXBwX21hbmFnZXIoKSB7IHdoaWxlIHRydWU7IGRvIHNpG93aGVhZGVyOyBwcmludGYgIlxuJHtscmVkfT09PT09PT0gR0VTVE9SIERFIEFQUFMgPT09PT09PT1cbiR7cmVzZXR9XG4gICR7Y3lhbn1bMV0ke3Jlc2V0fSBMaXN0YXIgYXBwcyBkZSB1c3VhcmlvXG4gICR7Y3lhbn1bMl0ke3Jlc2V0fSBEZXNuc3RhbGFyIHVuYSBhcHBcbiAgJHtjeWFufe1dJHt9IFZvbHZlclxuIjsgcmVhZCAtcCBPcGPzbjogIiBjaG9pY2U7IGNhc2UgJGNob2ljZSBpbiAxKSBzaG93aGVhZGVyOyBwcmludGYgIlxuJHt5ZWxsb3d9QXBwcyBkZSBVc3VhcmlvOlxuJHt9XG4iOyBwbSBsaXN0IHBhY2thZ2VzIC0zIHwgc2VkICdzL3BhY2thZ2U6Ly8nOyByZWFkIC1wICJcblByZXNpb25hIEVudGVyLi4uIiA7OyAyKSByZWFkIC1wIkluZ3Jlc2Egbm9tYnJlIGRlIHBhcXVldGUgZGUgbGEgYXBwOiAiIHBrZ19uYW1lOyBpZiBbICEgLXogIiRwa2dfbmFtZSIgXTsgdGhlbiBhbSBzdGFydCAtYSBhbmRyb2lkLmludGVudC5hY3Rpb24uVU5JTlNUQUxMX1BBQ0tBR0UgLWQgInBhY2thZ2U6JHBrZ19uYW1lIjsgcHJpbnRmICIkZ3JlZW59SW50ZW50YW5kbyBhYnJpciBkZXNpbnN0YWxhZG9yIHBhcmEgJXMuLi5cbiR7cmVzZXR9IiAiJHBrZ19uYW1lIjsgZmk7IHNsZWVwIDIgOzsgMykgYnJlYWsgOzsgKikgcHJpbnRmICJcbiR7cmVkfU9wY/zbiBubyB24WxpZGEuXG4ke3Jlc2V0fSI7IHNsZWVwIDEgOzsgZXNhYzsgZG9uZTsgfQpzaG93X2FwZXhfZGlhZ25vc3RpY3MoKSB7IHNpG93aGVhZGVyOyBwcmludGYgIlxuJHtscmVkfT09PT09PT0gRElBR07TU1RJUyBBUFJYIERFTCBTSVNURU1BID09PT09PT09XG4ke3Jlc2V0fSI7IHByaW50ZiAiJHt5ZWxsb3d9RGlzcsb3NpY3ZvOlxuJHt9ICVzICglcykiICIkKHNldHByb3Agcm8ucHJvZHVjdC5tb2RlbCkiICIkKHNldHByb3Agcm8ucHJvZHVjdC5icmFuZCkiOyBwcmludGYgIlxuJHt5ZWxsb3d9VmVyc/zbiBkZSBBbmRyb2lkOlxuJHt9ICVzIChBUEkgJXMpIiAiJChzZXRwcm9wIHJvLmJ1aWxkLnZlcnNpb24ucmVsZWFzZSkiICIkKHNldHByb3Agcm8uYnVpbGQudmVyc2lvbi5zZGspIjsgcHJpbnRmICJcbiR7eWVsbG93fVRpZW1wbyBkZSBBY3Rpdmk6XG4ke3Jlc2V0fSAlcyIgIiQodXB0aW1lIC1wIDI+L2Rldi9udWxsIHx8IGVjaG8gJ05vIGRpc3BvbmJsZScpIjsgcHJpbnRmICJcbiR7Y3lhbn0tLS0gQ1BVIEluZm8gLS0tXG4ke3Jlc2V0fSI7IGNhdCAvcHJvYy9jcHVpbmZvIHwgb3J0ICJcbiR7Y3lhbn0tLS0gQmF0ZXLtYSAtLS1cbiR7cmVzZXR9IjsgdGVybXV4LWJhdHRlcnktc3RhdHVzIDI+L2Rldi9udWxsIHx8IHByaW50ZiAiJHt5ZWxsb3d9Tm8gc2UgcHVkbyBvYnRlbmVyIGVsIGVzdGFkby4gSW5zdGFsYSB0ZXJtdXgtYXBpLlxuJHt9IjsgcHJpbnRmICJcbiR7Y3lhbn0tLS0gTWVtb3JpYSBSQU0gLS0tXG4ke3Jlc2V0fSI7IGZyZWUgLW0gMj4vZGV2L251bGwgfCBncmVwIC12ICJTd2FwIiB8fCBwcmludGYgIiR7eWVsbG93fU5vIGRpc3BvbmJsZS5cbiR7cmVzZXR9IjsgcHJpbnRmICJcbiR7Y3lhbn0tLS0gQWxtYWNlbmFtaWVudG8gLS0tXG4ke3Jlc2V0fSI7IGRmIC1oIDI+L2Rldi9udWxsIHx8IHByaW50ZiAiJHt5ZWxsb3d9Tm8gZGlzcG9uaWJsZS5cbiR7cmVzZXR9IjsgcHJpbnRmICJcbiR7Y3lhbn0tLS0gUmVkIC0tLVxuJHt9IjsgcHJpbnRmICIkewt9SVAgUPpidWxpY2E6XG4ke3Jlc2V0fSAlcyIgIiQoY3VybCAtcyBpZmNvbmZpZy5tZSB8fCBlY2hvICdObyBzZSBwdWRvIG9idGVuZXInKSI7IHByaW50ZiAiXG4ke3llbGxvd31QbmcgYSBHb29nbGU6XG4ke3Jlc2V0fSI7IHBpbmcgLWMgNCA4LjguOC44OyBwcmludGYgIlxuJHtibHVlfT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT05XG4ke3Jlc2V0fSI7IHJlYWQgLXAgIlByZXNpb25hIEVudGVyIHBhcmEgdm9sdmVyLi4uIjsgfQpjaGVja19kZXBlbmRlbmNpZXMoKSB7IGxvY2FsIG1pc3NpbmdfcGtncz0iIjsgZm9yIHBrZyBpbiBjdXJsIHRlcm11eC1hcGk7IGRvIGlmICEgY29tbWFuZCAtdiAkcGtnICY+L2Rldi9udWxsOyB0aGVuIG1pc3NpbmdfcGtncz0iJG1pc3NpbmdfcGtncyAkcGtnIjsgZmk7IGRvbmU7IGlmIFsgISAtZSAiJG1pc3NpbmdfcGtncyIgXTsgdGhlbiBzaG93aGVhZGVyOyBwcmludGYgIlxuJHt9RkFMVEFOIERFUEVOREVOQ0lBUyBFU0VOQ0lBTEVTLlxuJHt9XG4ke3llbGxvd31FbCBzY3JpcHQgbmVjZXNpdGE6JXNcbiR7cmVzZXR9IiAiJG1pc3NpbmdfcGtncyI7IHJlYWQgLXAgIsK/UXVpZXJlcyBpbnN0YWxhcmxhcyBhdXRvbeF0aWNhbWVudGU/IChTL24pOiAiIGNvbmZpcm07IGlmIFtbICIkY29uZmlybSIgIT0gIm4iICYmICIkY29uZmlybSIgIT0gIk4iIF1dOyB0aGVuIHBrZyBpbnN0YWxsIC15ICRtaXNzaW5nX3BrZ3M7IGZpOyBmaTsgaWYgWyAhIC1kICIvc2RjYXJkL0Rvd25sb2FkIiBdOyB0aGVuIHByaW50ZiAiXG4ke3JlZH1FUlJPUjogTm8gc2UgcHVlZGUgYWNjZWRlciBhbCBhbG1hY2VuYW1pZW50by5cbiR7cmVzZXR9XG4ke3llbGxvd31Famd1dGEgJ3Rlcm11eC1zZXR1cC1zdG9yYWdlJyB5IGNvbmNlZGUgZWwgcGVybWlzby5cbiR7cmVzZXR9IjsgZXhpdCAxOyBmaTsgfQpjaGVja19kZXBlbmRlbmNpZXMKd2hpbGUgdHJ1ZTsgZG8gc2hvd2hlYWRlcjsgcHJpbnRmICJcblBlcyBhbGVnZSB1bmEgb3Bj8246XG4gICR7Y3lhbn1bMV0ke3Jlc2V0fSBMaXBpZXphIEFQRVggJHtscmVkfShBdXRvbeF0aWNhIHkgRmluYWwpJHt9XG4gICR7Y3lhbn1bMl0ke3Jlc2V0fSBEZXN0b3IgZGUgRHVwbGljYWRvcyAke3xyZWR9KEludGVyYWN0aXZvKSR7cmVzZXR9XG4gICR7Y3lhbn1bM10ke3Jlc2V0fSBUeWFrIHMgZGUgUmVuZGltZW50byAke3llbGxvd30oRXhwZXJpbWVudGFsKSR7cmVzZXR9XG4gICR7Y3lhbn1bNF0ke3Jlc2V0fSBIZXJyYW1pbnRhcyBkZSBEZXNhcnJvbGxhZG9yICR7eWVsbG93fShBdmFuemFkbykke3Jlc2V0fVxuICAnJHtjeWFufe1dJHt9IExpYmVyYWRvciBkZSBSQU0gKEludGVyYWN0aXZvKVxuICAnJHtjeWFufe1dJHt9IEdlc3RvciBkZSBBcHBzXG4gICR7Y3lhbn1bN10ke3Jlc2V0fSBEaWFnbsNzdGljbyBBUEVYIENvbXBsZXRvXG4gICR7Y3lhbn1bOF0ke3Jlc2V0fSBTcmlyXG4iOyByZWFkIC1wIE9wY/zbjogIiBjaG9pY2U7IGNhc2UgJGNob2ljZSBpbiAxKSBydW5fYXBleF9jbGVhbnVwIDsgOyAyKSBydW5fZHVwbGljYXRlX21hbmFnZXIgOzsgMykgcnVuX3BlcmZvcm1hbmNlX3R3ZWFrcyA7OyA0KSBydW5fZGV2ZWxvcGVyX3Rvb2xzIDsgOyA1KSBydW5fcmFtX2Jvb3N0ZXIgOzsgNikgcnVuX2Fwcf9hbmFnZXIgOzsgNykgc2hvd19hcGV4X2RpYWdub3N0aWNzIDsgOyA4KSBjbGVhcjsgcHJpbnRmICIkZ3JlZW59wqFIYXN0YSBsdWVnbyHCoVxuJHt9IjsgZXhpdCAwIDsgOyAqKSBwcmludGYgIlxuJHt9T3Bj824gbm8gduFsaWRhLlxuJHt9Ijsgc2xlZXAgMSA7OyBlc2FjOyBkb25lOwo=' | base64 -d > ~/apex_optimizer.sh
+chmod +x ~/apex_optimizer.sh && ~/apex_optimizer.sh</textarea>
+                        <p class="text-xs text-center text-gray-500 mt-2">Este instalador crea el script `apex_optimizer.sh` en tu directorio de inicio.</p>
                     </div>
                 </div>
-                <div class="p-6">
-                    <div class="bg-black rounded-lg border border-gray-600">
-                        <div class="flex items-center p-3 bg-gray-700/50 rounded-t-lg">
-                            <div class="flex space-x-2">
-                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                            </div>
-                            <span class="flex-grow text-center text-sm font-mono text-gray-400">Termux Shell</span>
-                        </div>
-                        <div class="p-4">
-                            <button id="selectButton" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-4 rounded-lg transition-all duration-300 flex items-center justify-center text-lg mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-                                <span id="selectButtonText">Paso 1: Seleccionar el Instalador APEX</span>
-                            </button>
-                            <textarea id="commandContent" readonly class="w-full h-48 bg-gray-900 text-yellow-300 text-xs p-4 border border-gray-600 rounded-lg resize-none font-mono">cat &lt;&lt;'APEX_EOF' &gt; ~/apex_optimizer.sh
-#!/bin/bash
-GREEN="\033[32m"; YELLOW="\033[33m"; BLUE="\033[34m"; CYAN="\033[36m"; RED="\033[31m"; LRED="\033[91m"; RESET="\033[0m"
-show_header() { clear; printf "${BLUE}====================================================\n${RESET}"; printf "${LRED}               Optimizador APEX v5.0                \n${RESET}"; printf "${BLUE}====================================================\n${RESET}"; }
-run_apex_cleanup() { show_header; printf "\n${YELLOW}INICIANDO LIMPIEZA APEX...${RESET}\n"; local LOG_FILE="/sdcard/Download/apex_optimizer_log_$(date +%Y%m%d_%H%M%S).txt"; { printf "======== Log de Optimización APEX - $(date) ========\n"; } > "$LOG_FILE"; declare -a tasks=("Limpiando cachés generales..." "Limpiando caché de apps populares..." "Purgando todas las miniaturas..." "Limpiando duplicados de WhatsApp Sent..." "Buscando archivos basura..." "Buscando reportes de error..." "Eliminando archivos vacíos..." "Eliminando APKs de más de 30 días..." "Purgando carpetas vacías..."); for task in "${tasks[@]}"; do { printf "\n${CYAN}==> %s${RESET}\n" "$task"; } | tee -a "$LOG_FILE"; sleep 0.5; case "$task" in "Limpiando cachés generales...") rm -rf /sdcard/Android/data/*/cache/* &>/dev/null ;; "Limpiando caché de apps populares...") rm -rf /sdcard/Android/data/com.instagram.android/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.zhiliaoapp.musically/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.spotify.music/files/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.netflix.mediaclient/cache/* &>/dev/null ;; "Purgando todas las miniaturas...") find /sdcard -type d -name ".thumbnails" -exec rm -rf {} + &>/dev/null ;; "Limpiando duplicados de WhatsApp Sent...") find /sdcard/WhatsApp/Media/ -path "*/Sent/*" -type f -delete &>/dev/null ;; "Buscando archivos basura...") find /sdcard -type f -regextype posix-extended -regex ".*\.((log|tmp|bak|old|dmp)$)" -delete &>/dev/null ;; "Buscando reportes de error...") find /sdcard/data -type f \( -name "tombstone_*" -o -name "anr_*" \) &>/dev/null; find /sdcard -type f -name "*.crash" -delete &>/dev/null ;; "Eliminando archivos vacíos...") find /sdcard -type f -size 0c -delete &>/dev/null ;; "Eliminando APKs de más de 30 días...") find /sdcard/Download -type f -name "*.apk" -mtime +30 -delete &>/dev/null ;; "Purgando carpetas vacías...") for i in {1..5}; do find /sdcard -type d -empty -delete &>/dev/null; done ;; esac; printf "${GREEN}Completado.${RESET}\n"; done; { printf "\n${BLUE}=================== INFORME FINAL ===================${RESET}\n"; printf "${GREEN}Limpieza APEX finalizada.${RESET}\n\nUn registro detallado se guardó en: ${YELLOW}%s${RESET}\n" "$LOG_FILE"; } | tee -a "$LOG_FILE"; read -p "Presiona Enter para volver..."; }
-run_duplicate_manager() { show_header; printf "\n${LRED}======= GESTOR DE DUPLICADOS =======${RESET}\n\n${YELLOW}Buscando duplicados... Esto puede tardar MUCHOS minutos.\nPresiona CTRL+C para cancelar.${RESET}\n\n"; local duplicates_found=false; declare -A hashes_seen; declare -a files_to_delete; find /sdcard -type f -size +1M -exec md5sum {} + 2>/dev/null | sort | while IFS= read -r line; do local hash; hash=$(echo "$line" | awk '{print $1}'); local file_path; file_path=$(echo "$line" | awk '{$1=""; print $0}' | sed 's/^[ \t]*//'); if [[ -n "${hashes_seen[$hash]}" ]]; then files_to_delete+=("$file_path"); duplicates_found=true; else hashes_seen[$hash]="$file_path"; fi; done; if ! $duplicates_found; then printf "${GREEN}¡No se encontraron archivos duplicados de más de 1MB!${RESET}\n"; else printf "${CYAN}Se encontraron duplicados. Se conservará una copia de cada archivo.${RESET}\n"; for file in "${files_to_delete[@]}"; do printf "${RED}  [MARCADO]   %s${RESET}\n" "$file"; done; read -p "¿Quieres eliminar todos los archivos marcados en rojo? (s/N): " confirm; if [[ "$confirm" == "s" || "$confirm" == "S" ]]; then local deleted_count=0; for file in "${files_to_delete[@]}"; do rm "$file" && ((deleted_count++)); done; printf "\n${GREEN}Se eliminaron %d archivos duplicados.${RESET}\n" "$deleted_count"; else printf "\n${RED}Operación cancelada.${RESET}\n"; fi; fi; read -p "Presiona Enter para volver..."; }
-run_performance_tweaks() { while true; do show_header; printf "\n${LRED}======= TWEAKS DE RENDIMIENTO (EXPERIMENTAL) =======${RESET}\n${YELLOW}Úsalos bajo tu propio riesgo.${RESET}\n\n  ${CYAN}[1]${RESET} Cambiar DNS a Cloudflare (1.1.1.1)\n  ${CYAN}[2]${RESET} Cambiar DNS a Google (8.8.8.8)\n  ${CYAN}[3]${RESET} Forzar renderizado por GPU\n  ${CYAN}[4]${RESET} Aumentar respuesta táctil\n  ${CYAN}[5]${RESET} Revertir todos los tweaks\n  ${CYAN}[6]${RESET} Volver\n"; read -p "Opción: " choice; case $choice in 1) setprop net.dns1 1.1.1.1; setprop net.dns2 1.0.0.1; printf "${GREEN}DNS cambiado a Cloudflare.${RESET}\n"; sleep 1 ;; 2) setprop net.dns1 8.8.8.8; setprop net.dns2 8.8.4.4; printf "${GREEN}DNS cambiado a Google.${RESET}\n"; sleep 1 ;; 3) setprop debug.hwui.renderer opengl; setprop persist.sys.ui.hw true; printf "${GREEN}Renderizado por GPU forzado.${RESET}\n"; sleep 1 ;; 4) setprop windowsmgr.max_events_per_sec 150; printf "${GREEN}Respuesta táctil aumentada.${RESET}\n"; sleep 1 ;; 5) setprop net.dns1 ""; setprop net.dns2 ""; setprop debug.hwui.renderer ""; setprop persist.sys.ui.hw false; setprop windowsmgr.max_events_per_sec 60; printf "${GREEN}Tweaks revertidos a valores por defecto.${RESET}\n"; sleep 2 ;; 6) break ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;; esac; done; }
-run_developer_tools() { while true; do show_header; printf "\n${LRED}======= HERRAMIENTAS DE DESARROLLADOR =======${RESET}\n  ${CYAN}[1]${RESET} Ver Logcat en vivo\n  ${CYAN}[2]${RESET} Volver\n"; read -p "Opción: " choice; case $choice in 1) show_header; printf "\n${YELLOW}Mostrando Logcat... Presiona CTRL+C para detener.${RESET}\n\n"; logcat; read -p "\nPresiona Enter...";; 2) break ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;; esac; done; }
-run_ram_booster() { show_header; printf "\n${RED}ADVERTENCIA: Esta función forzará el cierre de apps.${RESET}\n"; read -p "Iniciar el Liberador de RAM? (s/N): " confirm; if [[ "$confirm" != "s" && "$confirm" != "S" ]]; then printf "\n${RED}Cancelado.${RESET}\n"; sleep 1; return; fi; declare -a APPS_TO_KILL=("com.facebook.katana" "com.facebook.orca" "com.instagram.android" "com.whatsapp" "com.twitter.android" "com.zhiliaoapp.musically" "com.snapchat.android" "com.spotify.music" "com.google.android.youtube" "com.discord" "com.reddit.frontpage" "org.telegram.messenger"); printf "\n"; for app in "${APPS_TO_KILL[@]}"; do printf "${CYAN}Intentando detener: %s...${RESET}\n" "$app"; am force-stop "$app" &>/dev/null; sleep 0.1; done; printf "\n${YELLOW}Quieres detener una app específica?${RESET}\n"; read -p "Ingresa un nombre de paquete (o Enter para omitir): " custom_app; if [ ! -z "$custom_app" ]; then printf "${CYAN}Intentando detener: %s...${RESET}\n" "$custom_app"; am force-stop "$custom_app" &>/dev/null; fi; printf "\n${GREEN}Proceso de liberación de RAM completado.${RESET}\n"; read -p "Presiona Enter..."; }
-run_app_manager() { while true; do show_header; printf "\n${LRED}======= GESTOR DE APPS =======${RESET}\n  ${CYAN}[1]${RESET} Listar apps de usuario\n  ${CYAN}[2]${RESET} Desinstalar una app\n  ${CYAN}[3]${RESET} Volver\n"; read -p "Opción: " choice; case $choice in 1) show_header; printf "\n${YELLOW}Apps de Usuario:${RESET}\n"; pm list packages -3 | sed 's/package://'; read -p "\nPresiona Enter...";; 2) read -p "Ingresa el nombre de paquete de la app: " pkg_name; if [ ! -z "$pkg_name" ]; then am start -a android.intent.action.UNINSTALL_PACKAGE -d "package:$pkg_name"; printf "${GREEN}Intentando abrir desinstalador para %s...${RESET}\n" "$pkg_name"; fi; sleep 2 ;; 3) break ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;; esac; done; }
-show_apex_diagnostics() { show_header; printf "\n${LRED}======= DIAGNÓSTICO APEX DEL SISTEMA =======${RESET}\n"; printf "${YELLOW}Dispositivo:${RESET} %s (%s)\n" "$(getprop ro.product.model)" "$(getprop ro.product.brand)"; printf "${YELLOW}Versión de Android:${RESET} %s (API %s)\n" "$(getprop ro.build.version.release)" "$(getprop ro.build.version.sdk)"; printf "${YELLOW}Tiempo de Actividad:${RESET} %s\n" "$(uptime -p 2>/dev/null || echo 'No disponible')"; printf "\n${CYAN}--- CPU Info ---${RESET}\n"; cat /proc/cpuinfo | grep "model name" | uniq | sed "s/model name\s*:\s*//" || echo "No disponible"; printf "\n${CYAN}--- Batería ---${RESET}\n"; termux-battery-status 2>/dev/null || printf "${YELLOW}No se pudo obtener el estado. Instala termux-api.${RESET}\n"; printf "\n${CYAN}--- Memoria RAM ---${RESET}\n"; free -m 2>/dev/null | grep -v "Swap" || printf "${YELLOW}No disponible.${RESET}\n"; printf "\n${CYAN}--- Almacenamiento ---${RESET}\n"; df -h 2>/dev/null || printf "${YELLOW}No disponible.${RESET}\n"; printf "\n${CYAN}--- Red ---${RESET}\n"; printf "${YELLOW}IP Pública:${RESET} %s\n" "$(curl -s ifconfig.me || echo 'No se pudo obtener')"; printf "${YELLOW}Ping a Google:${RESET}\n"; ping -c 4 8.8.8.8; printf "\n${BLUE}====================================================${RESET}\n"; read -p "Presiona Enter para volver..."; }
-check_dependencies() { local missing_pkgs=""; for pkg in curl termux-api; do if ! command -v $pkg &>/dev/null; then missing_pkgs="$missing_pkgs $pkg"; fi; done; if [ ! -z "$missing_pkgs" ]; then show_header; printf "\n${RED}FALTAN DEPENDENCIAS ESENCIALES.${RESET}\n${YELLOW}El script necesita:%s${RESET}\n" "$missing_pkgs"; read -p "¿Quieres instalarlas automáticamente? (S/n): " confirm; if [[ "$confirm" != "n" && "$confirm" != "N" ]]; then pkg install -y $missing_pkgs; fi; fi; if [ ! -d "/sdcard/Download" ]; then printf "\n${RED}ERROR: No se puede acceder al almacenamiento.${RESET}\n${YELLOW}Ejecuta 'termux-setup-storage' y concede el permiso.${RESET}\n"; exit 1; fi; }
-check_dependencies
-while true; do show_header; printf "\nElige una opción:\n  ${CYAN}[1]${RESET} Limpieza APEX ${LRED}(Automática y Final)${RESET}\n  ${CYAN}[2]${RESET} Gestor de Duplicados ${LRED}(Interactivo)${RESET}\n  ${CYAN}[3]${RESET} Tweaks de Rendimiento ${YELLOW}(Experimental)${RESET}\n  ${CYAN}[4]${RESET} Herramientas de Desarrollador ${YELLOW}(Avanzado)${RESET}\n  ${CYAN}[5]${RESET} Liberador de RAM (Interactivo)\n  ${CYAN}[6]${RESET} Gestor de Apps\n  ${CYAN}[7]${RESET} Diagnóstico APEX Completo\n  ${CYAN}[8]${RESET} Salir\n"; read -p "Opción: " choice; case $choice in 1) run_apex_cleanup ;; 2) run_duplicate_manager ;; 3) run_performance_tweaks ;; 4) run_developer_tools ;; 5) run_ram_booster ;; 6) run_app_manager ;; 7) show_apex_diagnostics ;; 8) clear; printf "${GREEN}¡Hasta luego!${RESET}\n"; exit 0 ;; *) printf "\n${RED}Opción no válida.${RESET}\n"; sleep 1 ;; esac; done
-APEX_EOF
-chmod +x ~/apex_optimizer.sh && ~/apex_optimizer.sh</textarea>
-                        </div>
-                    </div>
+            </div>
+        </section>
+        
+        <!-- Safety Section -->
+        <section id="safety" class="mb-24 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Seguridad y Transparencia</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-green-900/20 p-6 rounded-xl border border-green-500/30">
+                    <h3 class="font-bold text-xl text-green-300 mb-2">✅ Lo que APEX HACE:</h3>
+                    <ul class="list-disc list-inside text-sm space-y-1 text-left text-green-200/80">
+                        <li>Elimina archivos de caché y temporales.</li>
+                        <li>Busca archivos basura por tipo (.log, .tmp).</li>
+                        <li>Encuentra y te ayuda a eliminar duplicados.</li>
+                        <li>Limpia carpetas vacías y APKs antiguos.</li>
+                        <li>Aplica tweaks de sistema reversibles.</li>
+                    </ul>
+                </div>
+                <div class="bg-red-900/20 p-6 rounded-xl border border-red-500/30">
+                    <h3 class="font-bold text-xl text-red-300 mb-2">❌ Lo que APEX NUNCA HACE:</h3>
+                    <ul class="list-disc list-inside text-sm space-y-1 text-left text-red-200/80">
+                        <li><strong>No necesita ROOT.</strong></li>
+                        <li>No elimina fotos, videos o música personal.</li>
+                        <li>No borra tus contactos ni mensajes.</li>
+                        <li>No desinstala apps sin tu permiso.</li>
+                        <li>No recopila ni comparte tus datos.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Changelog Section -->
-        <section id="changelog" class="mb-24">
-            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Historial de Versiones</h2>
-            <div class="max-w-3xl mx-auto border-l-2 border-gray-700 pl-8 space-y-12">
-                <!-- Version 5.0 -->
-                <div class="relative">
-                    <div class="absolute -left-10 w-4 h-4 bg-red-500 rounded-full mt-1.5"></div>
-                    <h3 class="font-bold text-xl text-red-400">v5.0 - APEX (La Edición Final)</h3>
-                    <p class="text-sm text-gray-500 mb-2">La cima del rendimiento.</p>
-                    <ul class="list-disc list-inside text-sm space-y-1 text-gray-400">
-                        <li>Añadido Gestor de Duplicados Interactivo.</li>
-                        <li>Añadido módulo de Tweaks de Rendimiento (DNS, GPU, Táctil).</li>
-                        <li>Añadidas Herramientas de Desarrollador (Visor de Logcat).</li>
-                        <li>Limpieza extendida a más apps y tipos de archivo.</li>
-                        <li>Reconstrucción total de la interfaz y el instalador.</li>
-                    </ul>
-                </div>
-                <!-- Version 4.0 -->
-                <div class="relative">
-                    <div class="absolute -left-10 w-4 h-4 bg-gray-500 rounded-full mt-1.5"></div>
-                    <h3 class="font-bold text-xl text-white">v4.0 - ZENITH</h3>
-                    <p class="text-sm text-gray-500 mb-2">Más allá del límite.</p>
-                    <ul class="list-disc list-inside text-sm space-y-1 text-gray-400">
-                        <li>Añadido Gestor de Apps y Analizador de Almacenamiento.</li>
-                        <li>Instalador autoreparador que instala dependencias.</li>
-                        <li>Diagnóstico de Red con IP Pública y Ping.</li>
-                    </ul>
-                </div>
-                <!-- Version 1.0 - 3.0 -->
-                <div class="relative">
-                    <div class="absolute -left-10 w-4 h-4 bg-gray-600 rounded-full mt-1.5"></div>
-                    <h3 class="font-bold text-xl text-gray-300">v1.0 a v3.0 - El Origen</h3>
-                    <p class="text-sm text-gray-500 mb-2">Las primeras versiones.</p>
-                    <ul class="list-disc list-inside text-sm space-y-1 text-gray-400">
-                        <li>Creación del script de limpieza básico.</li>
-                        <li>Introducción del menú interactivo y el informe de espacio.</li>
-                        <li>Añadido Liberador de RAM y Diagnóstico del Sistema.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
 
         <!-- FAQ Section -->
         <section id="faq">
-            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Preguntas Frecuentes</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Solución de Problemas</h2>
             <div class="max-w-3xl mx-auto space-y-4">
-                <details class="bg-gray-800 p-4 rounded-lg border border-gray-700">
-                    <summary class="font-semibold text-white cursor-pointer">El script me da un error de "permission denied".</summary>
+                <details class="bg-gray-800 p-4 rounded-lg border border-gray-700 faq-item">
+                    <summary class="font-semibold text-white cursor-pointer flex justify-between items-center">
+                        El script me da un error de "permission denied".
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
                     <p class="text-gray-400 mt-2 text-sm">Lo más probable es que el script no tenga permisos de ejecución. El instalador debería solucionar esto, pero si falla, ejecuta `chmod +x ~/apex_optimizer.sh` en Termux para arreglarlo.</p>
                 </details>
-                <details class="bg-gray-800 p-4 rounded-lg border border-gray-700">
-                    <summary class="font-semibold text-white cursor-pointer">Dice que no puede acceder al almacenamiento o a `/sdcard/`</summary>
+                <details class="bg-gray-800 p-4 rounded-lg border border-gray-700 faq-item">
+                    <summary class="font-semibold text-white cursor-pointer flex justify-between items-center">
+                        Dice que no puede acceder al almacenamiento o a `/sdcard/`
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
                     <p class="text-gray-400 mt-2 text-sm">Necesitas conceder permisos de almacenamiento a Termux. Escribe `termux-setup-storage` en Termux, presiona Enter y acepta el permiso en la ventana emergente de Android.</p>
                 </details>
-                <details class="bg-gray-800 p-4 rounded-lg border border-gray-700">
-                    <summary class="font-semibold text-white cursor-pointer">¿Los tweaks de rendimiento son permanentes?</summary>
+                <details class="bg-gray-800 p-4 rounded-lg border border-gray-700 faq-item">
+                    <summary class="font-semibold text-white cursor-pointer flex justify-between items-center">
+                        ¿Los tweaks de rendimiento son permanentes?
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
                     <p class="text-gray-400 mt-2 text-sm">No. Se reinician cada vez que apagas o reinicias el teléfono. Esto es una medida de seguridad. Puedes volver a aplicarlos fácilmente desde el menú del script cuando quieras.</p>
                 </details>
             </div>
@@ -214,6 +193,12 @@ chmod +x ~/apex_optimizer.sh && ~/apex_optimizer.sh</textarea>
         <p class="mt-1">Úsalo bajo tu propia responsabilidad. Siempre es recomendable tener una copia de seguridad de tus datos importantes.</p>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="to-top-button" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="hidden fixed bottom-8 right-8 bg-red-600/80 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 backdrop-blur-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+    
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script>
         const selectButton = document.getElementById('selectButton');
         const selectButtonText = document.getElementById('selectButtonText');
@@ -223,11 +208,9 @@ chmod +x ~/apex_optimizer.sh && ~/apex_optimizer.sh</textarea>
             commandContent.focus();
             commandContent.select();
             
-            // For mobile devices
             try {
                 document.execCommand('copy');
             } catch (err) {
-                // Fallback for browsers that don't support execCommand
                 navigator.clipboard.writeText(commandContent.value);
             }
             
@@ -236,11 +219,21 @@ chmod +x ~/apex_optimizer.sh && ~/apex_optimizer.sh</textarea>
             selectButton.classList.add('bg-green-600');
             
             setTimeout(() => {
-                selectButtonText.textContent = 'Paso 1: Seleccionar el Instalador APEX';
+                selectButtonText.textContent = 'Paso 1: Seleccionar y Copiar Instalador';
                 selectButton.classList.add('bg-red-600', 'hover:bg-red-700');
                 selectButton.classList.remove('bg-green-600');
             }, 3000);
         });
+
+        // Back to top button logic
+        const toTopButton = document.getElementById('to-top-button');
+        window.onscroll = function () {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                toTopButton.classList.remove('hidden');
+            } else {
+                toTopButton.classList.add('hidden');
+            }
+        };
     </script>
 </body>
 </html>
