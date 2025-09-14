@@ -250,7 +250,7 @@
     </main>
 
     <footer class="text-center p-8 text-xs text-stone-600 border-t border-stone-900 mt-16 reveal">
-        <p>Optimizador APEX v7.3 | Diseñado para la comunidad Android.</p>
+        <p>Optimizador APEX v7.4 | Diseñado para la comunidad Android.</p>
         <p class="mt-1">Úsalo bajo tu propia responsabilidad. Se recomienda tener una copia de seguridad de tus datos importantes.</p>
     </footer>
 
@@ -266,7 +266,7 @@
             const shellScript = `#!/bin/bash
 # --- DEFINITIONS & COLORS ---
 green="\\033[32m"; yellow="\\033[33m"; blue="\\033[34m"; cyan="\\033[36m"; red="\\033[31m"; lred="\\033[91m"; reset="\\033[0m";
-show_header() { clear; printf "\\\${blue}=========================================================\\n\\\${reset}"; printf "\\\${lred}                 Optimizador APEX v7.3 (FINAL)                 \\n\\\${blue}=========================================================\\n\\\${reset}"; }
+show_header() { clear; printf "\\\${blue}=========================================================\\n\\\${reset}"; printf "\\\${lred}                 Optimizador APEX v7.4 (FINAL)                 \\n\\\${blue}=========================================================\\n\\\${reset}"; }
 run_apex_cleanup() { show_header; printf "\\n\\\${yellow}INICIANDO LIMPIEZA APEX...\\n\\\${reset}"; local LOG_FILE="/sdcard/Download/apex_optimizer_log_$(date +%Y%m%d_%H%M%S).txt"; { printf "============ Log de Optimización APEX - $(date) ============\\n"; } > "$LOG_FILE"; declare -a tasks=("Limpiando cachés generales..." "Limpiando caché de apps populares..." "Purgando todas las miniaturas..." "Limpiando duplicados de WhatsApp Sent..." "Buscando archivos basura..." "Buscando reportes de error..." "Eliminando archivos vacíos..." "Eliminando APKs de más de 30 días..." "Purgando carpetas vacías..."); for task in "\\\${tasks[@]}"; do { printf "\\n\\\${cyan}==> %s\\n\\\${reset}" "$task"; } | tee -a "$LOG_FILE"; sleep 0.5; case "$task" in "Limpiando cachés generales...") rm -rf /sdcard/Android/data/*/cache/* &>/dev/null ;; "Limpiando caché de apps populares...") rm -rf /sdcard/Android/data/com.instagram.android/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.zhiliaoapp.musically/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.spotify.music/files/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.netflix.mediaclient/cache/* &>/dev/null ;; "Purgando todas las miniaturas...") find /sdcard -type d -name ".thumbnails" -exec rm -rf {} + &>/dev/null ;; "Limpiando duplicados de WhatsApp Sent...") find "/sdcard/WhatsApp/Media/"*"/Sent" -type f -delete &>/dev/null ; ;; "Buscando archivos basura...") find /sdcard -type f -regextype posix-extended -regex ".*\\.(log|tmp|bak|old|dmp)$" -delete &>/dev/null ;; "Buscando reportes de error...") find /sdcard/data -type f \\( -name "tombstone_*" -o -name "anr_*" \\) -delete &>/dev/null; find /sdcard -type f -name "*.crash" -delete &>/dev/null ; ;; "Eliminando archivos vacíos...") find /sdcard -type f -size 0c -delete &>/dev/null ;; "Eliminando APKs de más de 30 días...") find /sdcard/Download -type f -name "*.apk" -mtime +30 -delete &>/dev/null ;; "Purgando carpetas vacías...") for i in {1..3}; do find /sdcard -type d -empty -delete &>/dev/null; done ;; esac; printf "\\\${green}Completado.\\n\\\${reset}"; done; { printf "\\n\\\${blue}===================== INFORME FINAL =====================\\n\\\${reset}"; printf "\\\${reset}Limpieza APEX finalizada.\\n\\nUn registro detallado se guardó en: \\\${yellow}%s\\n\\\${reset}" "$LOG_FILE"; } | tee -a "$LOG_FILE"; read -p "Presiona Enter para volver..."; }
 run_duplicate_manager() { show_header; printf "\\n\\\${lred}============ GESTOR DE DUPLICADOS ============\\n\\\${reset}\\n\\n\\\${yellow}Buscando duplicados... Esto puede tardar MUCHOS minutos.\\nPresiona CTRL+C para cancelar.\\n\\\${reset}\\n\\n"; local duplicates_found=false; declare -A hashes_seen; declare -a files_to_delete; find /sdcard -type f -size +1M -exec md5sum {} + 2>/dev/null | sort | while IFS=" " read -r line; do local hash; hash=$(echo "$line" | awk '{print $1}'); local file_path; file_path=$(echo "$line" | awk '{$1=""; print $0}' | sed 's/^[ \\t]*//'); if [[ -n "\\\${hashes_seen[$hash]}" ]]; then files_to_delete+=("$file_path"); duplicates_found=true; else hashes_seen[$hash]="$file_path"; fi; done; if ! $duplicates_found; then printf "\\\${green}¡No se encontraron archivos duplicados de más de 1MB!\\n\\\${reset}"; else printf "\\\${cyan}Se encontraron duplicados. Se conservará una copia de cada archivo.\\n\\\${reset}"; for file in "\\\${files_to_delete[@]}"; do printf "\\\${red}  [MARCADO]   %q\\n\\\${reset}" "$file"; done; read -p "¿Quieres eliminar los archivos marcados? (s/n): " confirm; if [[ "$confirm" == "s" || "$confirm" == "S" ]]; then local deleted_count=0; for file in "\\\${files_to_delete[@]}"; do rm "$file" && ((deleted_count++)); done; printf "\\n\\\${reset}Se eliminaron %d archivos duplicados.\\n\\\${reset}" "$deleted_count"; else printf "\\n\\\${red}Operación cancelada.\\n\\\${reset}"; fi; fi; read -p 'Presiona Enter para volver ...'; }
 run_performance_tweaks() { while true; do show_header; printf "\\n\\\${lred}============= TWEAKS DE RENDIMIENTO (EXPERIMENTAL) =============\\n\\\${reset}\\n\\\${yellow}Estos cambios se revierten al reiniciar. Úsalos bajo tu propio riesgo.\\n\\\${reset}\\n\\n  \\\${cyan}[1]\\\${reset} Cambiar DNS a Cloudflare (1.1.1.1)\\n  \\\${cyan}[2]\\\${reset} Cambiar DNS a Google (8.8.8.8)\\n  \\\${cyan}[3]\\\${reset} Forzar renderizado por GPU\\n  \\\${cyan}[4]\\\${reset} Aumentar respuesta táctil\\n  \\\${cyan}[5]\\\${reset} Revertir todos los tweaks\\n  \\\${cyan}[6]\\\${reset} Volver\\n"; read -p "Opción: " choice; case $choice in 1) setprop net.dns1 1.1.1.1; setprop net.dns2 1.0.0.1; printf "\\n\\\${green}DNS cambiado a Cloudflare.\\n\\\${reset}"; sleep 1 ;; 2) setprop net.dns1 8.8.8.8; setprop net.dns2 8.8.4.4; printf "\\n\\\${green}DNS cambiado a Google.\\n\\\${reset}"; sleep 1 ;; 3) setprop debug.hwui.renderer opengl; setprop persist.sys.ui.hw true; printf "\\n\\\${reset}Renderizado por GPU forzado.\\n\\\${reset}"; sleep 1 ;; 4) setprop windowsmgr.max_events_per_sec 150; printf "\\n\\\${green}Respuesta táctil aumentada.\\n\\\${reset}"; sleep 1 ;; 5) setprop net.dns1 ""; setprop net.dns2 ""; setprop debug.hwui.renderer ""; setprop persist.sys.ui.hw false; setprop windowsmgr.max_events_per_sec 60; printf "\\n\\\${reset}Tweaks revertidos a valores por defecto.\\n\\\${reset}"; sleep 2 ;; 6) break ;; *) printf "\\n\\\${red}Opción no válida.\\n\\\${reset}"; sleep 1 ;; esac; done; }
@@ -287,36 +287,41 @@ while true; do show_header; printf "\\nElige una opción:\\n  \\\${cyan}[1]\\\${
 
             const initTerminalAnimation = async () => {
                 const terminalOutput = document.getElementById('terminal-output');
-                // La animación ahora se enfoca en la salida del script, haciéndola más limpia.
+                terminalOutput.innerHTML = ''; // Limpiar cualquier contenido previo.
+
+                // Definición de las líneas que se mostrarán en la animación.
+                // No se simulan los comandos, solo la salida del script para una apariencia limpia.
                 const lines = [
-                    { text: 'INICIANDO OPTIMIZADOR APEX v7.3...', color: '#d97706', speed: 30, delay: 1000 },
+                    { text: 'INICIANDO OPTIMIZADOR APEX v7.4...', color: '#d97706', speed: 30, delay: 1000 },
                     { text: '✓ Comprobando dependencias... OK', color: '#22c55e', speed: 30, delay: 500 },
                     { text: '✓ Acceso al almacenamiento concedido.', color: '#22c55e', speed: 30, delay: 500 },
                     { text: '==> Limpiando caché general... 1.2 GB liberados.', color: '#84cc16', speed: 20, delay: 1500 },
                     { text: '✨ Proceso completado. ¡Sistema optimizado!', color: '#a78bfa', speed: 40, delay: 1000 }
                 ];
                 
-                await new Promise(resolve => setTimeout(resolve, 500)); // Pequeña pausa inicial
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pausa inicial
 
                 for (const line of lines) {
                     const p = document.createElement('p');
-                    if (line.color) p.style.color = line.color;
-                    
-                    const textNode = document.createTextNode('');
-                    p.appendChild(textNode);
+                    p.style.color = line.color || 'inherit'; // Asignar color o usar el por defecto.
                     terminalOutput.appendChild(p);
-                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
 
                     for (let i = 0; i < line.text.length; i++) {
-                        textNode.nodeValue += line.text[i];
+                        p.textContent += line.text[i];
+                        terminalOutput.scrollTop = terminalOutput.scrollHeight;
                         await new Promise(resolve => setTimeout(resolve, line.speed));
                     }
                     await new Promise(resolve => setTimeout(resolve, line.delay));
                 }
-                const cursor = document.createElement('span');
-                cursor.className = 'terminal-cursor';
-                if(terminalOutput.lastChild) terminalOutput.lastChild.appendChild(cursor);
-                terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                
+                // Añadir el cursor al final de la última línea.
+                const lastLine = terminalOutput.querySelector('p:last-child');
+                if (lastLine) {
+                    const cursor = document.createElement('span');
+                    cursor.className = 'terminal-cursor';
+                    lastLine.appendChild(cursor);
+                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                }
             };
 
             const initCopyButton = () => {
