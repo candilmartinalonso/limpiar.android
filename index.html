@@ -22,10 +22,15 @@
         
         /* Transiciones y Animaciones Mejoradas */
         .transition-all-smooth { transition: all 0.3s ease-in-out; }
-        .feature-card:hover, .faq-item:hover { 
+        .feature-card { transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out; }
+        .feature-card:hover { 
             transform: translateY(-8px) scale(1.03); 
             background-color: #1c1917; /* stone-900 */
             border-color: #ef4444;
+        }
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 8px #ef4444);
         }
         .faq-item[open] summary svg { transform: rotate(180deg); }
         .faq-item summary svg { transition: transform 0.3s ease-out; }
@@ -67,6 +72,17 @@
             background-color: rgba(12, 10, 9, 0.8);
             border-bottom-color: #3f3f46; /* zinc-700 */
         }
+        
+        /* Animaciones al hacer Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="text-stone-300 antialiased">
@@ -88,7 +104,7 @@
         </nav>
     </header>
 
-    <main class="container mx-auto px-6 py-12 md:py-20">
+    <main class="container mx-auto px-6 py-12 md:py-20 overflow-x-hidden">
 
         <!-- Sección Principal (Hero) -->
         <section class="text-center mb-28 md:mb-36">
@@ -103,7 +119,7 @@
             </a>
             
             <!-- Animación de la Terminal -->
-            <div class="mt-16 max-w-3xl mx-auto bg-stone-900/80 rounded-xl border border-stone-700 shadow-2xl shadow-red-900/20 text-left font-mono text-sm p-4">
+            <div class="mt-16 max-w-3xl mx-auto bg-stone-900/80 rounded-xl border border-stone-700 shadow-2xl shadow-red-900/20 text-left font-mono text-sm p-4 backdrop-blur-sm">
                 <div class="flex items-center pb-3 border-b border-stone-700">
                     <div class="flex space-x-2"><div class="w-3 h-3 bg-red-500 rounded-full"></div><div class="w-3 h-3 bg-yellow-500 rounded-full"></div><div class="w-3 h-3 bg-green-500 rounded-full"></div></div>
                 </div>
@@ -114,48 +130,48 @@
         </section>
 
         <!-- Sección de Características (Features) -->
-        <section id="features" class="mb-28 md:mb-36">
+        <section id="features" class="mb-28 md:mb-36 reveal">
             <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">Una Herramienta. Potencial Ilimitado.</h2>
             <p class="text-center text-stone-400 mb-12 max-w-2xl mx-auto">APEX no es solo un limpiador. Es una navaja suiza de herramientas para exprimir al máximo tu dispositivo.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Tarjetas de características (Feature Cards) -->
-                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800 transition-all-smooth">
-                    <div class="p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30">
+                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
+                    <div class="feature-icon p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12V3H3v9"/><path d="M21 17.5a2.5 2.5 0 0 1-5 0"/><path d="M16 17.5a2.5 2.5 0 0 0 5 0"/><path d="M4 12V2.2A2.2 2.2 0 0 1 6.2 0h11.6A2.2 2.2 0 0 1 20 2.2V12"/><path d="M4 12v9.8A2.2 2.2 0 0 0 6.2 24h11.6a2.2 2.2 0 0 0 2.2-2.2V12"/><path d="M12 12h.01"/></svg>
                     </div>
                     <h3 class="font-bold text-xl text-white mb-2">Limpieza Profunda APEX</h3>
                     <p class="text-stone-400 text-sm">Erradica caché, archivos basura, miniaturas y duplicados de WhatsApp para liberar el máximo espacio.</p>
                 </div>
-                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800 transition-all-smooth">
-                     <div class="p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30">
+                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
+                     <div class="feature-icon p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="M12 18h.01"/></svg>
                     </div>
                     <h3 class="font-bold text-xl text-white mb-2">Diagnóstico de Sistema</h3>
                     <p class="text-stone-400 text-sm">Obtén una radiografía completa de tu dispositivo: CPU, batería, RAM, almacenamiento, red y más.</p>
                 </div>
-                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800 transition-all-smooth">
-                     <div class="p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30">
+                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
+                     <div class="feature-icon p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
                     </div>
                     <h3 class="font-bold text-xl text-white mb-2">Tweaks de Rendimiento</h3>
                     <p class="text-stone-400 text-sm">Cambia a DNS más rápidos, fuerza el renderizado por GPU y mejora la respuesta táctil. 100% reversible.</p>
                 </div>
-                 <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800 transition-all-smooth">
-                     <div class="p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30">
+                 <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
+                     <div class="feature-icon p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth">
                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                     </div>
                     <h3 class="font-bold text-xl text-white mb-2">Gestor de Duplicados</h3>
                     <p class="text-stone-400 text-sm">Escanea y elimina de forma segura archivos idénticos (fotos, videos, documentos) para recuperar gigabytes.</p>
                 </div>
-                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800 transition-all-smooth">
-                     <div class="p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30">
+                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
+                     <div class="feature-icon p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-4.586a1 1 0 0 0-.707.293l-1.414 1.414a1 1 0 0 1-1.414 0l-1.414-1.414A1 1 0 0 0 8.586 14H4z"/></svg>
                     </div>
                     <h3 class="font-bold text-xl text-white mb-2">Liberador de RAM</h3>
                     <p class="text-stone-400 text-sm">Cierra procesos en segundo plano de las apps más comunes para un impulso instantáneo de velocidad.</p>
                 </div>
-                 <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800 transition-all-smooth">
-                     <div class="p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30">
+                 <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
+                     <div class="feature-icon p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                     </div>
                     <h3 class="font-bold text-xl text-white mb-2">100% Seguro y Sin Root</h3>
@@ -165,9 +181,9 @@
         </section>
 
         <!-- Sección de Instalación -->
-        <section id="install" class="mb-28 md:mb-36">
+        <section id="install" class="mb-28 md:mb-36 reveal">
             <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Instalación en 3 Pasos</h2>
-            <div class="bg-stone-900 rounded-xl border border-stone-700 lg:max-w-4xl mx-auto shadow-2xl shadow-red-900/20">
+            <div class="bg-stone-900/80 backdrop-blur-sm rounded-xl border border-stone-700 lg:max-w-4xl mx-auto shadow-2xl shadow-red-900/20">
                 <div class="grid md:grid-cols-3">
                     <!-- Paso 1 -->
                     <div class="p-6 text-center border-b md:border-b-0 md:border-r border-stone-800">
@@ -204,7 +220,7 @@
         </section>
 
         <!-- Sección de Preguntas Frecuentes (FAQ) -->
-        <section id="faq">
+        <section id="faq" class="reveal">
             <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Preguntas Frecuentes</h2>
             <div class="max-w-3xl mx-auto space-y-4">
                 <details class="faq-item bg-stone-900 p-5 rounded-lg border border-stone-800 cursor-pointer transition-all-smooth">
@@ -233,8 +249,8 @@
 
     </main>
 
-    <footer class="text-center p-8 text-xs text-stone-600 border-t border-stone-900 mt-16">
-        <p>Optimizador APEX v7.1 | Diseñado para la comunidad Android.</p>
+    <footer class="text-center p-8 text-xs text-stone-600 border-t border-stone-900 mt-16 reveal">
+        <p>Optimizador APEX v7.2 | Diseñado para la comunidad Android.</p>
         <p class="mt-1">Úsalo bajo tu propia responsabilidad. Se recomienda tener una copia de seguridad de tus datos importantes.</p>
     </footer>
 
@@ -247,54 +263,49 @@
         document.addEventListener('DOMContentLoaded', function() {
             
             // --- Lógica del Script de Instalación ---
-            // El script de shell se define aquí para mejorar la legibilidad y el mantenimiento.
+            // El script se ha simplificado para centrarse en las funciones principales.
             const shellScript = `#!/bin/bash
 # --- DEFINITIONS & COLORS ---
 green="\\033[32m"; yellow="\\033[33m"; blue="\\033[34m"; cyan="\\033[36m"; red="\\033[31m"; lred="\\033[91m"; reset="\\033[0m";
-show_header() { clear; printf "\\\${blue}=========================================================\\n\\\${reset}"; printf "\\\${lred}                 Optimizador APEX v7.1 (FINAL)                 \\n\\\${blue}=========================================================\\n\\\${reset}"; }
-run_apex_cleanup() { show_header; printf "\\n\\\${yellow}INICIANDO LIMPIEZA APEX...\\n\\\${reset}"; local LOG_FILE="/sdcard/Download/apex_optimizer_log_$(date +%Y%m%d_%H%M%S).txt"; { printf "============ Log de Optimización APEX - $(date) ============\\n"; } > "$LOG_FILE"; declare -a tasks=("Limpiando cachés generales..." "Limpiando caché de apps populares..." "Purgando todas las miniaturas..." "Limpiando duplicados de WhatsApp Sent..." "Buscando archivos basura..." "Buscando reportes de error..." "Eliminando archivos vacíos..." "Eliminando APKs de más de 30 días..." "Purgando carpetas vacías..."); for task in "\\\${tasks[@]}"; do { printf "\\n\\\${cyan}==> %s\\n\\\${reset}" "$task"; } | tee -a "$LOG_FILE"; sleep 0.5; case "$task" in "Limpiando cachés generales...") rm -rf /sdcard/Android/data/*/cache/* &>/dev/null ;; "Limpiando caché de apps populares...") rm -rf /sdcard/Android/data/com.instagram.android/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.zhiliaoapp.musically/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.spotify.music/files/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.netflix.mediaclient/cache/* &>/dev/null ;; "Purgando todas las miniaturas...") find /sdcard -type d -name ".thumbnails" -exec rm -rf {} + &>/dev/null ;; "Limpiando duplicados de WhatsApp Sent...") find "/sdcard/WhatsApp/Media/ -sent/*" -type f -delete &>/dev/null ; ;; "Buscando archivos basura...") find /sdcard -type f -regextype posix-extended -regex ".*\\.(log|tmp|bak|old|dmp)$" -delete &>/dev/null ;; "Buscando reportes de error...") find /sdcard/data -type f \\( -name "tombstone_*" -o -name "anr_*" \\) &>/dev/null; find /sdcard -type f -name "*.crash" -delete &>/dev/null ; ;; "Eliminando archivos vacíos...") find /sdcard -type f -size 0c -delete &>/dev/null ;; "Eliminando APKs de más de 30 días...") find /sdcard/Download -type f -name "*.apk" -mtime +30 -delete &>/dev/null ;; "Purgando carpetas vacías...") for i in {1..5}; do find /sdcard -type d -empty -delete &>/dev/null; done ;; esac; printf "\\\${green}Completado.\\n\\\${reset}"; done; { printf "\\n\\\${blue}===================== INFORME FINAL =====================\\n\\\${reset}"; printf "\\\${reset}Limpieza APEX finalizada.\\n\\nUn registro detallado se guardó en: \\\${yellow}%%s\\n\\\${reset}" "$LOG_FILE"; } | tee -a "$LOG_FILE"; read -p "Presiona Enter para volver..."; }
-run_duplicate_manager() { show_header; printf "\\n\\\${lred}============ GESTOR DE DUPLICADOS ============\\n\\\${reset}\\n\\n\\\${yellow}Buscando duplicados... Esto puede tardar MUCHOS minutos.\\nPresiona CTRL+C para cancelar.\\n\\\${reset}\\n\\n"; local duplicates_found=false; declare -A hashes_seen; declare -a files_to_delete; find /sdcard -type f -size +1M -exec md5sum {} + 2>/dev/null | sort | while IFS=" " read -r line; do local hash; hash=$(echo "$line" | awk '{print $1}'); local file_path; file_path=$(echo "$line" | awk '{$1=""; print $0}' | sed 's/^[ \\t]*//'); if [[ -n "\\\${hashes_seen[$hash]}" ]]; then files_to_delete+=("$file_path"); duplicates_found=true; else hashes_seen[$hash]="$file_path"; fi; done; if ! $duplicates_found; then printf "\\\${green}¡No se encontraron archivos duplicados de más de 1MB!\\n\\\${reset}"; else printf "\\\${cyan}Se encontraron duplicados. Se conservará una copia de cada archivo.\\n\\\${reset}"; for file in "\\\${files_to_delete[@]}"; do printf "\\\${red}  [MARCADO]   %%q\\n\\\${reset}" "$file"; done; read -p "¿Quieres eliminar los archivos marcados? (s/n): " confirm; if [[ "$confirm" == "s" || "$confirm" == "S" ]]; then local deleted_count=0; for file in "\\\${files_to_delete[@]}"; do rm "$file" && ((deleted_count++)); done; printf "\\n\\\${reset}Se eliminaron %%d archivos duplicados.\\n\\\${reset}" "$deleted_count"; else printf "\\n\\\${red}Operación cancelada.\\n\\\${reset}"; fi; fi; read -p 'Presiona Enter para volver ...'; }
-run_performance_tweaks() { while true; do show_header; printf "\\n\\\${lred}============= TWEAKS DE RENDIMIENTO (EXPERIMENTAL) =============\\n\\\${reset}\\n\\\${yellow}Estos cambios pueden no tener efecto en todos los dispositivos.\\nÚsalos bajo tu propio riesgo.\\n\\\${reset}\\n\\n  \\\${cyan}[1]\\\${reset} Cambiar DNS a Cloudflare (1.1.1.1)\\n  \\\${cyan}[2]\\\${reset} Cambiar DNS a Google (8.8.8.8)\\n  \\\${cyan}[3]\\\${reset} Forzar renderizado por GPU\\n  \\\${cyan}[4]\\\${reset} Aumentar respuesta táctil\\n  \\\${cyan}[5]\\\${reset} Revertir todos los tweaks\\n  \\\${cyan}[6]\\\${reset} Volver\\n"; read -p "Opción: " choice; case $choice in 1) setprop net.dns1 1.1.1.1; setprop net.dns2 1.0.0.1; printf "\\n\\\${green}DNS cambiado a Cloudflare.\\n\\\${reset}"; sleep 1 ;; 2) setprop net.dns1 8.8.8.8; setprop net.dns2 8.8.4.4; printf "\\n\\\${green}DNS cambiado a Google.\\n\\\${reset}"; sleep 1 ;; 3) setprop debug.hwui.renderer opengl; setprop persist.sys.ui.hw true; printf "\\n\\\${reset}Renderizado por GPU forzado.\\n\\\${reset}"; sleep 1 ;; 4) setprop windowsmgr.max_events_per_sec 150; printf "\\n\\\${green}Respuesta táctil aumentada.\\n\\\${reset}"; sleep 1 ;; 5) setprop net.dns1 ""; setprop net.dns2 ""; setprop debug.hwui.renderer ""; setprop persist.sys.ui.hw false; setprop windowsmgr.max_events_per_sec 60; printf "\\n\\\${reset}Tweaks revertidos a valores por defecto.\\n\\\${reset}"; sleep 2 ;; 6) break ;; *) printf "\\n\\\${red}Opción no válida.\\n\\\${reset}"; sleep 1 ;; esac; done; }
-run_ram_booster() { show_header; printf "\\n\\\${reset}ADVERTENCIA: Esta función forzará el cierre de apps.\\n\\\${reset}"; read -p "Iniciar el Liberador de RAM? (S/N): " confirm; if [[ "$confirm" != "s" && "$confirm" != "S" ]]; then printf "\\n\\\${red}Cancelado.\\n\\\${reset}"; sleep 1; return; fi; declare -a APPS_TO_KILL=("com.facebook.katana" "com.facebook.orca" "com.instagram.android" "com.whatsapp" "com.twitter.android" "com.zhiliaoapp.musically" "com.snapchat.android" "com.spotify.music" "com.google.android.youtube" "com.discord" "com.reddit.frontpage" "org.telegram.messenger"); printf "\\n"; for app in "\\\${APPS_TO_KILL[@]}"; do printf "\\\${cyan}Intentando detener: %%s...\\n\\\${reset}" "$app"; am force-stop "$app" &>/dev/null; sleep 0.1; done; printf "\\n\\\${yellow}¿Quieres detener una app específica?\\n\\\${reset}"; read -p "Ingresa un nombre de paquete (o Enter para omitir): " custom_app; if [ ! -z "$custom_app" ]; then printf "\\n\\\${cyan}Intentando detener: %%s...\\n\\\${reset}" "$custom_app"; am force-stop "$custom_app" &>/dev/null; fi; printf "\\n\\\${green}Proceso de liberación de RAM completado.\\n\\\${reset}"; read -p 'Presiona Enter ...'; }
-show_apex_diagnostics() { show_header; printf "\\n\\\${lred}============= DIAGNÓSTICO APEX DEL SISTEMA =============\\n\\\${reset}"; printf "\\n\\\${yellow}Dispositivo:\\n\\\${reset} %%s (%%s)" "$(setprop ro.product.model)" "$(setprop ro.product.brand)"; printf "\\n\\\${yellow}Versión de Android:\\n\\\${reset} %%s (API_%%s)\\n\\\${reset}" "$(setprop ro.build.version.release)" "$(setprop ro.build.version.sdk)"; printf "\\n\\\${yellow}Tiempo de Actividad:\\n\\\${reset} %%s" "$(uptime -p 2>/dev/null || echo 'No disponible')"; printf "\\n\\\${cyan}--- CPU Info ---\\n\\\${reset}"; cat /proc/cpuinfo | grep 'model name' | uniq | sed 's/model name\\s*: //'; printf "\\n\\\${cyan}--- Batería ---\\n\\\${reset}"; termux-battery-status 2>/dev/null || printf "\\\${yellow}No se pudo obtener el estado. Instala termux-api.\\n\\\${reset}"; printf "\\n\\\${cyan}--- Memoria RAM ---\\n\\\${reset}"; free -h 2>/dev/null || printf "\\\${yellow}No disponible.\\n\\\${reset}"; printf "\\n\\\${cyan}--- Almacenamiento ---\\n\\\${reset}"; df -h 2>/dev/null || printf "\\\${yellow}No disponible.\\n\\\${reset}"; printf "\\n\\\${cyan}--- Red ---\\n\\\${reset}"; printf "IP Pública:\\n\\\${reset} %%s" "$(curl -s ifconfig.me || echo 'No se pudo obtener')"; printf "\\n\\\${yellow}Prueba de PING:\\n\\\${reset}"; ping -c 4 8.8.8.8; printf "\\n\\\${blue}=========================================================\\n\\\${reset}"; read -p 'Presiona Enter para volver ...'; }
-check_dependencies() { local missing_pkgs=""; for pkg in curl md5sum; do if ! command -v $pkg &>/dev/null; then missing_pkgs="$missing_pkgs $pkg"; fi; done; if [ ! -z "$missing_pkgs" ]; then show_header; printf "\\n\\\${red}FALTAN DEPENDENCIAS ESENCIALES.\\n\\\${reset}\\n\\\${yellow}El script necesita:%%s\\n\\\${reset}" "$missing_pkgs"; read -p "¿Quieres instalarlas automáticamente? (S/n): " confirm; if [[ "$confirm" != "n" && "$confirm" != "N" ]]; then pkg install -y $missing_pkgs; fi; fi; if [ ! -d "/sdcard/Download" ]; then printf "\\n\\\${red}ERROR: No se puede acceder al almacenamiento.\\n\\\${reset}\\n\\\${yellow}Ejecuta 'termux-setup-storage' y concede el permiso.\\n\\\${reset}"; exit 1; fi; }
+show_header() { clear; printf "\\\${blue}=========================================================\\n\\\${reset}"; printf "\\\${lred}                 Optimizador APEX v7.2 (FINAL)                 \\n\\\${blue}=========================================================\\n\\\${reset}"; }
+run_apex_cleanup() { show_header; printf "\\n\\\${yellow}INICIANDO LIMPIEZA APEX...\\n\\\${reset}"; local LOG_FILE="/sdcard/Download/apex_optimizer_log_$(date +%Y%m%d_%H%M%S).txt"; { printf "============ Log de Optimización APEX - $(date) ============\\n"; } > "$LOG_FILE"; declare -a tasks=("Limpiando cachés generales..." "Limpiando caché de apps populares..." "Purgando todas las miniaturas..." "Limpiando duplicados de WhatsApp Sent..." "Buscando archivos basura..." "Buscando reportes de error..." "Eliminando archivos vacíos..." "Eliminando APKs de más de 30 días..." "Purgando carpetas vacías..."); for task in "\\\${tasks[@]}"; do { printf "\\n\\\${cyan}==> %s\\n\\\${reset}" "$task"; } | tee -a "$LOG_FILE"; sleep 0.5; case "$task" in "Limpiando cachés generales...") rm -rf /sdcard/Android/data/*/cache/* &>/dev/null ;; "Limpiando caché de apps populares...") rm -rf /sdcard/Android/data/com.instagram.android/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.zhiliaoapp.musically/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.spotify.music/files/cache/* &>/dev/null; rm -rf /sdcard/Android/data/com.netflix.mediaclient/cache/* &>/dev/null ;; "Purgando todas las miniaturas...") find /sdcard -type d -name ".thumbnails" -exec rm -rf {} + &>/dev/null ;; "Limpiando duplicados de WhatsApp Sent...") find "/sdcard/WhatsApp/Media/"*"/Sent" -type f -delete &>/dev/null ; ;; "Buscando archivos basura...") find /sdcard -type f -regextype posix-extended -regex ".*\\.(log|tmp|bak|old|dmp)$" -delete &>/dev/null ;; "Buscando reportes de error...") find /sdcard/data -type f \\( -name "tombstone_*" -o -name "anr_*" \\) -delete &>/dev/null; find /sdcard -type f -name "*.crash" -delete &>/dev/null ; ;; "Eliminando archivos vacíos...") find /sdcard -type f -size 0c -delete &>/dev/null ;; "Eliminando APKs de más de 30 días...") find /sdcard/Download -type f -name "*.apk" -mtime +30 -delete &>/dev/null ;; "Purgando carpetas vacías...") for i in {1..3}; do find /sdcard -type d -empty -delete &>/dev/null; done ;; esac; printf "\\\${green}Completado.\\n\\\${reset}"; done; { printf "\\n\\\${blue}===================== INFORME FINAL =====================\\n\\\${reset}"; printf "\\\${reset}Limpieza APEX finalizada.\\n\\nUn registro detallado se guardó en: \\\${yellow}%s\\n\\\${reset}" "$LOG_FILE"; } | tee -a "$LOG_FILE"; read -p "Presiona Enter para volver..."; }
+run_duplicate_manager() { show_header; printf "\\n\\\${lred}============ GESTOR DE DUPLICADOS ============\\n\\\${reset}\\n\\n\\\${yellow}Buscando duplicados... Esto puede tardar MUCHOS minutos.\\nPresiona CTRL+C para cancelar.\\n\\\${reset}\\n\\n"; local duplicates_found=false; declare -A hashes_seen; declare -a files_to_delete; find /sdcard -type f -size +1M -exec md5sum {} + 2>/dev/null | sort | while IFS=" " read -r line; do local hash; hash=$(echo "$line" | awk '{print $1}'); local file_path; file_path=$(echo "$line" | awk '{$1=""; print $0}' | sed 's/^[ \\t]*//'); if [[ -n "\\\${hashes_seen[$hash]}" ]]; then files_to_delete+=("$file_path"); duplicates_found=true; else hashes_seen[$hash]="$file_path"; fi; done; if ! $duplicates_found; then printf "\\\${green}¡No se encontraron archivos duplicados de más de 1MB!\\n\\\${reset}"; else printf "\\\${cyan}Se encontraron duplicados. Se conservará una copia de cada archivo.\\n\\\${reset}"; for file in "\\\${files_to_delete[@]}"; do printf "\\\${red}  [MARCADO]   %q\\n\\\${reset}" "$file"; done; read -p "¿Quieres eliminar los archivos marcados? (s/n): " confirm; if [[ "$confirm" == "s" || "$confirm" == "S" ]]; then local deleted_count=0; for file in "\\\${files_to_delete[@]}"; do rm "$file" && ((deleted_count++)); done; printf "\\n\\\${reset}Se eliminaron %d archivos duplicados.\\n\\\${reset}" "$deleted_count"; else printf "\\n\\\${red}Operación cancelada.\\n\\\${reset}"; fi; fi; read -p 'Presiona Enter para volver ...'; }
+run_performance_tweaks() { while true; do show_header; printf "\\n\\\${lred}============= TWEAKS DE RENDIMIENTO (EXPERIMENTAL) =============\\n\\\${reset}\\n\\\${yellow}Estos cambios se revierten al reiniciar. Úsalos bajo tu propio riesgo.\\n\\\${reset}\\n\\n  \\\${cyan}[1]\\\${reset} Cambiar DNS a Cloudflare (1.1.1.1)\\n  \\\${cyan}[2]\\\${reset} Cambiar DNS a Google (8.8.8.8)\\n  \\\${cyan}[3]\\\${reset} Forzar renderizado por GPU\\n  \\\${cyan}[4]\\\${reset} Aumentar respuesta táctil\\n  \\\${cyan}[5]\\\${reset} Revertir todos los tweaks\\n  \\\${cyan}[6]\\\${reset} Volver\\n"; read -p "Opción: " choice; case $choice in 1) setprop net.dns1 1.1.1.1; setprop net.dns2 1.0.0.1; printf "\\n\\\${green}DNS cambiado a Cloudflare.\\n\\\${reset}"; sleep 1 ;; 2) setprop net.dns1 8.8.8.8; setprop net.dns2 8.8.4.4; printf "\\n\\\${green}DNS cambiado a Google.\\n\\\${reset}"; sleep 1 ;; 3) setprop debug.hwui.renderer opengl; setprop persist.sys.ui.hw true; printf "\\n\\\${reset}Renderizado por GPU forzado.\\n\\\${reset}"; sleep 1 ;; 4) setprop windowsmgr.max_events_per_sec 150; printf "\\n\\\${green}Respuesta táctil aumentada.\\n\\\${reset}"; sleep 1 ;; 5) setprop net.dns1 ""; setprop net.dns2 ""; setprop debug.hwui.renderer ""; setprop persist.sys.ui.hw false; setprop windowsmgr.max_events_per_sec 60; printf "\\n\\\${reset}Tweaks revertidos a valores por defecto.\\n\\\${reset}"; sleep 2 ;; 6) break ;; *) printf "\\n\\\${red}Opción no válida.\\n\\\${reset}"; sleep 1 ;; esac; done; }
+run_ram_booster() { show_header; printf "\\n\\\${reset}ADVERTENCIA: Esta función forzará el cierre de apps.\\n\\\${reset}"; read -p "Iniciar el Liberador de RAM? (S/N): " confirm; if [[ "$confirm" != "s" && "$confirm" != "S" ]]; then printf "\\n\\\${red}Cancelado.\\n\\\${reset}"; sleep 1; return; fi; declare -a APPS_TO_KILL=("com.facebook.katana" "com.facebook.orca" "com.instagram.android" "com.whatsapp" "com.twitter.android" "com.zhiliaoapp.musically" "com.snapchat.android" "com.spotify.music" "com.google.android.youtube" "com.discord" "com.reddit.frontpage" "org.telegram.messenger"); printf "\\n"; for app in "\\\${APPS_TO_KILL[@]}"; do printf "\\\${cyan}Intentando detener: %s...\\n\\\${reset}" "$app"; am force-stop "$app" &>/dev/null; sleep 0.1; done; printf "\\n\\\${yellow}¿Quieres detener una app específica?\\n\\\${reset}"; read -p "Ingresa un nombre de paquete (o Enter para omitir): " custom_app; if [ ! -z "$custom_app" ]; then printf "\\n\\\${cyan}Intentando detener: %s...\\n\\\${reset}" "$custom_app"; am force-stop "$custom_app" &>/dev/null; fi; printf "\\n\\\${green}Proceso de liberación de RAM completado.\\n\\\${reset}"; read -p 'Presiona Enter ...'; }
+show_apex_diagnostics() { show_header; printf "\\n\\\${lred}============= DIAGNÓSTICO APEX DEL SISTEMA =============\\n\\\${reset}"; printf "\\n\\\${yellow}Dispositivo:\\\${reset} %s (%s)" "$(getprop ro.product.model)" "$(getprop ro.product.brand)"; printf "\\n\\\${yellow}Versión de Android:\\\${reset} %s (API %s)\\n" "$(getprop ro.build.version.release)" "$(getprop ro.build.version.sdk)"; printf "\\\${yellow}Tiempo de Actividad:\\\${reset} %s" "$(uptime -p 2>/dev/null || echo 'No disponible')"; printf "\\n\\\${cyan}--- CPU Info ---\\\${reset}\\n%s" "$(cat /proc/cpuinfo | grep 'model name' | uniq | sed 's/model name\\s*: //')"; printf "\\n\\\${cyan}--- Batería ---\\\${reset}\\n"; termux-battery-status 2>/dev/null || printf "\\\${yellow}No se pudo obtener el estado. Instala termux-api.\\n\\\${reset}"; printf "\\n\\\${cyan}--- Memoria RAM ---\\\${reset}\\n"; free -h 2>/dev/null || printf "\\\${yellow}No disponible.\\n\\\${reset}"; printf "\\n\\\${cyan}--- Almacenamiento ---\\\${reset}\\n"; df -h | grep -E 'Filesystem|/data$'; printf "\\n\\\${cyan}--- Red ---\\\${reset}"; printf "\\nIP Pública: \\\${reset}%s" "$(curl -s ifconfig.me || echo 'No se pudo obtener')"; printf "\\n\\\${yellow}Prueba de PING:\\\${reset}\\n"; ping -c 4 8.8.8.8; printf "\\n\\\${blue}=========================================================\\n\\\${reset}"; read -p 'Presiona Enter para volver ...'; }
+check_dependencies() { local missing_pkgs=""; for pkg in curl md5sum; do if ! command -v $pkg &>/dev/null; then missing_pkgs="$missing_pkgs $pkg"; fi; done; if [ ! -z "$missing_pkgs" ]; then show_header; printf "\\n\\\${red}FALTAN DEPENDENCIAS ESENCIALES.\\n\\\${reset}\\n\\\${yellow}El script necesita:%s\\n\\\${reset}" "$missing_pkgs"; read -p "¿Quieres instalarlas automáticamente? (S/n): " confirm; if [[ "$confirm" != "n" && "$confirm" != "N" ]]; then pkg install -y $missing_pkgs; fi; fi; if [ ! -d "/sdcard/Download" ]; then printf "\\n\\\${red}ERROR: No se puede acceder al almacenamiento.\\n\\\${reset}\\n\\\${yellow}Ejecuta 'termux-setup-storage' y concede el permiso.\\n\\\${reset}"; exit 1; fi; }
 # --- Main Menu ---
 check_dependencies
 while true; do show_header; printf "\\nElige una opción:\\n  \\\${cyan}[1]\\\${reset} Limpieza APEX \\\${lred}(Automática y Final)\\\${reset}\\n  \\\${cyan}[2]\\\${reset} Gestor de Duplicados \\\${lred}(Interactivo)\\\${reset}\\n  \\\${cyan}[3]\\\${reset} Tweaks de Rendimiento \\\${yellow}(Experimental)\\\${reset}\\n  \\\${cyan}[4]\\\${reset} Liberador de RAM (Interactivo)\\n  \\\${cyan}[5]\\\${reset} Diagnóstico APEX Completo\\n  \\\${cyan}[6]\\\${reset} Salir\\n"; read -p "Opción: " choice; case $choice in 1) run_apex_cleanup ;; 2) run_duplicate_manager ;; 3) run_performance_tweaks ;; 4) run_ram_booster ;; 5) show_apex_diagnostics ;; 6) clear; printf "\\\${green}¡Hasta luego!\\n\\\${reset}"; exit 0 ;; *) printf "\\n\\\${red}Opción no válida.\\n\\\${reset}"; sleep 1 ;; esac; done
 `;
-            // Escapar comillas simples para que el comando 'printf' funcione correctamente.
             const escapedShellScript = shellScript.replace(/'/g, "'\\''");
             const fullCommand = `printf '%s' '${escapedShellScript}' > ~/apex.sh && chmod +x ~/apex.sh && ~/apex.sh`;
 
-            // Poblar los elementos HTML con el comando
             const commandDisplayCode = document.getElementById('commandDisplay').querySelector('code');
             const commandContentEl = document.getElementById('commandContent');
             commandDisplayCode.textContent = fullCommand;
             commandContentEl.value = fullCommand;
 
-            // --- Efecto de Escritura en la Terminal ---
-            const terminalOutput = document.getElementById('terminal-output');
-            const lines = [
-                { text: 'printf "..." > ~/apex.sh', speed: 40, delay: 500 },
-                { text: 'chmod +x ~/apex.sh', speed: 30, delay: 800 },
-                { text: '~/apex.sh', speed: 25, delay: 1500 },
-                { text: 'INICIANDO OPTIMIZADOR APEX v7.1...', color: '#d97706', speed: 30, delay: 1000 },
-                { text: '✓ Comprobando dependencias... OK', color: '#22c55e', speed: 30, delay: 500 },
-                { text: '✓ Acceso al almacenamiento concedido.', color: '#22c55e', speed: 30, delay: 500 },
-                { text: '==> Limpiando caché general... 1.2 GB liberados.', color: '#84cc16', speed: 20, delay: 1500 },
-                { text: '✨ Proceso completado. ¡Sistema optimizado!', color: '#a78bfa', speed: 40, delay: 1000 }
-            ];
-            
-            async function terminalAnimation() {
+            const initTerminalAnimation = async () => {
+                const terminalOutput = document.getElementById('terminal-output');
+                const lines = [
+                    { text: 'printf "..." > ~/apex.sh', speed: 40, delay: 500 },
+                    { text: 'chmod +x ~/apex.sh', speed: 30, delay: 800 },
+                    { text: '~/apex.sh', speed: 25, delay: 1500 },
+                    { text: 'INICIANDO OPTIMIZADOR APEX v7.2...', color: '#d97706', speed: 30, delay: 1000 },
+                    { text: '✓ Comprobando dependencias... OK', color: '#22c55e', speed: 30, delay: 500 },
+                    { text: '✓ Acceso al almacenamiento concedido.', color: '#22c55e', speed: 30, delay: 500 },
+                    { text: '==> Limpiando caché general... 1.2 GB liberados.', color: '#84cc16', speed: 20, delay: 1500 },
+                    { text: '✨ Proceso completado. ¡Sistema optimizado!', color: '#a78bfa', speed: 40, delay: 1000 }
+                ];
+                
                 for (const line of lines) {
                     const p = document.createElement('p');
                     if (line.color) p.style.color = line.color;
-
                     const prompt = `<span class="text-cyan-400">user@termux</span><span class="text-stone-300">:</span><span class="text-violet-400">~</span><span class="text-stone-300">$ </span>`;
                     if (line.text.startsWith('~/') || line.text.startsWith('chmod') || line.text.startsWith('printf')) {
                         p.innerHTML = prompt;
                     }
-                    
                     const textNode = document.createTextNode('');
                     p.appendChild(textNode);
                     terminalOutput.appendChild(p);
@@ -304,58 +315,64 @@ while true; do show_header; printf "\\nElige una opción:\\n  \\\${cyan}[1]\\\${
                         textNode.nodeValue += line.text[i];
                         await new Promise(resolve => setTimeout(resolve, line.speed));
                     }
-                    
                     await new Promise(resolve => setTimeout(resolve, line.delay));
                 }
                 const cursor = document.createElement('span');
                 cursor.className = 'terminal-cursor';
-                terminalOutput.lastChild.appendChild(cursor);
+                if(terminalOutput.lastChild) terminalOutput.lastChild.appendChild(cursor);
                 terminalOutput.scrollTop = terminalOutput.scrollHeight;
-            }
-            terminalAnimation();
+            };
 
-            // --- Lógica del Botón de Copiar ---
-            const copyButton = document.getElementById('copyButton');
-            const copyButtonText = document.getElementById('copyButtonText');
-            const copyFeedback = document.getElementById('copy-feedback');
-
-            copyButton.addEventListener('click', () => {
-                navigator.clipboard.writeText(fullCommand).then(() => {
-                    copyButtonText.textContent = '¡Copiado!';
-                    copyFeedback.textContent = 'Comando copiado al portapapeles.';
-                    copyButton.classList.remove('bg-red-600', 'hover:bg-red-500');
-                    copyButton.classList.add('bg-green-600');
-                    
-                    setTimeout(() => {
-                        copyButtonText.textContent = 'Copiar';
-                        copyButton.classList.add('bg-red-600', 'hover:bg-red-500');
-                        copyButton.classList.remove('bg-green-600');
-                    }, 2000);
-                }, () => {
-                    copyButtonText.textContent = 'Error';
-                    copyFeedback.textContent = 'Error al copiar el comando.';
-                    // Fallback para navegadores antiguos si es necesario
-                    try {
-                        commandContentEl.select();
-                        document.execCommand('copy');
-                    } catch (err) {
-                        // Error final
-                    }
+            const initCopyButton = () => {
+                const copyButton = document.getElementById('copyButton');
+                const copyButtonText = document.getElementById('copyButtonText');
+                const copyFeedback = document.getElementById('copy-feedback');
+                copyButton.addEventListener('click', () => {
+                    navigator.clipboard.writeText(fullCommand).then(() => {
+                        copyButtonText.textContent = '¡Copiado!';
+                        copyFeedback.textContent = 'Comando copiado al portapapeles.';
+                        copyButton.classList.remove('bg-red-600', 'hover:bg-red-500');
+                        copyButton.classList.add('bg-green-600');
+                        setTimeout(() => {
+                            copyButtonText.textContent = 'Copiar';
+                            copyButton.classList.add('bg-red-600', 'hover:bg-red-500');
+                            copyButton.classList.remove('bg-green-600');
+                        }, 2000);
+                    });
                 });
-            });
+            };
 
-            // --- Lógica del Botón para Volver Arriba ---
-            const toTopButton = document.getElementById('to-top-button');
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    toTopButton.classList.remove('hidden');
-                    header.classList.add('header-scrolled');
-                } else {
-                    toTopButton.classList.add('hidden');
-                    header.classList.remove('header-scrolled');
-                }
-            }, { passive: true });
+            const initScrollEffects = () => {
+                const toTopButton = document.getElementById('to-top-button');
+                const header = document.getElementById('header');
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        toTopButton.classList.remove('hidden');
+                        header.classList.add('header-scrolled');
+                    } else {
+                        toTopButton.classList.add('hidden');
+                        header.classList.remove('header-scrolled');
+                    }
+                }, { passive: true });
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('reveal-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.reveal').forEach(el => {
+                    observer.observe(el);
+                });
+            };
+
+            // Inicializar todas las funciones
+            initTerminalAnimation();
+            initCopyButton();
+            initScrollEffects();
         });
     </script>
 </body>
