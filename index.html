@@ -9,9 +9,11 @@
     <meta name="author" content="candilmartinalonso">
     <meta property="og:title" content="Optimizador APEX - La Cima del Rendimiento Android">
     <meta property="og:description" content="Suite de comandos para limpiar, optimizar y diagnosticar Android sin root. ¡Potencia tu móvil!">
-    <meta property="og:image" content="assets/images/og-image.png"><!-- Personaliza la URL -->
+    <!-- Para la imagen og:image, sube tu imagen a un servicio como Imgur y pega aquí la URL completa -->
+    <!-- <meta property="og:image" content="https://i.imgur.com/your-image.png"> -->
     <meta name="theme-color" content="#ef4444">
-    <link rel="icon" href="assets/icons/favicon.ico">
+    <!-- Para el favicon, puedes generar un SVG o PNG y convertirlo a base64 para insertarlo aquí -->
+    <!-- <link rel="icon" href="data:image/svg+xml,..."> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +41,7 @@
         .feature-card { transition: transform 0.3s, background-color 0.3s, border-color 0.3s; }
         .feature-card:hover { 
             transform: translateY(-8px) scale(1.03); 
-            background-color: var(--color-surface);
+            background-color: rgba(239, 68, 68, 0.05);
             border-color: var(--color-primary);
         }
         .feature-card:hover .feature-icon {
@@ -47,6 +49,7 @@
             filter: drop-shadow(0 0 8px var(--color-primary));
         }
         .faq-item[open] summary svg { transform: rotate(180deg); }
+        .faq-item summary { cursor: pointer; }
         .faq-item summary svg { transition: transform 0.3s; }
         .terminal-cursor {
             display: inline-block;
@@ -62,7 +65,6 @@
         }
         .glow-button:hover {
             box-shadow: 0 0 10px var(--color-primary), 0 0 25px var(--color-primary), 0 0 40px var(--color-primary);
-            transform: scale(1.05);
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -89,6 +91,7 @@
             <a href="#install" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-5 rounded-lg transition-all-smooth text-sm shadow-lg shadow-red-500/30 hover:scale-105">Instalar</a>
         </nav>
     </header>
+
     <main class="container mx-auto px-6 py-12 md:py-20 overflow-x-hidden" id="main-content" tabindex="-1" role="main">
         <!-- Hero -->
         <section class="text-center mb-28 md:mb-36">
@@ -105,82 +108,204 @@
             <div class="mt-16 max-w-3xl mx-auto bg-stone-900/80 rounded-xl border border-stone-700 shadow-2xl shadow-red-900/20 text-left font-mono text-sm p-4 backdrop-blur-sm">
                 <div class="flex items-center pb-3 border-b border-stone-700">
                     <div class="flex space-x-2"><div class="w-3 h-3 bg-red-500 rounded-full"></div><div class="w-3 h-3 bg-yellow-500 rounded-full"></div><div class="w-3 h-3 bg-green-500 rounded-full"></div></div>
+                    <div class="flex-1 text-center text-xs text-stone-500">~/termux</div>
                 </div>
-                <div id="terminal-output" class="pt-3 h-48 overflow-hidden no-scrollbar"></div>
+                <div id="terminal-output" class="pt-3 h-48 overflow-y-auto no-scrollbar"></div>
             </div>
         </section>
+
         <!-- Features -->
         <section id="features" class="mb-28 md:mb-36 reveal">
             <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">Una Herramienta. Potencial Ilimitado.</h2>
             <p class="text-center text-stone-400 mb-12 max-w-2xl mx-auto">APEX no es solo un limpiador. Es una navaja suiza de herramientas para exprimir al máximo tu dispositivo.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Repite las tarjetas feature-card según tus módulos (ejemplo dentro) -->
+                <!-- Tarjeta 1 -->
                 <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
-                    <div class="feature-icon p-3 bg-red-500/10 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth">
-                        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" class="stroke-red-500" aria-hidden="true"><path d="M21 12V3H3v9"/><path d="M21 17.5a2.5 2.5 0 0 1-5 0"/><path d="M16 17.5a2.5 2.5 0 0 0 5 0"/><path d="M4 12V2.2A2.2 2.2 0 0 1 6.2 0h11.6A2.2 2.2 0 0 1 20 2.2V12"/><path d="M4 12v9.8A2.2 2.2 0 0 0 6.2 24h11.6a2.2 2.2 0 0 0 2.2-2.2V12"/><path d="M12 12h.01"/></svg>
+                    <div class="feature-icon p-3 bg-red-900/50 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth">
+                        <svg class="stroke-red-500" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                     </div>
                     <h3 class="font-bold text-xl text-white mb-2">Limpieza Profunda</h3>
-                    <p class="text-stone-400 text-sm">Erradica caché, archivos basura y duplicados de WhatsApp para liberar el máximo espacio.</p>
+                    <p class="text-stone-400 text-sm">Erradica caché, archivos basura, logs y duplicados para liberar el máximo espacio.</p>
                 </div>
-                <!-- ...agrega más tarjetas aquí... -->
+                <!-- Tarjeta 2 -->
+                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
+                    <div class="feature-icon p-3 bg-red-900/50 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth">
+                        <svg class="stroke-red-500" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <h3 class="font-bold text-xl text-white mb-2">Boost de Rendimiento</h3>
+                    <p class="text-stone-400 text-sm">Optimiza procesos y configuraciones del sistema para una experiencia más fluida y rápida.</p>
+                </div>
+                 <!-- Tarjeta 3 -->
+                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
+                    <div class="feature-icon p-3 bg-red-900/50 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth">
+                        <svg class="stroke-red-500" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                    </div>
+                    <h3 class="font-bold text-xl text-white mb-2">Seguro y Sin Root</h3>
+                    <p class="text-stone-400 text-sm">Todas las herramientas funcionan sin necesidad de acceso root, protegiendo la integridad de tu sistema.</p>
+                </div>
             </div>
         </section>
+
         <!-- Instalación -->
         <section id="install" class="mb-28 md:mb-36 reveal">
             <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Instalación en 3 Pasos</h2>
             <div class="bg-stone-900/80 backdrop-blur-sm rounded-xl border border-stone-700 lg:max-w-4xl mx-auto shadow-2xl shadow-red-900/20">
-                <div class="grid md:grid-cols-3">
-                    <!-- ...pasos de instalación aquí... -->
+                <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-stone-700">
+                    <div class="p-6 text-center">
+                        <div class="text-3xl font-bold text-red-500 mb-2">Paso 1</div>
+                        <h3 class="font-semibold text-white mb-2">Instalar Termux</h3>
+                        <p class="text-sm text-stone-400">Descarga la última versión desde F-Droid para asegurar la compatibilidad.</p>
+                    </div>
+                    <div class="p-6 text-center">
+                        <div class="text-3xl font-bold text-red-500 mb-2">Paso 2</div>
+                        <h3 class="font-semibold text-white mb-2">Dar Permisos</h3>
+                        <p class="text-sm text-stone-400">Ejecuta <code class="bg-stone-950 px-1 rounded">termux-setup-storage</code> para acceder a tus archivos.</p>
+                    </div>
+                    <div class="p-6 text-center">
+                        <div class="text-3xl font-bold text-red-500 mb-2">Paso 3</div>
+                        <h3 class="font-semibold text-white mb-2">Copiar y Pegar</h3>
+                        <p class="text-sm text-stone-400">Copia el comando de abajo y pégalo en tu terminal de Termux.</p>
+                    </div>
                 </div>
                 <div class="p-4 md:p-6 bg-black/30 rounded-b-xl">
                     <div class="relative bg-stone-950 rounded-lg group">
-                        <div id="copy-feedback" class="sr-only" aria-live="polite"></div>
-                        <button id="copyButton" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-3 rounded-lg transition-all-smooth flex-shrink-0 z-10 opacity-70 group-hover:opacity-100">
-                            <span id="copyButtonText">Copiar</span>
+                        <button id="copyButton" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-3 rounded-lg transition-all-smooth flex-shrink-0 z-10 opacity-70 group-hover:opacity-100 flex items-center space-x-2">
+                           <svg id="copy-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                           <svg id="check-icon" class="w-4 h-4 hidden text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                           <span id="copyButtonText">Copiar</span>
                         </button>
-                        <pre id="commandDisplay" class="w-full text-violet-400 text-xs font-mono p-4 overflow-x-auto no-scrollbar"><code></code></pre>
+                        <pre class="w-full text-violet-400 text-xs font-mono p-4 pr-24 overflow-x-auto no-scrollbar"><code id="commandDisplay"></code></pre>
                         <textarea id="commandContent" readonly class="absolute -left-[9999px] opacity-0"></textarea>
                     </div>
-                    <p class="text-xs text-center text-stone-500 mt-3">Este comando es largo, pero es la forma más directa y segura de instalar APEX.</p>
+                    <p class="text-xs text-center text-stone-500 mt-3">Este comando único descarga, da permisos y ejecuta APEX de forma segura.</p>
                 </div>
             </div>
         </section>
+
         <!-- FAQ -->
         <section id="faq" class="reveal">
             <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Preguntas Frecuentes</h2>
             <div class="max-w-3xl mx-auto space-y-4">
-                <!-- ...acordeones FAQ aquí... -->
+                <details class="faq-item bg-stone-900 border border-stone-800 rounded-lg p-4">
+                    <summary class="font-semibold text-white flex justify-between items-center">
+                        ¿Es seguro usar APEX?
+                        <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <p class="text-stone-400 mt-3 text-sm">Totalmente. APEX solo automatiza comandos estándar de limpieza que no afectan tus archivos personales ni la estabilidad del sistema. No modifica particiones críticas y opera sin privilegios de root.</p>
+                </details>
+                <details class="faq-item bg-stone-900 border border-stone-800 rounded-lg p-4">
+                    <summary class="font-semibold text-white flex justify-between items-center">
+                        ¿Realmente no necesito ser root?
+                        <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <p class="text-stone-400 mt-3 text-sm">No. Esa es una de sus mayores ventajas. APEX está diseñado para funcionar dentro de los límites de un usuario normal en Android, lo que lo hace accesible y seguro para todos.</p>
+                </details>
+                <details class="faq-item bg-stone-900 border border-stone-800 rounded-lg p-4">
+                    <summary class="font-semibold text-white flex justify-between items-center">
+                        ¿Qué archivos borra exactamente?
+                        <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <p class="text-stone-400 mt-3 text-sm">Se enfoca en archivos y carpetas universalmente seguros de eliminar: caché de aplicaciones, archivos temporales (.tmp, .log), carpetas vacías, miniaturas de la galería y otros residuos que dejan las apps. Nunca tocará tus fotos, documentos o archivos personales.</p>
+                </details>
             </div>
         </section>
     </main>
+
     <footer class="text-center p-8 text-xs text-stone-600 border-t border-stone-900 mt-16 reveal">
-        <p>Optimizador APEX v8.0 | Diseñado para la comunidad Android.</p>
+        <p>Optimizador APEX | Diseñado por la comunidad para la comunidad.</p>
         <p class="mt-1">Úsalo bajo tu propia responsabilidad. Siempre es recomendable tener una copia de seguridad.</p>
     </footer>
+
     <!-- Botón para Volver Arriba -->
     <button id="to-top-button" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="hidden fixed bottom-6 right-6 bg-red-600/80 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition-all-smooth backdrop-blur-sm hover:scale-110 hover:rotate-12" aria-label="Volver arriba">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
-    <!-- Snackbar para notificaciones accesibles -->
-    <div id="snackbar" role="alert" aria-live="polite" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-black/80 text-stone-50 px-5 py-3 rounded-xl shadow-lg opacity-0 pointer-events-none transition-all duration-500"></div>
+    
+    <!-- Snackbar para notificaciones -->
+    <div id="snackbar" role="alert" aria-live="polite" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-green-600 text-stone-50 px-5 py-3 rounded-xl shadow-lg opacity-0 pointer-events-none transition-all duration-500 transform translate-y-4"></div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const lines = [
-                { text: 'INICIANDO OPTIMIZADOR APEX v8.0...', color: '#d97706', speed: 30, delay: 1000 },
+            // --- CONFIGURACIÓN DEL SCRIPT ---
+            // PEGA AQUÍ TU SCRIPT BASH COMPLETO.
+            // Este es un script de ejemplo, reemplázalo con el tuyo.
+            const shellScript = `#!/bin/bash
+#
+#   █████╗ ██████╗ ███████╗██╗  ██╗
+#  ██╔══██╗██╔══██╗██╔════╝╚██╗██╔╝
+#  ███████║██████╔╝█████╗   ╚███╔╝ 
+#  ██╔══██║██╔══██╗██╔══╝   ██╔██╗ 
+#  ██║  ██║██║  ██║███████╗██╔╝ ██╗
+#  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+#   Optimizador APEX - La Cima del Rendimiento v8.0
+#   (c) 2025 candilmartinalonso - Sin Root
+#
+# -----------------------------------------------------------
+# ADVERTENCIA: Este es un script de ejemplo.
+# Reemplaza los comandos 'echo' con tus funciones reales.
+# -----------------------------------------------------------
+
+# Función para imprimir con colores
+print_color() {
+    COLOR_CODE=\$1
+    MESSAGE=\$2
+    echo -e "\\033[\${COLOR_CODE}m\${MESSAGE}\\033[0m"
+}
+
+# Inicio
+clear
+print_color "1;31" "Iniciando Optimizador APEX..."
+sleep 2
+
+# 1. Limpieza de Caché
+print_color "1;33" "🧹 Limpiando caché de aplicaciones..."
+# Comando real: rm -rf /sdcard/Android/data/*/cache/*
+echo "   (simulación) > 1.5 GB de caché eliminados."
+sleep 2
+print_color "1;32" "✅ Caché limpiado."
+echo ""
+sleep 1
+
+# 2. Eliminación de Archivos Basura
+print_color "1;33" "🗑️  Buscando archivos basura (.tmp, .log)..."
+# Comando real: find /sdcard -type f -name "*.tmp" -delete
+echo "   (simulación) > 250 archivos .tmp y .log eliminados."
+sleep 2
+print_color "1;32" "✅ Archivos basura eliminados."
+echo ""
+sleep 1
+
+# Finalización
+print_color "1;35" "✨ ¡Optimización completada! Tu dispositivo está más limpio y rápido."
+echo ""
+`;
+            // --- FIN DE LA CONFIGURACIÓN DEL SCRIPT ---
+
+            const terminalOutput = document.getElementById('terminal-output');
+            const copyButton = document.getElementById('copyButton');
+            const copyButtonText = document.getElementById('copyButtonText');
+            const commandDisplayCode = document.getElementById('commandDisplay');
+            const commandContentEl = document.getElementById('commandContent');
+            const snackbar = document.getElementById('snackbar');
+            const copyIcon = document.getElementById('copy-icon');
+            const checkIcon = document.getElementById('check-icon');
+
+            // Genera el comando de instalación
+            const escapedShellScript = shellScript.replace(/'/g, "'\\''");
+            const fullCommand = `printf '%s' '${escapedShellScript}' > ~/apex.sh && chmod +x ~/apex.sh && ~/apex.sh`;
+            if(commandDisplayCode) commandDisplayCode.textContent = fullCommand;
+            if(commandContentEl) commandContentEl.value = fullCommand;
+
+            // Animación de la terminal
+            const terminalLines = [
+                { text: '$ ./iniciar-apex.sh', speed: 40, delay: 500 },
+                { text: 'INICIANDO OPTIMIZADOR APEX v8.0...', color: '#ef4444', speed: 30, delay: 1000 },
                 { text: '✓ Comprobando dependencias... OK', color: '#22c55e', speed: 30, delay: 500 },
                 { text: '✓ Acceso al almacenamiento concedido.', color: '#22c55e', speed: 30, delay: 500 },
                 { text: '==> Limpiando caché general... 1.2 GB liberados.', color: '#84cc16', speed: 20, delay: 1500 },
                 { text: '✨ Proceso completado. ¡Sistema optimizado!', color: '#a78bfa', speed: 40, delay: 1000 }
             ];
-            function showSnackbar(msg, color = '#22c55e') {
-                const snackbar = document.getElementById('snackbar');
-                snackbar.style.backgroundColor = color;
-                snackbar.textContent = msg;
-                snackbar.classList.add('opacity-100', 'pointer-events-auto');
-                setTimeout(() => {
-                    snackbar.classList.remove('opacity-100', 'pointer-events-auto');
-                }, 2500);
-            }
+
             const typeLine = async (element, line) => {
                 return new Promise(resolve => {
                     let charIndex = 0;
@@ -195,14 +320,14 @@
                     }, line.speed);
                 });
             };
+
             const initTerminalAnimation = async () => {
-                const terminalOutput = document.getElementById('terminal-output');
                 if (!terminalOutput) return;
                 terminalOutput.innerHTML = '';
                 await new Promise(resolve => setTimeout(resolve, 500));
-                for (const line of lines) {
+                for (const line of terminalLines) {
                     const p = document.createElement('p');
-                    p.style.color = line.color;
+                    if(line.color) p.style.color = line.color;
                     p.setAttribute('role','status');
                     terminalOutput.appendChild(p);
                     terminalOutput.scrollTop = terminalOutput.scrollHeight;
@@ -217,29 +342,47 @@
                     terminalOutput.scrollTop = terminalOutput.scrollHeight;
                 }
             };
-            const initCopyButton = () => {
-                const copyButton = document.getElementById('copyButton');
-                const copyButtonText = document.getElementById('copyButtonText');
+
+            // Notificaciones Snackbar
+            function showSnackbar(msg) {
+                if (!snackbar) return;
+                snackbar.textContent = msg;
+                snackbar.classList.remove('opacity-0', 'translate-y-4');
+                setTimeout(() => {
+                    snackbar.classList.add('opacity-0', 'translate-y-4');
+                }, 2500);
+            }
+
+            // Botón de copiar
+            if (copyButton) {
                 copyButton.addEventListener('click', () => {
-                    navigator.clipboard.writeText(fullCommand).then(() => {
-                        copyButtonText.textContent = '¡Copiado!';
-                        copyButton.classList.remove('bg-red-600', 'hover:bg-red-500');
-                        copyButton.classList.add('bg-green-600');
-                        showSnackbar('Comando copiado al portapapeles.');
-                        setTimeout(() => {
-                            copyButtonText.textContent = 'Copiar';
-                            copyButton.classList.add('bg-red-600', 'hover:bg-red-500');
-                            copyButton.classList.remove('bg-green-600');
-                        }, 2000);
-                    });
+                    commandContentEl.select();
+                    document.execCommand('copy'); // Usamos execCommand para mayor compatibilidad
+                    
+                    copyButtonText.textContent = '¡Copiado!';
+                    copyIcon.classList.add('hidden');
+                    checkIcon.classList.remove('hidden');
+                    copyButton.classList.remove('bg-red-600', 'hover:bg-red-500');
+                    copyButton.classList.add('bg-green-600');
+                    showSnackbar('Comando copiado al portapapeles.');
+
+                    setTimeout(() => {
+                        copyButtonText.textContent = 'Copiar';
+                        copyIcon.classList.remove('hidden');
+                        checkIcon.classList.add('hidden');
+                        copyButton.classList.add('bg-red-600', 'hover:bg-red-500');
+                        copyButton.classList.remove('bg-green-600');
+                    }, 2000);
                 });
-            };
+            }
+
+            // Efectos de scroll
             const initScrollEffects = () => {
                 const toTopButton = document.getElementById('to-top-button');
                 const header = document.getElementById('header');
                 const onScroll = () => {
-                    const isScrolled = window.scrollY > 300;
-                    toTopButton.classList.toggle('hidden', !isScrolled);
+                    const isScrolled = window.scrollY > 50;
+                    toTopButton.classList.toggle('hidden', window.scrollY < 300);
                     header.classList.toggle('header-scrolled', isScrolled);
                 };
                 window.addEventListener('scroll', onScroll, { passive: true });
@@ -253,16 +396,9 @@
                 }, { threshold: 0.1 });
                 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
             };
-            // SCRIPT GENERACIÓN: reemplaza el contenido completo por tu script bash si cambias algo.
-            const shellScript = `#!/bin/bash ... (pega aquí tu script bash completo) ...`;
-            const escapedShellScript = shellScript.replace(/'/g, "'\\''");
-            const fullCommand = `printf '%s' '${escapedShellScript}' > ~/apex.sh && chmod +x ~/apex.sh && ~/apex.sh`;
-            const commandDisplayCode = document.querySelector('#commandDisplay code');
-            const commandContentEl = document.getElementById('commandContent');
-            commandDisplayCode.textContent = fullCommand;
-            commandContentEl.value = fullCommand;
+            
+            // Inicializar todo
             initTerminalAnimation();
-            initCopyButton();
             initScrollEffects();
         });
     </script>
