@@ -67,12 +67,10 @@
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .header-scrolled {
-            background-color: rgba(12, 10, 9, 0.8);
-            border-bottom-color: #3f3f46;
-        }
+        /* La clase 'header-scrolled' se ha eliminado y ahora se gestiona con JS y Tailwind */
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
         .reveal-visible { opacity: 1; transform: translateY(0); }
+        /* Los pseudo-elementos como '::before' no pueden ser generados por Tailwind, por lo que se mantienen aquí */
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -127,7 +125,8 @@
                     <div class="flex space-x-2"><div class="w-3 h-3 bg-red-500 rounded-full"></div><div class="w-3 h-3 bg-yellow-500 rounded-full"></div><div class="w-3 h-3 bg-green-500 rounded-full"></div></div>
                     <div class="flex-1 text-center text-xs text-stone-500">~/termux</div>
                 </div>
-                <div id="terminal-output" class="pt-3 h-48 overflow-y-auto no-scrollbar"></div>
+                <!-- Mejora de accesibilidad: role="log" y aria-live="polite" anuncian cambios a lectores de pantalla -->
+                <div id="terminal-output" class="pt-3 h-48 overflow-y-auto no-scrollbar" role="log" aria-live="polite"></div>
             </div>
         </section>
 
@@ -263,8 +262,8 @@
                 <div class="p-4 md:p-6 bg-black/30 rounded-b-xl">
                     <div class="relative bg-stone-950 rounded-lg group">
                         <button id="copyButton" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-3 rounded-lg transition-all-smooth flex-shrink-0 z-10 opacity-70 group-hover:opacity-100 flex items-center space-x-2" aria-label="Copiar comando">
-                           <svg id="copy-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                           <svg id="check-icon" class="w-4 h-4 hidden text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                           <svg id="copy-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                           <svg id="check-icon" class="w-4 h-4 hidden text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                             <span id="copyButtonText">Copiar</span>
                         </button>
                         <pre class="w-full text-violet-400 text-xs font-mono p-4 pr-24 overflow-x-auto no-scrollbar"><code id="commandDisplay"></code></pre>
@@ -282,28 +281,28 @@
                 <details class="faq-item bg-stone-900 border border-stone-800 rounded-lg p-4">
                     <summary class="font-semibold text-white flex justify-between items-center">
                         ¿Es seguro usar APEX?
-                        <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </summary>
                     <p class="text-stone-400 mt-3 text-sm">Totalmente. APEX solo automatiza comandos estándar de limpieza que no afectan tus archivos personales ni la estabilidad del sistema. No modifica particiones críticas y opera sin privilegios de root.</p>
                 </details>
                 <details class="faq-item bg-stone-900 border border-stone-800 rounded-lg p-4">
                     <summary class="font-semibold text-white flex justify-between items-center">
                         ¿Realmente no necesito ser root?
-                        <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </summary>
                     <p class="text-stone-400 mt-3 text-sm">No. Esa es una de sus mayores ventajas. APEX está diseñado para funcionar dentro de los límites de un usuario normal en Android, lo que lo hace accesible y seguro para todos.</p>
                 </details>
                 <details class="faq-item bg-stone-900 border border-stone-800 rounded-lg p-4">
                     <summary class="font-semibold text-white flex justify-between items-center">
                         ¿Qué archivos borra exactamente?
-                        <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </summary>
                     <p class="text-stone-400 mt-3 text-sm">Se enfoca en archivos y carpetas universalmente seguros de eliminar: caché de aplicaciones, archivos temporales (.tmp, .log), carpetas vacías, miniaturas de la galería y otros residuos que dejan las apps. Nunca tocará tus fotos, documentos o archivos personales.</p>
                 </details>
                  <details class="faq-item bg-stone-900 border border-stone-800 rounded-lg p-4">
                     <summary class="font-semibold text-white flex justify-between items-center">
                         ¿Puedo ver el código antes de ejecutarlo?
-                        <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </summary>
                     <p class="text-stone-400 mt-3 text-sm">¡Claro! El script es de código abierto. Puedes revisarlo por completo en nuestro <a href="https://github.com/candilmartinalonso/APEX" target="_blank" rel="noopener noreferrer" class="text-red-500 hover:underline">repositorio de GitHub</a>. La transparencia es clave.</p>
                 </details>
@@ -331,10 +330,11 @@
     <div id="snackbar" role="alert" aria-live="polite" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-green-600 text-stone-50 px-5 py-3 rounded-xl shadow-lg opacity-0 pointer-events-none transition-all duration-500 transform translate-y-4"></div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- CONFIGURACIÓN DEL SCRIPT ---
-            // Este es un script de ejemplo para la animación. El real es más complejo.
-            const shellScript = `#!/bin/bash
+        // Script refactorizado para mayor mantenibilidad y claridad.
+        const App = {
+            // --- CONFIGURACIÓN ---
+            config: {
+                shellScript: `#!/bin/bash
 # Colors
 C_OFF='\\033[0m'
 C_RED='\\033[0;31m'
@@ -376,18 +376,12 @@ show_progress() {
 # --- Módulos de Limpieza ---
 run_deep_clean() {
     echo -e "$C_MAGENTA[MODULO DE LIMPIEZA PROFUNDA]$C_OFF"
-    # Simulación de limpieza de caché
     show_progress 1.5 "Limpiando caché de apps (/sdcard/Android/data/*/cache)..."
     echo "  > (sim) 1.2 GB de caché eliminados."
-    
-    # Simulación de limpieza de archivos basura
     show_progress 1.5 "Buscando archivos basura (.tmp, .log, .bak)..."
     echo "  > (sim) 458 archivos basura eliminados."
-
-    # Simulación de limpieza de miniaturas
     show_progress 1 "Limpiando miniaturas de galería (/sdcard/DCIM/.thumbnails)..."
     echo "  > (sim) 312 MB de miniaturas eliminadas."
-
     echo -e "$C_GREEN\\nLimpieza profunda completada.$C_OFF"
 }
 
@@ -447,119 +441,75 @@ Elige una opción para optimizar tu dispositivo:$C_OFF"
 
 # Inicio del Script
 main_menu
-`;
-            // --- FIN DE LA CONFIGURACIÓN DEL SCRIPT ---
+`,
+                terminalLines: [
+                    { text: '$ curl -sL apex.sh | bash', speed: 40, delay: 500 },
+                    { text: 'INICIANDO OPTIMIZADOR APEX v9.0...', color: '#ef4444', speed: 30, delay: 1000 },
+                    { text: '✓ Comprobando dependencias... OK', color: '#22c55e', speed: 30, delay: 500 },
+                    { text: '✓ Acceso al almacenamiento concedido.', color: '#22c55e', speed: 30, delay: 500 },
+                    { text: '==> Limpiando caché general...', color: '#eab308', speed: 20, delay: 800 },
+                    { text: '   [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100% - 1.2 GB liberados.', color: '#84cc16', speed: 20, delay: 1200 },
+                    { text: '==> Buscando carpetas vacías...', color: '#eab308', speed: 20, delay: 800 },
+                    { text: '   [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100% - 3,102 encontradas.', color: '#84cc16', speed: 20, delay: 1200 },
+                    { text: '✨ Proceso completado. ¡Sistema optimizado!', color: '#a78bfa', speed: 40, delay: 1000 }
+                ]
+            },
 
-            const terminalOutput = document.getElementById('terminal-output');
-            const copyButton = document.getElementById('copyButton');
-            const copyButtonText = document.getElementById('copyButtonText');
-            const commandDisplayCode = document.getElementById('commandDisplay');
-            const commandContentEl = document.getElementById('commandContent');
-            const snackbar = document.getElementById('snackbar');
-            const copyIcon = document.getElementById('copy-icon');
-            const checkIcon = document.getElementById('check-icon');
+            // --- ESTADO Y ELEMENTOS DEL DOM ---
+            elements: {},
 
-            // Genera el comando de instalación
-            const escapedShellScript = shellScript.replace(/'/g, "'\\''");
-            const fullCommand = `printf '%s' '${escapedShellScript}' > ~/apex.sh && chmod +x ~/apex.sh && ~/apex.sh`;
-            if(commandDisplayCode) commandDisplayCode.textContent = fullCommand;
-            if(commandContentEl) commandContentEl.value = fullCommand;
+            // --- INICIALIZACIÓN ---
+            init() {
+                this.cacheDOMElements();
+                this.setupFullCommand();
+                this.setupEventListeners();
+                this.setupScrollObserver();
+                this.animateTerminal();
+            },
 
-            // Animación de la terminal
-            const terminalLines = [
-                { text: '$ curl -sL apex.sh | bash', speed: 40, delay: 500 },
-                { text: 'INICIANDO OPTIMIZADOR APEX v9.0...', color: '#ef4444', speed: 30, delay: 1000 },
-                { text: '✓ Comprobando dependencias... OK', color: '#22c55e', speed: 30, delay: 500 },
-                { text: '✓ Acceso al almacenamiento concedido.', color: '#22c55e', speed: 30, delay: 500 },
-                { text: '==> Limpiando caché general...', color: '#eab308', speed: 20, delay: 800 },
-                { text: '   [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100% - 1.2 GB liberados.', color: '#84cc16', speed: 20, delay: 1200 },
-                { text: '==> Buscando carpetas vacías...', color: '#eab308', speed: 20, delay: 800 },
-                { text: '   [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100% - 3,102 encontradas.', color: '#84cc16', speed: 20, delay: 1200 },
-                { text: '✨ Proceso completado. ¡Sistema optimizado!', color: '#a78bfa', speed: 40, delay: 1000 }
-            ];
+            cacheDOMElements() {
+                this.elements = {
+                    terminalOutput: document.getElementById('terminal-output'),
+                    copyButton: document.getElementById('copyButton'),
+                    copyButtonText: document.getElementById('copyButtonText'),
+                    commandDisplayCode: document.getElementById('commandDisplay'),
+                    commandContentEl: document.getElementById('commandContent'),
+                    snackbar: document.getElementById('snackbar'),
+                    copyIcon: document.getElementById('copy-icon'),
+                    checkIcon: document.getElementById('check-icon'),
+                    toTopButton: document.getElementById('to-top-button'),
+                    header: document.getElementById('header')
+                };
+            },
+            
+            setupFullCommand() {
+                const escapedShellScript = this.config.shellScript.replace(/'/g, "'\\''");
+                const fullCommand = `printf '%s' '${escapedShellScript}' > ~/apex.sh && chmod +x ~/apex.sh && ~/apex.sh`;
+                if (this.elements.commandDisplayCode) this.elements.commandDisplayCode.textContent = fullCommand;
+                if (this.elements.commandContentEl) this.elements.commandContentEl.value = fullCommand;
+            },
 
-            const typeLine = async (element, line) => {
-                return new Promise(resolve => {
-                    let charIndex = 0;
-                    const interval = setInterval(() => {
-                        if (charIndex < line.text.length) {
-                            element.textContent += line.text.charAt(charIndex);
-                            charIndex++;
-                        } else {
-                            clearInterval(interval);
-                            setTimeout(resolve, line.delay);
-                        }
-                    }, line.speed);
-                });
-            };
-
-            const initTerminalAnimation = async () => {
-                if (!terminalOutput) return;
-                terminalOutput.innerHTML = '';
-                await new Promise(resolve => setTimeout(resolve, 500));
-                for (const line of terminalLines) {
-                    const p = document.createElement('p');
-                    if(line.color) p.style.color = line.color;
-                    p.setAttribute('role','status');
-                    terminalOutput.appendChild(p);
-                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
-                    await typeLine(p, line);
+            // --- MANEJO DE EVENTOS ---
+            setupEventListeners() {
+                if (this.elements.copyButton) {
+                    this.elements.copyButton.addEventListener('click', this.handleCopyClick.bind(this));
                 }
-                const lastLine = terminalOutput.querySelector('p:last-child');
-                if (lastLine) {
-                    const cursor = document.createElement('span');
-                    cursor.className = 'terminal-cursor';
-                    cursor.setAttribute('aria-hidden','true');
-                    lastLine.appendChild(cursor);
-                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
-                }
-            };
-
-            function showSnackbar(msg) {
-                if (!snackbar) return;
-                snackbar.textContent = msg;
-                snackbar.classList.remove('opacity-0', 'translate-y-4');
-                setTimeout(() => {
-                    snackbar.classList.add('opacity-0', 'translate-y-4');
-                }, 2500);
-            }
-
-            if (copyButton) {
-                copyButton.addEventListener('click', () => {
-                    commandContentEl.select();
-                    try {
-                        document.execCommand('copy');
-                        
-                        copyButtonText.textContent = '¡Copiado!';
-                        copyIcon.classList.add('hidden');
-                        checkIcon.classList.remove('hidden');
-                        copyButton.classList.remove('bg-red-600', 'hover:bg-red-500');
-                        copyButton.classList.add('bg-green-600');
-                        showSnackbar('Comando copiado al portapapeles.');
-
-                        setTimeout(() => {
-                            copyButtonText.textContent = 'Copiar';
-                            copyIcon.classList.remove('hidden');
-                            checkIcon.classList.add('hidden');
-                            copyButton.classList.add('bg-red-600', 'hover:bg-red-500');
-                            copyButton.classList.remove('bg-green-600');
-                        }, 2000);
-                    } catch (err) {
-                        console.error('Error al copiar el texto: ', err);
-                        showSnackbar('Error al copiar. Intenta hacerlo manualmente.');
-                    }
-                });
-            }
-
-            const initScrollEffects = () => {
-                const toTopButton = document.getElementById('to-top-button');
-                const header = document.getElementById('header');
+            },
+            
+            setupScrollObserver() {
                 const onScroll = () => {
+                    if (!this.elements.header || !this.elements.toTopButton) return;
                     const isScrolled = window.scrollY > 50;
-                    toTopButton.classList.toggle('hidden', window.scrollY < 300);
-                    header.classList.toggle('header-scrolled', isScrolled);
+                    // Optimización: Usar clases de Tailwind directamente en lugar de una clase CSS personalizada.
+                    this.elements.header.classList.toggle('bg-stone-950/80', isScrolled);
+                    this.elements.header.classList.toggle('border-stone-700', isScrolled);
+                    this.elements.header.classList.toggle('bg-black/30', !isScrolled);
+                    this.elements.header.classList.toggle('border-stone-800', !isScrolled);
+                    
+                    this.elements.toTopButton.classList.toggle('hidden', window.scrollY < 300);
                 };
                 window.addEventListener('scroll', onScroll, { passive: true });
+
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
@@ -569,11 +519,90 @@ main_menu
                     });
                 }, { threshold: 0.1 });
                 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-            };
+            },
+
+            // --- LÓGICA DE LA APLICACIÓN ---
+            async animateTerminal() {
+                const { terminalOutput } = this.elements;
+                if (!terminalOutput) return;
+
+                terminalOutput.innerHTML = '';
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                const typeLine = async (element, line) => {
+                    return new Promise(resolve => {
+                        let charIndex = 0;
+                        const interval = setInterval(() => {
+                            if (charIndex < line.text.length) {
+                                element.textContent += line.text.charAt(charIndex);
+                                charIndex++;
+                            } else {
+                                clearInterval(interval);
+                                setTimeout(resolve, line.delay);
+                            }
+                        }, line.speed);
+                    });
+                };
+                
+                for (const line of this.config.terminalLines) {
+                    const p = document.createElement('p');
+                    if (line.color) p.style.color = line.color;
+                    p.setAttribute('role', 'status');
+                    terminalOutput.appendChild(p);
+                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                    await typeLine(p, line);
+                }
+                
+                const lastLine = terminalOutput.querySelector('p:last-child');
+                if (lastLine) {
+                    const cursor = document.createElement('span');
+                    cursor.className = 'terminal-cursor';
+                    cursor.setAttribute('aria-hidden', 'true');
+                    lastLine.appendChild(cursor);
+                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                }
+            },
+
+            handleCopyClick() {
+                const { commandContentEl, copyButtonText, copyIcon, checkIcon, copyButton } = this.elements;
+                if (!commandContentEl) return;
+                
+                commandContentEl.select();
+                try {
+                    document.execCommand('copy');
+                    
+                    copyButtonText.textContent = '¡Copiado!';
+                    copyIcon.classList.add('hidden');
+                    checkIcon.classList.remove('hidden');
+                    copyButton.classList.remove('bg-red-600', 'hover:bg-red-500');
+                    copyButton.classList.add('bg-green-600');
+                    this.showSnackbar('Comando copiado al portapapeles.');
+
+                    setTimeout(() => {
+                        copyButtonText.textContent = 'Copiar';
+                        copyIcon.classList.remove('hidden');
+                        checkIcon.classList.add('hidden');
+                        copyButton.classList.add('bg-red-600', 'hover:bg-red-500');
+                        copyButton.classList.remove('bg-green-600');
+                    }, 2000);
+                } catch (err) {
+                    console.error('Error al copiar el texto: ', err);
+                    this.showSnackbar('Error al copiar. Intenta hacerlo manualmente.');
+                }
+            },
             
-            initTerminalAnimation();
-            initScrollEffects();
-        });
+            showSnackbar(msg) {
+                const { snackbar } = this.elements;
+                if (!snackbar) return;
+                snackbar.textContent = msg;
+                snackbar.classList.remove('opacity-0', 'translate-y-4');
+                setTimeout(() => {
+                    snackbar.classList.add('opacity-0', 'translate-y-4');
+                }, 2500);
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => App.init());
     </script>
 </body>
 </html>
