@@ -464,7 +464,7 @@ fi
 
                 if (this.state.isAutoMode) {
                     const cronJob = "*/5 * * * * ~/apex.sh --auto";
-                    fullCommand = `pkg install cronie termux-services -y && ${baseCommand} && sv-enable crond && (crontab -l 2>/dev/null | grep -v "apex.sh --auto"; echo "${cronJob}") | crontab - && echo "APEX automatizado cada 5 minutos." && ~/apex.sh`;
+                    fullCommand = `pkg install cronie termux-services -y && ${baseCommand} && sv-enable crond && sv up crond && (crontab -l 2>/dev/null | grep -v "apex.sh --auto"; echo "${cronJob}") | crontab - && echo "APEX automatizado cada 5 minutos." && ~/apex.sh`;
                 } else {
                     fullCommand = `${baseCommand} && ~/apex.sh`;
                 }
@@ -587,3 +587,4 @@ fi
     </script>
 </body>
 </html>
+
