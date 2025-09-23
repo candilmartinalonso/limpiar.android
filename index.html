@@ -1,294 +1,5 @@
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Optimizador APEX (La Cima del Rendimiento)</title>
-    <meta name="description" content="Suite de optimización, limpieza y diagnóstico para Android sin root. Libera espacio, maximiza el rendimiento y automatiza el mantenimiento con APEX.">
-    <meta name="keywords" content="android, optimización, limpieza, termux, apex, rendimiento, liberar espacio, script, duplicados, no root, automatico, cron">
-    <meta name="author" content="candilmartinalonso">
-    <meta property="og:title" content="Optimizador APEX - La Cima del Rendimiento Android">
-    <meta property="og:description" content="Suite de comandos para limpiar, optimizar, diagnosticar y automatizar el mantenimiento de Android sin root. ¡Potencia tu móvil!">
-    <meta property="og:image" content="https://placehold.co/1200x630/0c0a09/ef4444?text=APEX&font=inter">
-    <meta name="theme-color" content="#ef4444">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23ef4444' d='M50,5 L95,27.5 L95,72.5 L50,95 L5,72.5 L5,27.5 Z'/%3E%3Cpath fill='%23fff' d='M50,20 L75,35 L75,65 L50,80 L25,65 L25,35 Z'/%3E%3Cpath fill='%23ef4444' d='M50,30 L67,40 L67,60 L50,70 L33,60 L33,40 Z'/%3E%3C/svg%3E">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-primary: #ef4444; /* red-500 */
-            --color-secondary: #a78bfa; /* violet-400 */
-            --color-background: #0c0a09; /* stone-950 */
-            --color-surface: #1c1917; /* stone-900 */
-            --color-text: #d6d3d1; /* stone-300 */
-            --color-text-muted: #a8a29e; /* stone-400 */
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--color-background);
-            color: var(--color-text);
-            background-image:
-                radial-gradient(circle at 1% 1%, rgba(239, 68, 68, 0.1) 0%, transparent 15%),
-                radial-gradient(circle at 99% 99%, rgba(167, 139, 250, 0.08) 0%, transparent 20%);
-        }
-        ::selection { background-color: var(--color-primary); color: white; }
-        .font-mono { font-family: 'Fira Code', monospace; }
-        .transition-all-smooth { transition: all 0.3s ease-in-out; }
-        .feature-card { transition: transform 0.3s, background-color 0.3s, border-color 0.3s, box-shadow 0.3s; }
-        .feature-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            background-color: rgba(239, 68, 68, 0.05);
-            border-color: var(--color-primary);
-            box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.1), 0 8px 10px -6px rgba(239, 68, 68, 0.1);
-        }
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(-5deg);
-            filter: drop-shadow(0 0 10px var(--color-primary));
-        }
-        .faq-item[open] summary svg { transform: rotate(180deg); }
-        .faq-item summary { cursor: pointer; }
-        .faq-item summary svg { transition: transform 0.3s; }
-        .terminal-cursor {
-            display: inline-block;
-            background-color: var(--color-secondary);
-            width: 10px;
-            height: 1.2em;
-            margin-left: 5px;
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
-        .glow-button {
-            box-shadow: 0 0 5px var(--color-primary), 0 0 15px var(--color-primary);
-        }
-        .glow-button:hover {
-            box-shadow: 0 0 10px var(--color-primary), 0 0 25px var(--color-primary), 0 0 40px var(--color-primary);
-        }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-        .reveal-visible { opacity: 1; transform: translateY(0); }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 19px;
-            top: 48px;
-            width: 2px;
-            height: calc(100% - 48px);
-            background-color: #3f3f46;
-        }
-        .timeline-item:last-child::before {
-             display: none;
-        }
-        /* Estilos para el interruptor de automatización */
-        .toggle-checkbox:checked + .toggle-label {
-            background-color: var(--color-primary);
-        }
-        .toggle-checkbox:checked + .toggle-label .toggle-ball {
-            transform: translateX(100%);
-        }
-    </style>
-</head>
-<body class="antialiased">
-    <!-- Header -->
-    <header id="header" class="bg-black/30 backdrop-blur-lg sticky top-0 z-50 border-b border-stone-800 transition-all-smooth">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center" aria-label="Menú principal">
-            <a href="#" aria-label="Volver al inicio" class="text-2xl font-black text-red-500 hover:scale-105 transition-transform">
-                <span class="bg-red-500 text-white px-2 py-1 rounded-md">A</span>PEX
-            </a>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-stone-300">
-                <a href="#features" class="hover:text-red-500 transition-colors">Módulos</a>
-                <a href="#how-it-works" class="hover:text-red-500 transition-colors">¿Cómo Funciona?</a>
-                <a href="#install" class="hover:text-red-500 transition-colors">Instalación</a>
-                <a href="#automation" class="hover:text-red-500 transition-colors">Automatización</a>
-                <a href="#faq" class="hover:text-red-500 transition-colors">FAQ</a>
-            </div>
-            <a href="https://github.com/candilmartinalonso/APEX" target="_blank" rel="noopener noreferrer" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-5 rounded-lg transition-all-smooth text-sm shadow-lg shadow-red-500/30 hover:scale-105 hidden sm:flex items-center space-x-2">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
-                <span>GitHub</span>
-            </a>
-        </nav>
-    </header>
-
-    <main class="container mx-auto px-6 py-12 md:py-20 overflow-x-hidden" id="main-content" tabindex="-1" role="main">
-        <!-- Hero -->
-        <section class="text-center mb-28 md:mb-40">
-            <h1 class="text-4xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-stone-100 to-stone-400 mb-4 leading-tight">
-                La Cima del Rendimiento Móvil.
-            </h1>
-            <p class="text-lg md:text-xl text-stone-400 max-w-3xl mx-auto mb-10">
-                La suite definitiva de optimización, limpieza y diagnóstico para Termux. Libera todo el potencial de tu Android <strong class="text-white">sin necesidad de root</strong> y ahora con ejecución automática.
-            </p>
-            <div class="flex justify-center items-center space-x-4">
-                <a href="#install" class="inline-block bg-red-600 hover:bg-red-500 text-white font-bold py-4 px-8 rounded-full transition-all-smooth text-lg glow-button hover:scale-105">
-                    Instalación Rápida
-                </a>
-            </div>
-            <!-- Terminal Animada -->
-            <div class="mt-16 max-w-3xl mx-auto bg-stone-900/80 rounded-xl border border-stone-700 shadow-2xl shadow-red-900/20 text-left font-mono text-sm p-4 backdrop-blur-sm">
-                <div class="flex items-center pb-3 border-b border-stone-700">
-                    <div class="flex space-x-2"><div class="w-3 h-3 bg-red-500 rounded-full"></div><div class="w-3 h-3 bg-yellow-500 rounded-full"></div><div class="w-3 h-3 bg-green-500 rounded-full"></div></div>
-                    <div class="flex-1 text-center text-xs text-stone-500">~/termux</div>
-                </div>
-                <!-- Mejora de accesibilidad: role="log" y aria-live="polite" anuncian cambios a lectores de pantalla -->
-                <div id="terminal-output" class="pt-3 h-48 overflow-y-auto no-scrollbar" role="log" aria-live="polite"></div>
-            </div>
-        </section>
-
-        <!-- Features -->
-        <section id="features" class="mb-28 md:mb-40 reveal">
-            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">Una Herramienta. Potencial Ilimitado.</h2>
-            <p class="text-center text-stone-400 mb-12 max-w-2xl mx-auto">APEX es una navaja suiza de herramientas para exprimir al máximo tu dispositivo. Ahora más potente y automatizado.</p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Tarjetas de características actualizadas -->
-                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
-                    <div class="feature-icon p-3 bg-red-900/50 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth"><svg class="stroke-red-500" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></div>
-                    <h3 class="font-bold text-xl text-white mb-2">Limpieza Profunda</h3>
-                    <p class="text-stone-400 text-sm">Erradica caché, logs, APKs residuales y archivos basura para liberar el máximo espacio.</p>
-                </div>
-                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
-                    <div class="feature-icon p-3 bg-red-900/50 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth"><svg class="stroke-red-500" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
-                    <h3 class="font-bold text-xl text-white mb-2">Boost de Rendimiento</h3>
-                    <p class="text-stone-400 text-sm">Hiberna apps en segundo plano y ajusta la configuración del sistema para máxima fluidez.</p>
-                </div>
-                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
-                     <div class="feature-icon p-3 bg-red-900/50 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth"><svg class="stroke-red-500" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg></div>
-                    <h3 class="font-bold text-xl text-white mb-2">Mantenimiento Automático</h3>
-                    <p class="text-stone-400 text-sm">Configura el script para que se ejecute cada 5 minutos, manteniendo tu sistema siempre a punto.</p>
-                </div>
-                <div class="feature-card bg-stone-900 p-6 rounded-xl border border-stone-800">
-                    <div class="feature-icon p-3 bg-red-900/50 rounded-lg inline-block mb-4 border border-red-500/30 transition-all-smooth"><svg class="stroke-red-500" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg></div>
-                    <h3 class="font-bold text-xl text-white mb-2">Seguro y Sin Root</h3>
-                    <p class="text-stone-400 text-sm">Funciona sin acceso root, protegiendo la integridad y garantía de tu sistema.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- How it works -->
-        <section id="how-it-works" class="mb-28 md:mb-40 reveal">
-             <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-6">Transparente y Seguro</h2>
-            <p class="text-center text-stone-400 mb-16 max-w-2xl mx-auto">APEX sigue un proceso lógico y seguro. Tú siempre tienes el control de lo que hace.</p>
-            <div class="max-w-3xl mx-auto">
-                <div class="relative timeline-item pb-12">
-                     <div class="absolute top-0 left-0 w-10 h-10 bg-stone-800 rounded-full flex items-center justify-center border-4 border-stone-900"><span class="font-bold text-red-500">1</span></div>
-                    <div class="ml-16">
-                        <h3 class="text-xl font-bold text-white mb-2">Análisis Inteligente</h3>
-                        <p class="text-stone-400">El script escanea tu sistema con comandos reales, buscando áreas de mejora: caché, archivos temporales, carpetas vacías y procesos inactivos.</p>
-                    </div>
-                </div>
-                 <div class="relative timeline-item pb-12">
-                     <div class="absolute top-0 left-0 w-10 h-10 bg-stone-800 rounded-full flex items-center justify-center border-4 border-stone-900"><span class="font-bold text-red-500">2</span></div>
-                    <div class="ml-16">
-                        <h3 class="text-xl font-bold text-white mb-2">Control Total</h3>
-                        <p class="text-stone-400">Te muestra un menú claro con todas las opciones. Puedes elegir una limpieza completa, optimizar un área específica o configurar la automatización.</p>
-                    </div>
-                </div>
-                 <div class="relative timeline-item">
-                     <div class="absolute top-0 left-0 w-10 h-10 bg-stone-800 rounded-full flex items-center justify-center border-4 border-stone-900"><span class="font-bold text-red-500">3</span></div>
-                    <div class="ml-16">
-                        <h3 class="text-xl font-bold text-white mb-2">Ejecución Segura</h3>
-                        <p class="text-stone-400">APEX ejecuta solo los comandos que elegiste, actuando sobre archivos y directorios seguros, sin tocar tus datos personales ni la configuración crítica.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Instalación -->
-        <section id="install" class="mb-28 md:mb-40 reveal">
-            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Instalación y Configuración</h2>
-            <div class="bg-stone-900/80 backdrop-blur-sm rounded-xl border border-stone-700 lg:max-w-4xl mx-auto shadow-2xl shadow-red-900/20">
-                <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-stone-700">
-                    <div class="p-6 text-center"><div class="text-3xl font-bold text-red-500 mb-2">Paso 1</div><h3 class="font-semibold text-white mb-2">Instalar Termux</h3><p class="text-sm text-stone-400">Descarga la última versión desde F-Droid para asegurar la compatibilidad.</p></div>
-                    <div class="p-6 text-center"><div class="text-3xl font-bold text-red-500 mb-2">Paso 2</div><h3 class="font-semibold text-white mb-2">Dar Permisos</h3><p class="text-sm text-stone-400">Ejecuta <code class="bg-stone-950 text-violet-400 px-1 rounded-sm">termux-setup-storage</code> para acceder a tus archivos.</p></div>
-                    <div class="p-6 text-center"><div class="text-3xl font-bold text-red-500 mb-2">Paso 3</div><h3 class="font-semibold text-white mb-2">Copiar y Pegar</h3><p class="text-sm text-stone-400">Copia el comando de abajo y pégalo en tu terminal de Termux.</p></div>
-                </div>
-                <!-- Nueva sección de automatización aquí dentro -->
-                <div id="automation" class="p-6 bg-black/20 border-t border-stone-700">
-                    <div class="flex flex-col sm:flex-row justify-between items-center">
-                        <div>
-                            <h4 class="font-bold text-white text-lg">Mantenimiento Automático</h4>
-                            <p class="text-stone-400 text-sm">Activa esta opción para que el script se ejecute cada 5 minutos.</p>
-                        </div>
-                        <div class="mt-4 sm:mt-0">
-                            <input type="checkbox" id="auto-toggle" class="toggle-checkbox hidden">
-                            <label for="auto-toggle" class="toggle-label flex items-center cursor-pointer bg-stone-700 rounded-full p-1 w-14 h-8 transition-all-smooth">
-                                <span class="toggle-ball bg-white w-6 h-6 rounded-full shadow-md transform transition-transform duration-300 ease-in-out"></span>
-                            </label>
-                        </div>
-                    </div>
-                     <p id="automation-warning" class="text-xs text-yellow-400/80 mt-3 text-center hidden">
-                        Requiere <code class="font-mono text-xs">cronie</code> y <code class="font-mono text-xs">termux-services</code>. El script intentará instalarlos.
-                    </p>
-                </div>
-                <div class="p-4 md:p-6 bg-black/30 rounded-b-xl">
-                    <div class="relative bg-stone-950 rounded-lg group">
-                        <button id="copyButton" class="absolute top-3 right-3 bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-3 rounded-lg transition-all-smooth flex-shrink-0 z-10 opacity-70 group-hover:opacity-100 flex items-center space-x-2" aria-label="Copiar comando">
-                           <svg id="copy-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                           <svg id="check-icon" class="w-4 h-4 hidden text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                            <span id="copyButtonText">Copiar</span>
-                        </button>
-                        <pre class="w-full text-violet-400 text-sm font-mono p-4 pr-24 overflow-x-auto no-scrollbar"><code id="commandDisplay"></code></pre>
-                        <textarea id="commandContent" readonly class="absolute -left-[9999px] opacity-0" tabindex="-1"></textarea>
-                    </div>
-                    <p class="text-xs text-center text-stone-500 mt-3">Este comando único descarga, da permisos y ejecuta APEX con la configuración elegida.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ -->
-        <section id="faq" class="mb-28 md:mb-40 reveal">
-            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Preguntas Frecuentes</h2>
-            <div class="max-w-3xl mx-auto space-y-4">
-                <details class="faq-item bg-stone-900 border border-stone-800 rounded-lg p-4">
-                    <summary class="font-semibold text-white flex justify-between items-center">¿Es seguro usar APEX? <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary>
-                    <p class="text-stone-400 mt-3 text-sm">Totalmente. APEX solo ejecuta comandos estándar de limpieza en directorios conocidos de caché y basura. No modifica particiones críticas y opera sin privilegios de root, respetando tus datos personales.</p>
-                </details>
-                 <details class="faq-item bg-stone-900 border border-stone-800 rounded-lg p-4">
-                    <summary class="font-semibold text-white flex justify-between items-center">¿Cómo funciona la automatización? <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary>
-                    <p class="text-stone-400 mt-3 text-sm">Al activar la opción, el comando de instalación configura un "cron job" en Termux. Esto es un programador de tareas estándar en sistemas Linux que ejecutará APEX en modo no interactivo cada 5 minutos. Puedes desactivarlo fácilmente editando tu `crontab`.</p>
-                </details>
-                <details class="faq-item bg-stone-900 border border-stone-800 rounded-lg p-4">
-                    <summary class="font-semibold text-white flex justify-between items-center">¿Qué archivos borra exactamente? <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary>
-                    <p class="text-stone-400 mt-3 text-sm">Se enfoca en archivos seguros de eliminar: caché de apps (`/sdcard/Android/data/*/cache`), archivos temporales (`.tmp`, `.log`), carpetas vacías, miniaturas, y APKs descargados en la carpeta de descargas. Nunca tocará tus fotos, documentos o archivos personales fuera de estas categorías.</p>
-                </details>
-                 <details class="faq-item bg-stone-900 border border-stone-800 rounded-lg p-4">
-                    <summary class="font-semibold text-white flex justify-between items-center">¿Puedo ver el código antes de ejecutarlo? <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary>
-                    <p class="text-stone-400 mt-3 text-sm">¡Claro! El script es de código abierto. Puedes revisarlo por completo en nuestro <a href="https://github.com/candilmartinalonso/APEX" target="_blank" rel="noopener noreferrer" class="text-red-500 hover:underline">repositorio de GitHub</a>. La transparencia es clave.</p>
-                </details>
-            </div>
-        </section>
-    </main>
-
-    <footer class="text-center p-8 text-sm text-stone-600 border-t border-stone-900 mt-16 reveal">
-        <p class="font-bold text-stone-400 mb-4">Optimizador APEX</p>
-        <div class="flex justify-center space-x-6 mb-4">
-            <a href="#features" class="hover:text-red-500 transition-colors">Módulos</a>
-            <a href="https://github.com/candilmartinalonso/APEX" target="_blank" rel="noopener noreferrer" class="hover:text-red-500 transition-colors">GitHub</a>
-             <a href="#faq" class="hover:text-red-500 transition-colors">FAQ</a>
-        </div>
-        <p class="text-xs">&copy; 2025 APEX Project. Diseñado por la comunidad para la comunidad.</p>
-        <p class="text-xs mt-1">Úsalo bajo tu propia responsabilidad. Siempre es recomendable tener una copia de seguridad.</p>
-    </footer>
-
-    <!-- Botón para Volver Arriba -->
-    <button id="to-top-button" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="hidden fixed bottom-6 right-6 bg-red-600/80 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition-all-smooth backdrop-blur-sm hover:scale-110 hover:-rotate-12" aria-label="Volver arriba">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-    </button>
-
-    <!-- Snackbar para notificaciones -->
-    <div id="snackbar" role="alert" aria-live="polite" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-green-600 text-stone-50 px-5 py-3 rounded-xl shadow-lg opacity-0 pointer-events-none transition-all duration-500 transform translate-y-4"></div>
-
-    <script>
-        // Script refactorizado y optimizado con nuevas funcionalidades.
-        const App = {
-            // --- CONFIGURACIÓN ---
-            config: {
-                // Script de Shell mejorado con funciones reales y modo automático
-                shellScript: `#!/bin/bash
-# APEX Optimizer v10.0 - Script Funcional
-# Colores para la salida
+shellScript: `#!/bin/bash
+# APEX Optimizer v11.0 - Mejorado con más limpieza y optimización
 C_OFF='\\033[0m'
 C_RED='\\033[0;31m'
 C_GREEN='\\033[0;32m'
@@ -297,11 +8,9 @@ C_BLUE='\\033[0;34m'
 C_MAGENTA='\\033[0;35m'
 C_CYAN='\\033[0;36m'
 C_WHITE='\\033[0;97m'
-
 LOG_FILE=~/apex_auto_log.txt
 STORAGE="/sdcard"
 
-# Encabezado del script
 print_banner() {
     clear
     echo -e "$C_RED
@@ -311,24 +20,55 @@ print_banner() {
    ██╔══██║██╔══██╗██╔══╝   ██╔██╗ 
    ██║  ██║██║  ██║███████╗██╔╝ ██╗
    ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
-    $C_WHITE Optimizador APEX v10.0 - La Cima del Rendimiento
+    $C_WHITE Optimizador APEX v11.0 - Potencia Extrema
     $C_CYAN (c) 2025 candilmartinalonso - Sin Root $C_OFF
 "
     echo ""
 }
 
-# --- Módulos de Limpieza Reales ---
 run_deep_clean() {
     echo -e "$C_MAGENTA[MODULO DE LIMPIEZA PROFUNDA]$C_OFF"
     echo -e "$C_YELLOW-> Limpiando caché de apps...$C_OFF"
     find "$STORAGE/Android/data" -type d -name "cache" -exec rm -rf {} + 2>/dev/null
-    echo -e "$C_YELLOW-> Eliminando archivos basura (.log, .tmp, .bak)...$C_OFF"
-    find "$STORAGE" -type f \\( -name "*.log" -o -name "*.tmp" -o -name "*.bak" \\) -delete 2>/dev/null
-    echo -e "$C_YELLOW-> Limpiando miniaturas de galería...$C_OFF"
+    find "$STORAGE/Android/media" -type d -name "cache" -exec rm -rf {} + 2>/dev/null
+    echo -e "$C_YELLOW-> Eliminando archivos basura (.log, .tmp, .bak, .old)...$C_OFF"
+    find "$STORAGE" -type f \\( -name "*.log" -o -name "*.tmp" -o -name "*.bak" -o -name "*.old" \\) -delete 2>/dev/null
+    echo -e "$C_YELLOW-> Limpiando miniaturas de galería y apps sociales...$C_OFF"
     rm -rf "$STORAGE/DCIM/.thumbnails" 2>/dev/null
+    rm -rf "$STORAGE/Pictures/.thumbnails" 2>/dev/null
+    rm -rf "$STORAGE/WhatsApp/.Shared" 2>/dev/null
     echo -e "$C_YELLOW-> Limpiando APKs descargados...$C_OFF"
     find "$STORAGE/Download" -type f -name "*.apk" -delete 2>/dev/null
+    echo -e "$C_YELLOW-> Borrando archivos grandes (>200MB)...$C_OFF"
+    find "$STORAGE" -type f -size +200M -print -delete 2>/dev/null
+    echo -e "$C_YELLOW-> Borrando archivos de apps desinstaladas...$C_OFF"
+    find "$STORAGE/Android/data" -maxdepth 1 -type d | while read dir; do
+        pkg=$(basename "$dir")
+        pm list packages | grep "$pkg" || rm -rf "$dir"
+    done
+    echo -e "$C_YELLOW-> Limpiando logs del sistema y dumps...$C_OFF"
+    rm -rf "$STORAGE/Android/data/com.android.*"/*log* 2>/dev/null
+    rm -rf "$STORAGE/Android/data/com.android.*"/*dmp* 2>/dev/null
     echo -e "$C_GREEN\\nLimpieza profunda completada.$C_OFF"
+}
+
+run_browser_clean() {
+    echo -e "$C_MAGENTA[MODULO LIMPIEZA DE NAVEGADORES]$C_OFF"
+    rm -rf "$STORAGE/Android/data/com.android.chrome/cache" 2>/dev/null
+    rm -rf "$STORAGE/Android/data/org.mozilla.firefox/cache" 2>/dev/null
+    rm -rf "$STORAGE/Android/data/com.opera.browser/cache" 2>/dev/null
+    echo -e "$C_GREEN\\nCaché de navegadores eliminado.$C_OFF"
+}
+
+run_duplicate_clean() {
+    echo -e "$C_MAGENTA[BUSCADOR DE ARCHIVOS DUPLICADOS]$C_OFF"
+    fdupes -r "$STORAGE" | awk 'NF>1' | while read line; do
+        echo -e "$C_YELLOW-> Duplicados: $line$C_OFF"
+        for f in $line; do
+            rm -f "$f" 2>/dev/null
+        done
+    done
+    echo -e "$C_GREEN\\nDuplicados eliminados (básico).$C_OFF"
 }
 
 run_social_clean() {
@@ -338,6 +78,8 @@ run_social_clean() {
     rm -rf "$STORAGE/WhatsApp/Databases" 2>/dev/null
     echo -e "$C_YELLOW-> Limpiando caché de Telegram...$C_OFF"
     rm -rf "$STORAGE/Android/data/org.telegram.messenger/cache" 2>/dev/null
+    echo -e "$C_YELLOW-> Limpiando miniaturas de WhatsApp...$C_OFF"
+    rm -rf "$STORAGE/WhatsApp/Media/.Statuses" 2>/dev/null
     echo -e "$C_GREEN\\nLimpieza de RR.SS. completada.$C_OFF"
 }
 
@@ -348,16 +90,38 @@ run_empty_folder_clean() {
     echo -e "$C_GREEN\\nCaza de carpetas vacías completada.$C_OFF"
 }
 
-# --- Módulos de Optimización y Diagnóstico ---
+run_ram_clean() {
+    echo -e "$C_MAGENTA[LIMPIEZA DE RAM]$C_OFF"
+    echo -e "$C_YELLOW-> Matando procesos zombie y apps en segundo plano...$C_OFF"
+    for pkg in $(pm list packages -3 | cut -d: -f2); do am force-stop $pkg 2>/dev/null; done
+    echo -e "$C_GREEN\\nProcesos finalizados. RAM liberada (si es posible).$C_OFF"
+}
+
+run_boost_services() {
+    echo -e "$C_MAGENTA[REINICIO DE SERVICIOS DEL SISTEMA]$C_OFF"
+    sv restart crond 2>/dev/null
+    sv restart termux-services 2>/dev/null
+    echo -e "$C_GREEN\\nServicios reiniciados.$C_OFF"
+}
+
+run_sqlite_opt() {
+    echo -e "$C_MAGENTA[OPTIMIZADOR SQLITE]$C_OFF"
+    find "$STORAGE" -type f -name "*.db" | while read db; do
+        sqlite3 "$db" 'VACUUM;' 2>/dev/null
+    done
+    echo -e "$C_GREEN\\nBases de datos SQLite optimizadas.$C_OFF"
+}
+
 run_system_boost() {
     echo -e "$C_MAGENTA[OPTIMIZADOR DEL SISTEMA]$C_OFF"
-    echo -e "$C_YELLOW-> Forzando detención de apps en caché (puede requerir permisos)...$C_OFF"
-    for pkg in $(pm list packages -3 | cut -d: -f2); do am force-stop $pkg 2>/dev/null; done
+    run_ram_clean
+    run_boost_services
+    run_sqlite_opt
     echo -e "$C_YELLOW-> Ajustando animaciones del sistema (requiere ADB o root para efecto completo)...$C_OFF"
-    settings put global window_animation_scale 0.5
-    settings put global transition_animation_scale 0.5
-    settings put global animator_duration_scale 0.5
-    echo -e "$C_GREEN\\nOptimización del sistema intentada.$C_OFF"
+    settings put global window_animation_scale 0.25
+    settings put global transition_animation_scale 0.25
+    settings put global animator_duration_scale 0.25
+    echo -e "$C_GREEN\\nOptimización avanzada del sistema aplicada.$C_OFF"
 }
 
 run_system_diag() {
@@ -367,40 +131,73 @@ run_system_diag() {
     echo -e "$C_WHITE  RAM:$C_OFF" && free -m
     echo -e "$C_WHITE  Almacenamiento:$C_OFF" && df -h "$STORAGE"
     echo -e "$C_WHITE  Batería:$C_OFF" && termux-battery-status
+    echo -e "$C_WHITE  Temperatura CPU:$C_OFF $(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null)"
+    echo -e "$C_WHITE  Ciclos batería:$C_OFF $(dumpsys battery | grep cycle 2>/dev/null)"
+    echo -e "$C_WHITE  Consumo de apps:$C_OFF"
+    dumpsys cpuinfo | head -10 2>/dev/null
+    echo -e "$C_WHITE  Estado red:$C_OFF" && ip addr show
 }
 
-# --- Función para modo automático ---
+run_space_by_folder() {
+    echo -e "$C_MAGENTA[ESPACIO OCUPADO POR CARPETA]$C_OFF"
+    du -hs "$STORAGE"/* 2>/dev/null | sort -hr | head -15
+}
+
 run_auto_mode() {
     echo "--- APEX Auto-Clean starting at $(date) ---" >> "$LOG_FILE"
     run_deep_clean >> "$LOG_FILE" 2>&1
+    run_browser_clean >> "$LOG_FILE" 2>&1
+    run_duplicate_clean >> "$LOG_FILE" 2>&1
     run_social_clean >> "$LOG_FILE" 2>&1
     run_empty_folder_clean >> "$LOG_FILE" 2>&1
+    run_ram_clean >> "$LOG_FILE" 2>&1
+    run_boost_services >> "$LOG_FILE" 2>&1
+    run_sqlite_opt >> "$LOG_FILE" 2>&1
     echo "--- APEX Auto-Clean finished at $(date) ---" >> "$LOG_FILE"
     exit 0
 }
 
-# --- Menú Principal ---
 main_menu() {
     while true; do
         print_banner
         echo -e "$C_YELLOWElige una opción para optimizar tu dispositivo:$C_OFF"
-        echo "  [1] Limpieza Profunda (Caché, Basura, APKs)"
-        echo "  [2] Limpieza de Redes Sociales (WhatsApp, Telegram)"
-        echo "  [3] Cazar Carpetas Vacías"
-        echo "  [4] Optimización del Sistema (Boost)"
-        echo "  [5] Diagnóstico Rápido del Sistema"
-        echo -e "$C_CYAN  [6] Limpieza TOTAL (Ejecuta 1, 2 y 3)$C_OFF"
+        echo "  [1] Limpieza Profunda (Caché, Basura, APKs, .old, .bak, grandes)"
+        echo "  [2] Limpiar Navegadores"
+        echo "  [3] Limpiar Duplicados"
+        echo "  [4] Limpieza de Redes Sociales"
+        echo "  [5] Cazar Carpetas Vacías"
+        echo "  [6] Limpieza de RAM y procesos"
+        echo "  [7] Optimización del Sistema (Boost, animaciones, servicios)"
+        echo "  [8] Optimizar Bases de Datos SQLite"
+        echo "  [9] Diagnóstico Avanzado del Sistema"
+        echo "  [10] Espacio por Carpeta"
+        echo -e "$C_CYAN [11] Limpieza TOTAL (Todas las anteriores)$C_OFF"
         echo -e "$C_RED  [q] Salir de APEX$C_OFF"
         echo ""
         read -p "Tu elección: " choice
 
         case $choice in
             1) print_banner; run_deep_clean ;;
-            2) print_banner; run_social_clean ;;
-            3) print_banner; run_empty_folder_clean ;;
-            4) print_banner; run_system_boost ;;
-            5) print_banner; run_system_diag ;;
-            6) print_banner; run_deep_clean; echo ""; run_social_clean; echo ""; run_empty_folder_clean ;;
+            2) print_banner; run_browser_clean ;;
+            3) print_banner; run_duplicate_clean ;;
+            4) print_banner; run_social_clean ;;
+            5) print_banner; run_empty_folder_clean ;;
+            6) print_banner; run_ram_clean ;;
+            7) print_banner; run_system_boost ;;
+            8) print_banner; run_sqlite_opt ;;
+            9) print_banner; run_system_diag ;;
+            10) print_banner; run_space_by_folder ;;
+            11)
+                print_banner
+                run_deep_clean; echo "";
+                run_browser_clean; echo "";
+                run_duplicate_clean; echo "";
+                run_social_clean; echo "";
+                run_empty_folder_clean; echo "";
+                run_ram_clean; echo "";
+                run_system_boost; echo "";
+                run_sqlite_opt; echo "";
+                ;;
             q|Q) echo -e "$C_CYAN\\n¡Gracias por usar APEX! Mantén tu sistema en la cima.$C_OFF"; exit 0 ;;
             *) echo -e "$C_RED\\nOpción no válida. Inténtalo de nuevo.$C_OFF"; sleep 1 ;;
         esac
@@ -409,182 +206,9 @@ main_menu() {
     done
 }
 
-# --- Inicio del Script ---
-# Comprueba si se debe ejecutar en modo automático
 if [[ "$1" == "--auto" ]]; then
     run_auto_mode
 else
     main_menu
 fi
-`,
-                terminalLines: [
-                    { text: '$ curl -sL apex.sh | bash', speed: 40, delay: 500 },
-                    { text: 'INICIANDO OPTIMIZADOR APEX v10.0...', color: '#ef4444', speed: 30, delay: 1000 },
-                    { text: '✓ Comprobando dependencias... OK', color: '#22c55e', speed: 30, delay: 500 },
-                    { text: '✓ Acceso al almacenamiento concedido.', color: '#22c55e', speed: 30, delay: 500 },
-                    { text: '==> Limpiando caché (real)...', color: '#eab308', speed: 20, delay: 800 },
-                    { text: '   [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100% - Espacio recuperado.', color: '#84cc16', speed: 20, delay: 1200 },
-                    { text: '==> Optimizando procesos...', color: '#eab308', speed: 20, delay: 800 },
-                    { text: '   [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100% - Sistema más fluido.', color: '#84cc16', speed: 20, delay: 1200 },
-                    { text: '✨ Proceso completado. ¡Sistema optimizado!', color: '#a78bfa', speed: 40, delay: 1000 }
-                ]
-            },
-            elements: {},
-            state: { isAutoMode: false },
-
-            init() {
-                this.cacheDOMElements();
-                this.setupEventListeners();
-                this.setupScrollObserver();
-                this.updateFullCommand();
-                this.animateTerminal();
-            },
-
-            cacheDOMElements() {
-                this.elements = {
-                    terminalOutput: document.getElementById('terminal-output'),
-                    copyButton: document.getElementById('copyButton'),
-                    copyButtonText: document.getElementById('copyButtonText'),
-                    commandDisplayCode: document.getElementById('commandDisplay'),
-                    commandContentEl: document.getElementById('commandContent'),
-                    snackbar: document.getElementById('snackbar'),
-                    copyIcon: document.getElementById('copy-icon'),
-                    checkIcon: document.getElementById('check-icon'),
-                    toTopButton: document.getElementById('to-top-button'),
-                    header: document.getElementById('header'),
-                    autoToggle: document.getElementById('auto-toggle'),
-                    automationWarning: document.getElementById('automation-warning'),
-                };
-            },
-            
-            updateFullCommand() {
-                const escapedShellScript = this.config.shellScript.replace(/'/g, "'\\''");
-                const baseCommand = `printf '%s' '${escapedShellScript}' > ~/apex.sh && chmod +x ~/apex.sh`;
-                let fullCommand;
-
-                if (this.state.isAutoMode) {
-                    const cronJob = "*/5 * * * * ~/apex.sh --auto";
-                    fullCommand = `pkg install cronie termux-services -y && ${baseCommand} && sv-enable crond && sv up crond && (crontab -l 2>/dev/null | grep -v "apex.sh --auto"; echo "${cronJob}") | crontab - && echo "APEX automatizado cada 5 minutos." && ~/apex.sh`;
-                } else {
-                    fullCommand = `${baseCommand} && ~/apex.sh`;
-                }
-                
-                if (this.elements.commandDisplayCode) this.elements.commandDisplayCode.textContent = fullCommand;
-                if (this.elements.commandContentEl) this.elements.commandContentEl.value = fullCommand;
-            },
-
-            setupEventListeners() {
-                this.elements.copyButton?.addEventListener('click', this.handleCopyClick.bind(this));
-                this.elements.autoToggle?.addEventListener('change', this.handleToggleChange.bind(this));
-            },
-            
-            handleToggleChange(event) {
-                this.state.isAutoMode = event.target.checked;
-                this.elements.automationWarning?.classList.toggle('hidden', !this.state.isAutoMode);
-                this.updateFullCommand();
-            },
-
-            setupScrollObserver() {
-                // El código del observador de scroll se mantiene igual
-                const onScroll = () => {
-                    if (!this.elements.header || !this.elements.toTopButton) return;
-                    const isScrolled = window.scrollY > 50;
-                    this.elements.header.classList.toggle('bg-stone-950/80', isScrolled);
-                    this.elements.header.classList.toggle('border-stone-700', isScrolled);
-                    this.elements.header.classList.toggle('bg-black/30', !isScrolled);
-                    this.elements.header.classList.toggle('border-stone-800', !isScrolled);
-                    this.elements.toTopButton.classList.toggle('hidden', window.scrollY < 300);
-                };
-                window.addEventListener('scroll', onScroll, { passive: true });
-
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('reveal-visible');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.1 });
-                document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-            },
-
-            async animateTerminal() {
-                // La animación de la terminal se mantiene igual
-                 const { terminalOutput } = this.elements;
-                if (!terminalOutput) return;
-                terminalOutput.innerHTML = '';
-                await new Promise(resolve => setTimeout(resolve, 500));
-                const typeLine = async (element, line) => {
-                    return new Promise(resolve => {
-                        let charIndex = 0;
-                        const interval = setInterval(() => {
-                            if (charIndex < line.text.length) {
-                                element.textContent += line.text.charAt(charIndex);
-                                charIndex++;
-                            } else {
-                                clearInterval(interval);
-                                setTimeout(resolve, line.delay);
-                            }
-                        }, line.speed);
-                    });
-                };
-                for (const line of this.config.terminalLines) {
-                    const p = document.createElement('p');
-                    if (line.color) p.style.color = line.color;
-                    p.setAttribute('role', 'status');
-                    terminalOutput.appendChild(p);
-                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
-                    await typeLine(p, line);
-                }
-                const lastLine = terminalOutput.querySelector('p:last-child');
-                if (lastLine) {
-                    const cursor = document.createElement('span');
-                    cursor.className = 'terminal-cursor';
-                    cursor.setAttribute('aria-hidden', 'true');
-                    lastLine.appendChild(cursor);
-                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
-                }
-            },
-
-            handleCopyClick() {
-                // La lógica del botón de copiar se mantiene igual
-                const { commandContentEl, copyButtonText, copyIcon, checkIcon, copyButton } = this.elements;
-                if (!commandContentEl) return;
-                commandContentEl.select();
-                try {
-                    document.execCommand('copy');
-                    copyButtonText.textContent = '¡Copiado!';
-                    copyIcon.classList.add('hidden');
-                    checkIcon.classList.remove('hidden');
-                    copyButton.classList.remove('bg-red-600', 'hover:bg-red-500');
-                    copyButton.classList.add('bg-green-600');
-                    this.showSnackbar('Comando copiado al portapapeles.');
-                    setTimeout(() => {
-                        copyButtonText.textContent = 'Copiar';
-                        copyIcon.classList.remove('hidden');
-                        checkIcon.classList.add('hidden');
-                        copyButton.classList.add('bg-red-600', 'hover:bg-red-500');
-                        copyButton.classList.remove('bg-green-600');
-                    }, 2000);
-                } catch (err) {
-                    this.showSnackbar('Error al copiar. Intenta hacerlo manualmente.');
-                }
-            },
-            
-            showSnackbar(msg) {
-                // La lógica del snackbar se mantiene igual
-                const { snackbar } = this.elements;
-                if (!snackbar) return;
-                snackbar.textContent = msg;
-                snackbar.classList.remove('opacity-0', 'translate-y-4');
-                setTimeout(() => {
-                    snackbar.classList.add('opacity-0', 'translate-y-4');
-                }, 2500);
-            }
-        };
-
-        document.addEventListener('DOMContentLoaded', () => App.init());
-    </script>
-</body>
-</html>
-
+`
