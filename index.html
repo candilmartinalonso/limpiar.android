@@ -1,4 +1,79 @@
-shellScript: `#!/bin/bash
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Script APEX Optimizer</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 40px;
+      background: #0f2027;  /* fallback for old browsers */
+      background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+      color: #fff;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    h1 {
+      animation: slideIn 1s ease-out;
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+      height: 500px;
+      font-family: monospace;
+      white-space: pre;
+      background-color: #1e1e1e;
+      color: #00ffcc;
+      border: none;
+      padding: 20px;
+      border-radius: 10px;
+      animation: popIn 1s ease;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 16px;
+      background-color: #00c9a7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      animation: fadeInUp 1.2s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #007f6a;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.95); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🚀 APEX Optimizer v11.0</h1>
+  <p>Haz clic en el botón para copiar el script al portapapeles:</p>
+  <textarea id="script">shellScript: `#!/bin/bash
 # APEX Optimizer v11.0 - Mejorado con más limpieza y optimización
 C_OFF='\\033[0m'
 C_RED='\\033[0;31m'
@@ -28,44 +103,44 @@ print_banner() {
 
 run_deep_clean() {
     echo -e "$C_MAGENTA[MODULO DE LIMPIEZA PROFUNDA]$C_OFF"
-    echo -e "$C_YELLOW-> Limpiando caché de apps...$C_OFF"
-    find "$STORAGE/Android/data" -type d -name "cache" -exec rm -rf {} + 2>/dev/null
-    find "$STORAGE/Android/media" -type d -name "cache" -exec rm -rf {} + 2>/dev/null
-    echo -e "$C_YELLOW-> Eliminando archivos basura (.log, .tmp, .bak, .old)...$C_OFF"
-    find "$STORAGE" -type f \\( -name "*.log" -o -name "*.tmp" -o -name "*.bak" -o -name "*.old" \\) -delete 2>/dev/null
-    echo -e "$C_YELLOW-> Limpiando miniaturas de galería y apps sociales...$C_OFF"
-    rm -rf "$STORAGE/DCIM/.thumbnails" 2>/dev/null
-    rm -rf "$STORAGE/Pictures/.thumbnails" 2>/dev/null
-    rm -rf "$STORAGE/WhatsApp/.Shared" 2>/dev/null
-    echo -e "$C_YELLOW-> Limpiando APKs descargados...$C_OFF"
-    find "$STORAGE/Download" -type f -name "*.apk" -delete 2>/dev/null
-    echo -e "$C_YELLOW-> Borrando archivos grandes (>200MB)...$C_OFF"
-    find "$STORAGE" -type f -size +200M -print -delete 2>/dev/null
-    echo -e "$C_YELLOW-> Borrando archivos de apps desinstaladas...$C_OFF"
+    echo -e "$C_YELLOW-&gt; Limpiando caché de apps...$C_OFF"
+    find "$STORAGE/Android/data" -type d -name "cache" -exec rm -rf {} + 2&gt;/dev/null
+    find "$STORAGE/Android/media" -type d -name "cache" -exec rm -rf {} + 2&gt;/dev/null
+    echo -e "$C_YELLOW-&gt; Eliminando archivos basura (.log, .tmp, .bak, .old)...$C_OFF"
+    find "$STORAGE" -type f \\( -name "*.log" -o -name "*.tmp" -o -name "*.bak" -o -name "*.old" \\) -delete 2&gt;/dev/null
+    echo -e "$C_YELLOW-&gt; Limpiando miniaturas de galería y apps sociales...$C_OFF"
+    rm -rf "$STORAGE/DCIM/.thumbnails" 2&gt;/dev/null
+    rm -rf "$STORAGE/Pictures/.thumbnails" 2&gt;/dev/null
+    rm -rf "$STORAGE/WhatsApp/.Shared" 2&gt;/dev/null
+    echo -e "$C_YELLOW-&gt; Limpiando APKs descargados...$C_OFF"
+    find "$STORAGE/Download" -type f -name "*.apk" -delete 2&gt;/dev/null
+    echo -e "$C_YELLOW-&gt; Borrando archivos grandes (&gt;200MB)...$C_OFF"
+    find "$STORAGE" -type f -size +200M -print -delete 2&gt;/dev/null
+    echo -e "$C_YELLOW-&gt; Borrando archivos de apps desinstaladas...$C_OFF"
     find "$STORAGE/Android/data" -maxdepth 1 -type d | while read dir; do
         pkg=$(basename "$dir")
         pm list packages | grep "$pkg" || rm -rf "$dir"
     done
-    echo -e "$C_YELLOW-> Limpiando logs del sistema y dumps...$C_OFF"
-    rm -rf "$STORAGE/Android/data/com.android.*"/*log* 2>/dev/null
-    rm -rf "$STORAGE/Android/data/com.android.*"/*dmp* 2>/dev/null
+    echo -e "$C_YELLOW-&gt; Limpiando logs del sistema y dumps...$C_OFF"
+    rm -rf "$STORAGE/Android/data/com.android.*"/*log* 2&gt;/dev/null
+    rm -rf "$STORAGE/Android/data/com.android.*"/*dmp* 2&gt;/dev/null
     echo -e "$C_GREEN\\nLimpieza profunda completada.$C_OFF"
 }
 
 run_browser_clean() {
     echo -e "$C_MAGENTA[MODULO LIMPIEZA DE NAVEGADORES]$C_OFF"
-    rm -rf "$STORAGE/Android/data/com.android.chrome/cache" 2>/dev/null
-    rm -rf "$STORAGE/Android/data/org.mozilla.firefox/cache" 2>/dev/null
-    rm -rf "$STORAGE/Android/data/com.opera.browser/cache" 2>/dev/null
+    rm -rf "$STORAGE/Android/data/com.android.chrome/cache" 2&gt;/dev/null
+    rm -rf "$STORAGE/Android/data/org.mozilla.firefox/cache" 2&gt;/dev/null
+    rm -rf "$STORAGE/Android/data/com.opera.browser/cache" 2&gt;/dev/null
     echo -e "$C_GREEN\\nCaché de navegadores eliminado.$C_OFF"
 }
 
 run_duplicate_clean() {
     echo -e "$C_MAGENTA[BUSCADOR DE ARCHIVOS DUPLICADOS]$C_OFF"
-    fdupes -r "$STORAGE" | awk 'NF>1' | while read line; do
-        echo -e "$C_YELLOW-> Duplicados: $line$C_OFF"
+    fdupes -r "$STORAGE" | awk 'NF&gt;1' | while read line; do
+        echo -e "$C_YELLOW-&gt; Duplicados: $line$C_OFF"
         for f in $line; do
-            rm -f "$f" 2>/dev/null
+            rm -f "$f" 2&gt;/dev/null
         done
     done
     echo -e "$C_GREEN\\nDuplicados eliminados (básico).$C_OFF"
@@ -73,41 +148,41 @@ run_duplicate_clean() {
 
 run_social_clean() {
     echo -e "$C_MAGENTA[MODULO DE LIMPIEZA DE RR.SS.]$C_OFF"
-    echo -e "$C_YELLOW-> Limpiando backups de WhatsApp...$C_OFF"
-    rm -rf "$STORAGE/Android/media/com.whatsapp/WhatsApp/Databases" 2>/dev/null
-    rm -rf "$STORAGE/WhatsApp/Databases" 2>/dev/null
-    echo -e "$C_YELLOW-> Limpiando caché de Telegram...$C_OFF"
-    rm -rf "$STORAGE/Android/data/org.telegram.messenger/cache" 2>/dev/null
-    echo -e "$C_YELLOW-> Limpiando miniaturas de WhatsApp...$C_OFF"
-    rm -rf "$STORAGE/WhatsApp/Media/.Statuses" 2>/dev/null
+    echo -e "$C_YELLOW-&gt; Limpiando backups de WhatsApp...$C_OFF"
+    rm -rf "$STORAGE/Android/media/com.whatsapp/WhatsApp/Databases" 2&gt;/dev/null
+    rm -rf "$STORAGE/WhatsApp/Databases" 2&gt;/dev/null
+    echo -e "$C_YELLOW-&gt; Limpiando caché de Telegram...$C_OFF"
+    rm -rf "$STORAGE/Android/data/org.telegram.messenger/cache" 2&gt;/dev/null
+    echo -e "$C_YELLOW-&gt; Limpiando miniaturas de WhatsApp...$C_OFF"
+    rm -rf "$STORAGE/WhatsApp/Media/.Statuses" 2&gt;/dev/null
     echo -e "$C_GREEN\\nLimpieza de RR.SS. completada.$C_OFF"
 }
 
 run_empty_folder_clean() {
     echo -e "$C_MAGENTA[CAZADOR DE CARPETAS VACÍAS]$C_OFF"
-    echo -e "$C_YELLOW-> Buscando y eliminando directorios vacíos...$C_OFF"
-    find "$STORAGE" -type d -empty -delete 2>/dev/null
+    echo -e "$C_YELLOW-&gt; Buscando y eliminando directorios vacíos...$C_OFF"
+    find "$STORAGE" -type d -empty -delete 2&gt;/dev/null
     echo -e "$C_GREEN\\nCaza de carpetas vacías completada.$C_OFF"
 }
 
 run_ram_clean() {
     echo -e "$C_MAGENTA[LIMPIEZA DE RAM]$C_OFF"
-    echo -e "$C_YELLOW-> Matando procesos zombie y apps en segundo plano...$C_OFF"
-    for pkg in $(pm list packages -3 | cut -d: -f2); do am force-stop $pkg 2>/dev/null; done
+    echo -e "$C_YELLOW-&gt; Matando procesos zombie y apps en segundo plano...$C_OFF"
+    for pkg in $(pm list packages -3 | cut -d: -f2); do am force-stop $pkg 2&gt;/dev/null; done
     echo -e "$C_GREEN\\nProcesos finalizados. RAM liberada (si es posible).$C_OFF"
 }
 
 run_boost_services() {
     echo -e "$C_MAGENTA[REINICIO DE SERVICIOS DEL SISTEMA]$C_OFF"
-    sv restart crond 2>/dev/null
-    sv restart termux-services 2>/dev/null
+    sv restart crond 2&gt;/dev/null
+    sv restart termux-services 2&gt;/dev/null
     echo -e "$C_GREEN\\nServicios reiniciados.$C_OFF"
 }
 
 run_sqlite_opt() {
     echo -e "$C_MAGENTA[OPTIMIZADOR SQLITE]$C_OFF"
     find "$STORAGE" -type f -name "*.db" | while read db; do
-        sqlite3 "$db" 'VACUUM;' 2>/dev/null
+        sqlite3 "$db" 'VACUUM;' 2&gt;/dev/null
     done
     echo -e "$C_GREEN\\nBases de datos SQLite optimizadas.$C_OFF"
 }
@@ -117,7 +192,7 @@ run_system_boost() {
     run_ram_clean
     run_boost_services
     run_sqlite_opt
-    echo -e "$C_YELLOW-> Ajustando animaciones del sistema (requiere ADB o root para efecto completo)...$C_OFF"
+    echo -e "$C_YELLOW-&gt; Ajustando animaciones del sistema (requiere ADB o root para efecto completo)...$C_OFF"
     settings put global window_animation_scale 0.25
     settings put global transition_animation_scale 0.25
     settings put global animator_duration_scale 0.25
@@ -128,32 +203,32 @@ run_system_diag() {
     echo -e "$C_MAGENTA[DIAGNÓSTICO DEL SISTEMA]$C_OFF"
     echo -e "$C_WHITE  Modelo:$C_OFF $(getprop ro.product.model)"
     echo -e "$C_WHITE  Android:$C_OFF $(getprop ro.build.version.release)"
-    echo -e "$C_WHITE  RAM:$C_OFF" && free -m
-    echo -e "$C_WHITE  Almacenamiento:$C_OFF" && df -h "$STORAGE"
-    echo -e "$C_WHITE  Batería:$C_OFF" && termux-battery-status
-    echo -e "$C_WHITE  Temperatura CPU:$C_OFF $(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null)"
-    echo -e "$C_WHITE  Ciclos batería:$C_OFF $(dumpsys battery | grep cycle 2>/dev/null)"
+    echo -e "$C_WHITE  RAM:$C_OFF" &amp;&amp; free -m
+    echo -e "$C_WHITE  Almacenamiento:$C_OFF" &amp;&amp; df -h "$STORAGE"
+    echo -e "$C_WHITE  Batería:$C_OFF" &amp;&amp; termux-battery-status
+    echo -e "$C_WHITE  Temperatura CPU:$C_OFF $(cat /sys/class/thermal/thermal_zone0/temp 2&gt;/dev/null)"
+    echo -e "$C_WHITE  Ciclos batería:$C_OFF $(dumpsys battery | grep cycle 2&gt;/dev/null)"
     echo -e "$C_WHITE  Consumo de apps:$C_OFF"
-    dumpsys cpuinfo | head -10 2>/dev/null
-    echo -e "$C_WHITE  Estado red:$C_OFF" && ip addr show
+    dumpsys cpuinfo | head -10 2&gt;/dev/null
+    echo -e "$C_WHITE  Estado red:$C_OFF" &amp;&amp; ip addr show
 }
 
 run_space_by_folder() {
     echo -e "$C_MAGENTA[ESPACIO OCUPADO POR CARPETA]$C_OFF"
-    du -hs "$STORAGE"/* 2>/dev/null | sort -hr | head -15
+    du -hs "$STORAGE"/* 2&gt;/dev/null | sort -hr | head -15
 }
 
 run_auto_mode() {
-    echo "--- APEX Auto-Clean starting at $(date) ---" >> "$LOG_FILE"
-    run_deep_clean >> "$LOG_FILE" 2>&1
-    run_browser_clean >> "$LOG_FILE" 2>&1
-    run_duplicate_clean >> "$LOG_FILE" 2>&1
-    run_social_clean >> "$LOG_FILE" 2>&1
-    run_empty_folder_clean >> "$LOG_FILE" 2>&1
-    run_ram_clean >> "$LOG_FILE" 2>&1
-    run_boost_services >> "$LOG_FILE" 2>&1
-    run_sqlite_opt >> "$LOG_FILE" 2>&1
-    echo "--- APEX Auto-Clean finished at $(date) ---" >> "$LOG_FILE"
+    echo "--- APEX Auto-Clean starting at $(date) ---" &gt;&gt; "$LOG_FILE"
+    run_deep_clean &gt;&gt; "$LOG_FILE" 2&gt;&amp;1
+    run_browser_clean &gt;&gt; "$LOG_FILE" 2&gt;&amp;1
+    run_duplicate_clean &gt;&gt; "$LOG_FILE" 2&gt;&amp;1
+    run_social_clean &gt;&gt; "$LOG_FILE" 2&gt;&amp;1
+    run_empty_folder_clean &gt;&gt; "$LOG_FILE" 2&gt;&amp;1
+    run_ram_clean &gt;&gt; "$LOG_FILE" 2&gt;&amp;1
+    run_boost_services &gt;&gt; "$LOG_FILE" 2&gt;&amp;1
+    run_sqlite_opt &gt;&gt; "$LOG_FILE" 2&gt;&amp;1
+    echo "--- APEX Auto-Clean finished at $(date) ---" &gt;&gt; "$LOG_FILE"
     exit 0
 }
 
@@ -212,3 +287,17 @@ else
     main_menu
 fi
 `
+</textarea>
+  <br>
+  <button onclick="copyScript()">📋 Copiar Script</button>
+
+  <script>
+    function copyScript() {
+      const script = document.getElementById("script");
+      script.select();
+      document.execCommand("copy");
+      alert("¡Script copiado al portapapeles!");
+    }
+  </script>
+</body>
+</html>
