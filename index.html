@@ -108,10 +108,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>🚀 APEX Optimizer v12.0</h1>
+        <h1>🚀 APEX Optimizer v13.0</h1>
         <p>Haz clic en el botón para copiar el script al portapapeles:</p>
         <textarea id="script" readonly>#!/bin/bash
-# APEX Optimizer v12.0 - Potencia Extrema
+# APEX Optimizer v13.0 - Potencia Extrema
 # Autor: candilmartinalonso
 # Script de limpieza y optimización del sistema para Android (Termux)
 # ¡No requiere ROOT!
@@ -139,7 +139,7 @@ print_banner() {
    ██╔══██║██╔══██╗██╔══╝   ██╔██╗ 
    ██║  ██║██║  ██║███████╗██╔╝ ██╗
    ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
-    $C_WHITE Optimizador APEX v12.0 - Potencia Extrema
+    $C_WHITE Optimizador APEX v13.0 - Potencia Extrema
     $C_CYAN (c) 2025 candilmartinalonso - Sin Root $C_OFF
 "
     echo ""
@@ -184,6 +184,19 @@ run_social_clean() {
     echo -e "$C_GREEN\nLimpieza de RR.SS. completada.$C_OFF"
 }
 
+run_common_apps_clean() {
+    echo -e "$C_MAGENTA[LIMPIEZA DE APPS COMUNES]$C_OFF"
+    echo -e "$C_YELLOW-> Limpiando caché de Google Play Store...$C_OFF"
+    rm -rf "$STORAGE/Android/data/com.android.vending/cache" 2>/dev/null
+    echo -e "$C_YELLOW-> Limpiando caché de Chrome y Firefox...$C_OFF"
+    rm -rf "$STORAGE/Android/data/com.android.chrome/cache" 2>/dev/null
+    rm -rf "$STORAGE/Android/data/org.mozilla.firefox/cache" 2>/dev/null
+    echo -e "$C_YELLOW-> Limpiando caché de Spotify y Netflix...$C_OFF"
+    rm -rf "$STORAGE/Android/data/com.spotify.music/cache" 2>/dev/null
+    rm -rf "$STORAGE/Android/data/com.netflix.mediaclient/cache" 2>/dev/null
+    echo -e "$C_GREEN\nLimpieza de apps comunes completada.$C_OFF"
+}
+
 run_duplicate_clean() {
     echo -e "$C_MAGENTA[BUSCADOR DE ARCHIVOS DUPLICADOS]$C_OFF"
     echo -e "$C_YELLOW-> Nota: Este es un buscador básico. Se recomienda usar una herramienta de PC para una limpieza más exhaustiva.$C_OFF"
@@ -192,6 +205,20 @@ run_duplicate_clean() {
         rm -f "$line" 2>/dev/null
     done
     echo -e "$C_GREEN\nDuplicados eliminados (básico).$C_OFF"
+}
+
+run_large_media_clean() {
+    echo -e "$C_MAGENTA[LIMPIEZA DE ARCHIVOS GRANDES]$C_OFF"
+    echo -e "$C_YELLOW-> Buscando archivos multimedia grandes (> 50MB)...$C_OFF"
+    find "$STORAGE" -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.avi" -o -name "*.mov" -o -name "*.mp3" -o -name "*.flac" \) -size +50M -print -delete 2>/dev/null
+    echo -e "$C_GREEN\nArchivos grandes eliminados.$C_OFF"
+}
+
+run_nomedia_clean() {
+    echo -e "$C_MAGENTA[CAZADOR DE ARCHIVOS .nomedia]$C_OFF"
+    echo -e "$C_YELLOW-> Buscando y eliminando archivos .nomedia...$C_OFF"
+    find "$STORAGE" -type f -name ".nomedia" -delete 2>/dev/null
+    echo -e "$C_GREEN\nArchivos .nomedia eliminados. La galería podría ahora mostrar más archivos.$C_OFF"
 }
 
 run_empty_folder_clean() {
@@ -260,7 +287,10 @@ run_auto_mode() {
     echo "--- APEX Auto-Clean starting at $(date) ---" >> "$LOG_FILE"
     run_deep_clean >> "$LOG_FILE" 2>&1
     run_social_clean >> "$LOG_FILE" 2>&1
+    run_common_apps_clean >> "$LOG_FILE" 2>&1
     run_duplicate_clean >> "$LOG_FILE" 2>&1
+    run_large_media_clean >> "$LOG_FILE" 2>&1
+    run_nomedia_clean >> "$LOG_FILE" 2>&1
     run_empty_folder_clean >> "$LOG_FILE" 2>&1
     run_ram_clean >> "$LOG_FILE" 2>&1
     run_network_boost >> "$LOG_FILE" 2>&1
@@ -276,17 +306,20 @@ main_menu() {
     while true; do
         print_banner
         echo -e "$C_YELLOWElige una opción para optimizar tu dispositivo:$C_OFF"
-        echo "  [1] Limpieza Profunda (Caché, Basura, APKs, .old, etc.)"
-        echo "  [2] Limpieza de Redes Sociales (WhatsApp, Telegram, Instagram, TikTok)"
-        echo "  [3] Limpiar Duplicados"
-        echo "  [4] Cazar Carpetas Vacías"
-        echo "  [5] Limpieza de RAM y procesos"
-        echo "  [6] Optimización de Red (Vaciar caché DNS)"
-        echo "  [7] Optimización del Sistema (Animaciones, servicios)"
-        echo "  [8] Optimizar Bases de Datos SQLite"
-        echo "  [9] Diagnóstico Avanzado del Sistema"
-        echo "  [10] Espacio por Carpeta"
-        echo -e "$C_CYAN [11] Limpieza TOTAL (Todas las anteriores)$C_OFF"
+        echo "  [1] Limpieza Profunda (Caché, Basura, APKs, etc.)"
+        echo "  [2] Limpieza de Redes Sociales (WhatsApp, Telegram, etc.)"
+        echo "  [3] Limpiar Apps Comunes (Play Store, navegadores, música)"
+        echo "  [4] Limpiar Duplicados"
+        echo "  [5] Limpiar Archivos Multimedia Grandes (> 50MB)"
+        echo "  [6] Eliminar Archivos .nomedia"
+        echo "  [7] Cazar Carpetas Vacías"
+        echo "  [8] Limpieza de RAM y procesos"
+        echo "  [9] Optimización de Red (Vaciar caché DNS)"
+        echo "  [10] Optimización del Sistema (Animaciones, servicios)"
+        echo "  [11] Optimizar Bases de Datos SQLite"
+        echo "  [12] Diagnóstico Avanzado del Sistema"
+        echo "  [13] Espacio por Carpeta"
+        echo -e "$C_CYAN [14] Limpieza TOTAL (Todas las anteriores)$C_OFF"
         echo -e "$C_RED  [q] Salir de APEX$C_OFF"
         echo ""
         read -p "Tu elección: " choice
@@ -294,19 +327,25 @@ main_menu() {
         case $choice in
             1) print_banner; run_deep_clean ;;
             2) print_banner; run_social_clean ;;
-            3) print_banner; run_duplicate_clean ;;
-            4) print_banner; run_empty_folder_clean ;;
-            5) print_banner; run_ram_clean ;;
-            6) print_banner; run_network_boost ;;
-            7) print_banner; run_system_boost ;;
-            8) print_banner; run_sqlite_opt ;;
-            9) print_banner; run_system_diag ;;
-            10) print_banner; run_space_by_folder ;;
-            11)
+            3) print_banner; run_common_apps_clean ;;
+            4) print_banner; run_duplicate_clean ;;
+            5) print_banner; run_large_media_clean ;;
+            6) print_banner; run_nomedia_clean ;;
+            7) print_banner; run_empty_folder_clean ;;
+            8) print_banner; run_ram_clean ;;
+            9) print_banner; run_network_boost ;;
+            10) print_banner; run_system_boost ;;
+            11) print_banner; run_sqlite_opt ;;
+            12) print_banner; run_system_diag ;;
+            13) print_banner; run_space_by_folder ;;
+            14)
                 print_banner
                 run_deep_clean; echo "";
                 run_social_clean; echo "";
+                run_common_apps_clean; echo "";
                 run_duplicate_clean; echo "";
+                run_large_media_clean; echo "";
+                run_nomedia_clean; echo "";
                 run_empty_folder_clean; echo "";
                 run_ram_clean; echo "";
                 run_network_boost; echo "";
