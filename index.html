@@ -3,91 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Script APEX Optimizer</title>
+    <title>APEX Optimizer</title>
+    <!-- Incluir Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px;
-            background: #0f2027; /* fallback for old browsers */
-            background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
-            color: #fff;
-            animation: fadeIn 1.2s ease-in-out;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        h1 {
-            animation: slideIn 1s ease-out;
-            text-align: center;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-        }
-        p {
-            text-align: center;
-            font-size: 1.1em;
-            margin-bottom: 20px;
-        }
-        textarea {
-            width: 100%;
-            height: 500px;
-            font-family: monospace;
-            white-space: pre;
-            background-color: #1e1e1e;
-            color: #00ffcc;
-            border: none;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-            animation: popIn 1s ease;
-            resize: vertical;
-        }
-        button {
-            display: block;
-            margin: 20px auto 0;
-            padding: 15px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            background-color: #00c9a7;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            animation: fadeInUp 1.2s ease-in-out;
-            box-shadow: 0 4px 15px rgba(0, 201, 167, 0.4);
-        }
-        button:hover {
-            background-color: #007f6a;
-            transform: translateY(-2px);
-        }
-        button:active {
-            transform: translateY(0);
-        }
-        .message-box {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #00c9a7;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 201, 167, 0.4);
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-        .message-box.show {
-            opacity: 1;
-        }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -106,17 +25,25 @@
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>🚀 APEX Optimizer v13.0</h1>
-        <p>Haz clic en el botón para copiar el script al portapapeles:</p>
-        <textarea id="script" readonly>#!/bin/bash
+<body class="font-sans antialiased text-white bg-slate-900 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 animate-[fadeIn_1.2s_ease-in-out]">
+    <div class="container mx-auto max-w-4xl p-8 mt-12 bg-white/5 rounded-2xl shadow-xl backdrop-blur-md border border-white/30 animate-[slideIn_1s_ease-out]">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-center mb-4 animate-[slideIn_1s_ease-out] drop-shadow-lg">🚀 APEX Optimizer v13.0</h1>
+        <p class="text-center text-lg mb-8 animate-[slideIn_1s_ease-out] opacity-80">
+            Haz clic en el botón para copiar el script optimizado al portapapeles.
+        </p>
+        <textarea id="script" readonly
+            class="w-full h-[500px] text-base font-mono bg-black/50 text-[#00ffcc] border-none p-6 rounded-xl shadow-inner animate-[popIn_1s_ease] resize-y overflow-auto focus:outline-none">#!/bin/bash
 # APEX Optimizer v13.0 - Potencia Extrema
 # Autor: candilmartinalonso
+#
+# AVISO: Este script realiza operaciones destructivas como la eliminación de archivos.
+# Úsalo con precaución y bajo tu propia responsabilidad. Algunas funciones pueden
+# requerir permisos o utilidades de Termux (como 'fdupes', 'sqlite3', 'adb', 'termux-api').
+#
 # Script de limpieza y optimización del sistema para Android (Termux)
 # ¡No requiere ROOT!
 
-# Códigos de color
+# --- Colores y configuración básica ---
 C_OFF='\033[0m'
 C_RED='\033[0;31m'
 C_GREEN='\033[0;32m'
@@ -130,6 +57,7 @@ STORAGE="/sdcard"
 
 # --- Funciones Principales ---
 
+# Muestra el banner y el menú principal.
 print_banner() {
     clear
     echo -e "$C_RED
@@ -145,6 +73,7 @@ print_banner() {
     echo ""
 }
 
+# Realiza una limpieza profunda de archivos basura.
 run_deep_clean() {
     echo -e "$C_MAGENTA[MODULO DE LIMPIEZA PROFUNDA]$C_OFF"
     echo -e "$C_YELLOW-> Limpiando caché de apps...$C_OFF"
@@ -169,6 +98,7 @@ run_deep_clean() {
     echo -e "$C_GREEN\nLimpieza profunda completada.$C_OFF"
 }
 
+# Limpia los archivos de aplicaciones de redes sociales comunes.
 run_social_clean() {
     echo -e "$C_MAGENTA[MODULO DE LIMPIEZA DE RR.SS.]$C_OFF"
     echo -e "$C_YELLOW-> Limpiando backups de WhatsApp...$C_OFF"
@@ -184,6 +114,7 @@ run_social_clean() {
     echo -e "$C_GREEN\nLimpieza de RR.SS. completada.$C_OFF"
 }
 
+# Limpia archivos de caché de aplicaciones comunes.
 run_common_apps_clean() {
     echo -e "$C_MAGENTA[LIMPIEZA DE APPS COMUNES]$C_OFF"
     echo -e "$C_YELLOW-> Limpiando caché de Google Play Store...$C_OFF"
@@ -197,8 +128,13 @@ run_common_apps_clean() {
     echo -e "$C_GREEN\nLimpieza de apps comunes completada.$C_OFF"
 }
 
+# Busca y elimina archivos duplicados (requiere 'fdupes').
 run_duplicate_clean() {
     echo -e "$C_MAGENTA[BUSCADOR DE ARCHIVOS DUPLICADOS]$C_OFF"
+    if ! command -v fdupes &>/dev/null; then
+        echo -e "$C_RED ERROR: 'fdupes' no está instalado. Instálalo con 'pkg install fdupes'.$C_OFF"
+        return
+    fi
     echo -e "$C_YELLOW-> Nota: Este es un buscador básico. Se recomienda usar una herramienta de PC para una limpieza más exhaustiva.$C_OFF"
     fdupes -r "$STORAGE" | awk 'NF>1' | while read line; do
         echo -e "$C_YELLOW-> Eliminando duplicado: $line$C_OFF"
@@ -207,13 +143,15 @@ run_duplicate_clean() {
     echo -e "$C_GREEN\nDuplicados eliminados (básico).$C_OFF"
 }
 
+# Elimina archivos multimedia de gran tamaño.
 run_large_media_clean() {
     echo -e "$C_MAGENTA[LIMPIEZA DE ARCHIVOS GRANDES]$C_OFF"
-    echo -e "$C_YELLOW-> Buscando archivos multimedia grandes (> 50MB)...$C_OFF"
+    echo -e "$C_YELLOW-> Buscando y eliminando archivos multimedia grandes (> 50MB)...$C_OFF"
     find "$STORAGE" -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.avi" -o -name "*.mov" -o -name "*.mp3" -o -name "*.flac" \) -size +50M -print -delete 2>/dev/null
     echo -e "$C_GREEN\nArchivos grandes eliminados.$C_OFF"
 }
 
+# Elimina archivos .nomedia para que la galería pueda escanearlos.
 run_nomedia_clean() {
     echo -e "$C_MAGENTA[CAZADOR DE ARCHIVOS .nomedia]$C_OFF"
     echo -e "$C_YELLOW-> Buscando y eliminando archivos .nomedia...$C_OFF"
@@ -221,6 +159,7 @@ run_nomedia_clean() {
     echo -e "$C_GREEN\nArchivos .nomedia eliminados. La galería podría ahora mostrar más archivos.$C_OFF"
 }
 
+# Elimina carpetas vacías para liberar espacio.
 run_empty_folder_clean() {
     echo -e "$C_MAGENTA[CAZADOR DE CARPETAS VACÍAS]$C_OFF"
     echo -e "$C_YELLOW-> Buscando y eliminando directorios vacíos...$C_OFF"
@@ -228,6 +167,7 @@ run_empty_folder_clean() {
     echo -e "$C_GREEN\nCaza de carpetas vacías completada.$C_OFF"
 }
 
+# Intenta liberar memoria RAM cerrando procesos de usuario.
 run_ram_clean() {
     echo -e "$C_MAGENTA[LIMPIEZA DE RAM]$C_OFF"
     echo -e "$C_YELLOW-> Matando procesos zombie y apps en segundo plano...$C_OFF"
@@ -235,13 +175,15 @@ run_ram_clean() {
     echo -e "$C_GREEN\nProcesos finalizados. RAM liberada (si es posible).$C_OFF"
 }
 
+# Vacía la caché DNS para una posible mejora de red.
 run_network_boost() {
     echo -e "$C_MAGENTA[OPTIMIZACIÓN DE RED]$C_OFF"
     echo -e "$C_YELLOW-> Vaciando la caché DNS del sistema...$C_OFF"
     adb shell netd_cmd network flush_dns_cache 2>/dev/null
-    echo -e "$C_GREEN\nCaché DNS vaciada (requiere ADB).$C_OFF"
+    echo -e "$C_GREEN\nCaché DNS vaciada (requiere 'adb' en tu PC y conectividad).$C_OFF"
 }
 
+# Ajusta las animaciones del sistema para una sensación más rápida.
 run_system_boost() {
     echo -e "$C_MAGENTA[OPTIMIZADOR DEL SISTEMA]$C_OFF"
     run_ram_clean
@@ -253,8 +195,13 @@ run_system_boost() {
     echo -e "$C_GREEN\nOptimización avanzada del sistema aplicada.$C_OFF"
 }
 
+# Optimiza las bases de datos SQLite (requiere 'sqlite3').
 run_sqlite_opt() {
     echo -e "$C_MAGENTA[OPTIMIZADOR SQLITE]$C_OFF"
+    if ! command -v sqlite3 &>/dev/null; then
+        echo -e "$C_RED ERROR: 'sqlite3' no está instalado. Instálalo con 'pkg install sqlite'.$C_OFF"
+        return
+    fi
     find "$STORAGE" -type f -name "*.db" | while read db; do
         echo -e "$C_YELLOW-> Optimizando $db...$C_OFF"
         sqlite3 "$db" 'VACUUM;' 2>/dev/null
@@ -262,27 +209,29 @@ run_sqlite_opt() {
     echo -e "$C_GREEN\nBases de datos SQLite optimizadas.$C_OFF"
 }
 
+# Muestra información detallada del sistema (requiere 'termux-api' y otras utilidades).
 run_system_diag() {
     echo -e "$C_MAGENTA[DIAGNÓSTICO DEL SISTEMA]$C_OFF"
     echo -e "$C_WHITE  Modelo:$C_OFF $(getprop ro.product.model)"
     echo -e "$C_WHITE  Android:$C_OFF $(getprop ro.build.version.release)"
     echo -e "$C_WHITE  RAM:$C_OFF" && free -m
     echo -e "$C_WHITE  Almacenamiento:$C_OFF" && df -h "$STORAGE"
-    echo -e "$C_WHITE  Batería:$C_OFF" && termux-battery-status
+    if command -v termux-battery-status &>/dev/null; then
+        echo -e "$C_WHITE  Batería:$C_OFF" && termux-battery-status
+    fi
     echo -e "$C_WHITE  Temperatura CPU:$C_OFF $(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null)"
-    echo -e "$C_WHITE  Ciclos batería:$C_OFF $(dumpsys battery | grep cycle 2>/dev/null)"
-    echo -e "$C_WHITE  Consumo de apps:$C_OFF"
+    echo -e "$C_WHITE  Consumo de apps (top 10):$C_OFF"
     dumpsys cpuinfo | head -10 2>/dev/null
     echo -e "$C_WHITE  Estado red:$C_OFF" && ip addr show
 }
 
+# Muestra el espacio ocupado por las carpetas principales.
 run_space_by_folder() {
     echo -e "$C_MAGENTA[ESPACIO OCUPADO POR CARPETA]$C_OFF"
     du -hs "$STORAGE"/* 2>/dev/null | sort -hr | head -15
 }
 
 # --- Modo Automático ---
-
 run_auto_mode() {
     echo "--- APEX Auto-Clean starting at $(date) ---" >> "$LOG_FILE"
     run_deep_clean >> "$LOG_FILE" 2>&1
@@ -301,14 +250,13 @@ run_auto_mode() {
 }
 
 # --- Menú principal y ejecución ---
-
 main_menu() {
     while true; do
         print_banner
         echo -e "$C_YELLOWElige una opción para optimizar tu dispositivo:$C_OFF"
-        echo "  [1] Limpieza Profunda (Caché, Basura, APKs, etc.)"
-        echo "  [2] Limpieza de Redes Sociales (WhatsApp, Telegram, etc.)"
-        echo "  [3] Limpiar Apps Comunes (Play Store, navegadores, música)"
+        echo "  [1] Limpieza Profunda"
+        echo "  [2] Limpieza de Redes Sociales"
+        echo "  [3] Limpiar Apps Comunes"
         echo "  [4] Limpiar Duplicados"
         echo "  [5] Limpiar Archivos Multimedia Grandes (> 50MB)"
         echo "  [6] Eliminar Archivos .nomedia"
@@ -366,9 +314,12 @@ if [[ "$1" == "--auto" ]]; then
 else
     main_menu
 fi
-</textarea>
-        <button onclick="copyScript()">📋 Copiar Script</button>
-        <div id="message-box" class="message-box"></div>
+        </textarea>
+        <button onclick="copyScript()"
+            class="block mx-auto mt-6 px-8 py-4 font-bold text-base md:text-lg bg-teal-500 text-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:bg-teal-600 hover:scale-105 active:scale-95 animate-[fadeInUp_1.2s_ease-in-out]">
+            📋 Copiar Script
+        </button>
+        <div id="message-box" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-teal-500 text-white px-6 py-3 rounded-lg shadow-2xl opacity-0 transition-opacity duration-500 ease-in-out z-50"></div>
     </div>
     
     <script>
@@ -379,10 +330,10 @@ fi
             
             const messageBox = document.getElementById("message-box");
             messageBox.textContent = "¡Script copiado al portapapeles!";
-            messageBox.classList.add("show");
+            messageBox.classList.add("opacity-100");
             
             setTimeout(() => {
-                messageBox.classList.remove("show");
+                messageBox.classList.remove("opacity-100");
             }, 2000);
         }
     </script>
