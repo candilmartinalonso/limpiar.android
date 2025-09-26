@@ -1,186 +1,92 @@
+🚀 Limpiar Android - Herramienta Web de Optimización
+🎯 Descripción del Proyecto
+Limpiar Android es una herramienta web minimalista y sin necesidad de instalación (No-Root) diseñada para mejorar el rendimiento y la eficiencia de dispositivos Android directamente desde el navegador. Proporciona un conjunto de recomendaciones prácticas y simula funciones de limpieza profunda para guiar al usuario.
 
-# 🚀 Limpiar Android - Herramienta de Optimización Web
+✨ Características Destacadas
+Análisis de Rendimiento: Evaluación simulada del estado de la memoria y el almacenamiento.
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://candilmartinalonso.github.io/limpiar.android/)
-[![HTML](https://img.shields.io/badge/HTML-5-orange)](https://www.w3.org/TR/html52/)
-[![CSS](https://img.shields.io/badge/CSS-3-blue)](https://www.w3.org/Style/CSS/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)](https://developer.mozilla.org/es/docs/Web/JavaScript)
-[![Responsive](https://img.shields.io/badge/Responsive-Yes-green)](https://developer.mozilla.org/es/docs/Learn/CSS/CSS_layout/Responsive_Design)
+Limpieza Inteligente: Recomendaciones para la eliminación de cachés y archivos residuales comunes.
 
----
+Optimización Dinámica: Sugerencias basadas en buenas prácticas para mejorar la duración de la batería y la velocidad percibida.
 
-## 📋 Descripción
+Totalmente Responsive: Interfaz fluida y visualmente moderna, optimizada para móviles y tablets.
 
-**Limpiar Android** es una herramienta web ligera e intuitiva que permite a los usuarios **optimizar el rendimiento de sus dispositivos Android** mediante recomendaciones prácticas, análisis del sistema y herramientas de limpieza profunda, todo sin necesidad de root.
+Tecnología Web: Desarrollada con Vanilla JS para la máxima velocidad de carga.
 
----
+🚀 Uso e Instalación
+Acceso Rápido (Recomendado)
+Simplemente haz clic para acceder en línea:
 
-## ✨ Características Principales
+👉 Accede a Limpiar Android Aquí
 
-- 🔍 **Análisis de rendimiento**: Revisión general del estado del dispositivo.
-- 🧹 **Limpieza inteligente**: Eliminación de cachés y archivos residuales.
-- ⚙️ **Optimización automática**: Sugerencias dinámicas de mejora.
-- 📱 **Diseño responsivo**: Totalmente adaptable a dispositivos móviles y tablets.
-- 🎨 **Interfaz moderna**: Experiencia fluida y visualmente atractiva.
-- 🌐 **Multiplataforma**: Funciona desde cualquier navegador web moderno.
+Ejecución Local
+Para desarrollo o pruebas:
 
----
+Clona el repositorio:
 
-## 🚀 Instalación y Uso
+git clone [https://github.com/candilmartinalonso/limpiar.android.git](https://github.com/candilmartinalonso/limpiar.android.git)
+cd limpiar.android
 
-### Acceso Rápido
+Abre index.html directamente en tu navegador o usa un servidor local (ej. python -m http.server 8000).
 
-👉 [Accede a la herramienta en línea](https://candilmartinalonso.github.io/limpiar.android/)
+💡 Flujo de Optimización (Guía Rápida)
+Abre la aplicación web en tu dispositivo.
 
-### Instalación Local
+Inicia el Análisis del Dispositivo (simulado).
 
-1. **Clonar el repositorio:**
-   ```bash
-   git clone https://github.com/candilmartinalonso/limpiar.android.git
-   cd limpiar.android
-   ```
+Revisa la lista de Recomendaciones de limpieza.
 
-2. **Abrir en navegador:**
-   - Abre `index.html` directamente
-   - O usa un servidor local:
-     ```bash
-     # Python
-     python -m http.server 8000
+Aplica las sugerencias para optimizar el sistema.
 
-     # Node.js
-     npx live-server
+💾 Beneficios Clave para el Usuario
+📈 Mayor Velocidad: Aumento del rendimiento general del sistema.
 
-     # PHP
-     php -S localhost:8000
-     ```
+🗑️ Más Espacio: Liberación eficiente de almacenamiento interno.
 
-3. **Visita**:  
-   `http://localhost:8000`
+🔋 Batería: Potenciales mejoras en la autonomía del dispositivo.
 
----
+🧠 Simpleza: Experiencia de usuario intuitiva y sin complejidad.
 
-## 🧠 Guía de Uso
+🛠️ Tecnologías
+Tecnología
 
-### Pasos básicos:
+Propósito
 
-1. Accede a la app desde el navegador.
-2. Ejecuta el análisis del dispositivo.
-3. Revisa las recomendaciones personalizadas.
-4. Aplica las sugerencias de optimización.
-5. Supervisa el rendimiento tras la limpieza.
+HTML5 / JS (ES6+)
 
----
+Estructura y lógica de la aplicación.
 
-## 💡 Beneficios
+Tailwind CSS
 
-### Para usuarios:
+Estilos eficientes y diseño responsive.
 
-- 📈 **Aumento del rendimiento general**
-- 💾 **Liberación de almacenamiento**
-- 🔋 **Mejor duración de batería**
-- 🛡️ **Mayor seguridad del sistema**
-- 🧠 **Simplicidad de uso**
+GitHub Pages
 
-### Para desarrolladores:
+Hosting y despliegue continuo.
 
-- 🧩 Código modular y comentado
-- 📱 Diseño responsive adaptable
-- 🚀 Performance optimizado
-- ♿ Compatible con estándares de accesibilidad
-
----
-
-## 🛠️ Tecnologías Usadas
-
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Estilos**: CSS Grid, Flexbox, Media Queries
-- **Interacción**: Vanilla JS (sin frameworks)
-- **Hosting**: GitHub Pages
-- **Control de versiones**: Git + GitHub
-
----
-
-## 📁 Estructura del Proyecto
-
-```plaintext
+📁 Estructura del Proyecto (Ideal)
 limpiar.android/
-├── index.html          # Página principal
-├── README.md           # Documentación
-├── css/                # Estilos CSS
-│   ├── main.css
-│   └── responsive.css
-├── js/                 # Scripts JS
-│   ├── app.js
-│   └── utils.js
-├── assets/             # Imágenes e íconos
-│   ├── images/
-│   └── icons/
-└── docs/               # Documentación adicional
-    └── user-guide.md
-```
+├── index.html          # Única página principal (HTML, CSS y JS integrados)
+├── README.md           # Documentación
+└── assets/             # Íconos y recursos (si se usan externos)
 
-> ⚠️ Nota: Actualmente solo se incluye `index.html`. Se recomienda estructurar el proyecto como se indica arriba.
+Nota de Estructura: Actualmente, el proyecto se mantiene en un solo archivo (index.html) para máxima simplicidad y portabilidad.
 
----
+🤝 Contribuciones y Soporte
+¡Tu colaboración es bienvenida!
 
-## 🤝 Contribuciones
+Haz fork del repositorio.
 
-¡Todas las contribuciones son bienvenidas!
+Crea tu rama de feature (git checkout -b feature/nombre-mejora).
 
-### ¿Cómo contribuir?
+Envía un Pull Request claro y conciso.
 
-1. Haz un fork del repositorio
-2. Crea una rama:  
-   `git checkout -b feature/nueva-funcionalidad`
-3. Realiza tus cambios y haz commit:  
-   `git commit -m "✨ Nueva funcionalidad agregada"`
-4. Haz push a tu rama:  
-   `git push origin feature/nueva-funcionalidad`
-5. Abre un Pull Request
+¿Dónde reportar problemas?
+Reporta cualquier bug o sugiere una característica a través de GitHub Issues.
 
-### Tipos de contribuciones
-
-- 🐛 Corrección de bugs
-- ✨ Nuevas características
-- 📝 Mejora de documentación
-- 🎨 Mejoras en UI/UX
-- ⚡ Optimización de rendimiento
-- 🧪 Agregar pruebas
-
----
-
-## 📜 Licencia
-
-Este proyecto está licenciado bajo la **MIT License**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
-
----
-
-## 📞 Contacto
-
-- **Autor**: [@candilmartinalonso](https://github.com/candilmartinalonso)  
-- **Web**: [candilmartinalonso.github.io/limpiar.android](https://candilmartinalonso.github.io/limpiar.android)  
-- **Issues**: [Abrir un problema](https://github.com/candilmartinalonso/limpiar.android/issues)
-
----
-
-## 🔄 Changelog
-
-### v1.0.0 (2025-09-14)
-- 🚀 Lanzamiento inicial
-- 💻 Diseño responsivo
-- 📂 Deploy en GitHub Pages
-
----
-
-## 🌟 Agradecimientos
-
-Gracias a todas las personas que han apoyado este proyecto.  
-¡Tu feedback es esencial para seguir mejorando!
+📜 Licencia
+Este proyecto está liberado bajo la Licencia MIT.
 
 <div align="center">
-  <strong>⭐ Si te gusta este proyecto, ¡dale una estrella en GitHub! ⭐</strong>
+  ⭐ Si te resulta útil, ¡deja una estrella en el repositorio! ⭐
 </div>
-
----
-🕓 *Última actualización: Septiembre 2025*
