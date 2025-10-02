@@ -3,477 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX Optimizer v16.0</title>
+    <title>APEX Optimizer v18.0 - Supercharged Edition</title>
     <!-- Incluir Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* Base font-family */
         :root {
             font-family: 'Inter', sans-serif;
+            --cyan-glow: 0 0 5px rgba(34, 211, 238, 0.8), 0 0 10px rgba(34, 211, 238, 0.6), 0 0 15px rgba(34, 211, 238, 0.4);
         }
-
-        /* Keyframe Definitions */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideInDown { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
         @keyframes fadeInUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        /* Custom scrollbar for the textarea */
-        textarea::-webkit-scrollbar {
-            width: 12px;
-        }
-        textarea::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-        }
-        textarea::-webkit-scrollbar-thumb {
-            background-color: #0891b2; /* cyan-600 */
-            border-radius: 10px;
-            border: 3px solid rgba(0, 0, 0, 0.3);
-        }
-        textarea::-webkit-scrollbar-thumb:hover {
-            background-color: #06b6d4; /* cyan-500 */
-        }
+        
+        textarea::-webkit-scrollbar { width: 12px; }
+        textarea::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.3); border-radius: 10px; }
+        textarea::-webkit-scrollbar-thumb { background-color: #0891b2; border-radius: 10px; border: 3px solid rgba(0, 0, 0, 0.3); }
+        textarea::-webkit-scrollbar-thumb:hover { background-color: #06b6d4; }
+        
+        .light body { background: #f1f5f9; color: #1e293b; }
+        .light .main-container { background-color: rgba(255, 255, 255, 0.7); border-color: rgba(100, 116, 139, 0.2); }
+        .light h1, .light h2 { color: #0f172a; }
+        .light .subtitle { color: #475569; }
+        .light .changelog, .light .configurator, .light .diagnosis { background-color: rgba(226, 232, 240, 0.8); border-color: rgba(148, 163, 184, 0.3); }
+        .light h2, .light .category-title { color: #0891b2; }
+        .light .changelog li, .light .changelog b, .light label, .light .light-text { color: #334155; }
+        .light #script { background-color: #f8fafc; color: #0f172a; border-color: #cbd5e1; }
+        .light .copy-button { background-color: #0e7490; color: #f8fafc; border-color: #155e75; }
+        .light .copy-button:hover { background-color: #0891b2; }
+        
+        .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #475569; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #06b6d4; }
+        input:checked + .slider:before { transform: translateX(22px); }
     </style>
 </head>
-<body class="font-sans antialiased text-white bg-gray-900 bg-gradient-to-br from-gray-900 via-slate-800 to-black min-h-screen p-4 md:p-8 animate-[fadeIn_1.2s_ease-in-out]">
-    <div class="container mx-auto max-w-6xl p-6 mt-6 md:mt-12 bg-black/20 rounded-2xl shadow-2xl backdrop-blur-lg border border-cyan-400/20 animate-[slideInDown_1s_ease-out]">
+<body class="font-sans antialiased text-white bg-gray-900 bg-gradient-to-br from-gray-900 via-slate-800 to-black min-h-screen p-4 md:p-8 transition-colors duration-500 animate-[fadeIn_1.2s_ease-in-out]">
+    
+    <div class="container mx-auto max-w-6xl p-6 mt-6 md:mt-12 bg-black/20 rounded-2xl shadow-2xl backdrop-blur-lg border border-cyan-400/20 animate-[slideInDown_1s_ease-out] main-container">
         
-        <h1 class="text-4xl md:text-5xl font-black text-center mb-2 animate-[slideInDown_1s_ease-out] drop-shadow-lg">
-            <span class="text-cyan-400">APEX Optimizer</span> <span class="text-white">v16.0</span>
-        </h1>
-        <p class="text-center text-lg text-slate-300 mb-6 animate-[slideInDown_1.1s_ease-out]">
-            La navaja suiza para el rendimiento de Android y Termux. Más potente, más inteligente.
+        <div class="flex justify-between items-center mb-4">
+            <div></div>
+            <h1 class="text-4xl md:text-5xl font-black text-center text-cyan-400 animate-[slideInDown_1s_ease-out] drop-shadow-lg" style="text-shadow: var(--cyan-glow);">
+                APEX Optimizer <span class="text-white">v18.0</span>
+            </h1>
+            <button id="theme-toggle" class="p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                <svg id="theme-icon-sun" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <svg id="theme-icon-moon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+        </div>
+        
+        <p class="text-center text-lg text-slate-300 mb-6 subtitle animate-[slideInDown_1.1s_ease-out]">
+            La navaja suiza para Android y Termux. Edición Supercargada.
         </p>
 
-        <!-- Changelog Section -->
-        <div class="my-8 p-6 bg-cyan-900/20 border border-cyan-500/30 rounded-lg animate-[popIn_1.2s_ease-out]">
-            <h2 class="text-2xl font-bold text-cyan-300 mb-3">Novedades en v16.0:</h2>
+        <div class="my-8 p-6 bg-cyan-900/20 border border-cyan-500/30 rounded-lg animate-[popIn_1.2s_ease-out] changelog">
+            <h2 class="text-2xl font-bold text-cyan-300 mb-3">Novedades en v18.0:</h2>
             <ul class="list-disc list-inside space-y-2 text-slate-200">
-                <li><b class="font-semibold text-cyan-400">Nuevos Módulos:</b> Gestor de apps interactivo, optimizador de modo Doze (ahorro de batería), limpiador de archivos corruptos y carpetas de publicidad.</li>
-                <li><b class="font-semibold text-cyan-400">Optimización de Almacenamiento:</b> Nueva función `fstrim` para mejorar la salud y velocidad de la memoria flash.</li>
-                <li><b class="font-semibold text-cyan-400">Menú Reestructurado:</b> Opciones agrupadas por Limpieza, Optimización y Diagnóstico para una navegación más intuitiva.</li>
-                <li><b class="font-semibold text-cyan-400">Modos de Ejecución Avanzados:</b> Nuevos modos "Limpieza Total" y "Limpieza Agresiva" para una máxima eficiencia con un solo clic.</li>
-                <li><b class="font-semibold text-cyan-400">Mejoras Internas:</b> Comandos de borrado más verbosos para un logging detallado y mayor seguridad en operaciones destructivas.</li>
+                <li><b class="font-semibold text-cyan-400">Arsenal Expandido:</b> Nuevos módulos para limpiar portapapeles, enlaces rotos, caché de G. Play Services, y más.</li>
+                <li><b class="font-semibold text-cyan-400">Configurador por Categorías:</b> Opciones agrupadas en Limpieza Rápida, Profunda, Optimización y Avanzado para mayor claridad.</li>
+                <li><b class="font-semibold text-cyan-400">Potencia por Defecto:</b> Todos los módulos vienen activados para una limpieza y optimización completa desde el inicio.</li>
+                 <li><b class="font-semibold text-cyan-400">Nuevas Herramientas:</b> Funciones para recalibrar la batería y forzar la re-indexación de la galería.</li>
             </ul>
         </div>
 
-        <!-- Script Container -->
-        <textarea id="script" readonly
-            class="w-full h-[600px] text-sm md:text-base font-mono bg-black/60 text-emerald-300 border-2 border-cyan-500/50 p-6 rounded-xl shadow-inner animate-[popIn_1s_ease] resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400">#!/bin/bash
-# APEX Optimizer v16.0 - La Navaja Suiza para el Rendimiento de Android
-# Autor Original: candilmartinalonso
-# Refactorización Mayor v16.0: IA de Google (Especialista en Shell Avanzado)
-#
-# AVISO: Usa este script con precaución. Algunas operaciones son destructivas.
-# No requiere ROOT, pero algunas funciones avanzadas se benefician de él.
-#
-# Dependencias recomendadas: fdupes, sqlite3, termux-api, adb.
+        <div class="my-8 p-6 bg-cyan-900/20 border border-cyan-500/30 rounded-lg animate-[popIn_1.3s_ease-out] diagnosis">
+            <h2 class="text-2xl font-bold text-cyan-300 mb-4">Diagnóstico del Sistema (Live)</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div><p class="text-sm text-slate-400 light-text">RAM (GB)</p><p id="diag-ram" class="text-2xl font-bold">-</p></div>
+                <div><p class="text-sm text-slate-400 light-text">CPU (Núcleos)</p><p id="diag-cpu" class="text-2xl font-bold">-</p></div>
+                <div><p class="text-sm text-slate-400 light-text">Batería</p><p id="diag-battery" class="text-2xl font-bold">-</p></div>
+                <div><p class="text-sm text-slate-400 light-text">Conexión</p><p id="diag-network" class="text-2xl font-bold">-</p></div>
+            </div>
+        </div>
+        
+        <div class="my-8 p-6 bg-cyan-900/20 border border-cyan-500/30 rounded-lg animate-[popIn_1.4s_ease-out] configurator">
+             <h2 class="text-2xl font-bold text-cyan-300 mb-4">Configurador de Script</h2>
+             <p class="text-slate-300 mb-4 subtitle">Activa o desactiva los módulos que necesites. El script se actualizará en tiempo real.</p>
+             <div id="module-switches" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+        </div>
 
-# --- Variables y Colores ---
-C_OFF='\033[0m'
-C_RED='\033[0;31m'
-C_GREEN='\033[0;32m'
-C_YELLOW='\033[0;33m'
-C_BLUE='\033[0;34m'
-C_MAGENTA='\033[0;35m'
-C_CYAN='\033[0;36m'
-C_WHITE='\033[0;97m'
-LOG_FILE=~/apex_optimization_v16.log
-STORAGE="/sdcard"
-
-# Inicializa el archivo de log
-echo "--- APEX Optimizer v16.0 Log Iniciado en $(date) ---" > "$LOG_FILE"
-
-# --- Funciones de Utilidad ---
-
-# Verifica si una utilidad está instalada, mostrando una advertencia si no lo está.
-check_dependency() {
-    local tool=$1
-    if ! command -v "$tool" &>/dev/null; then
-        echo -e "$C_YELLOW Advertencia: La herramienta '$tool' no está instalada. El módulo podría no funcionar.$C_OFF" | tee -a "$LOG_FILE"
-        return 1
-    fi
-    return 0
-}
-
-# Ejecuta un comando, registra su salida y muestra un estado claro en la consola.
-execute_module_command() {
-    local desc=$1
-    local cmd=$2
-    echo -e "$C_CYAN-> $desc...$C_OFF"
-    echo "--- Ejecutando: $desc ---" >> "$LOG_FILE"
-    echo "Comando: $cmd" >> "$LOG_FILE"
-    if eval "$cmd" >> "$LOG_FILE" 2>&1; then
-        echo -e "   $C_GREEN[OK]$C_OFF"
-    else
-        echo -e "   $C_RED[FALLO] (Revisar $LOG_FILE para más detalles)$C_OFF"
-    fi
-}
-
-# Muestra el banner principal.
-print_banner() {
-    clear
-    echo -e "$C_CYAN
-    █████╗ ██████╗ ███████╗██╗  ██╗
-   ██╔══██╗██╔══██╗██╔════╝╚██╗██╔╝
-   ███████║██████╔╝█████╗   ╚███╔╝ 
-   ██╔══██║██╔══██╗██╔══╝   ██╔██╗ 
-   ██║  ██║██║  ██║███████╗██╔╝ ██╗
-   ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
-    $C_WHITE Optimizador APEX v16.0 - Rendimiento Total
-    $C_GREEN (c) 2025 candilmartinalonso & Google AI$C_OFF
-"
-    echo ""
-}
-
-# --- Módulos de Limpieza ---
-
-# 1. Limpieza Profunda
-run_deep_clean() {
-    echo -e "$C_MAGENTA[MÓDULO 1: LIMPIEZA PROFUNDA]$C_OFF"
-    execute_module_command "Limpiando cachés de apps en /Android" "find \"$STORAGE/Android/data\" \"$STORAGE/Android/media\" -type d -name \"cache\" -exec rm -rfv {} +"
-    execute_module_command "Eliminando archivos residuales (.log, .tmp, .bak)" "find \"$STORAGE\" -type f \( -name \"*.log\" -o -name \"*.tmp\" -o -name \"*.bak\" -o -name \"*.old\" -o -name \"*.DS_Store\" \) -delete"
-    execute_module_command "Limpiando miniaturas de galería" "rm -rfv \"$STORAGE/DCIM/.thumbnails\" \"$STORAGE/Pictures/.thumbnails\""
-    execute_module_command "Eliminando APKs en /Download" "find \"$STORAGE/Download\" -type f -name \"*.apk\" -delete"
-    execute_module_command "Solicitando al sistema que libere cachés (trim)" "pm trim-caches 999G"
-}
-
-# 2. Limpieza de Redes Sociales
-run_social_clean() {
-    echo -e "$C_MAGENTA[MÓDULO 2: LIMPIEZA DE REDES SOCIALES]$C_OFF"
-    execute_module_command "Eliminando backups de BBDD de WhatsApp" "rm -rfv \"$STORAGE/Android/media/com.whatsapp/WhatsApp/Databases\" \"$STORAGE/WhatsApp/Databases\""
-    execute_module_command "Limpiando caché de Telegram, Instagram y TikTok" "rm -rfv \"$STORAGE/Android/data/org.telegram.messenger/cache\" \"$STORAGE/Android/data/com.instagram.android/cache\" \"$STORAGE/Android/data/com.zhiliaoapp.musically/cache\""
-    execute_module_command "Limpiando estados temporales de WhatsApp" "rm -rfv \"$STORAGE/WhatsApp/Media/.Statuses\""
-}
-
-# 3. Limpieza de Logs y Dumps
-run_log_clean() {
-    echo -e "$C_MAGENTA[MÓDULO 3: LOGS Y DUMPS DE ERRORES]$C_OFF"
-    execute_module_command "Eliminando logs internos de Termux" "find ~ -maxdepth 1 -type f -name '*.log' -delete"
-    execute_module_command "Eliminando dumps y trazas del sistema" "find \"$STORAGE\" -type f \( -name \"*.trace\" -o -name \"*.dump\" -o -name \"logcat*.txt\" -o -name \"crash-*.txt\" \) -delete"
-}
-
-# 4. Limpieza de Duplicados
-run_duplicate_clean() {
-    echo -e "$C_MAGENTA[MÓDULO 4: BUSCADOR DE DUPLICADOS]$C_OFF"
-    if ! check_dependency "fdupes"; then return; fi
-    echo -e "$C_YELLOW Buscando duplicados en DCIM, Download, Pictures... (puede tardar)$C_OFF"
-    execute_module_command "Eliminando duplicados automáticamente" "fdupes -r -N \"$STORAGE/DCIM\" \"$STORAGE/Download\" \"$STORAGE/Pictures\""
-}
-
-# 5. Limpieza de Archivos Grandes
-run_large_media_clean() {
-    echo -e "$C_MAGENTA[MÓDULO 5: LIMPIEZA DE ARCHIVOS GRANDES (>100MB)]$C_OFF"
-    read -r -p "$(echo -e "$C_RED ADVERTENCIA: Se borrarán PERMANENTEMENTE videos, audios y archivos ZIP/ISO > 100MB. ¿Continuar? (s/N): $C_OFF")" confirm
-    if [[ "$confirm" != "s" && "$confirm" != "S" ]]; then echo -e "$C_YELLOW Operación cancelada.$C_OFF"; return; fi
-    execute_module_command "Eliminando archivos multimedia y comprimidos > 100MB" "find \"$STORAGE\" -type f \( -name \"*.mp4\" -o -name \"*.mkv\" -o -name \"*.mov\" -o -name \"*.mp3\" -o -name \"*.flac\" -o -name \"*.zip\" -o -name \"*.iso\" -o -name \"*.rar\" \) -size +100M -print -delete"
-}
-
-# 6. Cazador de .nomedia y Carpetas Vacías
-run_empty_folder_clean() {
-    echo -e "$C_MAGENTA[MÓDULO 6: .NOMEDIA Y CARPETAS VACÍAS]$C_OFF"
-    execute_module_command "Eliminando archivos .nomedia para re-escanear galería" "find \"$STORAGE\" -type f -name \".nomedia\" -delete"
-    execute_module_command "Eliminando directorios vacíos recursivamente" "find \"$STORAGE\" -depth -type d -empty -delete"
-}
-
-# 7. Limpieza de Archivos Corruptos y Carpetas de Publicidad (NUEVO)
-run_junk_clean() {
-    echo -e "$C_MAGENTA[MÓDULO 7: ARCHIVOS CORRUPTOS Y AD-FOLDERS]$C_OFF"
-    execute_module_command "Eliminando archivos de 0 bytes (potencialmente corruptos)" "find \"$STORAGE\" -type f -size 0 -delete"
-    execute_module_command "Eliminando carpetas comunes de redes de publicidad" "rm -rfv \"$STORAGE/.mmsyscache\" \"$STORAGE/.HhW\" \"$STORAGE/.liebd\" \"$STORAGE/alipay\""
-}
-
-# --- Módulos de Optimización ---
-
-# 8. Optimización de Termux
-run_termux_clean() {
-    echo -e "$C_MAGENTA[MÓDULO 8: OPTIMIZACIÓN DE TERMUX]$C_OFF"
-    execute_module_command "Limpiando caché de paquetes APT" "pkg clean"
-    execute_module_command "Eliminando archivos temporales de Termux" "rm -rfv \"$PREFIX/tmp/*\""
-    execute_module_command "Actualizando repositorios de paquetes" "pkg update -y"
-}
-
-# 9. Limpieza de RAM
-run_ram_clean() {
-    echo -e "$C_MAGENTA[MÓDULO 9: LIMPIEZA DE RAM]$C_OFF"
-    if ! check_dependency "am"; then return; fi
-    echo -e "$C_YELLOW-> Forzando cierre de apps de terceros en segundo plano...$C_OFF"
-    for pkg in $(pm list packages -3 | cut -d: -f2); do
-        am force-stop "$pkg" 2>/dev/null
-    done
-    echo -e "   $C_GREEN[OK] Se envió la señal de finalización a los procesos.$C_OFF"
-}
-
-# 10. Optimización de Red y Sistema
-run_system_boost() {
-    echo -e "$C_MAGENTA[MÓDULO 10: OPTIMIZACIÓN DE RED Y SISTEMA]$C_OFF"
-    if check_dependency "adb"; then
-        execute_module_command "Vaciando caché DNS del sistema (requiere ADB)" "adb shell netd_cmd network flush_dns_cache"
-    fi
-    if check_dependency "settings"; then
-        execute_module_command "Ajustando escalas de animación a 0.5x" "settings put global window_animation_scale 0.5; settings put global transition_animation_scale 0.5; settings put global animator_duration_scale 0.5"
-    fi
-}
-
-# 11. Optimizador de Bases de Datos SQLite
-run_sqlite_opt() {
-    echo -e "$C_MAGENTA[MÓDULO 11: OPTIMIZADOR SQLITE (VACUUM)]$C_OFF"
-    if ! check_dependency "sqlite3"; then return; fi
-    echo -e "$C_YELLOW-> Optimizando bases de datos (.db)... (puede tardar)$C_OFF"
-    find "$STORAGE" -type f -name "*.db" | while read -r db; do
-        sqlite3 "$db" 'VACUUM;' >> "$LOG_FILE" 2>&1
-    done
-    echo -e "   $C_GREEN[OK] Bases de datos optimizadas.$C_OFF"
-}
-
-# 12. Recortar Almacenamiento (fstrim) (NUEVO)
-run_storage_trim() {
-    echo -e "$C_MAGENTA[MÓDULO 12: RECORTAR ALMACENAMIENTO (FSTRIM)]$C_OFF"
-    echo -e "$C_YELLOW-> Intentando ejecutar fstrim para mejorar rendimiento de la memoria flash...$C_OFF"
-    if check_dependency "vdc"; then
-        execute_module_command "Ejecutando fstrim en /data y /cache" "vdc fstrim"
-    else
-        echo -e "   $C_RED[FALLO] El comando 'vdc' no está disponible. Esta función a menudo requiere root.$C_OFF"
-    fi
-}
-
-# 13. Forzar Modo Doze (Ahorro de Batería) (NUEVO)
-run_doze_opt() {
-    echo -e "$C_MAGENTA[MÓDULO 13: FORZAR MODO DOZE (AHORRO BATERÍA)]$C_OFF"
-    if ! check_dependency "adb"; then return; fi
-    execute_module_command "Forzando el dispositivo a modo de bajo consumo (Doze)" "adb shell dumpsys deviceidle force-idle"
-    echo -e "$C_YELLOW-> Para salir de Doze, simplemente usa el dispositivo.$C_OFF"
-}
-
-# --- Módulos Interactivos y de Diagnóstico ---
-
-# 14. Gestor de Apps (Listar/Desinstalar) (NUEVO)
-run_app_manager() {
-    echo -e "$C_MAGENTA[MÓDULO 14: GESTOR DE APPS]$C_OFF"
-    if ! check_dependency "pm"; then return; fi
-    echo -e "$C_YELLOWElige una acción:$C_OFF"
-    echo "  [1] Listar todas las apps instaladas por el usuario"
-    echo "  [2] Desinstalar una app por nombre de paquete"
-    read -r -p "Tu elección: " app_choice
-    
-    case $app_choice in
-        1)
-            echo -e "$C_CYAN--- Apps de Usuario ---$C_OFF"
-            pm list packages -3 | cut -d: -f2 | sort
-            ;;
-        2)
-            read -r -p "Ingresa el nombre del paquete a desinstalar (ej: com.example.app): " pkg_to_uninstall
-            if [[ -z "$pkg_to_uninstall" ]]; then
-                echo -e "$C_RED El nombre del paquete no puede estar vacío.$C_OFF"
-                return
-            fi
-            read -r -p "$(echo -e "$C_RED ¿Estás SEGURO de que quieres desinstalar '$pkg_to_uninstall'? (s/N): $C_OFF")" confirm
-            if [[ "$confirm" == "s" || "$confirm" == "S" ]]; then
-                pm uninstall "$pkg_to_uninstall"
-                echo -e "$C_GREEN Solicitud de desinstalación enviada.$C_OFF"
-            else
-                echo -e "$C_YELLOW Operación cancelada.$C_OFF"
-            fi
-            ;;
-        *) echo -e "$C_RED Opción no válida.$C_OFF" ;;
-    esac
-}
-
-# 15. Limpieza Personalizada
-run_custom_clean() {
-    echo -e "$C_MAGENTA[MÓDULO 15: LIMPIEZA PERSONALIZADA]$C_OFF"
-    read -r -p "Ruta Base (ej: $STORAGE/Download): " base_path
-    read -r -p "Patrón de Archivo (ej: *.txt): " pattern
-    if [[ -z "$base_path" ]] || [[ -z "$pattern" ]]; then echo -e "$C_RED Ruta o patrón no válidos.$C_OFF"; return; fi
-    
-    echo -e "$C_YELLOW Previsualizando archivos a eliminar...$C_OFF"
-    find "$base_path" -type f -name "$pattern" -print | head -10
-    
-    read -r -p "$(echo -e "$C_RED ¿Confirmas la eliminación de TODOS los archivos coincidentes? (s/N): $C_OFF")" confirm
-    if [[ "$confirm" != "s" && "$confirm" != "S" ]]; then echo -e "$C_YELLOW Operación cancelada.$C_OFF"; return; fi
-    execute_module_command "Eliminando archivos personalizados" "find \"$base_path\" -type f -name \"$pattern\" -delete"
-}
-
-# 16. Diagnóstico del Sistema
-run_system_diag() {
-    echo -e "$C_MAGENTA[MÓDULO 16: DIAGNÓSTICO DEL SISTEMA]$C_OFF"
-    echo -e "$C_WHITE--- Info General ---$C_OFF"
-    echo "Modelo: $(getprop ro.product.model)"
-    echo "Android: $(getprop ro.build.version.release)"
-    echo -e "\n$C_WHITE--- Memoria RAM (MB) ---$C_OFF"
-    free -m || echo "Comando 'free' no disponible."
-    echo -e "\n$C_WHITE--- Almacenamiento ($STORAGE) ---$C_OFF"
-    df -h "$STORAGE" || echo "Comando 'df' no disponible."
-    if check_dependency "termux-battery-status"; then
-        echo -e "\n$C_WHITE--- Batería ---$C_OFF"
-        termux-battery-status
-    fi
-}
-
-# 17. Reporte de Espacio por Carpeta
-run_space_by_folder() {
-    echo -e "$C_MAGENTA[MÓDULO 17: REPORTE DE ESPACIO]$C_OFF"
-    echo -e "$C_YELLOW-> Calculando las 15 carpetas más grandes en $STORAGE (esto puede tardar)...$C_OFF"
-    du -h "$STORAGE"/* 2>/dev/null | sort -rh | head -15
-}
-
-# 18. Diagnóstico de Inicio (NUEVO)
-run_boot_diag() {
-    echo -e "$C_MAGENTA[MÓDULO 18: DIAGNÓSTICO DE INICIO]$C_OFF"
-    if ! check_dependency "pm"; then return; fi
-    echo -e "$C_YELLOW-> Buscando apps que se inician en el arranque (informativo)...$C_OFF"
-    pm list packages -e | cut -d: -f2 | while read -r pkg; do
-        if pm dump "$pkg" | grep -q "BOOT_COMPLETED"; then
-            echo " - $pkg"
-        fi
-    done
-    echo -e "$C_GREEN\nFin del reporte de inicio.$C_OFF"
-}
-
-# --- Modos de Ejecución Combinados ---
-run_total_clean() {
-    print_banner
-    run_deep_clean;
-    run_social_clean;
-    run_log_clean;
-    run_empty_folder_clean;
-    run_junk_clean;
-    run_termux_clean;
-    run_ram_clean;
-    run_system_boost;
-    run_sqlite_opt;
-    run_storage_trim;
-    echo -e "$C_GREEN\n--- LIMPIEZA TOTAL COMPLETADA ---$C_OFF"
-}
-
-run_aggressive_clean() {
-    print_banner
-    read -r -p "$(echo -e "$C_RED ADVERTENCIA MÁXIMA: Este modo incluye la eliminación de duplicados y archivos grandes. ES DESTRUCTIVO Y PUEDE BORRAR ARCHIVOS IMPORTANTES. ¿Estás absolutamente seguro? (Escribe 'SI' para continuar): $C_OFF")" confirm
-    if [[ "$confirm" != "SI" ]]; then echo -e "$C_YELLOW Operación cancelada.$C_OFF"; return; fi
-    
-    run_total_clean
-    run_duplicate_clean
-    run_large_media_clean
-    echo -e "$C_GREEN\n--- LIMPIEZA AGRESIVA COMPLETADA ---$C_OFF"
-}
-
-# --- Menú principal ---
-main_menu() {
-    while true; do
-        print_banner
-        echo -e "$C_YELLOWElige una opción (v16.0):$C_OFF"
-        echo -e "$C_WHITE--- Limpieza ---$C_OFF"
-        echo " [ 1] Limpieza Profunda (Caché, Residuos)"
-        echo " [ 2] Limpieza de Redes Sociales"
-        echo " [ 3] Limpiar Logs y Dumps de Errores"
-        echo " [ 4] Limpiar Duplicados (Requiere fdupes)"
-        echo " [ 5] Limpiar Archivos Grandes (>100MB) - ${C_RED}ALERTA${C_OFF}"
-        echo " [ 6] Cazador de .nomedia y Carpetas Vacías"
-        echo " [ 7] Limpiar Archivos Corruptos y Ad-Folders ${C_BLUE}(NUEVO)${C_OFF}"
-        echo -e "$C_WHITE--- Optimización ---$C_OFF"
-        echo " [ 8] Optimización de Termux"
-        echo " [ 9] Limpieza de RAM (Forzar Cierre Apps)"
-        echo " [10] Optimización de Red/Sistema (DNS, Animaciones)"
-        echo " [11] Optimizar Bases de Datos SQLite (VACUUM)"
-        echo " [12] Recortar Almacenamiento (fstrim) ${C_BLUE}(NUEVO)${C_OFF}"
-        echo " [13] Forzar Modo Doze (Ahorro Batería - ADB) ${C_BLUE}(NUEVO)${C_OFF}"
-        echo -e "$C_WHITE--- Diagnóstico y Herramientas ---$C_OFF"
-        echo " [14] Gestor de Apps (Listar/Desinstalar) ${C_BLUE}(NUEVO)${C_OFF}"
-        echo " [15] Limpieza Personalizada (Ruta y Patrón)"
-        echo " [16] Diagnóstico del Sistema"
-        echo " [17] Reporte de Espacio por Carpeta"
-        echo " [18] Diagnóstico de Inicio (Apps en arranque) ${C_BLUE}(NUEVO)${C_OFF}"
-        echo -e "$C_WHITE--- Modos Automáticos ---$C_OFF"
-        echo -e " ${C_CYAN}[A] Limpieza TOTAL (Recomendado)${C_OFF}"
-        echo -e " ${C_RED}[B] Limpieza AGRESIVA (PELIGRO)${C_OFF}"
-        echo -e "$C_RED [q] Salir de APEX$C_OFF"
-        echo ""
-        read -r -p "Tu elección: " choice
-
-        case $choice in
-            1) print_banner; run_deep_clean ;;
-            2) print_banner; run_social_clean ;;
-            3) print_banner; run_log_clean ;;
-            4) print_banner; run_duplicate_clean ;;
-            5) print_banner; run_large_media_clean ;;
-            6) print_banner; run_empty_folder_clean ;;
-            7) print_banner; run_junk_clean ;;
-            8) print_banner; run_termux_clean ;;
-            9) print_banner; run_ram_clean ;;
-            10) print_banner; run_system_boost ;;
-            11) print_banner; run_sqlite_opt ;;
-            12) print_banner; run_storage_trim ;;
-            13) print_banner; run_doze_opt ;;
-            14) print_banner; run_app_manager ;;
-            15) print_banner; run_custom_clean ;;
-            16) print_banner; run_system_diag ;;
-            17) print_banner; run_space_by_folder ;;
-            18) print_banner; run_boot_diag ;;
-            A|a) run_total_clean ;;
-            B|b) run_aggressive_clean ;;
-            q|Q) echo -e "$C_CYAN\n¡Gracias por usar APEX v16.0! Tu sistema, a máxima potencia.$C_OFF" | tee -a "$LOG_FILE"; exit 0 ;;
-            *) echo -e "$C_RED\nOpción no válida. Inténtalo de nuevo.$C_OFF"; sleep 1 ;;
-        esac
-        echo -e "\n$C_WHITE--- Presiona ENTER para volver al menú ---$C_OFF"
-        read -r
-    done
-}
-
-# Lógica de inicio
-if [[ "$1" == "--auto" ]]; then
-    run_total_clean | tee -a "$LOG_FILE"
-    exit 0
-fi
-
-main_menu
-        </textarea>
-        <!-- Copy Button -->
-        <button onclick="copyScript()"
-            class="block mx-auto mt-8 px-10 py-4 font-bold text-lg md:text-xl bg-cyan-500 text-slate-900 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:bg-cyan-400 hover:scale-[1.03] active:scale-95 animate-[fadeInUp_1.2s_ease-in-out] border-b-4 border-cyan-700 hover:border-cyan-600">
-            📋 Copiar Script APEX v16.0
+        <textarea id="script" readonly class="w-full h-[600px] text-sm font-mono bg-black/60 text-emerald-300 border-2 border-cyan-500/50 p-6 rounded-xl shadow-inner animate-[popIn_1.5s_ease] resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400" style="font-family: 'Fira Code', monospace;"></textarea>
+        
+        <button onclick="copyScript()" class="copy-button block mx-auto mt-8 px-10 py-4 font-bold text-lg md:text-xl bg-cyan-500 text-slate-900 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:bg-cyan-400 hover:scale-[1.03] active:scale-95 animate-[fadeInUp_1.2s_ease-in-out] border-b-4 border-cyan-700 hover:border-cyan-600">
+            📋 Copiar Script Personalizado
         </button>
-        <!-- Message Box -->
         <div id="message-box" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform transition-all duration-300 ease-in-out z-50 font-semibold text-lg"></div>
     </div>
     
     <script>
+        const scriptTextarea = document.getElementById('script');
+        const moduleSwitchesContainer = document.getElementById('module-switches');
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const themeIconSun = document.getElementById('theme-icon-sun');
+        const themeIconMoon = document.getElementById('theme-icon-moon');
+        const body = document.body;
+
+        const modules = {
+            'Limpieza Profunda': { enabled: true, func: 'run_deep_clean', category: 'Limpieza Rápida' },
+            'Redes Sociales': { enabled: true, func: 'run_social_clean', category: 'Limpieza Rápida' },
+            'Logs y Dumps': { enabled: true, func: 'run_log_clean', category: 'Limpieza Rápida' },
+            'Carpetas Vacías': { enabled: true, func: 'run_empty_folder_clean', category: 'Limpieza Rápida' },
+            'Archivos Basura': { enabled: true, func: 'run_junk_clean', category: 'Limpieza Rápida' },
+            'Limpiar Portapapeles': { enabled: true, func: 'run_clipboard_clear', category: 'Limpieza Rápida' },
+            'Duplicados': { enabled: true, func: 'run_duplicate_clean', category: 'Limpieza Profunda' },
+            'Archivos Grandes': { enabled: true, func: 'run_large_media_clean', category: 'Limpieza Profunda' },
+            'Enlaces Rotos': { enabled: true, func: 'run_broken_symlink_clean', category: 'Limpieza Profunda' },
+            'Google Play Services': { enabled: true, func: 'run_google_play_services_clean', category: 'Limpieza Profunda' },
+            'Optimizar Termux': { enabled: true, func: 'run_termux_clean', category: 'Optimización' },
+            'Limpiar RAM': { enabled: true, func: 'run_ram_clean', category: 'Optimización' },
+            'Optimizar SQLite': { enabled: true, func: 'run_sqlite_opt', category: 'Optimización' },
+            'Reparar Galería': { enabled: true, func: 'run_media_reindex', category: 'Optimización' },
+            'Optimizar Sistema': { enabled: true, func: 'run_system_boost', category: 'Avanzado (ADB/Root)' },
+            'Recortar Almacenamiento': { enabled: true, func: 'run_storage_trim', category: 'Avanzado (ADB/Root)' },
+            'Forzar Modo Doze': { enabled: true, func: 'run_doze_opt', category: 'Avanzado (ADB/Root)' },
+            'Resetear Batería': { enabled: true, func: 'run_battery_calibration', category: 'Avanzado (ADB/Root)' },
+        };
+        
+        function generateScriptContent() {
+            const header = `#!/bin/bash
+# APEX Optimizer v18.0 - Script Personalizado
+# Generado por la Edición Interactiva Supercargada
+#
+# AVISO: Usa este script con precaución. Algunas operaciones son destructivas.
+# No requiere ROOT, pero los módulos avanzados se benefician de él.
+
+C_OFF='\\033[0m'; C_RED='\\033[0;31m'; C_GREEN='\\033[0;32m'; C_YELLOW='\\033[0;33m'; C_CYAN='\\033[0;36m';
+LOG_FILE=~/apex_optimization_v18.log
+STORAGE="/sdcard"
+echo "--- APEX Optimizer v18.0 Log Iniciado en $(date) ---" > "$LOG_FILE"
+
+check_dependency() {
+    if ! command -v "$1" &>/dev/null; then
+        echo -e "$C_YELLOW Advertencia: '$1' no está instalada. El módulo podría no funcionar.$C_OFF" | tee -a "$LOG_FILE"
+        return 1
+    fi
+    return 0
+}
+execute_module_command() {
+    echo -e "$C_CYAN-> $1...$C_OFF"
+    echo "--- Ejecutando: $1 ($2) ---" >> "$LOG_FILE"
+    if eval "$2" >> "$LOG_FILE" 2>&1; then echo -e "   $C_GREEN[OK]$C_OFF"; else echo -e "   $C_RED[FALLO] (Revisar $LOG_FILE)$C_OFF"; fi
+}
+`;
+            const allFunctions = {
+                run_deep_clean: `run_deep_clean() {\n    echo -e "$C_CYAN[LIMPIEZA PROFUNDA]$C_OFF"\n    execute_module_command "Limpiando cachés de apps" "find \\"$STORAGE/Android/data\\" -type d -name \\"cache\\" -exec rm -rfv {} +"\n    execute_module_command "Eliminando archivos residuales" "find \\"$STORAGE\\" -type f \\( -name \\"*.log\\" -o -name \\"*.tmp\\" -o -name \\"*.bak\\" \\) -delete"\n    execute_module_command "Limpiando miniaturas" "rm -rfv \\"$STORAGE/DCIM/.thumbnails\\""\n}`,
+                run_social_clean: `run_social_clean() {\n    echo -e "$C_CYAN[LIMPIEZA REDES SOCIALES]$C_OFF"\n    execute_module_command "Eliminando backups BBDD WhatsApp" "rm -rfv \\"$STORAGE/Android/media/com.whatsapp/WhatsApp/Databases\\""\n    execute_module_command "Limpiando caché Telegram/Instagram" "rm -rfv \\"$STORAGE/Android/data/org.telegram.messenger/cache\\" \\"$STORAGE/Android/data/com.instagram.android/cache\\""\n}`,
+                run_log_clean: `run_log_clean() {\n    echo -e "$C_CYAN[LOGS Y DUMPS]$C_OFF"\n    execute_module_command "Eliminando dumps y trazas" "find \\"$STORAGE\\" -type f \\( -name \\"*.trace\\" -o -name \\"*.dump\\" \\) -delete"\n}`,
+                run_duplicate_clean: `run_duplicate_clean() {\n    if ! check_dependency "fdupes"; then return; fi\n    echo -e "$C_CYAN[BUSCADOR DE DUPLICADOS]$C_OFF"\n    echo -e "$C_YELLOW Buscando duplicados... (puede tardar)$C_OFF"\n    execute_module_command "Eliminando duplicados" "fdupes -rdN \\"$STORAGE/DCIM\\" \\"$STORAGE/Download\\""\n}`,
+                run_large_media_clean: `run_large_media_clean() {\n    echo -e "$C_CYAN[ARCHIVOS GRANDES (>100MB)]$C_OFF"\n    read -r -p "$(echo -e "$C_RED ADVERTENCIA: Se borrarán archivos > 100MB. ¿Continuar? (s/N): $C_OFF")" confirm\n    if [[ "$confirm" != "s" ]]; then return; fi\n    execute_module_command "Eliminando archivos > 100MB" "find \\"$STORAGE\\" -type f \\( -name \\"*.mp4\\" -o -name \\"*.mkv\\" -o -name \\"*.zip\\" \\) -size +100M -print -delete"\n}`,
+                run_empty_folder_clean: `run_empty_folder_clean() {\n    echo -e "$C_CYAN[CARPETAS VACÍAS]$C_OFF"\n    execute_module_command "Eliminando directorios vacíos" "find \\"$STORAGE\\" -depth -type d -empty -delete"\n}`,
+                run_junk_clean: `run_junk_clean() {\n    echo -e "$C_CYAN[ARCHIVOS BASURA]$C_OFF"\n    execute_module_command "Eliminando archivos de 0 bytes" "find \\"$STORAGE\\" -type f -size 0 -delete"\n    execute_module_command "Eliminando carpetas de publicidad" "rm -rfv \\"$STORAGE/.mmsyscache\\" \\"$STORAGE/alipay\\""\n}`,
+                run_termux_clean: `run_termux_clean() {\n    echo -e "$C_CYAN[OPTIMIZACIÓN DE TERMUX]$C_OFF"\n    execute_module_command "Limpiando caché de APT" "pkg clean"\n    execute_module_command "Actualizando repositorios" "pkg update -y"\n}`,
+                run_ram_clean: `run_ram_clean() {\n    if ! check_dependency "am"; then return; fi\n    echo -e "$C_CYAN[LIMPIEZA DE RAM]$C_OFF"\n    echo -e "$C_YELLOW-> Forzando cierre de apps...$C_OFF"\n    for pkg in $(pm list packages -3 | cut -d: -f2); do am force-stop "$pkg" 2>/dev/null; done\n    echo -e "   $C_GREEN[OK] Señal de finalización enviada.$C_OFF"\n}`,
+                run_system_boost: `run_system_boost() {\n    if ! check_dependency "settings"; then return; fi\n    echo -e "$C_CYAN[OPTIMIZACIÓN DE SISTEMA]$C_OFF"\n    execute_module_command "Ajustando escalas de animación" "settings put global window_animation_scale 0.5; settings put global transition_animation_scale 0.5"\n}`,
+                run_sqlite_opt: `run_sqlite_opt() {\n    if ! check_dependency "sqlite3"; then return; fi\n    echo -e "$C_CYAN[OPTIMIZADOR SQLITE]$C_OFF"\n    echo -e "$C_YELLOW-> Optimizando bases de datos...$C_OFF"\n    find "$STORAGE" -type f -name "*.db" -exec sqlite3 {} 'VACUUM;' \\;\n    echo -e "   $C_GREEN[OK] BBDD optimizadas.$C_OFF"\n}`,
+                run_storage_trim: `run_storage_trim() {\n    if ! check_dependency "vdc"; then return; fi\n    echo -e "$C_CYAN[RECORTAR ALMACENAMIENTO (FSTRIM)]$C_OFF"\n    execute_module_command "Ejecutando fstrim" "vdc fstrim"\n}`,
+                run_doze_opt: `run_doze_opt() {\n    if ! check_dependency "adb"; then return; fi\n    echo -e "$C_CYAN[FORZAR MODO DOZE]$C_OFF"\n    execute_module_command "Activando Doze" "adb shell dumpsys deviceidle force-idle"\n}`,
+                run_clipboard_clear: `run_clipboard_clear() {\n    if ! check_dependency "termux-clipboard-set"; then return; fi\n    echo -e "$C_CYAN[LIMPIAR PORTAPAPELES]$C_OFF"\n    execute_module_command "Vaciando contenido del portapapeles" "termux-clipboard-set ''"\n}`,
+                run_broken_symlink_clean: `run_broken_symlink_clean() {\n    echo -e "$C_CYAN[LIMPIAR ENLACES ROTOS]$C_OFF"\n    execute_module_command "Eliminando enlaces simbólicos rotos" "find \\"$STORAGE\\" -xtype l -delete"\n}`,
+                run_google_play_services_clean: `run_google_play_services_clean() {\n    echo -e "$C_CYAN[LIMPIEZA GOOGLE PLAY SERVICES]$C_OFF"\n    execute_module_command "Limpiando caché de Google Play Services" "rm -rfv \\"$STORAGE/Android/data/com.google.android.gms/cache\\""\n}`,
+                run_media_reindex: `run_media_reindex() {\n    if ! check_dependency "am"; then return; fi\n    echo -e "$C_CYAN[REPARAR GALERÍA (RE-INDEXAR)]$C_OFF"\n    execute_module_command "Forzando re-escaneo de medios" "am broadcast -a android.intent.action.MEDIA_MOUNTED -d file:///sdcard"\n}`,
+                run_battery_calibration: `run_battery_calibration() {\n    if ! check_dependency "dumpsys"; then return; fi\n    echo -e "$C_CYAN[RESETEAR ESTADÍSTICAS BATERÍA]$C_OFF"\n    execute_module_command "Reseteando contadores de batería" "dumpsys batterystats --reset"\n}`
+            };
+
+            let functionDefinitions = '\n# --- Definiciones de Módulos ---\n';
+            let mainExecutionCalls = '\n# --- Ejecución Principal ---\necho -e "$C_GREEN--- Iniciando Optimización APEX ---$C_OFF" | tee -a "$LOG_FILE"\n';
+            
+            Object.values(modules).forEach(mod => {
+                if (mod.enabled) {
+                    if (!functionDefinitions.includes(allFunctions[mod.func])) {
+                         functionDefinitions += allFunctions[mod.func] + '\n';
+                    }
+                    mainExecutionCalls += `${mod.func}\n`;
+                }
+            });
+
+            const footer = `\necho -e "$C_GREEN\n--- OPTIMIZACIÓN FINALIZADA ---$C_OFF" | tee -a "$LOG_FILE"
+echo "Revisa el log en: $LOG_FILE"
+`;
+            return header + functionDefinitions + mainExecutionCalls + footer;
+        }
+
+        function initializeUI() {
+            const categories = [...new Set(Object.values(modules).map(m => m.category))].sort();
+            let switchesHTML = '';
+            
+            categories.forEach(category => {
+                switchesHTML += `<h3 class="text-lg font-semibold text-cyan-400 col-span-1 sm:col-span-2 md:col-span-3 mt-4 first:mt-0 category-title">${category}</h3>`;
+                for (const key in modules) {
+                    if (modules[key].category === category) {
+                        const isChecked = modules[key].enabled ? 'checked' : '';
+                        switchesHTML += `
+                        <label class="flex items-center justify-between p-3 bg-white/5 rounded-lg transition-colors hover:bg-white/10">
+                            <span class="font-medium light-text">${key}</span>
+                            <div class="switch">
+                                <input type="checkbox" data-module="${key}" ${isChecked}>
+                                <span class="slider"></span>
+                            </div>
+                        </label>`;
+                    }
+                }
+            });
+            moduleSwitchesContainer.innerHTML = switchesHTML;
+
+            moduleSwitchesContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', (event) => {
+                    modules[event.target.dataset.module].enabled = event.target.checked;
+                    updateScript();
+                });
+            });
+            
+            updateScript();
+        }
+        
+        function updateScript() { scriptTextarea.value = generateScriptContent(); }
+
+        function runDiagnostics() {
+            document.getElementById('diag-ram').textContent = navigator.deviceMemory ? `${navigator.deviceMemory}` : 'N/A';
+            document.getElementById('diag-cpu').textContent = navigator.hardwareConcurrency ? `${navigator.hardwareConcurrency}` : 'N/A';
+            document.getElementById('diag-network').textContent = navigator.connection ? navigator.connection.effectiveType.toUpperCase() : 'N/A';
+            if (navigator.getBattery) {
+                navigator.getBattery().then(battery => {
+                    const level = `${Math.round(battery.level * 100)}%`;
+                    const status = battery.charging ? ' ⚡' : '';
+                    document.getElementById('diag-battery').textContent = level + status;
+                });
+            } else { document.getElementById('diag-battery').textContent = 'N/A'; }
+        }
+        
+        function applyTheme(theme) {
+            if (theme === 'light') {
+                body.classList.add('light');
+                themeIconSun.classList.add('hidden');
+                themeIconMoon.classList.remove('hidden');
+            } else {
+                body.classList.remove('light');
+                themeIconSun.classList.remove('hidden');
+                themeIconMoon.classList.add('hidden');
+            }
+        }
+
+        themeToggleButton.addEventListener('click', () => {
+            const newTheme = body.classList.contains('light') ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+        
         function copyScript() {
-            const script = document.getElementById("script");
-            script.select();
-            script.setSelectionRange(0, 99999); // For mobile devices
+            scriptTextarea.select();
+            scriptTextarea.setSelectionRange(0, 99999); 
             try {
-                // Using document.execCommand('copy') as it's more compatible with
-                // sandboxed environments like iframes where the Clipboard API is restricted.
                 document.execCommand("copy");
-                showNotification("✅ ¡Script v16.0 copiado!", 'bg-green-500/90');
+                showNotification("✅ ¡Script v18.0 copiado!", 'bg-green-500/90');
             } catch (err) {
-                console.error("No se pudo copiar el texto:", err);
-                showNotification("❌ Error al copiar. Inténtalo manualmente.", 'bg-red-500/90');
+                showNotification("❌ Error al copiar.", 'bg-red-500/90');
             }
         }
 
         function showNotification(message, colorClass = 'bg-green-500/90') {
-            const messageBox = document.getElementById("message-box");
+            const msgBox = document.getElementById("message-box");
+            msgBox.className = "fixed bottom-8 left-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform transition-all duration-300 ease-in-out z-50 font-semibold text-lg";
+            msgBox.classList.add(colorClass);
+            msgBox.textContent = message;
             
-            // Reset classes and apply new message/color
-            messageBox.className = "fixed bottom-8 left-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform transition-all duration-300 ease-in-out z-50 font-semibold text-lg";
-            messageBox.classList.add(colorClass);
-            messageBox.textContent = message;
+            msgBox.classList.remove("opacity-0");
+            msgBox.style.transform = 'translateX(-50%) translateY(0)';
             
-            // Show with animation
-            messageBox.classList.remove("opacity-0");
-            messageBox.style.transform = 'translateX(-50%) translateY(0)';
-            
-            // Hide after 2 seconds
             setTimeout(() => {
-                messageBox.classList.add("opacity-0");
-                messageBox.style.transform = 'translateX(-50%) translateY(20px)';
+                msgBox.classList.add("opacity-0");
+                msgBox.style.transform = 'translateX(-50%) translateY(20px)';
             }, 2500);
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTheme(localStorage.getItem('theme') || 'dark');
+            initializeUI();
+            runDiagnostics();
+        });
     </script>
 </body>
 </html>
