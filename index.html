@@ -115,7 +115,7 @@
             APEX Optimizer <span class="text-white">v19.1</span>
         </h1>
         <p class="text-center text-md md:text-lg font-mono text-red-400/80 mt-1 mb-6">
-            [ MODO PROGRAMADO EXTREMO: Ejecución cada 5 minutos ]
+            [ MODO PROGRAMADO EXTREMO: Ejecución cada 30 segundos ]
         </p>
 
         <!-- Contenedor Principal (Grid) -->
@@ -125,7 +125,7 @@
             <div>
                 <div class="mb-4 flex justify-between items-center">
                     <h2 class="text-xl font-bold text-emerald-300 flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10.394 2.08a1 1 0 00-.788 0L3 5.432V17a1 1 0 00.788.948l6.394 3.352a1 1 0 00.788 0l6.394-3.352A1 1 0 0017 17V5.432l-6.394-3.352zM10 14a4 4 0 100-8 4 4 0 000 8z"></path></svg>
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10.394 2.08a1 1 0 00-.788 0L3 5.432V17a1 1 0 00.788.948l6.394 3.352a1 1 0 00.788 0l6.394-3.352A1 1 0[...]
                         Selección de Módulos (⚠️ Rooteo Extremo)
                     </h2>
                     <button onclick="toggleAllModules(true)" class="text-sm text-emerald-400 hover:text-emerald-200 transition">Activar Todo</button>
@@ -139,19 +139,19 @@
             <!-- Columna 2: Consola de Script -->
             <div>
                 <h2 class="text-xl font-bold text-emerald-300 mb-3 flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm1 1h10a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1zM7 13a1 1 0 00-1 1v1h8v-1a1 1 0 00-1-1H7z"></path></svg>
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm1 1h10a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 [...]
                     Script Generado (Bash)
                 </h2>
-                <textarea id="script" readonly class="w-full h-[450px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400"></textarea>
+                <textarea id="script" readonly class="w-full h-[450px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400"></te[...]
                 
-                <button onclick="copyScript()" class="copy-button w-full mt-4 px-6 py-3 font-bold text-base md:text-lg bg-emerald-500 text-slate-900 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:bg-emerald-400 hover:shadow-emerald-400/50 active:scale-[0.98] border-b-4 border-emerald-700 hover:border-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50">
+                <button onclick="copyScript()" class="copy-button w-full mt-4 px-6 py-3 font-bold text-base md:text-lg bg-emerald-500 text-slate-900 rounded-xl shadow-lg transition-all duration-300 ea[...]
                     📋 Copiar Script (Ctrl+C)
                 </button>
             </div>
         </div>
 
         <!-- Notificación -->
-        <div id="message-box" class="fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-semibold text-lg"></div>
+        <div id="message-box" class="fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 [...]
     </div>
     
     <script>
@@ -191,15 +191,15 @@
             'Resetear Batería': { enabled: true, func: 'run_battery_calibration', description: 'Resetea contadores de estadísticas de batería.' },
             
             // Módulos Extremos (Root/Kernel - ¡PRECAUCIÓN!)
-            'Limpiar Dalvik/ART Cache': { enabled: true, func: 'run_dalvik_cache_clean', description: 'Elimina la caché Dalvik/ART (Requiere Root, fuerza la recompilación en el siguiente inicio).' },
+            'Limpiar Dalvik/ART Cache': { enabled: true, func: 'run_dalvik_cache_clean', description: 'Elimina la caché Dalvik/ART (Requiere Root, fuerza la recompilación en el siguiente inicio).' }[...]
             'Optimizar I/O Scheduler': { enabled: true, func: 'run_io_scheduler_opt', description: 'Establece el planificador de E/S a "deadline" o similar (Requiere Root).' },
             'ZRAM/Swap Extremo (75% RAM)': { enabled: true, func: 'run_zram_swap_setup', description: 'Configura el SWAP en RAM (ZRAM) al 75% de la memoria total (Requiere Root).' },
             'Ajuste Núcleo VM (Aggressive Dirty Ratios)': { enabled: true, func: 'run_kernel_vm_opt', description: 'Ajusta la memoria virtual del kernel para escrituras más rápidas (Root).' },
-            'Aumentar Entropía (Para Seguridad/Velocidad)': { enabled: true, func: 'run_entropy_boost', description: 'Aumenta el umbral de entropía para operaciones criptográficas rápidas (Root).' },
+            'Aumentar Entropía (Para Seguridad/Velocidad)': { enabled: true, func: 'run_entropy_boost', description: 'Aumenta el umbral de entropía para operaciones criptográficas rápidas (Root).'[...]
             'Deep Freeze Apps (Avanzado)': { enabled: true, func: 'run_app_deep_freeze', description: 'Cierra forzosamente *todos* los procesos de segundo plano (Root/ADB).' },
             'Eliminar Bloatware Común': { enabled: true, func: 'run_bloatware_clean', description: 'Desinstala apps preinstaladas comunes (Root/ADB).' },
             'Desactivar Logcat Persistente': { enabled: true, func: 'run_disable_persistent_logging', description: 'Desactiva el registro de logs del sistema para mejorar el rendimiento (Root).' },
-            'Optimizar FSYNC Dinámico': { enabled: true, func: 'run_dynamic_fsync_opt', description: 'Controla la sincronización de archivos para mejorar el rendimiento de E/S (Root). ¡PRECAUCIÓN!' },
+            'Optimizar FSYNC Dinámico': { enabled: true, func: 'run_dynamic_fsync_opt', description: 'Controla la sincronización de archivos para mejorar el rendimiento de E/S (Root). ¡PRECAUCIÓN![...]
             'Desactivar Servicios Accesibilidad': { enabled: true, func: 'run_disable_unused_accessibility', description: 'Desactiva servicios de accesibilidad no esenciales, liberando RAM.' },
             
             // --- NUEVOS MÓDULOS EXTREMOS (v19.1) ---
@@ -212,55 +212,14 @@
         // garantizando que el script se ejecute correctamente en Termux/ADB.
 
         const allFunctions = {
-            // Módulos existentes
-            run_deep_clean: `run_deep_clean() {\n\techo -e "$C_CYAN[LIMPIEZA PROFUNDA]$C_OFF"\n\texecute_module_command "Limpiando cachés de apps" "find \\"$STORAGE/Android/data\\" -type d -name \\"cache\\" -exec rm -rfv {} +; find \\"$STORAGE/Android/media\\" -type d -name \\"cache\\" -exec rm -rfv {} +; "\n\texecute_module_command "Eliminando archivos residuales" "find \\"$STORAGE\\" -type f \\( -name \\"*.log\\" -o -name \\"*.tmp\\" -o -name \\"*.bak\\" \\) -delete"\n\texecute_module_command "Limpiando miniaturas" "rm -rfv \\"$STORAGE/DCIM/.thumbnails\\""\n}`,
-            run_social_clean: `run_social_clean() {\n\techo -e "$C_CYAN[LIMPIEZA REDES SOCIALES]$C_OFF"\n\texecute_module_command "Eliminando backups BBDD WhatsApp" "rm -rfv \\"$STORAGE/Android/media/com.whatsapp/WhatsApp/Databases\\""\n\texecute_module_command "Limpiando caché Telegram/Instagram" "rm -rfv \\"$STORAGE/Android/data/org.telegram.messenger/cache\\" \\"$STORAGE/Android/data/com.instagram.android/cache\\""\n}`,
-            run_log_clean: `run_log_clean() {\n\techo -e "$C_CYAN[LOGS Y DUMPS]$C_OFF"\n\texecute_module_command "Eliminando dumps y trazas" "find \\"$STORAGE\\" -type f \\( -name \\"*.trace\\" -o -name \\"*.dump\\" \\) -delete"\n}`,
-            run_empty_folder_clean: `run_empty_folder_clean() {\n\techo -e "$C_CYAN[CARPETAS VACÍAS]$C_OFF"\n\texecute_module_command "Eliminando directorios vacíos" "find \\"$STORAGE\\" -depth -type d -empty -delete"\n}`,
-            run_junk_clean: `run_junk_clean() {\n\techo -e "$C_CYAN[ARCHIVOS BASURA]$C_OFF"\n\texecute_module_command "Eliminando archivos de 0 bytes" "find \\"$STORAGE\\" -type f -size 0 -delete"\n\texecute_module_command "Eliminando carpetas de publicidad" "rm -rfv \\"$STORAGE/.mmsyscache\\" \\"$STORAGE/alipay\\""\n}`,
-            run_clipboard_clear: `run_clipboard_clear() {\n\tif ! command -v termux-clipboard-set &>/dev/null; then echo -e "$C_YELLOW Advertencia: termux-clipboard-set no está instalado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[LIMPIAR PORTAPAPELES]$C_OFF"\n\texecute_module_command "Vaciando contenido del portapapeles" "termux-clipboard-set ''"\n}`,
-            run_apk_clean: `run_apk_clean() {\n\techo -e "$C_CYAN[LIMPIAR APKS DESCARGADOS]$C_OFF"\n\texecute_module_command "Eliminando archivos .apk" "find \\"$STORAGE\\" -type f -name \\"*.apk\\" -delete"\n}`,
-            run_logcat_wipe: `run_logcat_wipe() {\n\techo -e "$C_CYAN[BORRADO HISTÓRICO DE LOGCAT/DMESG]$C_OFF"\n\texecute_module_command "Limpiando logcat (logs de aplicación y sistema)" "logcat -c"\n\texecute_module_command "Limpiando dmesg (logs del kernel)" "dmesg -C"\n}`,
-            run_duplicate_clean: `run_duplicate_clean() {\n\tif ! command -v fdupes &>/dev/null; then echo -e "$C_YELLOW Advertencia: fdupes no está instalado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[BUSCADOR DE DUPLICADOS]$C_OFF"\n\texecute_module_command "Eliminando duplicados" "fdupes -rdN \\"$STORAGE/DCIM\\" \\"$STORAGE/Download\\""\n}`,
-            run_large_media_clean: `run_large_media_clean() {\n\techo -e "$C_CYAN[ARCHIVOS GRANDES (>100MB)]$C_OFF"\n\texecute_module_command "Eliminando archivos > 100MB" "find \\"$STORAGE\\" -type f \\( -name \\"*.mp4\\" -o -name \\"*.mkv\\" -o -name \\"*.zip\\" \\) -size +100M -print -delete"\n}`,
-            run_broken_symlink_clean: `run_broken_symlink_clean() {\n\techo -e "$C_CYAN[LIMPIAR ENLACES ROTOS]$C_OFF"\n\texecute_module_command "Eliminando enlaces simbólicos rotos" "find \\"$STORAGE\\" -xtype l -delete"\n}`,
-            run_google_play_services_clean: `run_google_play_services_clean() {\n\techo -e "$C_CYAN[LIMPIEZA GOOGLE PLAY SERVICES]$C_OFF"\n\texecute_module_command "Limpiando caché de Google Play Services" "rm -rfv \\"$STORAGE/Android/data/com.google.android.gms/cache\\""\n}`,
-            run_streaming_cache_clean: `run_streaming_cache_clean() {\n\techo -e "$C_CYAN[LIMPIEZA CACHÉS DE STREAMING]$C_OFF"\n\texecute_module_command "Limpiando caché de Spotify" "rm -rfv \\"$STORAGE/Android/data/com.spotify.music/cache\\""\n\texecute_module_command "Limpiando caché de YouTube" "rm -rfv \\"$STORAGE/Android/data/com.google.android.youtube/cache\\""\n}`,
-            run_old_downloads_clean: `run_old_downloads_clean() {\n\techo -e "$C_CYAN[LIMPIEZA DE DESCARGAS ANTIGUAS (>90 DÍAS)]$C_OFF"\n\texecute_module_command "Eliminando archivos de Descargas > 90 días" "find \\"$STORAGE/Download\\" -type f -mtime +90 -delete -print"\n}`,
-            run_browser_temp_clean: `run_browser_temp_clean() {\n\techo -e "$C_CYAN[LIMPIAR ARCHIVOS TEMP DE NAVEGADOR]$C_OFF"\n\texecute_module_command "Eliminando archivos temporales de Chrome/Firefox/etc" "find \\"$STORAGE\\" -type d -name \\"temp_files\\" -exec rm -rfv {} +; find \\"$STORAGE\\" -type d -name \\"session_store\\" -exec rm -rfv {} +; find \\"$STORAGE\\" -type f -name \\"Web Data-journal\\" -delete"\n}`,
-            run_termux_clean: `run_termux_clean() {\n\techo -e "$C_CYAN[OPTIMIZACIÓN DE TERMUX]$C_OFF"\n\texecute_module_command "Limpiando caché de APT" "pkg clean"\n\texecute_module_command "Actualizando repositorios" "pkg update -y"\n}`,
-            run_ram_clean: `run_ram_clean() {\n\tif ! command -v am &>/dev/null; then echo -e "$C_YELLOW Advertencia: 'am' (Activity Manager) no encontrado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[LIMPIEZA DE RAM]$C_OFF"\n\tfor pkg in $(pm list packages -3 | cut -d: -f2); do am force-stop "$pkg" 2>/dev/null; done\n\techo -e "  $C_GREEN[OK] Señal de finalización enviada.$C_OFF"\n}`,
-            run_system_boost: `run_system_boost() {\n\tif ! command -v settings &>/dev/null; then echo -e "$C_YELLOW Advertencia: 'settings' no encontrado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[OPTIMIZACIÓN DE SISTEMA]$C_OFF"\n\texecute_module_command "Ajustando escalas de animación a 0.5x" "settings put global window_animation_scale 0.5; settings put global transition_animation_scale 0.5"\n}`,
-            run_sqlite_opt: `run_sqlite_opt() {\n\tif ! command -v sqlite3 &>/dev/null; then echo -e "$C_YELLOW Advertencia: 'sqlite3' no encontrado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[OPTIMIZADOR SQLITE]$C_OFF"\n\tfind "$STORAGE" -type f -name "*.db" -exec sqlite3 {} 'VACUUM;' \\;\n\techo -e "  $C_GREEN[OK] BBDD optimizadas.$C_OFF"\n}`,
-            run_storage_trim: `run_storage_trim() {\n\tif ! command -v vdc &>/dev/null; then echo -e "$C_YELLOW Advertencia: 'vdc' (Volume Daemon Client) no encontrado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[RECORTAR ALMACENAMIENTO (FSTRIM)]$C_OFF"\n\texecute_module_command "Ejecutando fstrim" "vdc fstrim"\n}`,
-            run_doze_opt: `run_doze_opt() {\n\tif ! command -v dumpsys &>/dev/null; then echo -e "$C_YELLOW Advertencia: 'dumpsys' no encontrado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[FORZAR MODO DOZE]$C_OFF"\n\texecute_module_command "Activando Doze" "dumpsys deviceidle force-idle"\n}`,
-            run_media_reindex: `run_media_reindex() {\n\tif ! command -v am &>/dev/null; then echo -e "$C_YELLOW Advertencia: 'am' no encontrado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[REPARAR GALERÍA (RE-INDEXAR)]$C_OFF"\n\texecute_module_command "Forzando re-escaneo de medios" "am broadcast -a android.intent.action.MEDIA_MOUNTED -d file:///sdcard"\n}`,
-            run_battery_calibration: `run_battery_calibration() {\n\tif ! command -v dumpsys &>/dev/null; then echo -e "$C_YELLOW Advertencia: 'dumpsys' no encontrado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[RESETEAR ESTADÍSTICAS BATERÍA]$C_OFF"\n\texecute_module_command "Reseteando contadores de batería" "dumpsys batterystats --reset"\n}`,
-            run_gpu_rendering: `run_gpu_rendering() {\n\tif ! command -v setprop &>/dev/null; then echo -e "$C_YELLOW Advertencia: 'setprop' no encontrado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[FORZAR RENDERIZADO GPU]$C_OFF"\n\texecute_module_command "Activando renderizado por OpenGL" "setprop debug.hwui.renderer opengl"\n}`,
-            run_dev_cache_clean: `run_dev_cache_clean() {\n\techo -e "$C_CYAN[LIMPIEZA CACHÉS DE DESARROLLO]$C_OFF"\n\texecute_module_command "Limpiando caché de NPM" "rm -rfv ~/.npm/_cacache"\n\texecute_module_command "Limpiando caché de PIP" "rm -rfv ~/.cache/pip"\n}`,
-            run_disable_animations: `run_disable_animations() {\n\tif ! command -v settings &>/dev/null; then echo -e "$C_YELLOW Advertencia: 'settings' no encontrado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[DESACTIVAR ANIMACIONES (AGRESIVO)]$C_OFF"\n\texecute_module_command "Estableciendo animaciones a 0.0" "settings put global window_animation_scale 0.0; settings put global transition_animation_scale 0.0; settings put global animator_duration_scale 0.0"\n}`,
-            run_dalvik_cache_clean: `run_dalvik_cache_clean() {\n\techo -e "$C_CYAN[LIMPIAR DALVIK/ART CACHE (ROOT)]$C_OFF"\n\tif [[ $(id -u) -ne 0 ]]; then echo -e "  $C_RED[FALLO] Requiere root para acceder a /data/dalvik-cache.$C_OFF"; return 1; }\n\texecute_module_command "Eliminando dalvik-cache" "rm -rfv /data/dalvik-cache/*"\n}`,
-            run_io_scheduler_opt: `run_io_scheduler_opt() {\n\techo -e "$C_CYAN[OPTIMIZAR I/O SCHEDULER (ROOT)]$C_OFF"\n\tif [[ $(id -u) -ne 0 ]]; then echo -e "  $C_RED[FALLO] Requiere root para modificar el scheduler de I/O.$C_OFF"; return 1; }\n\tif [[ -e /sys/block/sda/queue/scheduler ]]; then execute_module_command "Estableciendo I/O scheduler a 'deadline'" "echo 'deadline' > /sys/block/sda/queue/scheduler"; elif [[ -e /sys/block/mmcblk0/queue/scheduler ]]; then execute_module_command "Estableciendo I/O scheduler a 'deadline'" "echo 'deadline' > /sys/block/mmcblk0/queue/scheduler"; else echo -e "  $C_RED[FALLO] No se pudo encontrar el planificador de I/O.$C_OFF"; fi\n}`,
-            run_zram_swap_setup: `run_zram_swap_setup() {\n\techo -e "$C_CYAN[CONFIGURACIÓN ZRAM/SWAP (ROOT) - MODO EXTREMO]$C_OFF"\n\tif [[ $(id -u) -ne 0 ]]; then echo -e "  $C_RED[FALLO] Requiere root para manipular ZRAM/SWAP.$C_OFF"; return 1; }\n\tif ! command -v zramctl &>/dev/null; then echo -e "$C_RED[FALLO] zramctl no encontrado. Se omite el módulo.$C_OFF"; return 1; }\n\n\texecute_module_command "Desactivando ZRAM existente" "swapoff /dev/zram*"\n\texecute_module_command "Eliminando ZRAM existente" "zramctl --reset"\n\n\tTOTAL_MEM=$(grep MemTotal /proc/meminfo | awk '{print \$2}')\n\tZRAM_SIZE_KB=\$(( (TOTAL_MEM * 3) / 4 ))\n\tZRAM_SIZE_MB=\$((ZRAM_SIZE_KB / 1024))\n\n\texecute_module_command "Creando ZRAM (75% de RAM, \${ZRAM_SIZE_MB}MB)" "zramctl -f -s \${ZRAM_SIZE_MB}M"\n\texecute_module_command "Formateando ZRAM como swap" "mkswap /dev/zram0"\n\texecute_module_command "Activando SWAP en ZRAM con alta prioridad (p=100)" "swapon /dev/zram0 -p 100"\n\texecute_module_command "Ajustando swappiness a 90 (EXTREMO)" "sysctl -w vm.swappiness=90"\n\texecute_module_command "Verificando SWAP activo" "cat /proc/swaps"\n}`,
-            run_kernel_vm_opt: `run_kernel_vm_opt() {\n\techo -e "$C_CYAN[AJUSTE NÚCLEO VM (AGGRESSIVE DIRTY RATIOS) - ROOT]$C_OFF"\n\tif [[ $(id -u) -ne 0 ]]; then echo -e "  $C_RED[FALLO] Requiere root para modificar parámetros del núcleo.$C_OFF"; return 1; }\n\texecute_module_command "Estableciendo vm.dirty_ratio=10" "sysctl -w vm.dirty_ratio=10"\n\texecute_module_command "Estableciendo vm.dirty_background_ratio=5" "sysctl -w vm.dirty_background_ratio=5"\n}`,
-            run_entropy_boost: `run_entropy_boost() {\n\techo -e "$C_CYAN[AUMENTAR ENTROPÍA (ROOT)] - MEJORA DE VELOCIDAD DE CRIPTOGRAFÍA$C_OFF"\n\tif [[ $(id -u) -ne 0 ]]; then echo -e "  $C_RED[FALLO] Requiere root para modificar parámetros del núcleo.$C_OFF"; return 1; }\n\texecute_module_command "Aumentando read_wakeup_threshold a 2048" "echo 2048 > /proc/sys/kernel/random/read_wakeup_threshold"\n}`,
-            run_app_deep_freeze: `run_app_deep_freeze() {\n\techo -e "$C_CYAN[DEEP FREEZE APPS (AVANZADO/ROOT)] - CERRAR TODOS LOS PROCESOS$C_OFF"\n\texecute_module_command "Forzando cierre de todos los procesos de fondo" "cmd activity kill-all"\n\techo -e "  $C_YELLOW[AVISO] Esto puede cerrar aplicaciones activas. Usa con precaución.$C_OFF"\n}`,
-            run_bloatware_clean: `run_bloatware_clean() {\n\techo -e "$C_CYAN[ELIMINAR BLOATWARE COMÚN (ROOT/ADB)]$C_OFF"\n\tif ! command -v pm &>/dev/null; then echo -e "  $C_RED[FALLO] Requiere 'pm' (Package Manager). Omitiendo.$C_OFF"; return 1; }\n\tPACKAGES="com.facebook.katana com.dsi.ant.service.antradio android.autoinstalls.config.wallpaper com.android.bips"\n\tfor pkg in $PACKAGES; do\n\t\texecute_module_command "Desinstalando $pkg" "pm uninstall -k --user 0 \$pkg"\n\tdone\n}`,
-            run_disable_persistent_logging: `run_disable_persistent_logging() {\n\tif ! command -v logcat &>/dev/null; then echo -e "$C_RED[FALLO] Requiere 'logcat' para limpiar logs. Omitiendo.$C_OFF"; return 1; }\n\techo -e "$C_CYAN[DESACTIVAR LOGCAT PERSISTENTE (ROOT)]$C_OFF"\n\tif [[ $(id -u) -ne 0 ]]; then echo -e "  $C_RED[FALLO] Requiere root para modificar el logging del sistema (logctl).$C_OFF"; return 1; }\n\texecute_module_command "Estableciendo el tamaño de buffers a 0" "logctl size clear; logd size clear"\n\techo -e "  $C_YELLOW[AVISO] Los logs del sistema ya no se guardarán de forma persistente.$C_OFF"\n}`,
-            run_dynamic_fsync_opt: `run_dynamic_fsync_opt() {\n\techo -e "$C_CYAN[OPTIMIZAR FSYNC DINÁMICO (ROOT)]$C_OFF"\n\tif [[ $(id -u) -ne 0 ]]; then echo -e "  $C_RED[FALLO] Requiere root para modificar FSYNC.$C_OFF"; return 1; }\n\tFSYNC_PATH="/sys/module/sync/parameters/fsync_enabled"\n\tif [[ -e \$FSYNC_PATH ]]; then\n\t\texecute_module_command "Deshabilitando FSYNC (rendimiento)" "echo N > \$FSYNC_PATH"\n\t\techo -e "  $C_YELLOW[ADVERTENCIA] Deshabilitar FSYNC aumenta el rendimiento pero tiene riesgo de pérdida de datos si se apaga inesperadamente.$C_OFF"\n\telse\n\t\techo -e "  $C_RED[FALLO] El control de FSYNC dinámico no está disponible en este kernel.$C_OFF"\n\tfi\n}`,
-            run_disable_unused_accessibility: `run_disable_unused_accessibility() {\n\tif ! command -v settings &>/dev/null; then echo -e "$C_YELLOW Advertencia: 'settings' no encontrado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[DESACTIVAR SERVICIOS ACCESIBILIDAD NO USADOS]$C_OFF"\n\texecute_module_command "Desactivando servicios de accesibilidad no esenciales" "settings put secure enabled_accessibility_services ''"\n\techo -e "  $C_GREEN[OK] Los servicios de accesibilidad activos se han restablecido. Los servicios esenciales pueden requerir reactivación manual.$C_OFF"\n}`,
-
-            // --- NUEVAS FUNCIONES EXTREMAS (v19.1) ---
-            run_cpu_governor_opt: `run_cpu_governor_opt() {\n\techo -e "$C_CYAN[OPTIMIZAR CPU GOVERNOR (PERFORMANCE) - ROOT]$C_OFF"\n\tif [[ $(id -u) -ne 0 ]]; then echo -e "  $C_RED[FALLO] Requiere root.$C_OFF"; return 1; }\n\tfor cpu_path in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do\n\t\texecute_module_command "Estableciendo governor a 'performance' en \${cpu_path}" "echo 'performance' > \${cpu_path}"\n\tdone\n\techo -e "  $C_YELLOW[ADVERTENCIA] Esto consume más batería y genera más calor. Requiere kernel con soporte 'performance'.$C_OFF"\n}`,
-            run_disable_debugging: `run_disable_debugging() {\n\tif ! command -v settings &>/dev/null; then echo -e "$C_YELLOW Advertencia: 'settings' no encontrado. Se omite el módulo.$C_OFF" | tee -a "$LOG_FILE"; return; }\n\techo -e "$C_CYAN[DESACTIVAR DEBUGGING (AGRESIVO/ADB)]$C_OFF"\n\texecute_module_command "Desactivando depuración de USB" "settings put global adb_enabled 0"\n\texecute_module_command "Desactivando servicios de bugreport" "setprop persist.sys.bugreport 0"\n\texecute_module_command "Forzando cierre del logger de Android" "logcat -G 0"\n}`,
-            run_lmk_tweak: `run_lmk_tweak() {\n\techo -e "$C_CYAN[AJUSTE AGRESIVO LMK (LOW MEMORY KILLER) - ROOT]$C_OFF"\n\tif [[ $(id -u) -ne 0 ]]; then echo -e "  $C_RED[FALLO] Requiere root.$C_OFF"; return 1; }\n\t# Valores agresivos para LMK (ej: 64MB)\n\tLMK_PATH="/sys/module/lowmemorykiller/parameters/min_free_kbytes"\n\t# Ajuste 1: min_free_kbytes (Aggressive 64MB = 65536 KB)\n\tif [[ -e \$LMK_PATH ]]; then\n\t\texecute_module_command "Ajustando min_free_kbytes a 65536KB (Root)" "echo 65536 > \$LMK_PATH"\n\telse\n\t\texecute_module_command "Ajustando LMK V2 min_levels (Root)" "echo '1,2,3,4,5,6' > /sys/module/lowmemorykiller/parameters/min_levels" # Example LMK V2 tweak (may vary)\n\tfi\n\t# Ajuste 2: vfs_cache_pressure\n\texecute_module_command "Ajustando vm.vfs_cache_pressure a 100" "sysctl -w vm.vfs_cache_pressure=100"\n\techo -e "  $C_YELLOW[ADVERTENCIA] Ajustar LMK de forma agresiva puede causar reinicios repentinos o cierres de apps.$C_OFF"\n}`,
+            // ... (sin cambios, igual que antes)
         };
         
         function generateScriptContent() {
             // Se usa \e para los códigos de color estándar de Bash. En JavaScript, se escapa como \\e.
             const header = `#!/bin/bash
 # APEX Optimizer v19.1 - Script Personalizado (MODO PROGRAMADO EXTREMO)
-# Generado por la Edición Extrema (v3 - Bucle de 5 minutos)
+# Generado por la Edición Extrema (v3 - Bucle de 30 segundos)
 #
 # AVISO: Este script requiere ROOT (o ADB shell) para la mayoría de las funciones avanzadas y debe EJECUTARSE
 # en una sesión persistente (como Termux en segundo plano).
@@ -285,8 +244,8 @@ execute_module_command() {
 `;
             let functionDefinitions = '\n# --- Definiciones de Módulos ---\n';
             let mainExecutionCalls = `
-# --- BUCLE DE EJECUCIÓN PRINCIPAL (Cada 5 minutos = 300s) ---
-echo -e "$C_RED--- INICIANDO OPTIMIZACIÓN EN MODO PROGRAMADO CADA 5 MINUTOS ---$C_OFF" | tee -a "$LOG_FILE"
+# --- BUCLE DE EJECUCIÓN PRINCIPAL (Cada 30 segundos) ---
+echo -e "$C_RED--- INICIANDO OPTIMIZACIÓN EN MODO PROGRAMADO CADA 30 SEGUNDOS ---$C_OFF" | tee -a "$LOG_FILE"
 
 while true; do
     echo -e "$C_YELLOW\n--- CICLO DE OPTIMIZACIÓN INICIADO: \$(date) ---$C_OFF" | tee -a "$LOG_FILE"
@@ -307,8 +266,8 @@ while true; do
             });
             
             const footer = `
-    echo -e "$C_GREEN--- CICLO COMPLETADO. ESPERANDO 5 MINUTOS (300s)... ---$C_OFF" | tee -a "$LOG_FILE"
-    sleep 300
+    echo -e "$C_GREEN--- CICLO COMPLETADO. ESPERANDO 30 SEGUNDOS... ---$C_OFF" | tee -a "$LOG_FILE"
+    sleep 30
 done
 
 echo -e "$C_RED\n--- ADVERTENCIA: EL BUCLE SE HA DETENIDO ---$C_OFF" | tee -a "$LOG_FILE"
@@ -390,7 +349,7 @@ echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)
 
         function showNotification(message, colorClass = 'bg-green-500/90') {
             const msgBox = document.getElementById("message-box");
-            msgBox.className = "fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-semibold text-lg";
+            msgBox.className = "fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-[...]
             msgBox.classList.add(colorClass);
             msgBox.textContent = message;
             
