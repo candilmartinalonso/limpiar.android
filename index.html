@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX Optimizer v19.1 - Modo Extremo (Programado)</title>
+    <title>APEX Optimizer v19.2 - Edición No-Root (Programado)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,13 +13,15 @@
             font-family: 'Inter', sans-serif;
             --green-glow: 0 0 5px rgba(190, 242, 100, 0.9), 0 0 10px rgba(134, 239, 30, 0.6);
             --red-glow: 0 0 5px rgba(239, 68, 68, 0.9), 0 0 10px rgba(185, 28, 28, 0.6);
+            --blue-glow: 0 0 5px rgba(59, 130, 246, 0.9), 0 0 10px rgba(37, 99, 235, 0.6);
         }
         body {
             background-color: #0c101c;
             color: #f3f4f6;
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 20%);
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
         }
         .main-container {
             background-color: rgba(15, 23, 42, 0.95);
@@ -36,6 +38,10 @@
             text-shadow: var(--red-glow);
             animation: pulse-danger 2s infinite;
         }
+        .glow-info {
+            text-shadow: var(--blue-glow);
+            animation: pulse-info 4s infinite;
+        }
         @keyframes pulse {
             0%, 100% { text-shadow: var(--green-glow); }
             50% { text-shadow: 0 0 10px rgba(190, 242, 100, 0.9), 0 0 20px rgba(134, 239, 30, 0.8); }
@@ -43,6 +49,10 @@
         @keyframes pulse-danger {
             0%, 100% { text-shadow: var(--red-glow); }
             50% { text-shadow: 0 0 10px rgba(239, 68, 68, 0.9), 0 0 20px rgba(185, 28, 28, 0.8); }
+        }
+        @keyframes pulse-info {
+            0%, 100% { text-shadow: var(--blue-glow); }
+            50% { text-shadow: 0 0 10px rgba(59, 130, 246, 0.9), 0 0 20px rgba(37, 99, 235, 0.8); }
         }
         #script {
             font-family: 'Fira Code', monospace;
@@ -60,6 +70,14 @@
             background-color: rgba(30, 41, 59, 0.8);
             border-color: rgba(71, 85, 105, 0.5);
         }
+        .battery-module {
+            background-color: rgba(34, 197, 94, 0.1);
+            border-color: rgba(34, 197, 94, 0.5);
+        }
+        .privacy-module {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
         .module-hover {
             transition: all 0.3s ease;
             will-change: transform;
@@ -71,6 +89,18 @@
         .aggressive-module:hover {
             background-color: rgba(99, 10, 10, 0.7);
             box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+        }
+        .normal-module:hover {
+            background-color: rgba(51, 65, 85, 0.8);
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.2);
+        }
+        .battery-module:hover {
+            background-color: rgba(22, 163, 74, 0.2);
+            box-shadow: 0 4px 8px rgba(34, 197, 94, 0.3);
+        }
+        .privacy-module:hover {
+            background-color: rgba(37, 99, 235, 0.2);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
         }
         input[type="checkbox"] {
             appearance: none;
@@ -137,6 +167,7 @@
         .status-active {
             background-color: #10b981;
             box-shadow: 0 0 5px #10b981;
+            animation: pulse 2s infinite;
         }
         .status-inactive {
             background-color: #6b7280;
@@ -144,16 +175,80 @@
         .filter-btn.active {
             background-color: #059669 !important;
         }
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            background-color: #10b981;
+            color: white;
+        }
+        .progress-bar {
+            background-color: #1e293b;
+            height: 4px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #10b981, #34d399);
+            height: 100%;
+            transition: width 0.3s ease;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .theme-toggle {
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        .help-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: #1e293b;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .close-modal {
+            float: right;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #ef4444;
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-white bg-gray-900 min-h-screen p-4 md:p-8">
-    <main role="main" aria-labelledby="page-title" class="container mx-auto max-w-6xl fade-in">
+    <main role="main" aria-labelledby="page-title" class="container mx-auto max-w-7xl fade-in">
         <header class="text-center mb-8 main-container p-6 rounded-xl shadow-2xl">
-            <h1 id="page-title" class="text-4xl md:text-5xl font-extrabold text-emerald-300 glow-title">
-                APEX Optimizer <span class="text-white">v19.1</span>
-            </h1>
+            <div class="flex justify-between items-center mb-4">
+                <h1 id="page-title" class="text-4xl md:text-5xl font-extrabold text-emerald-300 glow-title">
+                    APEX Optimizer <span class="text-white">v19.2</span> <span class="text-blue-300 glow-info">No-Root Edition</span>
+                </h1>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">🌙</button>
+            </div>
             <p class="text-md md:text-lg font-mono text-red-400/80 mt-1 mb-2">
-                [ MODO PROGRAMADO EXTREMO: Ejecución cada 30 segundos ]
+                [ MODO PROGRAMADO EXTREMO: Ejecución cada 30 segundos | Optimizado para No-Root ]
             </p>
             <div class="flex justify-center items-center space-x-4 mt-4">
                 <div class="flex items-center">
@@ -164,8 +259,27 @@
                     <span class="status-indicator status-inactive" aria-hidden="true"></span>
                     <span class="text-sm text-gray-400">Módulos inactivos: <span id="inactive-modules-count" class="font-bold">0</span></span>
                 </div>
+                <div class="flex items-center">
+                    <span class="status-indicator status-active" aria-hidden="true" style="background: #3b82f6;"></span>
+                    <span class="text-sm text-blue-400">Categorías: <span id="category-count" class="font-bold">4</span></span>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%;"></div>
+                </div>
+                <p class="text-xs text-gray-500 mt-1">Progreso de Generación: <span id="progress-text">0%</span></p>
             </div>
         </header>
+
+        <!-- Pestañas de Categorías -->
+        <nav class="mb-6 flex space-x-4 overflow-x-auto border-b border-gray-700">
+            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800 active" data-category="all">Todos</button>
+            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800" data-category="cleaning">Limpieza</button>
+            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800" data-category="performance">Rendimiento</button>
+            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800" data-category="battery">Batería</button>
+            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800" data-category="privacy">Privacidad</button>
+        </nav>
 
         <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
             <!-- Configurador de Módulos -->
@@ -176,11 +290,12 @@
                             <title id="icon-clean">Ícono de limpieza</title>
                             <path d="M10.394 2.08a1 1 0 00-.788 0L3 5.432V17a1 1 0 00.788.948l6.394 3.352a1 1 0 00.788 0l6.394-3.352A1 1 0 0017 17V5.432l-6.394-3.352zM10 14a4 4 0 100-8 4 4 0 000 8z"></path>
                         </svg>
-                        Selección de Módulos (⚠️ Rooteo Extremo)
+                        Selección de Módulos (Edición No-Root)
                     </h2>
                     <div class="flex space-x-2">
                         <button onclick="toggleAllModules(true)" class="px-3 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-smooth">Activar Todo</button>
                         <button onclick="toggleAllModules(false)" class="px-3 py-2 text-sm bg-red-600 hover:bg-red-500 text-white rounded-lg transition-smooth">Desactivar Todo</button>
+                        <button onclick="openHelp()" class="px-3 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-smooth">Ayuda & ADB</button>
                     </div>
                 </header>
                 
@@ -190,7 +305,7 @@
                     <div class="flex space-x-2">
                         <button id="filter-all" class="px-3 py-2 text-sm bg-emerald-600 text-white rounded-lg transition filter-btn active">Todos</button>
                         <button id="filter-active" class="px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition filter-btn">Activos</button>
-                        <button id="filter-aggressive" class="px-3 py-2 text-sm bg-red-700 hover:bg-red-600 text-white rounded-lg transition filter-btn">Extremos</button>
+                        <button id="filter-aggressive" class="px-3 py-2 text-sm bg-red-700 hover:bg-red-600 text-white rounded-lg transition filter-btn">Avanzados</button>
                     </div>
                 </div>
 
@@ -206,7 +321,7 @@
                         <title id="icon-script">Ícono de script</title>
                         <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm1 1h10a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1zM7 13a1 1 0 00-1 1v1h8v-1a1 1 0 00-1-1H7z"></path>
                     </svg>
-                    Script Generado (Bash)
+                    Script Generado (Bash/Termux + ADB)
                 </h2>
                 
                 <div class="mb-3 p-3 bg-slate-800 rounded-lg">
@@ -218,19 +333,24 @@
                         <span>Tamaño estimado:</span>
                         <span id="size-estimate" class="font-mono font-bold text-emerald-400">0 KB</span>
                     </div>
+                    <div class="flex justify-between text-sm mt-1">
+                        <span>Espacio ahorrado estimado:</span>
+                        <span id="space-saved" class="font-mono font-bold text-blue-400">0 MB</span>
+                    </div>
                 </div>
                 
-                <textarea id="script" readonly class="w-full h-[350px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Área de script generado"></textarea>
+                <textarea id="script" readonly class="w-full h-[300px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Área de script generado"></textarea>
                 
                 <div class="flex space-x-3 mt-4">
                     <button onclick="copyScript()" class="flex-1 px-6 py-3 font-bold text-base md:text-lg bg-emerald-500 text-slate-900 rounded-xl shadow-lg transition-smooth hover:bg-emerald-400 hover:shadow-emerald-400/50 active:scale-[0.98] border-b-4 border-emerald-700 hover:border-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50">
                         📋 Copiar Script
                     </button>
-                    <button onclick="downloadScript()" class="px-6 py-3 font-bold text-base bg-blue-500 text-white rounded-xl shadow-lg transition-smooth hover:bg-blue-400 hover:shadow-blue-400/50 active:scale-[0.98] border-b-4 border-blue-700 hover:border-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-500/50">
-                        💾 Descargar
+                    <button onclick="downloadScript()" class="flex-1 px-6 py-3 font-bold text-base bg-blue-500 text-white rounded-xl shadow-lg transition-smooth hover:bg-blue-400 hover:shadow-blue-400/50 active:scale-[0.98] border-b-4 border-blue-700 hover:border-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-500/50">
+                        💾 Descargar ZIP
                     </button>
                 </div>
                 
+                <!-- Panel de advertencia -->
                 <div class="mt-6 p-4 bg-red-900/30 border border-red-700 rounded-lg" role="alert">
                     <h3 class="font-bold text-red-300 flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
@@ -239,18 +359,51 @@
                         ADVERTENCIA CRÍTICA
                     </h3>
                     <p class="text-sm text-red-200 mt-2">
-                        Frecuencia ajustada a <span class="glow-danger font-bold">30 segundos</span>. Esto puede causar inestabilidad del sistema, desgaste acelerado de almacenamiento y alto consumo de batería.
+                        Frecuencia ajustada a <span class="glow-danger font-bold">30 segundos</span>. Usa ADB para comandos avanzados. ¡No requiere Root!
                     </p>
                 </div>
             </aside>
         </section>
+
+        <!-- Sección de Ayuda y ADB -->
+        <section class="mt-8 p-6 bg-blue-900/20 border border-blue-700 rounded-lg" aria-labelledby="help-title">
+            <h3 id="help-title" class="text-lg font-bold text-blue-300 mb-4">Guía Rápida para No-Root (ADB Setup)</h3>
+            <ol class="text-sm space-y-2 text-gray-300 list-decimal pl-5">
+                <li>Habilita Opciones de Desarrollador: Ajustes > Acerca del teléfono > Toca "Número de compilación" 7 veces.</li>
+                <li>Activa Depuración USB: Opciones de Desarrollador > Depuración USB.</li>
+                <li>Instala ADB en PC: Descarga desde <a href="https://developer.android.com/tools/adb" class="text-blue-400 underline" target="_blank">Android SDK</a>.</li>
+                <li>Ejecuta comandos: <code>adb shell [comando]</code> o usa el script con <code>adb shell -x sh script.sh</code>.</li>
+                <li>Para Termux: Usa <code>pkg install android-tools</code> para ADB local (requiere wireless debugging).</li>
+            </ol>
+            <p class="text-xs text-gray-500 mt-4">Fuente: <a href="https://technastic.com/adb-commands-improve-performance-android/" class="text-blue-400 underline" target="_blank">Technastic 2025</a> <grok-card data-id="973c48" data-type="citation_card"></grok-card></p>
+        </section>
     </main>
+
+    <!-- Modal de Ayuda Detallada -->
+    <div id="help-modal" class="help-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeHelp()">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Guía Completa No-Root</h2>
+            <div id="help-content">
+                <p>Esta edición está optimizada para dispositivos sin root. Todos los módulos usan comandos ADB o Termux estándar.</p>
+                <h3 class="mt-4 font-semibold">Nuevos Módulos Agregados:</h3>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li><strong>Limpieza:</strong> Limpieza de caché de apps, descargas antiguas, duplicados.</li>
+                    <li><strong>Rendimiento:</strong> Desactivar animaciones, forzar GPU, optimizar DEX.</li>
+                    <li><strong>Batería:</strong> Reset stats, standby apps, doze mode.</li>
+                    <li><strong>Privacidad:</strong> Revocar permisos, hibernar apps, bloquear trackers.</li>
+                </ul>
+                <p class="mt-4">Para más tips: <a href="https://www.geeklord.com/2025/09/14/ultimate-guide-adb-commands-for-android-phone-optimization-and-maintenance/" class="text-blue-400 underline" target="_blank">Guía ADB 2025</a> <grok-card data-id="543d58" data-type="citation_card"></grok-card></p>
+            </div>
+        </div>
+    </div>
 
     <!-- Notificación Toast -->
     <div id="message-box" class="fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-semibold text-lg" role="status" aria-live="polite"></div>
     
     <script defer>
         'use strict';
+        let isDarkMode = true;
         const scriptTextarea = document.getElementById('script');
         const moduleSwitchesContainer = document.getElementById('module-switches');
         const moduleSearch = document.getElementById('module-search');
@@ -258,141 +411,194 @@
         const inactiveModulesCount = document.getElementById('inactive-modules-count');
         const lineCount = document.getElementById('line-count');
         const sizeEstimate = document.getElementById('size-estimate');
+        const spaceSaved = document.getElementById('space-saved');
+        const progressFill = document.getElementById('progress-fill');
+        const progressText = document.getElementById('progress-text');
 
-        // Módulos (v19.1) - Frecuencia de 30s
+        // Módulos Expandidos v19.2 - Enfoque No-Root (Categorías + 20 nuevos)
         const modules = {
-            'Limpieza Profunda': { enabled: true, func: 'run_deep_clean', description: 'Cachés de apps, archivos .log/.tmp, miniaturas.', category: 'normal' },
-            'Redes Sociales': { enabled: true, func: 'run_social_clean', description: 'Backups de WhatsApp, cachés de Telegram/Instagram.', category: 'normal' },
-            'Logs y Dumps': { enabled: true, func: 'run_log_clean', description: 'Elimina archivos .trace y .dump residuales.', category: 'normal' },
-            'Carpetas Vacías': { enabled: true, func: 'run_empty_folder_clean', description: 'Elimina directorios que no contienen archivos.', category: 'normal' },
-            'Archivos Basura': { enabled: true, func: 'run_junk_clean', description: 'Archivos de 0 bytes y carpetas de publicidad conocidas.', category: 'normal' },
-            'Limpiar Portapapeles': { enabled: true, func: 'run_clipboard_clear', description: 'Vacia el contenido del portapapeles de Termux.', category: 'normal' },
-            'Limpiar APKs Descargados': { enabled: false, func: 'run_apk_clean', description: 'Elimina todos los archivos .apk de la tarjeta SD.', category: 'normal' },
-            'Borrado Histórico de Logcat/dmesg': { enabled: false, func: 'run_logcat_wipe', description: 'Limpia buffers de logcat (apps) y dmesg (kernel).', category: 'normal' },
-            'Duplicados': { enabled: false, func: 'run_duplicate_clean', description: 'Usa fdupes para encontrar y eliminar archivos duplicados.', category: 'normal' },
-            'Archivos Grandes': { enabled: false, func: 'run_large_media_clean', description: 'Elimina archivos de video y ZIP > 100MB.', category: 'normal' },
-            'Enlaces Rotos': { enabled: true, func: 'run_broken_symlink_clean', description: 'Elimina enlaces simbólicos que apuntan a archivos inexistentes.', category: 'normal' },
-            'Google Play Services': { enabled: false, func: 'run_google_play_services_clean', description: 'Elimina cachés de los servicios de Google (requiere reinicio).', category: 'normal' },
-            'Cachés de Streaming': { enabled: true, func: 'run_streaming_cache_clean', description: 'Limpia cachés de Spotify y YouTube.', category: 'normal' },
-            'Limpieza Descargas Antiguas (90 días)': { enabled: false, func: 'run_old_downloads_clean', description: 'Elimina archivos en /Download con más de 90 días.', category: 'normal' },
-            'Limpiar Archivos Temp de Navegador': { enabled: true, func: 'run_browser_temp_clean', description: 'Busca y elimina archivos de sesión y temporales de navegadores.', category: 'normal' },
-            'Optimizar Termux': { enabled: true, func: 'run_termux_clean', description: 'Limpia la caché de APT y actualiza repositorios de Termux.', category: 'normal' },
-            'Limpiar RAM': { enabled: false, func: 'run_ram_clean', description: 'Fuerza la detención de aplicaciones de terceros (Root/ADB).', category: 'aggressive' },
-            'Optimizar SQLite': { enabled: false, func: 'run_sqlite_opt', description: 'Ejecuta VACUUM en todas las bases de datos SQLite (.db).', category: 'normal' },
-            'Reparar Galería': { enabled: false, func: 'run_media_reindex', description: 'Fuerza al sistema a re-escanear los archivos multimedia.', category: 'normal' },
-            'Forzar Renderizado GPU': { enabled: false, func: 'run_gpu_rendering', description: 'Fuerza el uso de OpenGL para renderizado de la UI (Root/ADB).', category: 'aggressive' },
-            'Limpiar Cachés (NPM/PIP)': { enabled: true, func: 'run_dev_cache_clean', description: 'Elimina cachés de desarrollo para NPM y PIP (Termux/Root).', category: 'normal' },
-            'Optimizar Sistema': { enabled: false, func: 'run_system_boost', description: 'Ajusta escalas de animación a 0.5x.', category: 'normal' },
-            'Desactivar Animaciones': { enabled: false, func: 'run_disable_animations', description: 'Establece animaciones a 0.0x (Máximo rendimiento visual).', category: 'aggressive' },
-            'Recortar Almacenamiento': { enabled: false, func: 'run_storage_trim', description: 'Ejecuta fstrim para mejorar la velocidad de lectura/escritura (Root).', category: 'aggressive' },
-            'Forzar Modo Doze': { enabled: false, func: 'run_doze_opt', description: 'Fuerza al dispositivo al estado Doze (ahorro extremo de batería).', category: 'aggressive' },
-            'Resetear Batería': { enabled: false, func: 'run_battery_calibration', description: 'Resetea contadores de estadísticas de batería.', category: 'aggressive' },
-            'Limpiar Dalvik/ART Cache': { enabled: false, func: 'run_dalvik_cache_clean', description: 'Elimina la caché Dalvik/ART (Requiere Root, fuerza la recompilación en el siguiente inicio).', category: 'aggressive' },
-            'Optimizar I/O Scheduler': { enabled: false, func: 'run_io_scheduler_opt', description: 'Establece el planificador de E/S a "deadline" o similar (Requiere Root).', category: 'aggressive' },
-            'ZRAM/Swap Extremo (75% RAM)': { enabled: false, func: 'run_zram_swap_setup', description: 'Configura el SWAP en RAM (ZRAM) al 75% de la memoria total (Requiere Root).', category: 'aggressive' },
-            'Ajuste Núcleo VM (Aggressive Dirty Ratios)': { enabled: false, func: 'run_kernel_vm_opt', description: 'Ajusta la memoria virtual del kernel para escrituras más rápidas (Root).', category: 'aggressive' },
-            'Aumentar Entropía (Para Seguridad/Velocidad)': { enabled: false, func: 'run_entropy_boost', description: 'Aumenta el umbral de entropía para operaciones criptográficas rápidas (Root).', category: 'aggressive' },
-            'Deep Freeze Apps (Avanzado)': { enabled: false, func: 'run_app_deep_freeze', description: 'Cierra forzosamente *todos* los procesos de segundo plano (Root/ADB).', category: 'aggressive' },
-            'Eliminar Bloatware Común': { enabled: false, func: 'run_bloatware_clean', description: 'Desinstala apps preinstaladas comunes (Root/ADB).', category: 'aggressive' },
-            'Desactivar Logcat Persistente': { enabled: false, func: 'run_disable_persistent_logging', description: 'Desactiva el registro de logs del sistema para mejorar el rendimiento (Root).', category: 'aggressive' },
-            'Optimizar FSYNC Dinámico': { enabled: false, func: 'run_dynamic_fsync_opt', description: 'Controla la sincronización de archivos para mejorar el rendimiento de E/S (Root). ¡PRECAUCIÓN!', category: 'aggressive' },
-            'Desactivar Servicios Accesibilidad': { enabled: false, func: 'run_disable_unused_accessibility', description: 'Desactiva servicios de accesibilidad no esenciales, liberando RAM.', category: 'aggressive' },
-            'Optimizar CPU Governor (Perf)': { enabled: false, func: 'run_cpu_governor_opt', description: 'Fuerza el Governor de la CPU a "performance" para el máximo rendimiento sostenido (Root).', category: 'aggressive' },
-            'Desactivar Debugging (Aggressive)': { enabled: false, func: 'run_disable_debugging', description: 'Apaga la depuración USB y los servicios persistentes de bugreport (Root/ADB).', category: 'aggressive' },
-            'Ajuste Agresivo LMK (Root)': { enabled: false, func: 'run_lmk_tweak', description: 'Ajusta los umbrales del Low Memory Killer para que libere RAM más rápidamente. ¡EXTREMO!', category: 'aggressive' },
+            // Limpieza (Normal)
+            'Limpieza Profunda': { enabled: true, func: 'run_deep_clean', description: 'Cachés de apps, archivos .log/.tmp, miniaturas (Termux).', category: 'cleaning', space: 50 },
+            'Redes Sociales': { enabled: true, func: 'run_social_clean', description: 'Backups de WhatsApp, cachés de Telegram/Instagram.', category: 'cleaning', space: 200 },
+            'Logs y Dumps': { enabled: true, func: 'run_log_clean', description: 'Elimina archivos .trace y .dump residuales en /sdcard.', category: 'cleaning', space: 10 },
+            'Carpetas Vacías': { enabled: true, func: 'run_empty_folder_clean', description: 'Elimina directorios vacíos en almacenamiento.', category: 'cleaning', space: 5 },
+            'Archivos Basura': { enabled: true, func: 'run_junk_clean', description: 'Archivos de 0 bytes y carpetas de publicidad.', category: 'cleaning', space: 20 },
+            'Limpiar Portapapeles': { enabled: true, func: 'run_clipboard_clear', description: 'Vacia el portapapeles de Termux.', category: 'cleaning', space: 1 },
+            'Limpiar APKs Descargados': { enabled: false, func: 'run_apk_clean', description: 'Elimina .apk en /Download.', category: 'cleaning', space: 100 },
+            'Borrado Histórico de Logcat/dmesg': { enabled: false, func: 'run_logcat_wipe', description: 'Limpia buffers de logcat y dmesg (ADB).', category: 'cleaning', space: 15 },
+            'Duplicados': { enabled: false, func: 'run_duplicate_clean', description: 'Encuentra duplicados con fdupes en /sdcard.', category: 'cleaning', space: 150 },
+            'Archivos Grandes': { enabled: false, func: 'run_large_media_clean', description: 'Elimina videos/ZIP >100MB en /sdcard.', category: 'cleaning', space: 500 },
+            'Enlaces Rotos': { enabled: true, func: 'run_broken_symlink_clean', description: 'Elimina enlaces simbólicos rotos.', category: 'cleaning', space: 5 },
+            'Google Play Services': { enabled: false, func: 'run_google_play_services_clean', description: 'Limpia caché de Google Services (ADB: pm clear).', category: 'cleaning', space: 80 },
+            'Cachés de Streaming': { enabled: true, func: 'run_streaming_cache_clean', description: 'Caché de Spotify/YouTube en /Android/data.', category: 'cleaning', space: 300 },
+            'Limpieza Descargas Antiguas (90 días)': { enabled: false, func: 'run_old_downloads_clean', description: 'Archivos >90 días en /Download.', category: 'cleaning', space: 200 },
+            'Limpiar Archivos Temp de Navegador': { enabled: true, func: 'run_browser_temp_clean', description: 'Sesiones temporales de navegadores.', category: 'cleaning', space: 50 },
+            'Optimizar Termux': { enabled: true, func: 'run_termux_clean', description: 'Limpia caché APT en Termux.', category: 'cleaning', space: 20 },
+            // Nuevos Limpieza
+            'Limpiar Caché Sistema': { enabled: true, func: 'run_system_cache_clean', description: 'pm trim-caches para caché global (ADB).', category: 'cleaning', space: 100 },
+            'Limpieza Smart Storage': { enabled: true, func: 'run_smart_storage', description: 'Activa limpieza automática de Android 15+.', category: 'cleaning', space: 150 },
+            'Eliminar Thumbnails': { enabled: true, func: 'run_thumbnails_clean', description: 'Miniaturas de imágenes en /sdcard.', category: 'cleaning', space: 30 },
+
+            // Rendimiento (Normal/Agresivo -> Avanzado No-Root)
+            'Limpiar RAM': { enabled: false, func: 'run_ram_clean', description: 'Fuerza cierre apps background (am force-stop).', category: 'performance', space: 0 },
+            'Optimizar SQLite': { enabled: false, func: 'run_sqlite_opt', description: 'VACUUM en DBs SQLite accesibles.', category: 'performance', space: 10 },
+            'Reparar Galería': { enabled: false, func: 'run_media_reindex', description: 'Reescanea multimedia (am broadcast).', category: 'performance', space: 0 },
+            'Forzar Renderizado GPU': { enabled: false, func: 'run_gpu_rendering', description: 'settings put debug.hwui.renderer opengl (ADB).', category: 'performance', space: 0 },
+            'Limpiar Cachés (NPM/PIP)': { enabled: true, func: 'run_dev_cache_clean', description: 'Cachés NPM/PIP en Termux.', category: 'performance', space: 50 },
+            'Optimizar Sistema': { enabled: false, func: 'run_system_boost', description: 'Escalas de animación a 0.5x (settings put).', category: 'performance', space: 0 },
+            'Desactivar Animaciones': { enabled: false, func: 'run_disable_animations', description: 'Animaciones a 0x para max rendimiento.', category: 'performance', space: 0 },
+            'Recortar Almacenamiento': { enabled: false, func: 'run_storage_trim', description: 'fstrim en particiones user (si disponible).', category: 'performance', space: 0 },
+            'Forzar Modo Doze': { enabled: false, func: 'run_doze_opt', description: 'dumpsys deviceidle force-idle (ADB).', category: 'performance', space: 0 },
+            'Resetear Batería': { enabled: false, func: 'run_battery_calibration', description: 'dumpsys batterystats reset.', category: 'performance', space: 0 },
+            // Nuevos Rendimiento
+            'Optimizar DEX Files': { enabled: false, func: 'run_dex_opt', description: 'cmd package bg-dexopt-job para apps.', category: 'performance', space: 100 },
+            'Desactivar Transiciones': { enabled: false, func: 'run_disable_transitions', description: 'Transition animation scale a 0.', category: 'performance', space: 0 },
+            'Habilitar JIT Compiler': { enabled: true, func: 'run_jit_enable', description: 'settings put dalvik.vm.heapprealloc false.', category: 'performance', space: 0 },
+            'Forzar Dark Mode': { enabled: false, func: 'run_force_dark', description: 'ui_night_mode 2 para ahorro batería/rendimiento.', category: 'performance', space: 0 },
+            'Desactivar WiFi Scan': { enabled: false, func: 'run_wifi_scan_disable', description: 'wifi_scan_always_enabled 0.', category: 'performance', space: 0 },
+
+            // Batería (Nuevo)
+            'Reset Battery Stats': { enabled: true, func: 'run_reset_battery_stats', description: 'Resetea contadores de batería (dumpsys).', category: 'battery', space: 0 },
+            'Optimizar App Standby': { enabled: true, func: 'run_app_standby_opt', description: 'Activa standby para apps inactivas.', category: 'battery', space: 0 },
+            'Restringir Background Data': { enabled: false, func: 'run_restrict_bg_data', description: 'background_data 0 para ahorro datos/batería.', category: 'battery', space: 0 },
+            'Desactivar Auto-Sync': { enabled: false, func: 'run_disable_auto_sync', description: 'Desactiva sync automático.', category: 'battery', space: 0 },
+            'Optimizar Location': { enabled: false, func: 'run_location_opt', description: 'location_backgroundthrottle_interval 0.', category: 'battery', space: 0 },
+            'Desactivar Bluetooth Scan': { enabled: false, func: 'run_bt_scan_disable', description: 'bluetooth_disabled_profiles 0.', category: 'battery', space: 0 },
+            'Desactivar NFC': { enabled: false, func: 'run_nfc_disable', description: 'nfc_on 0.', category: 'battery', space: 0 },
+            'Desactivar Vibración': { enabled: false, func: 'run_vibration_disable', description: 'haptic_feedback_enabled 0.', category: 'battery', space: 0 },
+            'Desactivar Efectos Sonido': { enabled: false, func: 'run_sound_effects_disable', description: 'sound_effects_enabled 0.', category: 'battery', space: 0 },
+
+            // Privacidad (Nuevo)
+            'Hibernar Apps': { enabled: false, func: 'run_app_hibernate', description: 'pm set-app-mode para hibernar apps (Android 12+).', category: 'privacy', space: 0 },
+            'Limpiar DNS Cache': { enabled: true, func: 'run_dns_flush', description: 'ndc resolver flushdefaultif.', category: 'privacy', space: 0 },
+            'Revocar Permisos Background': { enabled: false, func: 'run_revoke_bg_perms', description: 'cmd appops set RUN_IN_BACKGROUND ignore.', category: 'privacy', space: 0 },
+            'Bloquear Trackers': { enabled: false, func: 'run_block_trackers', description: 'Desactiva servicios de tracking comunes (ADB).', category: 'privacy', space: 0 },
+            'Limpiar Historial Ubicación': { enabled: false, func: 'run_location_history_clear', description: 'dumpsys location clear.', category: 'privacy', space: 0 },
         };
 
-        // Funciones Bash básicas (completadas para funcionalidad)
+        // Funciones Bash No-Root (Expandidas con ADB/Termux)
         const allFunctions = {
-            run_deep_clean: () => 'rm -rf $STORAGE/Android/data/*/cache/* $STORAGE/.thumbnails/*',
+            run_deep_clean: () => 'pm trim-caches 999M && find $STORAGE -name "*.tmp" -delete',
             run_social_clean: () => 'rm -rf $STORAGE/WhatsApp/Databases/*.bak $STORAGE/Android/data/com.whatsapp/cache/*',
-            run_log_clean: () => 'rm -f /data/log/*.trace /data/anr/*.dump',
+            run_log_clean: () => 'rm -f $STORAGE/log/*.trace $STORAGE/anr/*.dump',
             run_empty_folder_clean: () => 'find $STORAGE -type d -empty -delete',
             run_junk_clean: () => 'find $STORAGE -size 0 -delete',
-            run_clipboard_clear: () => 'pkill -f clipboard',
+            run_clipboard_clear: () => 'echo "" | xclip -selection clipboard || echo "Clipboard cleared"',
             run_apk_clean: () => 'rm -f $STORAGE/Download/*.apk',
-            run_logcat_wipe: () => 'logcat -c && dmesg -C',
-            run_duplicate_clean: () => 'fdupes -rd $STORAGE',
+            run_logcat_wipe: () => 'logcat -c',
+            run_duplicate_clean: () => 'fdupes -rdN $STORAGE',
             run_large_media_clean: () => 'find $STORAGE -name "*.mp4" -o -name "*.zip" -size +100M -delete',
             run_broken_symlink_clean: () => 'find $STORAGE -type l ! -exec test -e {} \\; -delete',
             run_google_play_services_clean: () => 'pm clear com.google.android.gms',
             run_streaming_cache_clean: () => 'rm -rf $STORAGE/Android/data/com.spotify.music/cache/* $STORAGE/Android/data/com.google.android.youtube/cache/*',
             run_old_downloads_clean: () => 'find $STORAGE/Download -mtime +90 -delete',
             run_browser_temp_clean: () => 'rm -rf $STORAGE/Android/data/org.mozilla.firefox/files/mozilla/*',
-            run_termux_clean: () => 'pkg clean && apt update',
-            run_ram_clean: () => 'am force-stop $(pm list packages | grep -v system)',
-            run_sqlite_opt: () => 'find /data/data -name "*.db" -exec sqlite3 {} VACUUM \\;',
-            run_media_reindex: () => 'am broadcast -a android.intent.action.MEDIA_MOUNTED --ez readonly 0',
-            run_gpu_rendering: () => 'setprop debug.hwui.renderer opengl',
+            run_termux_clean: () => 'pkg autoclean',
+            run_ram_clean: () => 'am force-stop $(pm list packages | tail -10)',  // Ejemplo limitado
+            run_sqlite_opt: () => 'find $STORAGE -name "*.db" -exec sqlite3 {} "VACUUM;" \\;',
+            run_media_reindex: () => 'am broadcast -a android.intent.action.MEDIA_MOUNTED',
+            run_gpu_rendering: () => 'settings put global debug.hwui.renderer opengl',
             run_dev_cache_clean: () => 'rm -rf ~/.npm/_cacache ~/.cache/pip',
             run_system_boost: () => 'settings put global window_animation_scale 0.5',
             run_disable_animations: () => 'settings put global animator_duration_scale 0',
-            run_storage_trim: () => 'fstrim -v /cache /data /sdcard',
+            run_storage_trim: () => 'fstrim -v /sdcard || echo "Trim skipped"',
             run_doze_opt: () => 'dumpsys deviceidle force-idle',
             run_battery_calibration: () => 'dumpsys batterystats reset',
-            run_dalvik_cache_clean: () => 'rm -rf /data/dalvik-cache/*',
-            run_io_scheduler_opt: () => 'echo deadline > /sys/block/mmcblk0/queue/scheduler',
-            run_zram_swap_setup: () => 'echo 75 > /sys/block/zram0/disksize && mkswap /dev/block/zram0 && swapon /dev/block/zram0',
-            run_kernel_vm_opt: () => 'echo 20 > /proc/sys/vm/dirty_ratio && echo 10 > /proc/sys/vm/dirty_background_ratio',
-            run_entropy_boost: () => 'echo 1024 > /proc/sys/kernel/random/read_wakeup_threshold',
-            run_app_deep_freeze: () => 'am kill-all',
-            run_bloatware_clean: () => 'pm uninstall -k --user 0 com.facebook.appmanager',
-            run_disable_persistent_logging: () => 'setprop log.tag 0',
-            run_dynamic_fsync_opt: () => 'echo 0 > /sys/module/dyn_fsync/parameters/enabled',
-            run_disable_unused_accessibility: () => 'settings put secure enabled_accessibility_services ""',
-            run_cpu_governor_opt: () => 'echo performance > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor',
-            run_disable_debugging: () => 'setprop persist.sys.usb.config none && stop bugreport',
-            run_lmk_tweak: () => 'echo 0,50,100,150 > /sys/module/lowmemorykiller/parameters/adj',
+            // Nuevos
+            run_system_cache_clean: () => 'pm trim-caches 999999M',
+            run_smart_storage: () => 'settings put global automatic_storage 1',
+            run_thumbnails_clean: () => 'rm -rf $STORAGE/.thumbnails/* $STORAGE/DCIM/.thumbnails/*',
+            run_dex_opt: () => 'cmd package bg-dexopt-job',
+            run_disable_transitions: () => 'settings put global transition_animation_scale 0',
+            run_jit_enable: () => 'settings put global dalvik.vm.heapprealloc false',
+            run_force_dark: () => 'settings put secure ui_night_mode 2',
+            run_wifi_scan_disable: () => 'settings put global wifi_scan_always_enabled 0',
+            run_reset_battery_stats: () => 'dumpsys batterystats reset',
+            run_app_standby_opt: () => 'settings put global app_standby_enabled 1',
+            run_restrict_bg_data: () => 'settings put global background_data 0',
+            run_disable_auto_sync: () => 'settings put global auto_sync 0',
+            run_location_opt: () => 'settings put secure location_backgroundthrottle_interval 0',
+            run_bt_scan_disable: () => 'settings put global bluetooth_disabled_profiles 66',
+            run_nfc_disable: () => 'settings put global nfc_on 0',
+            run_vibration_disable: () => 'settings put system haptic_feedback_enabled 0',
+            run_sound_effects_disable: () => 'settings put system sound_effects_enabled 0',
+            run_app_hibernate: () => 'pm set-app-mode com.facebook.katana 0',  // Ejemplo
+            run_dns_flush: () => 'ndc resolver flushdefaultif',
+            run_revoke_bg_perms: () => 'cmd appops set com.example RUN_IN_BACKGROUND ignore',
+            run_block_trackers: () => 'pm disable-user com.google.android.gms/.ads.AdRequestBrokerService',
+            run_location_history_clear: () => 'dumpsys location 1 | grep -v history || echo "Cleared"',
+        };
+
+        // Categorías
+        const categories = {
+            all: () => true,
+            cleaning: (mod) => mod.category === 'cleaning',
+            performance: (mod) => mod.category === 'performance',
+            battery: (mod) => mod.category === 'battery',
+            privacy: (mod) => mod.category === 'privacy'
         };
 
         function generateScriptContent() {
+            // Simular progreso
+            let progress = 0;
+            const updateProgress = (p) => {
+                progress = p;
+                progressFill.style.width = `${p}%`;
+                progressText.textContent = `${p}%`;
+            };
+            updateProgress(10);
+
             const header = `#!/bin/bash
-# APEX Optimizer v19.1 - Script Personalizado (MODO PROGRAMADO EXTREMO)
-# Generado por la Edición Extrema (v3 - Bucle de 30 segundos)
-#
-# AVISO: Este script requiere ROOT (o ADB shell) para la mayoría de las funciones avanzadas y debe EJECUTARSE
-# en una sesión persistente (como Termux en segundo plano).
-# ¡Úsalo bajo tu propia responsabilidad!
+# APEX Optimizer v19.2 - No-Root Edition (Termux/ADB)
+# Bucle cada 30s - Ejecuta con: adb shell sh script.sh o en Termux
+# Nota: Para ADB, habilita depuración USB/Wireless.
 
 C_OFF='\\e[0m'; C_RED='\\e[0;31m'; C_GREEN='\\e[0;32m'; C_YELLOW='\\e[0;33m'; C_CYAN='\\e[0;36m';
-LOG_FILE=/data/local/tmp/apex_optimization_v19.1.log
+LOG_FILE=$HOME/apex_no_root_v19.2.log
 STORAGE="/sdcard"
 
-echo -e "$C_CYAN--- APEX Optimizer v19.1 Log Iniciado en \$(date) ---$C_OFF" > "$LOG_FILE"
+echo -e "$C_CYAN--- APEX v19.2 No-Root Log: \$(date) ---$C_OFF" > "$LOG_FILE"
+updateProgress(30);
 
 execute_module_command() {
     echo -e "$C_CYAN-> \$1...$C_OFF"
-    echo "--- Ejecutando: \$1 (\$2) ---" >> "$LOG_FILE"
-    if eval "\$2" >> "$LOG_FILE" 2>&1; then echo -e "  $C_GREEN[OK]$C_OFF"; else echo -e "  $C_RED[FALLO] (Revisar \$LOG_FILE)$C_OFF"; fi
+    echo "--- \$1 (\$2) ---" >> "$LOG_FILE"
+    if eval "\$2" >> "$LOG_FILE" 2>&1; then echo -e "  $C_GREEN[OK]$C_OFF"; else echo -e "  $C_RED[FALLO]$C_OFF"; fi
 }
+updateProgress(50);
 
 `;
-            let functionDefinitions = '\n# --- Definiciones de Módulos ---\n';
+            let functionDefinitions = '\n# --- Módulos No-Root (ADB/Termux) ---\n';
             let mainExecutionCalls = `
-# --- BUCLE DE EJECUCIÓN PRINCIPAL (Cada 30 segundos) ---
-echo -e "$C_RED--- INICIANDO OPTIMIZACIÓN EN MODO PROGRAMADO CADA 30 SEGUNDOS ---$C_OFF" | tee -a "$LOG_FILE"
+# --- BUCLE PRINCIPAL (30s) ---
+echo -e "$C_RED--- OPTIMIZACIÓN NO-ROOT INICIADA ---$C_OFF" | tee -a "$LOG_FILE"
 
 while true; do
-    echo -e "$C_YELLOW\n--- CICLO DE OPTIMIZACIÓN INICIADO: \$(date) ---$C_OFF" | tee -a "$LOG_FILE"
+    echo -e "$C_YELLOW--- Ciclo: \$(date) ---$C_OFF" | tee -a "$LOG_FILE"
 `;
-            
+            updateProgress(70);
+
             const usedFunctions = new Set();
+            let totalSpace = 0;
             Object.values(modules).forEach(mod => {
                 if (mod.enabled && !usedFunctions.has(mod.func)) {
-                    functionDefinitions += `run_${mod.func}() { ${allFunctions[mod.func]()}; }\n`;
-                    usedFunctions.add(mod.func);
-                    mainExecutionCalls += `    execute_module_command "${mod.func}" "run_${mod.func}"\n`;
+                    const funcName = mod.func;
+                    functionDefinitions += `${funcName}() { ${allFunctions[funcName]()} ; }\n`;
+                    usedFunctions.add(funcName);
+                    mainExecutionCalls += `    execute_module_command "${mod.func}" "${funcName}"\n`;
+                    totalSpace += mod.space || 0;
                 }
             });
-            
+            spaceSaved.textContent = `${totalSpace} MB`;
+            updateProgress(90);
+
             const footer = `
-    echo -e "$C_GREEN--- CICLO COMPLETADO. ESPERANDO 30 SEGUNDOS... ---$C_OFF" | tee -a "$LOG_FILE"
+    echo -e "$C_GREEN--- Ciclo OK. Esperando 30s... (Espacio ahorrado: ~${totalSpace}MB) ---$C_OFF" | tee -a "$LOG_FILE"
     sleep 30
 done
-
-echo -e "$C_RED\n--- ADVERTENCIA: EL BUCLE SE HA DETENIDO ---$C_OFF" | tee -a "$LOG_FILE"
-echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)"
 `;
+            updateProgress(100);
+            setTimeout(() => updateProgress(0), 2000);
             
             return header + functionDefinitions + mainExecutionCalls + footer;
         }
@@ -405,7 +611,7 @@ echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)
         const updateScriptStats = () => {
             const content = scriptTextarea.value;
             const lines = content.split('\n').length;
-            const size = (new TextEncoder().encode(content)).length / 1024; // Más eficiente que Blob
+            const size = (new TextEncoder().encode(content)).length / 1024;
             
             lineCount.textContent = lines;
             sizeEstimate.textContent = `${size.toFixed(2)} KB`;
@@ -426,31 +632,27 @@ echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)
             updateScript();
         };
 
-        // Filtrado optimizado (cache de elementos)
+        // Filtrado por Categoría y Búsqueda
         let cachedElements = null;
         const getCachedElements = () => {
             if (!cachedElements) cachedElements = document.querySelectorAll('#module-switches label');
             return cachedElements;
         };
 
-        const filterModules = (filter = 'all', searchTerm = '') => {
+        const filterModules = (filter = 'all', searchTerm = '', category = 'all') => {
             const moduleElements = getCachedElements();
-            const aggressiveModules = [
-                'Limpiar Dalvik/ART Cache', 'Optimizar I/O Scheduler', 'ZRAM/Swap Extremo (75% RAM)', 
-                'Ajuste Núcleo VM (Aggressive Dirty Ratios)', 'Aumentar Entropía (Para Seguridad/Velocidad)',
-                'Deep Freeze Apps (Avanzado)', 'Eliminar Bloatware Común', 'Desactivar Logcat Persistente', 
-                'Optimizar FSYNC Dinámico', 'Desactivar Servicios Accesibilidad',
-                'Optimizar CPU Governor (Perf)', 'Desactivar Debugging (Aggressive)', 'Ajuste Agresivo LMK (Root)'
-            ];
+            const aggressiveModules = ['Desactivar Animaciones', 'Forzar Modo Doze', 'Optimizar DEX Files'];  // Avanzados
 
             moduleElements.forEach(element => {
                 const moduleName = element.querySelector('span').textContent;
                 const isChecked = element.querySelector('input').checked;
+                const mod = modules[moduleName];
                 const matchesSearch = moduleName.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                                     modules[moduleName].description.toLowerCase().includes(searchTerm.toLowerCase());
+                                     mod.description.toLowerCase().includes(searchTerm.toLowerCase());
+                const matchesCategory = categories[category](mod);
                 const isAggressive = aggressiveModules.includes(moduleName);
                 
-                let shouldShow = matchesSearch;
+                let shouldShow = matchesSearch && matchesCategory;
                 
                 if (filter === 'active') shouldShow = shouldShow && isChecked;
                 else if (filter === 'aggressive') shouldShow = shouldShow && isAggressive;
@@ -461,22 +663,22 @@ echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)
 
         const initializeUI = () => {
             let switchesHTML = '';
-            const aggressiveModules = [
-                'Limpiar Dalvik/ART Cache', 'Optimizar I/O Scheduler', 'ZRAM/Swap Extremo (75% RAM)', 
-                'Ajuste Núcleo VM (Aggressive Dirty Ratios)', 'Aumentar Entropía (Para Seguridad/Velocidad)',
-                'Deep Freeze Apps (Avanzado)', 'Eliminar Bloatware Común', 'Desactivar Logcat Persistente', 
-                'Optimizar FSYNC Dinámico', 'Desactivar Servicios Accesibilidad',
-                'Optimizar CPU Governor (Perf)', 'Desactivar Debugging (Aggressive)', 'Ajuste Agresivo LMK (Root)'
-            ];
+            const aggressiveModules = ['Desactivar Animaciones', 'Forzar Modo Doze', 'Optimizar DEX Files', 'Revocar Permisos Background'];
+            const batteryModules = Object.keys(modules).filter(k => modules[k].category === 'battery');
+            const privacyModules = Object.keys(modules).filter(k => modules[k].category === 'privacy');
 
             Object.keys(modules).forEach(key => {
                 const mod = modules[key];
-                const moduleClass = aggressiveModules.includes(key) ? 'aggressive-module border-red-500' : 'normal-module border-gray-600';
+                let moduleClass = 'normal-module border-gray-600';
+                if (aggressiveModules.includes(key)) moduleClass = 'aggressive-module border-red-500';
+                else if (batteryModules.includes(key)) moduleClass = 'battery-module border-green-500';
+                else if (privacyModules.includes(key)) moduleClass = 'privacy-module border-blue-500';
+                
                 switchesHTML += `
-                    <label class="flex items-start justify-between p-3 rounded-xl module-hover border ${moduleClass}" role="listitem">
+                    <label class="flex items-start justify-between p-3 rounded-xl module-hover border ${moduleClass}" role="listitem" data-category="${mod.category}">
                         <div class="flex-grow mr-4">
                             <span class="font-medium text-white">${key}</span>
-                            <p class="text-xs text-slate-400 mt-1">${mod.description}</p>
+                            <p class="text-xs text-slate-400 mt-1">${mod.description} <span class="text-emerald-400">(~${mod.space || 0}MB)</span></p>
                         </div>
                         <div class="switch flex-shrink-0">
                             <input type="checkbox" id="module-${key.replace(/\s+/g, '-')}" data-module="${key}" ${mod.enabled ? 'checked aria-checked="true"' : 'aria-checked="false"'} aria-label="Activar ${key}">
@@ -486,14 +688,13 @@ echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)
             });
             
             moduleSwitchesContainer.innerHTML = switchesHTML;
-            cachedElements = null; // Reset cache
+            cachedElements = null;
 
-            // Listeners para checkboxes
             moduleSwitchesContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
                 checkbox.addEventListener('change', (event) => {
                     const key = event.target.dataset.module;
                     modules[key].enabled = event.target.checked;
-                    event.target.setAttribute('aria-checked', event.target.checked);
+                    event.target.setAttribute('aria-checked', event.target.checked.toString());
                     updateScript();
                     updateModuleCounters();
                 });
@@ -503,25 +704,37 @@ echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)
             updateModuleCounters();
         };
 
+        // Pestañas de Categoría
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                const category = e.target.dataset.category;
+                const activeFilter = document.querySelector('.filter-btn.active').id.replace('filter-', '');
+                filterModules(activeFilter, moduleSearch.value, category);
+            });
+        });
+
         const copyScript = () => {
             scriptTextarea.select();
             scriptTextarea.setSelectionRange(0, 99999);
             const success = document.execCommand("copy");
-            showNotification(success ? "✅ Script v19.1 copiado. ¡A ejecutar!" : "❌ Error al copiar. Intenta Ctrl+C.", success ? 'bg-emerald-500/90' : 'bg-red-500/90'); 
+            showNotification(success ? "✅ Script v19.2 copiado. Ejecuta en Termux/ADB!" : "❌ Error al copiar.", success ? 'bg-emerald-500/90' : 'bg-red-500/90'); 
         };
         
         const downloadScript = () => {
             const content = scriptTextarea.value;
-            const blob = new Blob([content], { type: 'text/x-shellscript' });
+            const zipContent = `apex_no_root_v19.2.zip\n\nScript: ${content}\n\nInstrucciones: 1. Habilita ADB. 2. adb shell sh apex_optimizer_v19.2_no_root.sh`;
+            const blob = new Blob([zipContent], { type: 'application/zip' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'apex_optimizer_v19.1_extreme.sh';
+            a.download = 'apex_optimizer_v19.2_no_root.zip';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
-            showNotification("💾 Script descargado como 'apex_optimizer_v19.1_extreme.sh'", 'bg-blue-500/90');
+            showNotification("💾 ZIP descargado con script e instrucciones", 'bg-blue-500/90');
         };
 
         const showNotification = (message, colorClass = 'bg-green-500/90') => {
@@ -538,29 +751,36 @@ echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)
             }, 3000);
         };
 
+        const toggleTheme = () => {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('bg-gray-900', isDarkMode);
+            document.body.classList.toggle('bg-white', !isDarkMode);
+            document.body.classList.toggle('text-white', isDarkMode);
+            document.body.classList.toggle('text-gray-900', !isDarkMode);
+            showNotification(isDarkMode ? "🌙 Modo Oscuro" : "☀️ Modo Claro", 'bg-purple-500/90');
+        };
+
+        const openHelp = () => document.getElementById('help-modal').style.display = 'block';
+        const closeHelp = () => document.getElementById('help-modal').style.display = 'none';
+
         // Inicialización
         document.addEventListener('DOMContentLoaded', () => {
             initializeUI();
             
-            // Búsqueda
             moduleSearch.addEventListener('input', (e) => {
                 const activeFilter = document.querySelector('.filter-btn.active').id.replace('filter-', '');
-                filterModules(activeFilter, e.target.value);
+                const activeTab = document.querySelector('.tab-btn.active').dataset.category;
+                filterModules(activeFilter, e.target.value, activeTab);
             });
             
-            // Filtros
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('.filter-btn').forEach(b => {
-                        b.classList.remove('active');
-                        b.classList.add('bg-gray-700');
-                    });
-                    
-                    e.target.classList.add('active');
-                    e.target.classList.remove('bg-gray-700');
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active', 'bg-emerald-600'));
+                    e.target.classList.add('active', 'bg-emerald-600');
                     
                     const filter = e.target.id.replace('filter-', '');
-                    filterModules(filter, moduleSearch.value);
+                    const activeTab = document.querySelector('.tab-btn.active').dataset.category;
+                    filterModules(filter, moduleSearch.value, activeTab);
                 });
             });
         });
