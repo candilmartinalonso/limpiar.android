@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APEX Optimizer v19.1 - Modo Extremo (Programado)</title>
-    <!-- Incluir Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Incluir la fuente Fira Code para la consola -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
@@ -16,7 +14,6 @@
             --green-glow: 0 0 5px rgba(190, 242, 100, 0.9), 0 0 10px rgba(134, 239, 30, 0.6);
             --red-glow: 0 0 5px rgba(239, 68, 68, 0.9), 0 0 10px rgba(185, 28, 28, 0.6);
         }
-        
         body {
             background-color: #0c101c;
             color: #f3f4f6;
@@ -24,36 +21,29 @@
                 radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 20%);
         }
-
         .main-container {
             background-color: rgba(15, 23, 42, 0.95);
             border: 1px solid #6ee7b7;
             box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
             backdrop-filter: blur(10px);
         }
-
         .glow-title { 
             text-shadow: var(--green-glow); 
             letter-spacing: 1px;
             animation: pulse 3s infinite;
         }
-        
         .glow-danger {
             text-shadow: var(--red-glow);
             animation: pulse-danger 2s infinite;
         }
-        
         @keyframes pulse {
             0%, 100% { text-shadow: var(--green-glow); }
             50% { text-shadow: 0 0 10px rgba(190, 242, 100, 0.9), 0 0 20px rgba(134, 239, 30, 0.8); }
         }
-        
         @keyframes pulse-danger {
             0%, 100% { text-shadow: var(--red-glow); }
             50% { text-shadow: 0 0 10px rgba(239, 68, 68, 0.9), 0 0 20px rgba(185, 28, 28, 0.8); }
         }
-        
-        /* Consola */
         #script {
             font-family: 'Fira Code', monospace;
             background-color: #080d19;
@@ -62,36 +52,27 @@
             box-shadow: inset 0 0 5px rgba(16, 185, 129, 0.2);
             line-height: 1.4;
         }
-
-        /* Estilo para los módulos agresivos (fondo rojo oscuro) */
         .aggressive-module {
             background-color: rgba(69, 10, 10, 0.6);
             border-color: rgba(239, 68, 68, 0.7);
-            transition: all 0.3s ease;
         }
-
-        .aggressive-module:hover {
-            background-color: rgba(99, 10, 10, 0.7);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
-        }
-
-        /* Estilo para los módulos normales */
         .normal-module {
             background-color: rgba(30, 41, 59, 0.8);
             border-color: rgba(71, 85, 105, 0.5);
-            transition: all 0.3s ease;
         }
-
-        .normal-module:hover {
-            background-color: rgba(51, 65, 85, 0.8);
+        .module-hover {
+            transition: all 0.3s ease;
+            will-change: transform;
+        }
+        .module-hover:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(16, 185, 129, 0.2);
         }
-
-        /* Estilo para el switch */
+        .aggressive-module:hover {
+            background-color: rgba(99, 10, 10, 0.7);
+            box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+        }
         input[type="checkbox"] {
-            -webkit-appearance: none;
             appearance: none;
             width: 2.5rem;
             height: 1.25rem;
@@ -101,11 +82,9 @@
             position: relative;
             transition: background-color 0.3s;
         }
-
         input[type="checkbox"]:checked {
             background-color: #10b981;
         }
-
         input[type="checkbox"]::after {
             content: '';
             position: absolute;
@@ -117,27 +96,20 @@
             background-color: #f3f4f6;
             transition: transform 0.3s;
         }
-
         input[type="checkbox"]:checked::after {
             transform: translateX(1.25rem);
         }
-
-        /* Scrollbar styling for module list */
         #module-switches::-webkit-scrollbar { width: 8px; }
         #module-switches::-webkit-scrollbar-track { background: #1e293b; border-radius: 10px; }
         #module-switches::-webkit-scrollbar-thumb { background: #34d399; border-radius: 10px; }
         #module-switches::-webkit-scrollbar-thumb:hover { background: #10b981; }
-        
-        /* Efectos de carga y transiciones */
         .fade-in {
             animation: fadeIn 0.5s ease-in;
         }
-        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
         .module-counter {
             background: linear-gradient(135deg, #10b981, #059669);
             border-radius: 9999px;
@@ -145,18 +117,16 @@
             font-size: 0.875rem;
             font-weight: bold;
         }
-        
         .search-box {
             background: rgba(30, 41, 59, 0.8);
             border: 1px solid #475569;
             transition: all 0.3s ease;
         }
-        
         .search-box:focus {
             border-color: #10b981;
             box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+            outline: none;
         }
-        
         .status-indicator {
             width: 8px;
             height: 8px;
@@ -164,61 +134,58 @@
             display: inline-block;
             margin-right: 8px;
         }
-        
         .status-active {
             background-color: #10b981;
             box-shadow: 0 0 5px #10b981;
         }
-        
         .status-inactive {
             background-color: #6b7280;
+        }
+        .filter-btn.active {
+            background-color: #059669 !important;
         }
     </style>
 </head>
 <body class="font-sans antialiased text-white bg-gray-900 min-h-screen p-4 md:p-8">
-    
-    <div class="container mx-auto max-w-6xl p-6 mt-4 md:mt-8 rounded-xl backdrop-blur-sm main-container shadow-2xl fade-in">
-        
-        <!-- Header -->
-        <div class="text-center mb-8">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-emerald-300 glow-title transition-all duration-300">
+    <main role="main" aria-labelledby="page-title" class="container mx-auto max-w-6xl fade-in">
+        <header class="text-center mb-8 main-container p-6 rounded-xl shadow-2xl">
+            <h1 id="page-title" class="text-4xl md:text-5xl font-extrabold text-emerald-300 glow-title">
                 APEX Optimizer <span class="text-white">v19.1</span>
             </h1>
-            <p class="text-center text-md md:text-lg font-mono text-red-400/80 mt-1 mb-2">
+            <p class="text-md md:text-lg font-mono text-red-400/80 mt-1 mb-2">
                 [ MODO PROGRAMADO EXTREMO: Ejecución cada 30 segundos ]
             </p>
             <div class="flex justify-center items-center space-x-4 mt-4">
                 <div class="flex items-center">
-                    <span class="status-indicator status-active"></span>
+                    <span class="status-indicator status-active" aria-hidden="true"></span>
                     <span class="text-sm text-emerald-400">Módulos activos: <span id="active-modules-count" class="font-bold">0</span></span>
                 </div>
                 <div class="flex items-center">
-                    <span class="status-indicator status-inactive"></span>
+                    <span class="status-indicator status-inactive" aria-hidden="true"></span>
                     <span class="text-sm text-gray-400">Módulos inactivos: <span id="inactive-modules-count" class="font-bold">0</span></span>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <!-- Contenedor Principal (Grid) -->
-        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-            
-            <!-- Columna 1: Configurador de Módulos (Lista Simple) -->
-            <div class="xl:col-span-2">
-                <div class="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                    <h2 class="text-xl font-bold text-emerald-300 flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+        <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <!-- Configurador de Módulos -->
+            <section class="xl:col-span-2" aria-labelledby="modules-title">
+                <header class="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                    <h2 id="modules-title" class="text-xl font-bold text-emerald-300 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" role="img" aria-labelledby="icon-clean">
+                            <title id="icon-clean">Ícono de limpieza</title>
                             <path d="M10.394 2.08a1 1 0 00-.788 0L3 5.432V17a1 1 0 00.788.948l6.394 3.352a1 1 0 00.788 0l6.394-3.352A1 1 0 0017 17V5.432l-6.394-3.352zM10 14a4 4 0 100-8 4 4 0 000 8z"></path>
                         </svg>
                         Selección de Módulos (⚠️ Rooteo Extremo)
                     </h2>
                     <div class="flex space-x-2">
-                        <button onclick="toggleAllModules(true)" class="px-3 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition">Activar Todo</button>
-                        <button onclick="toggleAllModules(false)" class="px-3 py-2 text-sm bg-red-600 hover:bg-red-500 text-white rounded-lg transition">Desactivar Todo</button>
+                        <button onclick="toggleAllModules(true)" class="px-3 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-smooth">Activar Todo</button>
+                        <button onclick="toggleAllModules(false)" class="px-3 py-2 text-sm bg-red-600 hover:bg-red-500 text-white rounded-lg transition-smooth">Desactivar Todo</button>
                     </div>
-                </div>
+                </header>
                 
-                <!-- Barra de búsqueda y filtros -->
                 <div class="mb-4 flex flex-col sm:flex-row gap-2">
+                    <label for="module-search" class="sr-only">Buscar módulos</label>
                     <input type="text" id="module-search" placeholder="Buscar módulos..." class="search-box flex-grow px-4 py-2 rounded-lg text-white placeholder-gray-400 focus:outline-none">
                     <div class="flex space-x-2">
                         <button id="filter-all" class="px-3 py-2 text-sm bg-emerald-600 text-white rounded-lg transition filter-btn active">Todos</button>
@@ -227,21 +194,21 @@
                     </div>
                 </div>
 
-                <div id="module-switches" class="space-y-2 max-h-[600px] overflow-y-auto pr-2">
-                    <!-- Los módulos se renderizarán aquí -->
+                <div id="module-switches" class="space-y-2 max-h-[600px] overflow-y-auto pr-2" role="list">
+                    <!-- Módulos renderizados dinámicamente -->
                 </div>
-            </div>
+            </section>
 
-            <!-- Columna 2: Consola de Script -->
-            <div class="xl:col-span-1">
-                <h2 class="text-xl font-bold text-emerald-300 mb-3 flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <!-- Consola de Script -->
+            <aside class="xl:col-span-1" aria-labelledby="script-title">
+                <h2 id="script-title" class="text-xl font-bold text-emerald-300 mb-3 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" role="img" aria-labelledby="icon-script">
+                        <title id="icon-script">Ícono de script</title>
                         <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm1 1h10a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1zM7 13a1 1 0 00-1 1v1h8v-1a1 1 0 00-1-1H7z"></path>
                     </svg>
                     Script Generado (Bash)
                 </h2>
                 
-                <!-- Estadísticas del script -->
                 <div class="mb-3 p-3 bg-slate-800 rounded-lg">
                     <div class="flex justify-between text-sm">
                         <span>Líneas de código:</span>
@@ -253,21 +220,20 @@
                     </div>
                 </div>
                 
-                <textarea id="script" readonly class="w-full h-[350px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400"></textarea>
+                <textarea id="script" readonly class="w-full h-[350px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Área de script generado"></textarea>
                 
                 <div class="flex space-x-3 mt-4">
-                    <button onclick="copyScript()" class="flex-1 px-6 py-3 font-bold text-base md:text-lg bg-emerald-500 text-slate-900 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:bg-emerald-400 hover:shadow-emerald-400/50 active:scale-[0.98] border-b-4 border-emerald-700 hover:border-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50">
+                    <button onclick="copyScript()" class="flex-1 px-6 py-3 font-bold text-base md:text-lg bg-emerald-500 text-slate-900 rounded-xl shadow-lg transition-smooth hover:bg-emerald-400 hover:shadow-emerald-400/50 active:scale-[0.98] border-b-4 border-emerald-700 hover:border-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50">
                         📋 Copiar Script
                     </button>
-                    <button onclick="downloadScript()" class="px-6 py-3 font-bold text-base bg-blue-500 text-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:bg-blue-400 hover:shadow-blue-400/50 active:scale-[0.98] border-b-4 border-blue-700 hover:border-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-500/50">
+                    <button onclick="downloadScript()" class="px-6 py-3 font-bold text-base bg-blue-500 text-white rounded-xl shadow-lg transition-smooth hover:bg-blue-400 hover:shadow-blue-400/50 active:scale-[0.98] border-b-4 border-blue-700 hover:border-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-500/50">
                         💾 Descargar
                     </button>
                 </div>
                 
-                <!-- Panel de advertencia -->
-                <div class="mt-6 p-4 bg-red-900/30 border border-red-700 rounded-lg">
+                <div class="mt-6 p-4 bg-red-900/30 border border-red-700 rounded-lg" role="alert">
                     <h3 class="font-bold text-red-300 flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
                             <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                         </svg>
                         ADVERTENCIA CRÍTICA
@@ -276,14 +242,15 @@
                         Frecuencia ajustada a <span class="glow-danger font-bold">30 segundos</span>. Esto puede causar inestabilidad del sistema, desgaste acelerado de almacenamiento y alto consumo de batería.
                     </p>
                 </div>
-            </div>
-        </div>
+            </aside>
+        </section>
+    </main>
 
-        <!-- Notificación -->
-        <div id="message-box" class="fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-semibold text-lg"></div>
-    </div>
+    <!-- Notificación Toast -->
+    <div id="message-box" class="fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-semibold text-lg" role="status" aria-live="polite"></div>
     
-    <script>
+    <script defer>
+        'use strict';
         const scriptTextarea = document.getElementById('script');
         const moduleSwitchesContainer = document.getElementById('module-switches');
         const moduleSearch = document.getElementById('module-search');
@@ -292,9 +259,8 @@
         const lineCount = document.getElementById('line-count');
         const sizeEstimate = document.getElementById('size-estimate');
 
-        // Módulos (v19.1) - Actualizados para frecuencia de 30 segundos
+        // Módulos (v19.1) - Frecuencia de 30s
         const modules = {
-            // Limpieza básica/media
             'Limpieza Profunda': { enabled: true, func: 'run_deep_clean', description: 'Cachés de apps, archivos .log/.tmp, miniaturas.', category: 'normal' },
             'Redes Sociales': { enabled: true, func: 'run_social_clean', description: 'Backups de WhatsApp, cachés de Telegram/Instagram.', category: 'normal' },
             'Logs y Dumps': { enabled: true, func: 'run_log_clean', description: 'Elimina archivos .trace y .dump residuales.', category: 'normal' },
@@ -311,8 +277,6 @@
             'Limpieza Descargas Antiguas (90 días)': { enabled: false, func: 'run_old_downloads_clean', description: 'Elimina archivos en /Download con más de 90 días.', category: 'normal' },
             'Limpiar Archivos Temp de Navegador': { enabled: true, func: 'run_browser_temp_clean', description: 'Busca y elimina archivos de sesión y temporales de navegadores.', category: 'normal' },
             'Optimizar Termux': { enabled: true, func: 'run_termux_clean', description: 'Limpia la caché de APT y actualiza repositorios de Termux.', category: 'normal' },
-            
-            // Optimización y Tweaks (Root/ADB)
             'Limpiar RAM': { enabled: false, func: 'run_ram_clean', description: 'Fuerza la detención de aplicaciones de terceros (Root/ADB).', category: 'aggressive' },
             'Optimizar SQLite': { enabled: false, func: 'run_sqlite_opt', description: 'Ejecuta VACUUM en todas las bases de datos SQLite (.db).', category: 'normal' },
             'Reparar Galería': { enabled: false, func: 'run_media_reindex', description: 'Fuerza al sistema a re-escanear los archivos multimedia.', category: 'normal' },
@@ -323,8 +287,6 @@
             'Recortar Almacenamiento': { enabled: false, func: 'run_storage_trim', description: 'Ejecuta fstrim para mejorar la velocidad de lectura/escritura (Root).', category: 'aggressive' },
             'Forzar Modo Doze': { enabled: false, func: 'run_doze_opt', description: 'Fuerza al dispositivo al estado Doze (ahorro extremo de batería).', category: 'aggressive' },
             'Resetear Batería': { enabled: false, func: 'run_battery_calibration', description: 'Resetea contadores de estadísticas de batería.', category: 'aggressive' },
-            
-            // Módulos Extremos (Root/Kernel - ¡PRECAUCIÓN!)
             'Limpiar Dalvik/ART Cache': { enabled: false, func: 'run_dalvik_cache_clean', description: 'Elimina la caché Dalvik/ART (Requiere Root, fuerza la recompilación en el siguiente inicio).', category: 'aggressive' },
             'Optimizar I/O Scheduler': { enabled: false, func: 'run_io_scheduler_opt', description: 'Establece el planificador de E/S a "deadline" o similar (Requiere Root).', category: 'aggressive' },
             'ZRAM/Swap Extremo (75% RAM)': { enabled: false, func: 'run_zram_swap_setup', description: 'Configura el SWAP en RAM (ZRAM) al 75% de la memoria total (Requiere Root).', category: 'aggressive' },
@@ -335,20 +297,54 @@
             'Desactivar Logcat Persistente': { enabled: false, func: 'run_disable_persistent_logging', description: 'Desactiva el registro de logs del sistema para mejorar el rendimiento (Root).', category: 'aggressive' },
             'Optimizar FSYNC Dinámico': { enabled: false, func: 'run_dynamic_fsync_opt', description: 'Controla la sincronización de archivos para mejorar el rendimiento de E/S (Root). ¡PRECAUCIÓN!', category: 'aggressive' },
             'Desactivar Servicios Accesibilidad': { enabled: false, func: 'run_disable_unused_accessibility', description: 'Desactiva servicios de accesibilidad no esenciales, liberando RAM.', category: 'aggressive' },
-            
-            // --- NUEVOS MÓDULOS EXTREMOS (v19.1) ---
             'Optimizar CPU Governor (Perf)': { enabled: false, func: 'run_cpu_governor_opt', description: 'Fuerza el Governor de la CPU a "performance" para el máximo rendimiento sostenido (Root).', category: 'aggressive' },
             'Desactivar Debugging (Aggressive)': { enabled: false, func: 'run_disable_debugging', description: 'Apaga la depuración USB y los servicios persistentes de bugreport (Root/ADB).', category: 'aggressive' },
             'Ajuste Agresivo LMK (Root)': { enabled: false, func: 'run_lmk_tweak', description: 'Ajusta los umbrales del Low Memory Killer para que libere RAM más rápidamente. ¡EXTREMO!', category: 'aggressive' },
         };
 
-        // NOTA: Las funciones del script permanecen iguales pero se actualiza el tiempo de espera a 30 segundos
+        // Funciones Bash básicas (completadas para funcionalidad)
         const allFunctions = {
-            // ... (las funciones permanecen iguales que en tu código original)
-            // Solo se actualiza el tiempo de sleep de 300 a 30 segundos
+            run_deep_clean: () => 'rm -rf $STORAGE/Android/data/*/cache/* $STORAGE/.thumbnails/*',
+            run_social_clean: () => 'rm -rf $STORAGE/WhatsApp/Databases/*.bak $STORAGE/Android/data/com.whatsapp/cache/*',
+            run_log_clean: () => 'rm -f /data/log/*.trace /data/anr/*.dump',
+            run_empty_folder_clean: () => 'find $STORAGE -type d -empty -delete',
+            run_junk_clean: () => 'find $STORAGE -size 0 -delete',
+            run_clipboard_clear: () => 'pkill -f clipboard',
+            run_apk_clean: () => 'rm -f $STORAGE/Download/*.apk',
+            run_logcat_wipe: () => 'logcat -c && dmesg -C',
+            run_duplicate_clean: () => 'fdupes -rd $STORAGE',
+            run_large_media_clean: () => 'find $STORAGE -name "*.mp4" -o -name "*.zip" -size +100M -delete',
+            run_broken_symlink_clean: () => 'find $STORAGE -type l ! -exec test -e {} \\; -delete',
+            run_google_play_services_clean: () => 'pm clear com.google.android.gms',
+            run_streaming_cache_clean: () => 'rm -rf $STORAGE/Android/data/com.spotify.music/cache/* $STORAGE/Android/data/com.google.android.youtube/cache/*',
+            run_old_downloads_clean: () => 'find $STORAGE/Download -mtime +90 -delete',
+            run_browser_temp_clean: () => 'rm -rf $STORAGE/Android/data/org.mozilla.firefox/files/mozilla/*',
+            run_termux_clean: () => 'pkg clean && apt update',
+            run_ram_clean: () => 'am force-stop $(pm list packages | grep -v system)',
+            run_sqlite_opt: () => 'find /data/data -name "*.db" -exec sqlite3 {} VACUUM \\;',
+            run_media_reindex: () => 'am broadcast -a android.intent.action.MEDIA_MOUNTED --ez readonly 0',
+            run_gpu_rendering: () => 'setprop debug.hwui.renderer opengl',
+            run_dev_cache_clean: () => 'rm -rf ~/.npm/_cacache ~/.cache/pip',
+            run_system_boost: () => 'settings put global window_animation_scale 0.5',
+            run_disable_animations: () => 'settings put global animator_duration_scale 0',
+            run_storage_trim: () => 'fstrim -v /cache /data /sdcard',
+            run_doze_opt: () => 'dumpsys deviceidle force-idle',
+            run_battery_calibration: () => 'dumpsys batterystats reset',
+            run_dalvik_cache_clean: () => 'rm -rf /data/dalvik-cache/*',
+            run_io_scheduler_opt: () => 'echo deadline > /sys/block/mmcblk0/queue/scheduler',
+            run_zram_swap_setup: () => 'echo 75 > /sys/block/zram0/disksize && mkswap /dev/block/zram0 && swapon /dev/block/zram0',
+            run_kernel_vm_opt: () => 'echo 20 > /proc/sys/vm/dirty_ratio && echo 10 > /proc/sys/vm/dirty_background_ratio',
+            run_entropy_boost: () => 'echo 1024 > /proc/sys/kernel/random/read_wakeup_threshold',
+            run_app_deep_freeze: () => 'am kill-all',
+            run_bloatware_clean: () => 'pm uninstall -k --user 0 com.facebook.appmanager',
+            run_disable_persistent_logging: () => 'setprop log.tag 0',
+            run_dynamic_fsync_opt: () => 'echo 0 > /sys/module/dyn_fsync/parameters/enabled',
+            run_disable_unused_accessibility: () => 'settings put secure enabled_accessibility_services ""',
+            run_cpu_governor_opt: () => 'echo performance > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor',
+            run_disable_debugging: () => 'setprop persist.sys.usb.config none && stop bugreport',
+            run_lmk_tweak: () => 'echo 0,50,100,150 > /sys/module/lowmemorykiller/parameters/adj',
         };
 
-        // Generar contenido del script con frecuencia de 30 segundos
         function generateScriptContent() {
             const header = `#!/bin/bash
 # APEX Optimizer v19.1 - Script Personalizado (MODO PROGRAMADO EXTREMO)
@@ -359,10 +355,9 @@
 # ¡Úsalo bajo tu propia responsabilidad!
 
 C_OFF='\\e[0m'; C_RED='\\e[0;31m'; C_GREEN='\\e[0;32m'; C_YELLOW='\\e[0;33m'; C_CYAN='\\e[0;36m';
-LOG_FILE=/data/local/tmp/apex_optimization_v19.1.log # Nuevo nombre de log
-STORAGE="/sdcard" # Carpeta de almacenamiento principal (ej: /storage/emulated/0)
+LOG_FILE=/data/local/tmp/apex_optimization_v19.1.log
+STORAGE="/sdcard"
 
-# Inicializar o limpiar el archivo de log para la nueva versión
 echo -e "$C_CYAN--- APEX Optimizer v19.1 Log Iniciado en \$(date) ---$C_OFF" > "$LOG_FILE"
 
 execute_module_command() {
@@ -382,13 +377,11 @@ while true; do
 `;
             
             const usedFunctions = new Set();
-
-            // Recorrer los módulos y construir el script
             Object.values(modules).forEach(mod => {
                 if (mod.enabled && !usedFunctions.has(mod.func)) {
-                    functionDefinitions += allFunctions[mod.func] + '\n\n';
+                    functionDefinitions += `run_${mod.func}() { ${allFunctions[mod.func]()}; }\n`;
                     usedFunctions.add(mod.func);
-                    mainExecutionCalls += `    ${mod.func}\n`;
+                    mainExecutionCalls += `    execute_module_command "${mod.func}" "run_${mod.func}"\n`;
                 }
             });
             
@@ -404,40 +397,44 @@ echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)
             return header + functionDefinitions + mainExecutionCalls + footer;
         }
         
-        function updateScript() { 
+        const updateScript = () => { 
             scriptTextarea.value = generateScriptContent(); 
             updateScriptStats();
-        }
+        };
         
-        function updateScriptStats() {
+        const updateScriptStats = () => {
             const content = scriptTextarea.value;
             const lines = content.split('\n').length;
-            const size = new Blob([content]).size / 1024;
+            const size = (new TextEncoder().encode(content)).length / 1024; // Más eficiente que Blob
             
             lineCount.textContent = lines;
             sizeEstimate.textContent = `${size.toFixed(2)} KB`;
-        }
+        };
         
-        function updateModuleCounters() {
+        const updateModuleCounters = () => {
             const moduleArray = Object.values(modules);
             const activeCount = moduleArray.filter(mod => mod.enabled).length;
             const inactiveCount = moduleArray.length - activeCount;
             
             activeModulesCount.textContent = activeCount;
             inactiveModulesCount.textContent = inactiveCount;
-        }
+        };
         
-        function toggleAllModules(state) {
-            Object.keys(modules).forEach(key => {
-                modules[key].enabled = state;
-            });
+        const toggleAllModules = (state) => {
+            Object.keys(modules).forEach(key => modules[key].enabled = state);
             initializeUI();
             updateScript();
-        }
+        };
 
-        // Filtrado y búsqueda de módulos
-        function filterModules(filter = 'all', searchTerm = '') {
-            const moduleElements = document.querySelectorAll('#module-switches label');
+        // Filtrado optimizado (cache de elementos)
+        let cachedElements = null;
+        const getCachedElements = () => {
+            if (!cachedElements) cachedElements = document.querySelectorAll('#module-switches label');
+            return cachedElements;
+        };
+
+        const filterModules = (filter = 'all', searchTerm = '') => {
+            const moduleElements = getCachedElements();
             const aggressiveModules = [
                 'Limpiar Dalvik/ART Cache', 'Optimizar I/O Scheduler', 'ZRAM/Swap Extremo (75% RAM)', 
                 'Ajuste Núcleo VM (Aggressive Dirty Ratios)', 'Aumentar Entropía (Para Seguridad/Velocidad)',
@@ -455,20 +452,15 @@ echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)
                 
                 let shouldShow = matchesSearch;
                 
-                if (filter === 'active') {
-                    shouldShow = shouldShow && isChecked;
-                } else if (filter === 'aggressive') {
-                    shouldShow = shouldShow && isAggressive;
-                }
+                if (filter === 'active') shouldShow = shouldShow && isChecked;
+                else if (filter === 'aggressive') shouldShow = shouldShow && isAggressive;
                 
                 element.style.display = shouldShow ? 'flex' : 'none';
             });
-        }
+        };
 
-        function initializeUI() {
+        const initializeUI = () => {
             let switchesHTML = '';
-            
-            // Lista de módulos que reciben el estilo agresivo
             const aggressiveModules = [
                 'Limpiar Dalvik/ART Cache', 'Optimizar I/O Scheduler', 'ZRAM/Swap Extremo (75% RAM)', 
                 'Ajuste Núcleo VM (Aggressive Dirty Ratios)', 'Aumentar Entropía (Para Seguridad/Velocidad)',
@@ -479,31 +471,29 @@ echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)
 
             Object.keys(modules).forEach(key => {
                 const mod = modules[key];
-                
-                const moduleClass = aggressiveModules.includes(key) 
-                    ? 'aggressive-module' 
-                    : 'normal-module';
-
+                const moduleClass = aggressiveModules.includes(key) ? 'aggressive-module border-red-500' : 'normal-module border-gray-600';
                 switchesHTML += `
-                    <label class="flex items-start justify-between p-3 rounded-xl transition-colors duration-200 border ${moduleClass}">
+                    <label class="flex items-start justify-between p-3 rounded-xl module-hover border ${moduleClass}" role="listitem">
                         <div class="flex-grow mr-4">
                             <span class="font-medium text-white">${key}</span>
                             <p class="text-xs text-slate-400 mt-1">${mod.description}</p>
                         </div>
                         <div class="switch flex-shrink-0">
-                            <input type="checkbox" data-module="${key}" ${mod.enabled ? 'checked' : ''}>
+                            <input type="checkbox" id="module-${key.replace(/\s+/g, '-')}" data-module="${key}" ${mod.enabled ? 'checked aria-checked="true"' : 'aria-checked="false"'} aria-label="Activar ${key}">
                         </div>
                     </label>
                 `;
             });
             
             moduleSwitchesContainer.innerHTML = switchesHTML;
+            cachedElements = null; // Reset cache
 
-            // Añadir listeners a los checkboxes
+            // Listeners para checkboxes
             moduleSwitchesContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
                 checkbox.addEventListener('change', (event) => {
                     const key = event.target.dataset.module;
                     modules[key].enabled = event.target.checked;
+                    event.target.setAttribute('aria-checked', event.target.checked);
                     updateScript();
                     updateModuleCounters();
                 });
@@ -511,23 +501,16 @@ echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)
 
             updateScript();
             updateModuleCounters();
-        }
+        };
 
-        // COPIAR SCRIPT & NOTIFICACIÓN
-        function copyScript() {
+        const copyScript = () => {
             scriptTextarea.select();
-            scriptTextarea.setSelectionRange(0, 99999); 
-            try { 
-                const success = document.execCommand("copy");
-                showNotification(success ? "✅ Script v19.1 copiado. ¡A ejecutar!" : "❌ Error al copiar. Intenta Ctrl+C.", success ? 'bg-emerald-500/90' : 'bg-red-500/90'); 
-            } 
-            catch (err) { 
-                showNotification("❌ Error de ejecución al copiar.", 'bg-red-500/90'); 
-            }
-        }
+            scriptTextarea.setSelectionRange(0, 99999);
+            const success = document.execCommand("copy");
+            showNotification(success ? "✅ Script v19.1 copiado. ¡A ejecutar!" : "❌ Error al copiar. Intenta Ctrl+C.", success ? 'bg-emerald-500/90' : 'bg-red-500/90'); 
+        };
         
-        // DESCARGAR SCRIPT
-        function downloadScript() {
+        const downloadScript = () => {
             const content = scriptTextarea.value;
             const blob = new Blob([content], { type: 'text/x-shellscript' });
             const url = URL.createObjectURL(blob);
@@ -539,42 +522,41 @@ echo -e "Revisa el log en: $LOG_FILE (Requiere ROOT para ver en /data/local/tmp)
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
             showNotification("💾 Script descargado como 'apex_optimizer_v19.1_extreme.sh'", 'bg-blue-500/90');
-        }
+        };
 
-        function showNotification(message, colorClass = 'bg-green-500/90') {
+        const showNotification = (message, colorClass = 'bg-green-500/90') => {
             const msgBox = document.getElementById("message-box");
-            msgBox.className = "fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-semibold text-lg";
-            msgBox.classList.add(colorClass);
+            msgBox.className = `fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-semibold text-lg ${colorClass}`;
             msgBox.textContent = message;
             
             msgBox.classList.remove("opacity-0", "translate-y-5");
-            msgBox.classList.add("translate-y-0");
+            msgBox.classList.add("opacity-100", "translate-y-0");
 
             setTimeout(() => {
+                msgBox.classList.remove("opacity-100", "translate-y-0");
                 msgBox.classList.add("opacity-0", "translate-y-5");
-                msgBox.classList.remove("translate-y-0");
             }, 3000);
-        }
+        };
 
+        // Inicialización
         document.addEventListener('DOMContentLoaded', () => {
             initializeUI();
             
-            // Configurar búsqueda y filtros
+            // Búsqueda
             moduleSearch.addEventListener('input', (e) => {
                 const activeFilter = document.querySelector('.filter-btn.active').id.replace('filter-', '');
                 filterModules(activeFilter, e.target.value);
             });
             
+            // Filtros
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active', 'bg-emerald-600'));
                     document.querySelectorAll('.filter-btn').forEach(b => {
-                        if (!b.classList.contains('bg-emerald-600')) {
-                            b.classList.add('bg-gray-700');
-                        }
+                        b.classList.remove('active');
+                        b.classList.add('bg-gray-700');
                     });
                     
-                    e.target.classList.add('active', 'bg-emerald-600');
+                    e.target.classList.add('active');
                     e.target.classList.remove('bg-gray-700');
                     
                     const filter = e.target.id.replace('filter-', '');
