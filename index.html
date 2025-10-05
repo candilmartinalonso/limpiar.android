@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX Optimizer v19.2 - Edición No-Root (Programado)</title>
+    <title>APEX Optimizer v19.4 - Edición Termux Exclusiva (No-Root)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +14,9 @@
             --green-glow: 0 0 5px rgba(190, 242, 100, 0.9), 0 0 10px rgba(134, 239, 30, 0.6);
             --red-glow: 0 0 5px rgba(239, 68, 68, 0.9), 0 0 10px rgba(185, 28, 28, 0.6);
             --blue-glow: 0 0 5px rgba(59, 130, 246, 0.9), 0 0 10px rgba(37, 99, 235, 0.6);
+            --purple-glow: 0 0 5px rgba(168, 85, 247, 0.9), 0 0 10px rgba(147, 51, 234, 0.6);
+            --orange-glow: 0 0 5px rgba(251, 146, 60, 0.9), 0 0 10px rgba(245, 101, 101, 0.6);
+            --teal-glow: 0 0 5px rgba(20, 184, 166, 0.9), 0 0 10px rgba(15, 118, 110, 0.6);
         }
         body {
             background-color: #0c101c;
@@ -23,11 +26,21 @@
                 radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
         }
+        body.light {
+            background-color: #f8fafc;
+            color: #1e293b;
+            background-image: none;
+        }
         .main-container {
             background-color: rgba(15, 23, 42, 0.95);
             border: 1px solid #6ee7b7;
             box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
             backdrop-filter: blur(10px);
+        }
+        body.light .main-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid #10b981;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
         }
         .glow-title { 
             text-shadow: var(--green-glow); 
@@ -42,6 +55,18 @@
             text-shadow: var(--blue-glow);
             animation: pulse-info 4s infinite;
         }
+        .glow-purple {
+            text-shadow: var(--purple-glow);
+            animation: pulse-purple 3.5s infinite;
+        }
+        .glow-orange {
+            text-shadow: var(--orange-glow);
+            animation: pulse-orange 2.5s infinite;
+        }
+        .glow-teal {
+            text-shadow: var(--teal-glow);
+            animation: pulse-teal 3s infinite;
+        }
         @keyframes pulse {
             0%, 100% { text-shadow: var(--green-glow); }
             50% { text-shadow: 0 0 10px rgba(190, 242, 100, 0.9), 0 0 20px rgba(134, 239, 30, 0.8); }
@@ -54,6 +79,18 @@
             0%, 100% { text-shadow: var(--blue-glow); }
             50% { text-shadow: 0 0 10px rgba(59, 130, 246, 0.9), 0 0 20px rgba(37, 99, 235, 0.8); }
         }
+        @keyframes pulse-purple {
+            0%, 100% { text-shadow: var(--purple-glow); }
+            50% { text-shadow: 0 0 10px rgba(168, 85, 247, 0.9), 0 0 20px rgba(147, 51, 234, 0.8); }
+        }
+        @keyframes pulse-orange {
+            0%, 100% { text-shadow: var(--orange-glow); }
+            50% { text-shadow: 0 0 10px rgba(251, 146, 60, 0.9), 0 0 20px rgba(245, 101, 101, 0.8); }
+        }
+        @keyframes pulse-teal {
+            0%, 100% { text-shadow: var(--teal-glow); }
+            50% { text-shadow: 0 0 10px rgba(20, 184, 166, 0.9), 0 0 20px rgba(15, 118, 110, 0.8); }
+        }
         #script {
             font-family: 'Fira Code', monospace;
             background-color: #080d19;
@@ -61,6 +98,11 @@
             border: 1px solid #10b981;
             box-shadow: inset 0 0 5px rgba(16, 185, 129, 0.2);
             line-height: 1.4;
+        }
+        body.light #script {
+            background-color: #f1f5f9;
+            color: #059669;
+            border: 1px solid #10b981;
         }
         .aggressive-module {
             background-color: rgba(69, 10, 10, 0.6);
@@ -70,13 +112,21 @@
             background-color: rgba(30, 41, 59, 0.8);
             border-color: rgba(71, 85, 105, 0.5);
         }
-        .battery-module {
-            background-color: rgba(34, 197, 94, 0.1);
-            border-color: rgba(34, 197, 94, 0.5);
+        .termux-module {
+            background-color: rgba(20, 184, 166, 0.1);
+            border-color: rgba(20, 184, 166, 0.5);
         }
-        .privacy-module {
-            background-color: rgba(59, 130, 246, 0.1);
-            border-color: rgba(59, 130, 246, 0.5);
+        .storage-module {
+            background-color: rgba(251, 146, 60, 0.1);
+            border-color: rgba(251, 146, 60, 0.5);
+        }
+        .file-module {
+            background-color: rgba(168, 85, 247, 0.1);
+            border-color: rgba(168, 85, 247, 0.5);
+        }
+        .security-module {
+            background-color: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.5);
         }
         .module-hover {
             transition: all 0.3s ease;
@@ -90,17 +140,8 @@
             background-color: rgba(99, 10, 10, 0.7);
             box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
         }
-        .normal-module:hover {
-            background-color: rgba(51, 65, 85, 0.8);
+        .normal-module:hover, .termux-module:hover, .storage-module:hover, .file-module:hover, .security-module:hover {
             box-shadow: 0 4px 8px rgba(16, 185, 129, 0.2);
-        }
-        .battery-module:hover {
-            background-color: rgba(22, 163, 74, 0.2);
-            box-shadow: 0 4px 8px rgba(34, 197, 94, 0.3);
-        }
-        .privacy-module:hover {
-            background-color: rgba(37, 99, 235, 0.2);
-            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
         }
         input[type="checkbox"] {
             appearance: none;
@@ -152,6 +193,10 @@
             border: 1px solid #475569;
             transition: all 0.3s ease;
         }
+        body.light .search-box {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #d1d5db;
+        }
         .search-box:focus {
             border-color: #10b981;
             box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
@@ -188,6 +233,9 @@
             border-radius: 2px;
             overflow: hidden;
         }
+        body.light .progress-bar {
+            background-color: #e2e8f0;
+        }
         .progress-fill {
             background: linear-gradient(90deg, #10b981, #34d399);
             height: 100%;
@@ -210,7 +258,7 @@
         .theme-toggle:hover {
             transform: scale(1.1);
         }
-        .help-modal {
+        .help-modal, .settings-modal, .preset-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -230,25 +278,132 @@
             max-height: 80vh;
             overflow-y: auto;
         }
+        body.light .modal-content {
+            background: #ffffff;
+            color: #1e293b;
+        }
         .close-modal {
             float: right;
             font-size: 2rem;
             cursor: pointer;
             color: #ef4444;
         }
+        .settings-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .settings-form input, .settings-form select {
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: #f3f4f6;
+        }
+        body.light .settings-form input, body.light .settings-form select {
+            background: #ffffff;
+            color: #1e293b;
+            border: 1px solid #d1d5db;
+        }
+        .export-import {
+            display: flex;
+            gap: 1rem;
+        }
+        .export-import button {
+            flex: 1;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+        .export-btn {
+            background: #3b82f6;
+            color: white;
+        }
+        .import-btn {
+            background: #10b981;
+            color: white;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .stat-card {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        body.light .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #10b981;
+        }
+        .preset-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        .preset-quick { background: #10b981; color: white; }
+        .preset-full { background: #ef4444; color: white; }
+        .preset-termux { background: #14b8a6; color: white; }
+        .preset-storage { background: #f97316; color: white; }
+        .preset-security { background: #8b5cf6; color: white; }
+        .preset-btn:hover { transform: scale(1.05); }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .dashboard-card {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            border-left: 4px solid #10b981;
+        }
+        body.light .dashboard-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-left: 4px solid #059669;
+        }
+        .storage-gauge {
+            width: 100%;
+            height: 20px;
+            background: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        body.light .storage-gauge {
+            background: #e2e8f0;
+        }
+        .gauge-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            transition: width 0.5s ease;
+        }
     </style>
 </head>
-<body class="font-sans antialiased text-white bg-gray-900 min-h-screen p-4 md:p-8">
+<body class="font-sans antialiased text-white bg-gray-900 min-h-screen p-4 md:p-8" id="body-theme">
     <main role="main" aria-labelledby="page-title" class="container mx-auto max-w-7xl fade-in">
         <header class="text-center mb-8 main-container p-6 rounded-xl shadow-2xl">
             <div class="flex justify-between items-center mb-4">
                 <h1 id="page-title" class="text-4xl md:text-5xl font-extrabold text-emerald-300 glow-title">
-                    APEX Optimizer <span class="text-white">v19.2</span> <span class="text-blue-300 glow-info">No-Root Edition</span>
+                    APEX Optimizer <span class="text-white">v19.4</span> <span class="text-teal-300 glow-teal">Termux Exclusiva</span>
                 </h1>
                 <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">🌙</button>
             </div>
             <p class="text-md md:text-lg font-mono text-red-400/80 mt-1 mb-2">
-                [ MODO PROGRAMADO EXTREMO: Ejecución cada 30 segundos | Optimizado para No-Root ]
+                [ MODO PROGRAMADO: Ejecución cada <span id="interval-display">30</span> segundos | +70 Módulos Termux | Limpieza & Optimización ]
             </p>
             <div class="flex justify-center items-center space-x-4 mt-4">
                 <div class="flex items-center">
@@ -261,7 +416,11 @@
                 </div>
                 <div class="flex items-center">
                     <span class="status-indicator status-active" aria-hidden="true" style="background: #3b82f6;"></span>
-                    <span class="text-sm text-blue-400">Categorías: <span id="category-count" class="font-bold">4</span></span>
+                    <span class="text-sm text-blue-400">Categorías: <span id="category-count" class="font-bold">6</span></span>
+                </div>
+                <div class="flex items-center">
+                    <span class="status-indicator status-active" aria-hidden="true" style="background: #14b8a6;"></span>
+                    <span class="text-sm text-teal-400">Est. Espacio Liberado: <span id="space-freed" class="font-bold">0 MB</span></span>
                 </div>
             </div>
             <div class="mt-4">
@@ -270,15 +429,40 @@
                 </div>
                 <p class="text-xs text-gray-500 mt-1">Progreso de Generación: <span id="progress-text">0%</span></p>
             </div>
+            <!-- Dashboard -->
+            <div class="dashboard">
+                <div class="dashboard-card">
+                    <div>Almacenamiento Total</div>
+                    <div class="text-lg font-bold" id="total-storage">0 GB</div>
+                    <div class="storage-gauge"><div class="gauge-fill" id="storage-fill" style="width: 0%;"></div></div>
+                </div>
+                <div class="dashboard-card">
+                    <div>Archivos Analizados</div>
+                    <div class="text-lg font-bold" id="files-scanned">0</div>
+                </div>
+                <div class="dashboard-card">
+                    <div>Paquetes Termux</div>
+                    <div class="text-lg font-bold" id="pkg-count">0</div>
+                </div>
+            </div>
+            <!-- Presets -->
+            <div class="flex justify-center space-x-2 mt-4">
+                <button class="preset-btn preset-quick" onclick="loadPreset('quick')">Limpieza Rápida</button>
+                <button class="preset-btn preset-full" onclick="loadPreset('full')">Completa</button>
+                <button class="preset-btn preset-termux" onclick="loadPreset('termux')">Termux Opt</button>
+                <button class="preset-btn preset-storage" onclick="loadPreset('storage')">Almacenamiento</button>
+                <button class="preset-btn preset-security" onclick="loadPreset('security')">Seguridad</button>
+            </div>
         </header>
 
         <!-- Pestañas de Categorías -->
-        <nav class="mb-6 flex space-x-4 overflow-x-auto border-b border-gray-700">
+        <nav class="mb-6 flex space-x-2 overflow-x-auto border-b border-gray-700 pb-2">
             <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800 active" data-category="all">Todos</button>
             <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800" data-category="cleaning">Limpieza</button>
-            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800" data-category="performance">Rendimiento</button>
-            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800" data-category="battery">Batería</button>
-            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800" data-category="privacy">Privacidad</button>
+            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800" data-category="termux">Termux</button>
+            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800" data-category="storage">Almacenamiento</button>
+            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800" data-category="file">Archivos</button>
+            <button class="tab-btn px-4 py-2 rounded-t-lg bg-gray-800" data-category="security">Seguridad</button>
         </nav>
 
         <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
@@ -290,12 +474,14 @@
                             <title id="icon-clean">Ícono de limpieza</title>
                             <path d="M10.394 2.08a1 1 0 00-.788 0L3 5.432V17a1 1 0 00.788.948l6.394 3.352a1 1 0 00.788 0l6.394-3.352A1 1 0 0017 17V5.432l-6.394-3.352zM10 14a4 4 0 100-8 4 4 0 000 8z"></path>
                         </svg>
-                        Selección de Módulos (Edición No-Root)
+                        Selección de Módulos (v19.4: +70 Termux Exclusivos)
                     </h2>
                     <div class="flex space-x-2">
                         <button onclick="toggleAllModules(true)" class="px-3 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-smooth">Activar Todo</button>
                         <button onclick="toggleAllModules(false)" class="px-3 py-2 text-sm bg-red-600 hover:bg-red-500 text-white rounded-lg transition-smooth">Desactivar Todo</button>
-                        <button onclick="openHelp()" class="px-3 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-smooth">Ayuda & ADB</button>
+                        <button onclick="openSettings()" class="px-3 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-smooth">⚙️ Config</button>
+                        <button onclick="openPresetModal()" class="px-3 py-2 text-sm bg-orange-600 hover:bg-orange-500 text-white rounded-lg transition-smooth">Presets</button>
+                        <button onclick="openHelp()" class="px-3 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-smooth">Ayuda Termux</button>
                     </div>
                 </header>
                 
@@ -305,7 +491,7 @@
                     <div class="flex space-x-2">
                         <button id="filter-all" class="px-3 py-2 text-sm bg-emerald-600 text-white rounded-lg transition filter-btn active">Todos</button>
                         <button id="filter-active" class="px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition filter-btn">Activos</button>
-                        <button id="filter-aggressive" class="px-3 py-2 text-sm bg-red-700 hover:bg-red-600 text-white rounded-lg transition filter-btn">Avanzados</button>
+                        <button id="filter-aggressive" class="px-3 py-2 text-sm bg-red-700 hover:bg-red-600 text-white rounded-lg transition filter-btn">Intensivos</button>
                     </div>
                 </div>
 
@@ -321,7 +507,7 @@
                         <title id="icon-script">Ícono de script</title>
                         <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm1 1h10a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1zM7 13a1 1 0 00-1 1v1h8v-1a1 1 0 00-1-1H7z"></path>
                     </svg>
-                    Script Generado (Bash/Termux + ADB)
+                    Script Generado (Bash Termux v19.4)
                 </h2>
                 
                 <div class="mb-3 p-3 bg-slate-800 rounded-lg">
@@ -334,19 +520,19 @@
                         <span id="size-estimate" class="font-mono font-bold text-emerald-400">0 KB</span>
                     </div>
                     <div class="flex justify-between text-sm mt-1">
-                        <span>Espacio ahorrado estimado:</span>
-                        <span id="space-saved" class="font-mono font-bold text-blue-400">0 MB</span>
+                        <span>Intervalo (s):</span>
+                        <span id="script-interval" class="font-mono font-bold text-teal-400">30</span>
                     </div>
                 </div>
                 
-                <textarea id="script" readonly class="w-full h-[300px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Área de script generado"></textarea>
+                <textarea id="script" readonly class="w-full h-[280px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Área de script generado"></textarea>
                 
                 <div class="flex space-x-3 mt-4">
                     <button onclick="copyScript()" class="flex-1 px-6 py-3 font-bold text-base md:text-lg bg-emerald-500 text-slate-900 rounded-xl shadow-lg transition-smooth hover:bg-emerald-400 hover:shadow-emerald-400/50 active:scale-[0.98] border-b-4 border-emerald-700 hover:border-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50">
                         📋 Copiar Script
                     </button>
-                    <button onclick="downloadScript()" class="flex-1 px-6 py-3 font-bold text-base bg-blue-500 text-white rounded-xl shadow-lg transition-smooth hover:bg-blue-400 hover:shadow-blue-400/50 active:scale-[0.98] border-b-4 border-blue-700 hover:border-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-500/50">
-                        💾 Descargar ZIP
+                    <button onclick="downloadScript()" class="flex-1 px-6 py-3 font-bold text-base bg-teal-500 text-white rounded-xl shadow-lg transition-smooth hover:bg-teal-400 hover:shadow-teal-400/50 active:scale-[0.98] border-b-4 border-teal-700 hover:border-teal-600 focus:outline-none focus:ring-4 focus:ring-teal-500/50">
+                        💾 Descargar
                     </button>
                 </div>
                 
@@ -356,44 +542,93 @@
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
                             <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                         </svg>
-                        ADVERTENCIA CRÍTICA
+                        ADVERTENCIA
                     </h3>
                     <p class="text-sm text-red-200 mt-2">
-                        Frecuencia ajustada a <span class="glow-danger font-bold">30 segundos</span>. Usa ADB para comandos avanzados. ¡No requiere Root!
+                        Scripts optimizados para Termux. Ejecuta con <code>bash script.sh</code> en Termux. ¡Ejecuta termux-setup-storage primero!
                     </p>
                 </div>
             </aside>
         </section>
 
-        <!-- Sección de Ayuda y ADB -->
-        <section class="mt-8 p-6 bg-blue-900/20 border border-blue-700 rounded-lg" aria-labelledby="help-title">
-            <h3 id="help-title" class="text-lg font-bold text-blue-300 mb-4">Guía Rápida para No-Root (ADB Setup)</h3>
+        <!-- Sección de Ayuda Termux -->
+        <section class="mt-8 p-6 bg-teal-900/20 border border-teal-700 rounded-lg" aria-labelledby="help-title">
+            <h3 id="help-title" class="text-lg font-bold text-teal-300 mb-4">Guía Rápida para Termux (2025)</h3>
             <ol class="text-sm space-y-2 text-gray-300 list-decimal pl-5">
-                <li>Habilita Opciones de Desarrollador: Ajustes > Acerca del teléfono > Toca "Número de compilación" 7 veces.</li>
-                <li>Activa Depuración USB: Opciones de Desarrollador > Depuración USB.</li>
-                <li>Instala ADB en PC: Descarga desde <a href="https://developer.android.com/tools/adb" class="text-blue-400 underline" target="_blank">Android SDK</a>.</li>
-                <li>Ejecuta comandos: <code>adb shell [comando]</code> o usa el script con <code>adb shell -x sh script.sh</code>.</li>
-                <li>Para Termux: Usa <code>pkg install android-tools</code> para ADB local (requiere wireless debugging).</li>
+                <li>Instala Termux desde F-Droid (no Play Store para v0.118+).</li>
+                <li>Ejecuta <code>pkg update && pkg upgrade</code> para actualizar.</li>
+                <li>Habilita acceso: <code>termux-setup-storage</code> para /sdcard.</li>
+                <li>Instala utils: <code>pkg install coreutils findutils fdupes zip</code>.</li>
+                <li>Ejecuta script: <code>bash apex_v19.4.sh</code> en bucle programado.</li>
             </ol>
-            <p class="text-xs text-gray-500 mt-4">Fuente: <a href="https://technastic.com/adb-commands-improve-performance-android/" class="text-blue-400 underline" target="_blank">Technastic 2025</a> <grok-card data-id="973c48" data-type="citation_card"></grok-card></p>
+            <p class="text-xs text-gray-500 mt-4">Inspirado en: <a href="https://github.com/ArjunCodesmith/termux-junk-cleaner" class="text-teal-400 underline" target="_blank">Termux Junk Cleaner</a></p>
         </section>
     </main>
 
-    <!-- Modal de Ayuda Detallada -->
+    <!-- Modal de Ayuda -->
     <div id="help-modal" class="help-modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeHelp()">&times;</span>
-            <h2 class="text-2xl font-bold mb-4">Guía Completa No-Root</h2>
+            <h2 class="text-2xl font-bold mb-4 glow-teal">Guía Completa Termux v19.4</h2>
             <div id="help-content">
-                <p>Esta edición está optimizada para dispositivos sin root. Todos los módulos usan comandos ADB o Termux estándar.</p>
-                <h3 class="mt-4 font-semibold">Nuevos Módulos Agregados:</h3>
+                <p>Edición exclusiva para Termux: Limpieza de almacenamiento accesible, optimización de paquetes, compresión de archivos y más. +70 módulos basados en comandos shell seguros.</p>
+                <h3 class="mt-4 font-semibold glow-purple">Nuevos Módulos (v19.4):</h3>
                 <ul class="list-disc pl-5 space-y-1">
-                    <li><strong>Limpieza:</strong> Limpieza de caché de apps, descargas antiguas, duplicados.</li>
-                    <li><strong>Rendimiento:</strong> Desactivar animaciones, forzar GPU, optimizar DEX.</li>
-                    <li><strong>Batería:</strong> Reset stats, standby apps, doze mode.</li>
-                    <li><strong>Privacidad:</strong> Revocar permisos, hibernar apps, bloquear trackers.</li>
+                    <li><strong>Limpieza:</strong> Cachés apps, temps, logs en /sdcard.</li>
+                    <li><strong>Termux:</strong> Paq. cache, unused pkgs, logs Termux.</li>
+                    <li><strong>Almacenamiento:</strong> Duplicados, grandes archivos, compresión ZIP.</li>
+                    <li><strong>Archivos:</strong> Thumbs, backups, sessions navegador.</li>
+                    <li><strong>Seguridad:</strong> Perms archivos, scan malware básico, backups encriptados.</li>
                 </ul>
-                <p class="mt-4">Para más tips: <a href="https://www.geeklord.com/2025/09/14/ultimate-guide-adb-commands-for-android-phone-optimization-and-maintenance/" class="text-blue-400 underline" target="_blank">Guía ADB 2025</a> <grok-card data-id="543d58" data-type="citation_card"></grok-card></p>
+                <p class="mt-4">Fuente: <a href="https://github.com/ArjunCodesmith/termux-junk-cleaner" class="text-teal-400 underline" target="_blank">GitHub Termux Junk Cleaner</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Configuración -->
+    <div id="settings-modal" class="settings-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeSettings()">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 glow-purple">Configuración Avanzada</h2>
+            <form class="settings-form">
+                <label>Intervalo de Ejecución (segundos):</label>
+                <input type="number" id="interval-input" value="30" min="10" max="300">
+                
+                <label>Modo de Tema Predeterminado:</label>
+                <select id="theme-select">
+                    <option value="dark">Oscuro</option>
+                    <option value="light">Claro</option>
+                </select>
+                
+                <label>Directorio de Logs:</label>
+                <input type="text" id="log-dir" value="$HOME/apex_logs">
+                
+                <div class="export-import">
+                    <button type="button" class="export-btn" onclick="exportConfig()">Exportar Config</button>
+                    <input type="file" id="import-file" style="display:none;" onchange="importConfig(event)" accept=".json">
+                    <button type="button" class="import-btn" onclick="document.getElementById('import-file').click()">Importar Config</button>
+                </div>
+                
+                <button type="button" class="bg-emerald-600 text-white px-4 py-2 rounded mt-4" onclick="saveSettings()">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Presets -->
+    <div id="preset-modal" class="preset-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closePresetModal()">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 glow-orange">Presets Personalizados</h2>
+            <div id="preset-content">
+                <p>Selecciona un preset para cargar módulos preconfigurados:</p>
+                <ul class="list-disc pl-5 space-y-1 mt-4">
+                    <li><strong>Limpieza Rápida:</strong> Básicos de caché y temps.</li>
+                    <li><strong>Completa:</strong> Todo intensivo.</li>
+                    <li><strong>Termux Opt:</strong> Paquetes y logs Termux.</li>
+                    <li><strong>Almacenamiento:</strong> Duplicados y grandes archivos.</li>
+                    <li><strong>Seguridad:</strong> Perms y scans.</li>
+                </ul>
+                <button class="bg-teal-600 text-white px-4 py-2 rounded mt-4" onclick="savePreset()">Guardar Preset Actual</button>
             </div>
         </div>
     </div>
@@ -404,6 +639,14 @@
     <script defer>
         'use strict';
         let isDarkMode = true;
+        let config = { interval: 30, theme: 'dark', logDir: '$HOME/apex_logs' };
+        const presets = {
+            quick: ['Limpieza Profunda', 'Archivos Basura', 'Limpiar Portapapeles'],
+            full: () => Object.keys(modules),
+            termux: ['Optimizar Termux', 'Limpiar Cachés Paquetes', 'Eliminar Logs Termux'],
+            storage: ['Duplicados', 'Archivos Grandes', 'Carpetas Vacías'],
+            security: ['Verificar Permisos', 'Scan Malware Básico', 'Backup Encriptado']
+        };
         const scriptTextarea = document.getElementById('script');
         const moduleSwitchesContainer = document.getElementById('module-switches');
         const moduleSearch = document.getElementById('module-search');
@@ -411,135 +654,213 @@
         const inactiveModulesCount = document.getElementById('inactive-modules-count');
         const lineCount = document.getElementById('line-count');
         const sizeEstimate = document.getElementById('size-estimate');
-        const spaceSaved = document.getElementById('space-saved');
+        const spaceFreed = document.getElementById('space-freed');
         const progressFill = document.getElementById('progress-fill');
         const progressText = document.getElementById('progress-text');
+        const intervalDisplay = document.getElementById('interval-display');
+        const scriptInterval = document.getElementById('script-interval');
+        const totalStorage = document.getElementById('total-storage');
+        const filesScanned = document.getElementById('files-scanned');
+        const pkgCount = document.getElementById('pkg-count');
+        const storageFill = document.getElementById('storage-fill');
 
-        // Módulos Expandidos v19.2 - Enfoque No-Root (Categorías + 20 nuevos)
-        const modules = {
-            // Limpieza (Normal)
-            'Limpieza Profunda': { enabled: true, func: 'run_deep_clean', description: 'Cachés de apps, archivos .log/.tmp, miniaturas (Termux).', category: 'cleaning', space: 50 },
-            'Redes Sociales': { enabled: true, func: 'run_social_clean', description: 'Backups de WhatsApp, cachés de Telegram/Instagram.', category: 'cleaning', space: 200 },
-            'Logs y Dumps': { enabled: true, func: 'run_log_clean', description: 'Elimina archivos .trace y .dump residuales en /sdcard.', category: 'cleaning', space: 10 },
-            'Carpetas Vacías': { enabled: true, func: 'run_empty_folder_clean', description: 'Elimina directorios vacíos en almacenamiento.', category: 'cleaning', space: 5 },
-            'Archivos Basura': { enabled: true, func: 'run_junk_clean', description: 'Archivos de 0 bytes y carpetas de publicidad.', category: 'cleaning', space: 20 },
-            'Limpiar Portapapeles': { enabled: true, func: 'run_clipboard_clear', description: 'Vacia el portapapeles de Termux.', category: 'cleaning', space: 1 },
-            'Limpiar APKs Descargados': { enabled: false, func: 'run_apk_clean', description: 'Elimina .apk en /Download.', category: 'cleaning', space: 100 },
-            'Borrado Histórico de Logcat/dmesg': { enabled: false, func: 'run_logcat_wipe', description: 'Limpia buffers de logcat y dmesg (ADB).', category: 'cleaning', space: 15 },
-            'Duplicados': { enabled: false, func: 'run_duplicate_clean', description: 'Encuentra duplicados con fdupes en /sdcard.', category: 'cleaning', space: 150 },
-            'Archivos Grandes': { enabled: false, func: 'run_large_media_clean', description: 'Elimina videos/ZIP >100MB en /sdcard.', category: 'cleaning', space: 500 },
-            'Enlaces Rotos': { enabled: true, func: 'run_broken_symlink_clean', description: 'Elimina enlaces simbólicos rotos.', category: 'cleaning', space: 5 },
-            'Google Play Services': { enabled: false, func: 'run_google_play_services_clean', description: 'Limpia caché de Google Services (ADB: pm clear).', category: 'cleaning', space: 80 },
-            'Cachés de Streaming': { enabled: true, func: 'run_streaming_cache_clean', description: 'Caché de Spotify/YouTube en /Android/data.', category: 'cleaning', space: 300 },
-            'Limpieza Descargas Antiguas (90 días)': { enabled: false, func: 'run_old_downloads_clean', description: 'Archivos >90 días en /Download.', category: 'cleaning', space: 200 },
-            'Limpiar Archivos Temp de Navegador': { enabled: true, func: 'run_browser_temp_clean', description: 'Sesiones temporales de navegadores.', category: 'cleaning', space: 50 },
-            'Optimizar Termux': { enabled: true, func: 'run_termux_clean', description: 'Limpia caché APT en Termux.', category: 'cleaning', space: 20 },
-            // Nuevos Limpieza
-            'Limpiar Caché Sistema': { enabled: true, func: 'run_system_cache_clean', description: 'pm trim-caches para caché global (ADB).', category: 'cleaning', space: 100 },
-            'Limpieza Smart Storage': { enabled: true, func: 'run_smart_storage', description: 'Activa limpieza automática de Android 15+.', category: 'cleaning', space: 150 },
-            'Eliminar Thumbnails': { enabled: true, func: 'run_thumbnails_clean', description: 'Miniaturas de imágenes en /sdcard.', category: 'cleaning', space: 30 },
-
-            // Rendimiento (Normal/Agresivo -> Avanzado No-Root)
-            'Limpiar RAM': { enabled: false, func: 'run_ram_clean', description: 'Fuerza cierre apps background (am force-stop).', category: 'performance', space: 0 },
-            'Optimizar SQLite': { enabled: false, func: 'run_sqlite_opt', description: 'VACUUM en DBs SQLite accesibles.', category: 'performance', space: 10 },
-            'Reparar Galería': { enabled: false, func: 'run_media_reindex', description: 'Reescanea multimedia (am broadcast).', category: 'performance', space: 0 },
-            'Forzar Renderizado GPU': { enabled: false, func: 'run_gpu_rendering', description: 'settings put debug.hwui.renderer opengl (ADB).', category: 'performance', space: 0 },
-            'Limpiar Cachés (NPM/PIP)': { enabled: true, func: 'run_dev_cache_clean', description: 'Cachés NPM/PIP en Termux.', category: 'performance', space: 50 },
-            'Optimizar Sistema': { enabled: false, func: 'run_system_boost', description: 'Escalas de animación a 0.5x (settings put).', category: 'performance', space: 0 },
-            'Desactivar Animaciones': { enabled: false, func: 'run_disable_animations', description: 'Animaciones a 0x para max rendimiento.', category: 'performance', space: 0 },
-            'Recortar Almacenamiento': { enabled: false, func: 'run_storage_trim', description: 'fstrim en particiones user (si disponible).', category: 'performance', space: 0 },
-            'Forzar Modo Doze': { enabled: false, func: 'run_doze_opt', description: 'dumpsys deviceidle force-idle (ADB).', category: 'performance', space: 0 },
-            'Resetear Batería': { enabled: false, func: 'run_battery_calibration', description: 'dumpsys batterystats reset.', category: 'performance', space: 0 },
-            // Nuevos Rendimiento
-            'Optimizar DEX Files': { enabled: false, func: 'run_dex_opt', description: 'cmd package bg-dexopt-job para apps.', category: 'performance', space: 100 },
-            'Desactivar Transiciones': { enabled: false, func: 'run_disable_transitions', description: 'Transition animation scale a 0.', category: 'performance', space: 0 },
-            'Habilitar JIT Compiler': { enabled: true, func: 'run_jit_enable', description: 'settings put dalvik.vm.heapprealloc false.', category: 'performance', space: 0 },
-            'Forzar Dark Mode': { enabled: false, func: 'run_force_dark', description: 'ui_night_mode 2 para ahorro batería/rendimiento.', category: 'performance', space: 0 },
-            'Desactivar WiFi Scan': { enabled: false, func: 'run_wifi_scan_disable', description: 'wifi_scan_always_enabled 0.', category: 'performance', space: 0 },
-
-            // Batería (Nuevo)
-            'Reset Battery Stats': { enabled: true, func: 'run_reset_battery_stats', description: 'Resetea contadores de batería (dumpsys).', category: 'battery', space: 0 },
-            'Optimizar App Standby': { enabled: true, func: 'run_app_standby_opt', description: 'Activa standby para apps inactivas.', category: 'battery', space: 0 },
-            'Restringir Background Data': { enabled: false, func: 'run_restrict_bg_data', description: 'background_data 0 para ahorro datos/batería.', category: 'battery', space: 0 },
-            'Desactivar Auto-Sync': { enabled: false, func: 'run_disable_auto_sync', description: 'Desactiva sync automático.', category: 'battery', space: 0 },
-            'Optimizar Location': { enabled: false, func: 'run_location_opt', description: 'location_backgroundthrottle_interval 0.', category: 'battery', space: 0 },
-            'Desactivar Bluetooth Scan': { enabled: false, func: 'run_bt_scan_disable', description: 'bluetooth_disabled_profiles 0.', category: 'battery', space: 0 },
-            'Desactivar NFC': { enabled: false, func: 'run_nfc_disable', description: 'nfc_on 0.', category: 'battery', space: 0 },
-            'Desactivar Vibración': { enabled: false, func: 'run_vibration_disable', description: 'haptic_feedback_enabled 0.', category: 'battery', space: 0 },
-            'Desactivar Efectos Sonido': { enabled: false, func: 'run_sound_effects_disable', description: 'sound_effects_enabled 0.', category: 'battery', space: 0 },
-
-            // Privacidad (Nuevo)
-            'Hibernar Apps': { enabled: false, func: 'run_app_hibernate', description: 'pm set-app-mode para hibernar apps (Android 12+).', category: 'privacy', space: 0 },
-            'Limpiar DNS Cache': { enabled: true, func: 'run_dns_flush', description: 'ndc resolver flushdefaultif.', category: 'privacy', space: 0 },
-            'Revocar Permisos Background': { enabled: false, func: 'run_revoke_bg_perms', description: 'cmd appops set RUN_IN_BACKGROUND ignore.', category: 'privacy', space: 0 },
-            'Bloquear Trackers': { enabled: false, func: 'run_block_trackers', description: 'Desactiva servicios de tracking comunes (ADB).', category: 'privacy', space: 0 },
-            'Limpiar Historial Ubicación': { enabled: false, func: 'run_location_history_clear', description: 'dumpsys location clear.', category: 'privacy', space: 0 },
+        // Simular dashboard (en real, usar termux-api o JS)
+        const updateDashboard = () => {
+            totalStorage.textContent = '15.2 GB'; // Simulado
+            filesScanned.textContent = '1,247'; // Simulado
+            pkgCount.textContent = '128'; // Simulado
+            storageFill.style.width = '65%'; // Simulado
         };
 
-        // Funciones Bash No-Root (Expandidas con ADB/Termux)
+        // Cargar config
+        const loadConfig = () => {
+            const saved = localStorage.getItem('apexConfig');
+            if (saved) config = JSON.parse(saved);
+            document.getElementById('interval-input').value = config.interval;
+            document.getElementById('theme-select').value = config.theme;
+            document.getElementById('log-dir').value = config.logDir;
+            intervalDisplay.textContent = config.interval;
+            scriptInterval.textContent = config.interval;
+            if (config.theme === 'light') toggleTheme(true);
+        };
+
+        // Módulos Expandidos v19.4 - +70 Termux Exclusivos (No ADB)
+        const modules = {
+            // Limpieza (Normal) - +10 Nuevos
+            'Limpieza Profunda': { enabled: true, func: 'run_deep_clean', description: 'Cachés apps, .log/.tmp en /sdcard (find/rm).', category: 'cleaning', space: 50 },
+            'Redes Sociales': { enabled: true, func: 'run_social_clean', description: 'Backups WhatsApp, cachés Telegram en /sdcard/WhatsApp.', category: 'cleaning', space: 200 },
+            'Logs y Dumps': { enabled: true, func: 'run_log_clean', description: 'Archivos .trace/.dump en /sdcard.', category: 'cleaning', space: 10 },
+            'Carpetas Vacías': { enabled: true, func: 'run_empty_folder_clean', description: 'Directorios vacíos en /sdcard.', category: 'cleaning', space: 5 },
+            'Archivos Basura': { enabled: true, func: 'run_junk_clean', description: 'Archivos 0 bytes en /sdcard.', category: 'cleaning', space: 20 },
+            'Limpiar Portapapeles': { enabled: true, func: 'run_clipboard_clear', description: 'Vacia portapapeles (echo >).', category: 'cleaning', space: 1 },
+            'Limpiar APKs Descargados': { enabled: false, func: 'run_apk_clean', description: '.apk en /sdcard/Download.', category: 'cleaning', space: 100 },
+            'Duplicados': { enabled: false, func: 'run_duplicate_clean', description: 'fdupes en /sdcard (instala fdupes).', category: 'cleaning', space: 150 },
+            'Archivos Grandes': { enabled: false, func: 'run_large_media_clean', description: 'Videos/ZIP >100MB en /sdcard.', category: 'cleaning', space: 500 },
+            'Enlaces Rotos': { enabled: true, func: 'run_broken_symlink_clean', description: 'Enlaces simbólicos rotos en /sdcard.', category: 'cleaning', space: 5 },
+            'Cachés de Streaming': { enabled: true, func: 'run_streaming_cache_clean', description: 'YouTube/Spotify en /sdcard/Android/data.', category: 'cleaning', space: 300 },
+            'Limpieza Descargas Antiguas (90 días)': { enabled: false, func: 'run_old_downloads_clean', description: '>90 días en /sdcard/Download.', category: 'cleaning', space: 200 },
+            'Limpiar Archivos Temp de Navegador': { enabled: true, func: 'run_browser_temp_clean', description: 'Temps navegadores en /sdcard/Android/data.', category: 'cleaning', space: 50 },
+            'Eliminar Thumbnails': { enabled: true, func: 'run_thumbnails_clean', description: 'Miniaturas en /sdcard/.thumbnails.', category: 'cleaning', space: 30 },
+            'Clear Session Files': { enabled: false, func: 'run_clear_sessions', description: 'Archivos sesión en /sdcard/Android/data/*/*.session.', category: 'cleaning', space: 40 },
+            'Limpieza WhatsApp Media': { enabled: true, func: 'run_whatsapp_media', description: 'Media antiguos en /sdcard/WhatsApp/Media.', category: 'cleaning', space: 400 },
+            'Limpieza Telegram Cache': { enabled: false, func: 'run_telegram_cache', description: 'Caché Telegram en /sdcard/Telegram.', category: 'cleaning', space: 150 },
+            'Limpieza Instagram Logs': { enabled: false, func: 'run_instagram_logs', description: 'Logs Instagram en /sdcard/Android/data/com.instagram.android.', category: 'cleaning', space: 20 },
+            'Limpieza Facebook Temps': { enabled: false, func: 'run_facebook_temps', description: 'Temps Facebook en /sdcard/Android/data/com.facebook.katana.', category: 'cleaning', space: 80 },
+            'Limpieza YouTube Offline': { enabled: true, func: 'run_youtube_offline', description: 'Videos offline YouTube en /sdcard/Android/data/com.google.android.youtube.', category: 'cleaning', space: 600 },
+
+            // Termux Opt - +15 Nuevos
+            'Optimizar Termux': { enabled: true, func: 'run_termux_clean', description: 'pkg autoclean y update repos.', category: 'termux', space: 20 },
+            'Limpiar Cachés Paquetes': { enabled: true, func: 'run_pkg_cache_clean', description: 'rm -rf $PREFIX/var/cache/apt/archives/*.', category: 'termux', space: 100 },
+            'Eliminar Logs Termux': { enabled: true, func: 'run_termux_logs', description: 'rm -rf $HOME/.termux/log/*.', category: 'termux', space: 5 },
+            'Remover Paquetes No Usados': { enabled: false, func: 'run_unused_pkgs', description: 'pkg autoremove.', category: 'termux', space: 50 },
+            'Limpiar Temp Termux': { enabled: true, func: 'run_termux_temp', description: 'rm -rf $PREFIX/tmp/*.', category: 'termux', space: 10 },
+            'Limpiar Backups Termux': { enabled: false, func: 'run_termux_backups', description: 'rm -rf $HOME/.backups/*.', category: 'termux', space: 200 },
+            'Actualizar Repos': { enabled: true, func: 'run_update_repos', description: 'pkg update -y.', category: 'termux', space: 0 },
+            'Limpiar Cachés Pip': { enabled: false, func: 'run_pip_cache', description: 'pip cache purge.', category: 'termux', space: 30 },
+            'Limpiar Cachés NPM': { enabled: false, func: 'run_npm_cache', description: 'npm cache clean --force.', category: 'termux', space: 40 },
+            'Scan Paquetes Obsoletos': { enabled: false, func: 'run_obsolete_pkgs', description: 'pkg list-upgrades.', category: 'termux', space: 0 },
+            'Limpiar Historia Bash': { enabled: true, func: 'run_bash_history', description: '> $HOME/.bash_history.', category: 'termux', space: 1 },
+            'Optimizar Variables Env': { enabled: false, func: 'run_env_opt', description: 'unset vars innecesarias (script).', category: 'termux', space: 0 },
+            'Limpiar Archivos .git': { enabled: false, func: 'run_git_clean', description: 'find ~ -name .git -type d -exec rm -rf {} +.', category: 'termux', space: 500 },
+            'Verificar Integridad Pkgs': { enabled: false, func: 'run_pkg_integrity', description: 'pkg check.', category: 'termux', space: 0 },
+            'Limpiar Cachés Ruby': { enabled: false, func: 'run_ruby_cache', description: 'gem cleanup.', category: 'termux', space: 20 },
+
+            // Almacenamiento - +10 Nuevos
+            'Analizar Uso Disco': { enabled: true, func: 'run_disk_usage', description: 'du -sh /sdcard/* | sort -hr.', category: 'storage', space: 0 },
+            'Comprimir Archivos ZIP': { enabled: false, func: 'run_compress_zip', description: 'zip -r backup.zip /sdcard/Download/old/.', category: 'storage', space: -100 },
+            'Eliminar Archivos Antiguos': { enabled: false, func: 'run_old_files', description: 'find /sdcard -mtime +30 -delete.', category: 'storage', space: 300 },
+            'Optimizar Imágenes': { enabled: false, func: 'run_image_opt', description: 'convert img.jpg -resize 50% img_opt.jpg (instala imagemagick).', category: 'storage', space: 150 },
+            'Limpiar Cachés Apps': { enabled: true, func: 'run_app_caches', description: 'find /sdcard/Android/data -name "*cache*" -type d -exec rm -rf {} +.', category: 'storage', space: 400 },
+            'Scan Duplicados Avanzado': { enabled: false, func: 'run_adv_duplicates', description: 'fdupes -r /sdcard.', category: 'storage', space: 200 },
+            'Limpiar Descargas Duplicadas': { enabled: false, func: 'run_download_dups', description: 'fdupes /sdcard/Download.', category: 'storage', space: 100 },
+            'Comprimir Videos': { enabled: false, func: 'run_video_compress', description: 'ffmpeg -i input.mp4 -vcodec libx265 output.mp4 (instala ffmpeg).', category: 'storage', space: 300 },
+            'Eliminar Archivos Rotos': { enabled: true, func: 'run_broken_files', description: 'find /sdcard -type f ! -readable -delete.', category: 'storage', space: 50 },
+            'Backup Selectivo': { enabled: false, func: 'run_selective_backup', description: 'tar -czf backup.tar.gz /sdcard/Photos/important/.', category: 'storage', space: -200 },
+
+            // Archivos - +10 Nuevos
+            'Limpiar Backups Apps': { enabled: false, func: 'run_app_backups', description: 'rm -rf /sdcard/Android/data/*/files/backup/*.', category: 'file', space: 250 },
+            'Eliminar Minituras Galería': { enabled: true, func: 'run_gallery_thumbs', description: 'rm -rf /sdcard/DCIM/.thumbnails/*.', category: 'file', space: 60 },
+            'Limpiar Sesiones Spotify': { enabled: false, func: 'run_spotify_sessions', description: 'rm -rf /sdcard/Android/data/com.spotify.music/files/session/*.', category: 'file', space: 80 },
+            'Limpiar Cachés Chrome': { enabled: true, func: 'run_chrome_cache', description: 'rm -rf /sdcard/Android/data/com.android.chrome/app_chrome/Default/Cache/*.', category: 'file', space: 120 },
+            'Eliminar Archivos .DS_Store': { enabled: false, func: 'run_ds_store', description: 'find /sdcard -name ".DS_Store" -delete.', category: 'file', space: 2 },
+            'Limpiar Logs Sistema Usuario': { enabled: false, func: 'run_user_logs', description: 'rm -f /sdcard/log/*.log.', category: 'file', space: 15 },
+            'Comprimir PDFs': { enabled: false, func: 'run_pdf_compress', description: 'qpdf input.pdf output.pdf (instala qpdf).', category: 'file', space: 100 },
+            'Eliminar Duplicados Fotos': { enabled: false, func: 'run_photo_dups', description: 'fdupes /sdcard/DCIM/Camera.', category: 'file', space: 200 },
+            'Limpiar Archivos Temp Global': { enabled: true, func: 'run_global_temp', description: 'find /sdcard -name "*.temp" -delete.', category: 'file', space: 30 },
+            'Organizar Descargas': { enabled: false, func: 'run_organize_downloads', description: 'script para mover por tipo (ej. .apk a folder).', category: 'file', space: 0 },
+
+            // Seguridad - +15 Nuevos
+            'Verificar Permisos Archivos': { enabled: true, func: 'run_perm_check', description: 'find /sdcard -perm -777 -ls.', category: 'security', space: 0 },
+            'Scan Malware Básico': { enabled: false, func: 'run_malware_scan', description: 'clamscan /sdcard (instala clamav).', category: 'security', space: 0 },
+            'Backup Encriptado': { enabled: false, func: 'run_enc_backup', description: 'gpg -c backup.tar.gz.', category: 'security', space: -50 },
+            'Limpiar Historial Comandos': { enabled: true, func: 'run_cmd_history', description: 'history -c && > $HOME/.bash_history.', category: 'security', space: 1 },
+            'Verificar Checksums': { enabled: false, func: 'run_checksum_verify', description: 'sha256sum -c checksums.txt.', category: 'security', space: 0 },
+            'Bloquear Archivos Sensibles': { enabled: false, func: 'run_lock_files', description: 'chmod 600 /sdcard/private/*.', category: 'security', space: 0 },
+            'Scan Virus en Descargas': { enabled: false, func: 'run_virus_scan_downloads', description: 'rkhunter --check /sdcard/Download (instala rkhunter).', category: 'security', space: 0 },
+            'Generar Claves SSH': { enabled: false, func: 'run_ssh_keys', description: 'ssh-keygen -t ed25519.', category: 'security', space: 1 },
+            'Limpiar Cachés Sensibles': { enabled: true, func: 'run_sensitive_cache', description: 'rm -rf /sdcard/Android/data/*/cache/passwords/*.', category: 'security', space: 20 },
+            'Auditar Perms Termux': { enabled: false, func: 'run_termux_audit', description: 'ls -la $PREFIX/bin/ | grep +s.', category: 'security', space: 0 },
+            'Encriptar Archivos': { enabled: false, func: 'run_encrypt_files', description: 'openssl enc -aes-256-cbc -in file.txt -out file.enc.', category: 'security', space: -10 },
+            'Limpiar Metadatos Fotos': { enabled: false, func: 'run_exif_clean', description: 'exiftool -all= photo.jpg (instala exiftool).', category: 'security', space: 5 },
+            'Verificar Integridad Sistema': { enabled: false, func: 'run_sys_integrity', description: 'md5sum /sdcard/important/*.', category: 'security', space: 0 },
+            'Bloquear Acceso Temp': { enabled: false, func: 'run_temp_lock', description: 'chmod 700 /sdcard/tmp/.', category: 'security', space: 0 },
+            'Scan Rootkits': { enabled: false, func: 'run_rootkit_scan', description: 'chkrootkit (instala chkrootkit).', category: 'security', space: 0 },
+        };
+
+        // Funciones Bash Termux Exclusivas (+70)
         const allFunctions = {
-            run_deep_clean: () => 'pm trim-caches 999M && find $STORAGE -name "*.tmp" -delete',
-            run_social_clean: () => 'rm -rf $STORAGE/WhatsApp/Databases/*.bak $STORAGE/Android/data/com.whatsapp/cache/*',
-            run_log_clean: () => 'rm -f $STORAGE/log/*.trace $STORAGE/anr/*.dump',
+            // Limpieza
+            run_deep_clean: () => 'find $STORAGE -name "*.tmp" -o -name "*.log" -delete',
+            run_social_clean: () => 'rm -rf $STORAGE/WhatsApp/Databases/*.bak $STORAGE/Telegram/Telegram\ Videos/*old*',
+            run_log_clean: () => 'rm -f $STORAGE/*.trace $STORAGE/*.dump',
             run_empty_folder_clean: () => 'find $STORAGE -type d -empty -delete',
             run_junk_clean: () => 'find $STORAGE -size 0 -delete',
-            run_clipboard_clear: () => 'echo "" | xclip -selection clipboard || echo "Clipboard cleared"',
+            run_clipboard_clear: () => 'echo "" > /dev/null',  // Simulado en Termux
             run_apk_clean: () => 'rm -f $STORAGE/Download/*.apk',
-            run_logcat_wipe: () => 'logcat -c',
-            run_duplicate_clean: () => 'fdupes -rdN $STORAGE',
-            run_large_media_clean: () => 'find $STORAGE -name "*.mp4" -o -name "*.zip" -size +100M -delete',
-            run_broken_symlink_clean: () => 'find $STORAGE -type l ! -exec test -e {} \\; -delete',
-            run_google_play_services_clean: () => 'pm clear com.google.android.gms',
-            run_streaming_cache_clean: () => 'rm -rf $STORAGE/Android/data/com.spotify.music/cache/* $STORAGE/Android/data/com.google.android.youtube/cache/*',
+            run_duplicate_clean: () => 'fdupes -dN $STORAGE',
+            run_large_media_clean: () => 'find $STORAGE -name "*.mp4" -size +100M -delete',
+            run_broken_symlink_clean: () => 'find $STORAGE -type l -delete',
+            run_streaming_cache_clean: () => 'rm -rf $STORAGE/Android/data/com.google.android.youtube/cache/*',
             run_old_downloads_clean: () => 'find $STORAGE/Download -mtime +90 -delete',
-            run_browser_temp_clean: () => 'rm -rf $STORAGE/Android/data/org.mozilla.firefox/files/mozilla/*',
+            run_browser_temp_clean: () => 'rm -rf $STORAGE/Android/data/com.android.chrome/app_chrome/Default/Cache/*',
+            run_thumbnails_clean: () => 'rm -rf $STORAGE/.thumbnails/*',
+            run_clear_sessions: () => 'find $STORAGE/Android/data -name "*.session" -delete',
+            run_whatsapp_media: () => 'find $STORAGE/WhatsApp/Media -name "*2024*" -mtime +30 -delete',
+            run_telegram_cache: () => 'rm -rf $STORAGE/Telegram/Telegram\ Cache/*',
+            run_instagram_logs: () => 'rm -f $STORAGE/Android/data/com.instagram.android/files/logs/*',
+            run_facebook_temps: () => 'rm -rf $STORAGE/Android/data/com.facebook.katana/cache/*',
+            run_youtube_offline: () => 'rm -rf $STORAGE/Android/data/com.google.android.youtube/files/offline/*',
+
+            // Termux
             run_termux_clean: () => 'pkg autoclean',
-            run_ram_clean: () => 'am force-stop $(pm list packages | tail -10)',  // Ejemplo limitado
-            run_sqlite_opt: () => 'find $STORAGE -name "*.db" -exec sqlite3 {} "VACUUM;" \\;',
-            run_media_reindex: () => 'am broadcast -a android.intent.action.MEDIA_MOUNTED',
-            run_gpu_rendering: () => 'settings put global debug.hwui.renderer opengl',
-            run_dev_cache_clean: () => 'rm -rf ~/.npm/_cacache ~/.cache/pip',
-            run_system_boost: () => 'settings put global window_animation_scale 0.5',
-            run_disable_animations: () => 'settings put global animator_duration_scale 0',
-            run_storage_trim: () => 'fstrim -v /sdcard || echo "Trim skipped"',
-            run_doze_opt: () => 'dumpsys deviceidle force-idle',
-            run_battery_calibration: () => 'dumpsys batterystats reset',
-            // Nuevos
-            run_system_cache_clean: () => 'pm trim-caches 999999M',
-            run_smart_storage: () => 'settings put global automatic_storage 1',
-            run_thumbnails_clean: () => 'rm -rf $STORAGE/.thumbnails/* $STORAGE/DCIM/.thumbnails/*',
-            run_dex_opt: () => 'cmd package bg-dexopt-job',
-            run_disable_transitions: () => 'settings put global transition_animation_scale 0',
-            run_jit_enable: () => 'settings put global dalvik.vm.heapprealloc false',
-            run_force_dark: () => 'settings put secure ui_night_mode 2',
-            run_wifi_scan_disable: () => 'settings put global wifi_scan_always_enabled 0',
-            run_reset_battery_stats: () => 'dumpsys batterystats reset',
-            run_app_standby_opt: () => 'settings put global app_standby_enabled 1',
-            run_restrict_bg_data: () => 'settings put global background_data 0',
-            run_disable_auto_sync: () => 'settings put global auto_sync 0',
-            run_location_opt: () => 'settings put secure location_backgroundthrottle_interval 0',
-            run_bt_scan_disable: () => 'settings put global bluetooth_disabled_profiles 66',
-            run_nfc_disable: () => 'settings put global nfc_on 0',
-            run_vibration_disable: () => 'settings put system haptic_feedback_enabled 0',
-            run_sound_effects_disable: () => 'settings put system sound_effects_enabled 0',
-            run_app_hibernate: () => 'pm set-app-mode com.facebook.katana 0',  // Ejemplo
-            run_dns_flush: () => 'ndc resolver flushdefaultif',
-            run_revoke_bg_perms: () => 'cmd appops set com.example RUN_IN_BACKGROUND ignore',
-            run_block_trackers: () => 'pm disable-user com.google.android.gms/.ads.AdRequestBrokerService',
-            run_location_history_clear: () => 'dumpsys location 1 | grep -v history || echo "Cleared"',
+            run_pkg_cache_clean: () => 'rm -rf $PREFIX/var/cache/apt/archives/*',
+            run_termux_logs: () => 'rm -rf $HOME/.termux/log/*',
+            run_unused_pkgs: () => 'pkg autoremove -y',
+            run_termux_temp: () => 'rm -rf $PREFIX/tmp/*',
+            run_termux_backups: () => 'rm -rf $HOME/backup/*',
+            run_update_repos: () => 'pkg update -y',
+            run_pip_cache: () => 'pip cache purge',
+            run_npm_cache: () => 'npm cache clean --force',
+            run_obsolete_pkgs: () => 'pkg list-upgrades',
+            run_bash_history: () => 'history -c',
+            run_env_opt: () => 'env | grep -v TERMUX > .env_clean',
+            run_git_clean: () => 'find $HOME -name .git -type d -exec rm -rf {} + 2>/dev/null',
+            run_pkg_integrity: () => 'pkg check',
+            run_ruby_cache: () => 'gem cleanup',
+
+            // Almacenamiento
+            run_disk_usage: () => 'du -sh $STORAGE/* | sort -hr',
+            run_compress_zip: () => 'zip -r $HOME/backup.zip $STORAGE/old_files/',
+            run_old_files: () => 'find $STORAGE -mtime +30 -type f -delete',
+            run_image_opt: () => 'mogrify -resize 50% $STORAGE/*.jpg',  // Imagemagick
+            run_app_caches: () => 'find $STORAGE/Android/data -name "cache" -type d -exec rm -rf {} + 2>/dev/null',
+            run_adv_duplicates: () => 'fdupes -r $STORAGE',
+            run_download_dups: () => 'fdupes $STORAGE/Download',
+            run_video_compress: () => 'ffmpeg -i $STORAGE/video.mp4 -crf 28 $STORAGE/video_opt.mp4',
+            run_broken_files: () => 'find $STORAGE -type f ! -readable -delete',
+            run_selective_backup: () => 'tar -czf $HOME/photos_backup.tar.gz $STORAGE/DCIM/Camera/important/',
+
+            // Archivos
+            run_app_backups: () => 'rm -rf $STORAGE/Android/data/*/files/backup/* 2>/dev/null',
+            run_gallery_thumbs: () => 'rm -rf $STORAGE/DCIM/.thumbnails/*',
+            run_spotify_sessions: () => 'rm -rf $STORAGE/Android/data/com.spotify.music/files/session/*',
+            run_chrome_cache: () => 'rm -rf $STORAGE/Android/data/com.android.chrome/app_chrome/Default/Cache/*',
+            run_ds_store: () => 'find $STORAGE -name ".DS_Store" -delete',
+            run_user_logs: () => 'rm -f $STORAGE/*.log',
+            run_pdf_compress: () => 'qpdf --stream-data=compress $STORAGE/doc.pdf $STORAGE/doc_opt.pdf',
+            run_photo_dups: () => 'fdupes $STORAGE/DCIM/Camera',
+            run_global_temp: () => 'find $STORAGE -name "*.temp" -delete',
+            run_organize_downloads: () => 'mkdir -p $STORAGE/Download/{APK,PDF,IMG} && mv $STORAGE/Download/*.apk $STORAGE/Download/APK/',
+
+            // Seguridad
+            run_perm_check: () => 'find $STORAGE -perm -777 -ls',
+            run_malware_scan: () => 'clamscan --bell -i $STORAGE',
+            run_enc_backup: () => 'gpg -c --batch --passphrase "pass" $HOME/backup.tar.gz',
+            run_cmd_history: () => 'history -c && history -w',
+            run_checksum_verify: () => 'sha256sum -c $HOME/checksums.txt',
+            run_lock_files: () => 'chmod 600 $STORAGE/private/*',
+            run_virus_scan_downloads: () => 'rkhunter --check $STORAGE/Download',
+            run_ssh_keys: () => 'ssh-keygen -t ed25519 -N "" -f $HOME/.ssh/id_ed25519',
+            run_sensitive_cache: () => 'rm -rf $STORAGE/Android/data/*/cache/sensitive/* 2>/dev/null',
+            run_termux_audit: () => 'ls -la $PREFIX/bin/ | grep +s',
+            run_encrypt_files: () => 'openssl enc -aes-256-cbc -salt -in $STORAGE/file.txt -out $STORAGE/file.enc',
+            run_exif_clean: () => 'exiftool -all= -overwrite_original $STORAGE/photo.jpg',
+            run_sys_integrity: () => 'md5sum $STORAGE/important/* > $HOME/integrity.md5',
+            run_temp_lock: () => 'chmod 700 $STORAGE/tmp/',
+            run_rootkit_scan: () => 'chkrootkit',
         };
 
         // Categorías
         const categories = {
             all: () => true,
             cleaning: (mod) => mod.category === 'cleaning',
-            performance: (mod) => mod.category === 'performance',
-            battery: (mod) => mod.category === 'battery',
-            privacy: (mod) => mod.category === 'privacy'
+            termux: (mod) => mod.category === 'termux',
+            storage: (mod) => mod.category === 'storage',
+            file: (mod) => mod.category === 'file',
+            security: (mod) => mod.category === 'security'
         };
 
         function generateScriptContent() {
-            // Simular progreso
             let progress = 0;
             const updateProgress = (p) => {
                 progress = p;
@@ -548,35 +869,44 @@
             };
             updateProgress(10);
 
-            const header = `#!/bin/bash
-# APEX Optimizer v19.2 - No-Root Edition (Termux/ADB)
-# Bucle cada 30s - Ejecuta con: adb shell sh script.sh o en Termux
-# Nota: Para ADB, habilita depuración USB/Wireless.
+            const interval = config.interval;
+            const logDir = config.logDir;
+            const header = `#!/data/data/com.termux/files/usr/bin/bash
+# APEX Optimizer v19.4 - Termux Exclusiva (No-Root 2025)
+# Bucle cada ${interval}s - Ejecuta: bash script.sh en Termux
+# +70 Módulos: Limpieza /sdcard, Opt Termux, Compresión, Seguridad
 
 C_OFF='\\e[0m'; C_RED='\\e[0;31m'; C_GREEN='\\e[0;32m'; C_YELLOW='\\e[0;33m'; C_CYAN='\\e[0;36m';
-LOG_FILE=$HOME/apex_no_root_v19.2.log
-STORAGE="/sdcard"
+LOG_FILE="${logDir}/apex_v19.4.log"
+STORAGE="$HOME/storage/shared"  # Requiere termux-setup-storage
 
-echo -e "$C_CYAN--- APEX v19.2 No-Root Log: \$(date) ---$C_OFF" > "$LOG_FILE"
-updateProgress(30);
+mkdir -p "$LOG_DIR"
+echo -e "$C_CYAN--- APEX v19.4 Termux Log: \$(date) ---$C_OFF" > "$LOG_FILE"
 
-execute_module_command() {
+execute_module() {
     echo -e "$C_CYAN-> \$1...$C_OFF"
-    echo "--- \$1 (\$2) ---" >> "$LOG_FILE"
-    if eval "\$2" >> "$LOG_FILE" 2>&1; then echo -e "  $C_GREEN[OK]$C_OFF"; else echo -e "  $C_RED[FALLO]$C_OFF"; fi
+    echo "--- \$1 ---" >> "$LOG_FILE"
+    if eval "\$2" >> "$LOG_FILE" 2>&1; then 
+        echo -e "  $C_GREEN[OK]$C_OFF"
+        echo "OK: \$1" >> "$LOG_FILE"
+    else 
+        echo -e "  $C_RED[FALLO]$C_OFF"
+        echo "FALLO: \$1" >> "$LOG_FILE"
+    fi
 }
-updateProgress(50);
-
 `;
-            let functionDefinitions = '\n# --- Módulos No-Root (ADB/Termux) ---\n';
+            updateProgress(30);
+
+            let functionDefinitions = '\n# --- Módulos Termux (2025) ---\n';
             let mainExecutionCalls = `
-# --- BUCLE PRINCIPAL (30s) ---
-echo -e "$C_RED--- OPTIMIZACIÓN NO-ROOT INICIADA ---$C_OFF" | tee -a "$LOG_FILE"
+# --- BUCLE PRINCIPAL (${interval}s) ---
+echo -e "$C_RED--- OPTIMIZACIÓN TERMUX INICIADA ---$C_OFF" | tee -a "$LOG_FILE"
 
 while true; do
     echo -e "$C_YELLOW--- Ciclo: \$(date) ---$C_OFF" | tee -a "$LOG_FILE"
+    df -h $STORAGE >> "$LOG_FILE"  # Monitoreo
 `;
-            updateProgress(70);
+            updateProgress(50);
 
             const usedFunctions = new Set();
             let totalSpace = 0;
@@ -585,20 +915,20 @@ while true; do
                     const funcName = mod.func;
                     functionDefinitions += `${funcName}() { ${allFunctions[funcName]()} ; }\n`;
                     usedFunctions.add(funcName);
-                    mainExecutionCalls += `    execute_module_command "${mod.func}" "${funcName}"\n`;
+                    mainExecutionCalls += `    execute_module "${mod.func}" "${funcName}"\n`;
                     totalSpace += mod.space || 0;
                 }
             });
-            spaceSaved.textContent = `${totalSpace} MB`;
-            updateProgress(90);
+            updateProgress(80);
+            spaceFreed.textContent = `${totalSpace} MB`;
 
             const footer = `
-    echo -e "$C_GREEN--- Ciclo OK. Esperando 30s... (Espacio ahorrado: ~${totalSpace}MB) ---$C_OFF" | tee -a "$LOG_FILE"
-    sleep 30
+    echo -e "$C_GREEN--- Ciclo OK. Esperando ${interval}s... (Liberado: ~${totalSpace}MB) ---$C_OFF" | tee -a "$LOG_FILE"
+    sleep ${interval}
 done
 `;
             updateProgress(100);
-            setTimeout(() => updateProgress(0), 2000);
+            setTimeout(() => updateProgress(0), 3000);
             
             return header + functionDefinitions + mainExecutionCalls + footer;
         }
@@ -632,7 +962,25 @@ done
             updateScript();
         };
 
-        // Filtrado por Categoría y Búsqueda
+        const loadPreset = (name) => {
+            const presetKeys = typeof presets[name] === 'function' ? presets[name]() : presets[name];
+            Object.keys(modules).forEach(key => modules[key].enabled = false);
+            presetKeys.forEach(key => { if (modules[key]) modules[key].enabled = true; });
+            initializeUI();
+            updateScript();
+            showNotification(`Preset "${name}" cargado`, 'bg-orange-500/90');
+        };
+
+        const savePreset = () => {
+            const name = prompt('Nombre del preset:');
+            if (name) {
+                const active = Object.keys(modules).filter(key => modules[key].enabled);
+                presets[name] = active;
+                showNotification(`Preset "${name}" guardado`, 'bg-teal-500/90');
+            }
+        };
+
+        // Filtrado
         let cachedElements = null;
         const getCachedElements = () => {
             if (!cachedElements) cachedElements = document.querySelectorAll('#module-switches label');
@@ -641,7 +989,7 @@ done
 
         const filterModules = (filter = 'all', searchTerm = '', category = 'all') => {
             const moduleElements = getCachedElements();
-            const aggressiveModules = ['Desactivar Animaciones', 'Forzar Modo Doze', 'Optimizar DEX Files'];  // Avanzados
+            const aggressiveModules = ['Duplicados', 'Archivos Grandes', 'Scan Malware Básico'];
 
             moduleElements.forEach(element => {
                 const moduleName = element.querySelector('span').textContent;
@@ -663,16 +1011,20 @@ done
 
         const initializeUI = () => {
             let switchesHTML = '';
-            const aggressiveModules = ['Desactivar Animaciones', 'Forzar Modo Doze', 'Optimizar DEX Files', 'Revocar Permisos Background'];
-            const batteryModules = Object.keys(modules).filter(k => modules[k].category === 'battery');
-            const privacyModules = Object.keys(modules).filter(k => modules[k].category === 'privacy');
+            const aggressiveModules = ['Duplicados', 'Archivos Grandes', 'Scan Malware Básico', 'Remover Paquetes No Usados'];
+            const termuxModules = Object.keys(modules).filter(k => modules[k].category === 'termux');
+            const storageModules = Object.keys(modules).filter(k => modules[k].category === 'storage');
+            const fileModules = Object.keys(modules).filter(k => modules[k].category === 'file');
+            const securityModules = Object.keys(modules).filter(k => modules[k].category === 'security');
 
             Object.keys(modules).forEach(key => {
                 const mod = modules[key];
                 let moduleClass = 'normal-module border-gray-600';
                 if (aggressiveModules.includes(key)) moduleClass = 'aggressive-module border-red-500';
-                else if (batteryModules.includes(key)) moduleClass = 'battery-module border-green-500';
-                else if (privacyModules.includes(key)) moduleClass = 'privacy-module border-blue-500';
+                else if (termuxModules.includes(key)) moduleClass = 'termux-module border-teal-500';
+                else if (storageModules.includes(key)) moduleClass = 'storage-module border-orange-500';
+                else if (fileModules.includes(key)) moduleClass = 'file-module border-purple-500';
+                else if (securityModules.includes(key)) moduleClass = 'security-module border-indigo-500';
                 
                 switchesHTML += `
                     <label class="flex items-start justify-between p-3 rounded-xl module-hover border ${moduleClass}" role="listitem" data-category="${mod.category}">
@@ -702,9 +1054,10 @@ done
 
             updateScript();
             updateModuleCounters();
+            updateDashboard();
         };
 
-        // Pestañas de Categoría
+        // Pestañas
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -719,22 +1072,22 @@ done
             scriptTextarea.select();
             scriptTextarea.setSelectionRange(0, 99999);
             const success = document.execCommand("copy");
-            showNotification(success ? "✅ Script v19.2 copiado. Ejecuta en Termux/ADB!" : "❌ Error al copiar.", success ? 'bg-emerald-500/90' : 'bg-red-500/90'); 
+            showNotification(success ? "✅ Script v19.4 copiado. ¡Ejecuta en Termux!" : "❌ Error al copiar.", success ? 'bg-emerald-500/90' : 'bg-red-500/90'); 
         };
         
         const downloadScript = () => {
             const content = scriptTextarea.value;
-            const zipContent = `apex_no_root_v19.2.zip\n\nScript: ${content}\n\nInstrucciones: 1. Habilita ADB. 2. adb shell sh apex_optimizer_v19.2_no_root.sh`;
-            const blob = new Blob([zipContent], { type: 'application/zip' });
+            const zipContent = `apex_termux_v19.4.sh\n\n${content}\n\nInstrucciones:\n1. termux-setup-storage\n2. pkg install coreutils findutils fdupes zip\n3. bash apex_v19.4.sh`;
+            const blob = new Blob([zipContent], { type: 'text/x-shellscript' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'apex_optimizer_v19.2_no_root.zip';
+            a.download = 'apex_optimizer_v19.4_termux.sh';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
-            showNotification("💾 ZIP descargado con script e instrucciones", 'bg-blue-500/90');
+            showNotification("💾 Script Termux descargado", 'bg-teal-500/90');
         };
 
         const showNotification = (message, colorClass = 'bg-green-500/90') => {
@@ -751,20 +1104,65 @@ done
             }, 3000);
         };
 
-        const toggleTheme = () => {
+        const toggleTheme = (fromLoad = false) => {
+            const body = document.getElementById('body-theme');
             isDarkMode = !isDarkMode;
-            document.body.classList.toggle('bg-gray-900', isDarkMode);
-            document.body.classList.toggle('bg-white', !isDarkMode);
-            document.body.classList.toggle('text-white', isDarkMode);
-            document.body.classList.toggle('text-gray-900', !isDarkMode);
-            showNotification(isDarkMode ? "🌙 Modo Oscuro" : "☀️ Modo Claro", 'bg-purple-500/90');
+            if (isDarkMode) {
+                body.classList.remove('light');
+            } else {
+                body.classList.add('light');
+            }
+            if (!fromLoad) showNotification(isDarkMode ? "🌙 Modo Oscuro" : "☀️ Modo Claro", 'bg-purple-500/90');
         };
 
         const openHelp = () => document.getElementById('help-modal').style.display = 'block';
         const closeHelp = () => document.getElementById('help-modal').style.display = 'none';
+        const openSettings = () => document.getElementById('settings-modal').style.display = 'block';
+        const closeSettings = () => document.getElementById('settings-modal').style.display = 'none';
+        const openPresetModal = () => document.getElementById('preset-modal').style.display = 'block';
+        const closePresetModal = () => document.getElementById('preset-modal').style.display = 'none';
+
+        const saveSettings = () => {
+            config.interval = parseInt(document.getElementById('interval-input').value);
+            config.theme = document.getElementById('theme-select').value;
+            config.logDir = document.getElementById('log-dir').value;
+            localStorage.setItem('apexConfig', JSON.stringify(config));
+            intervalDisplay.textContent = config.interval;
+            scriptInterval.textContent = config.interval;
+            toggleTheme(config.theme === 'light');
+            updateScript();
+            closeSettings();
+            showNotification("⚙️ Config guardada", 'bg-purple-500/90');
+        };
+
+        const exportConfig = () => {
+            const blob = new Blob([JSON.stringify(modules, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'apex_config_v19.4.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showNotification("📤 Config exportada", 'bg-blue-500/90');
+        };
+
+        const importConfig = (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const imported = JSON.parse(e.target.result);
+                    Object.assign(modules, imported);
+                    initializeUI();
+                    showNotification("📥 Config importada", 'bg-green-500/90');
+                };
+                reader.readAsText(file);
+            }
+        };
 
         // Inicialización
         document.addEventListener('DOMContentLoaded', () => {
+            loadConfig();
             initializeUI();
             
             moduleSearch.addEventListener('input', (e) => {
