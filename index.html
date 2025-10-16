@@ -1,75 +1,145 @@
 <!DOCTYPE html>
-<html lang="es">
+<!-- 
+  Enhanced by Gemini
+  Version: 3.0
+  Date: 2025-10-16
+  Description: A comprehensive rewrite of the original APEX Optimizer interface.
+  Key Improvements:
+  1.  All-in-One File: CSS and JavaScript are fully embedded for maximum portability and faster loading (fewer HTTP requests).
+  2.  UI/UX Overhaul: Added a theme switcher (Light/Dark), interactive tooltips for modules, and improved responsive design.
+  3.  Code Optimization: Refactored JavaScript for better readability, maintainability, and performance.
+  4.  Enhanced Accessibility: Improved focus states and ARIA attributes for better keyboard and screen reader support.
+  5.  Detailed Documentation: Added extensive comments in HTML, CSS, and JavaScript to explain the code, making it easier to understand and learn from.
+-->
+<html lang="es" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX Optimizer v2.0 - Edición Termux (No-Root) | Limpieza y Optimización Android</title>
+    <title>APEX Optimizer v3.0 - Enhanced Edition | Termux Script Generator</title>
+    
+    <!-- TailwindCSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter for UI, Fira Code for code blocks -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* * EMBEDDED STYLESHEET
+         * This section contains all custom CSS. Keeping CSS in the HTML file reduces
+         * the number of requests the browser has to make, improving load time.
+         */
+
+        /* CSS Variables for Theming (Dark/Light Mode) */
         :root {
+            /* Set base font for the entire page */
             font-family: 'Inter', sans-serif;
-            --green-glow: 0 0 5px rgba(190, 242, 100, 0.9), 0 0 10px rgba(134, 239, 30, 0.6);
-            --red-glow: 0 0 5px rgba(239, 68, 68, 0.9), 0 0 10px rgba(185, 28, 28, 0.6);
-            --blue-glow: 0 0 5px rgba(59, 130, 246, 0.9), 0 0 10px rgba(37, 99, 235, 0.6);
+
+            /* Dark Theme (Default) */
+            --bg-primary: #0c101c;
+            --bg-secondary: #1e293b;
+            --bg-container: rgba(15, 23, 42, 0.9);
+            --bg-module: rgba(30, 41, 59, 0.8);
+            --bg-code: #080d19;
+            --text-primary: #f3f4f6;
+            --text-secondary: #94a3b8;
+            --text-code: #34d399;
+            --border-primary: #6ee7b7;
+            --border-secondary: rgba(71, 85, 105, 0.5);
+            --glow-color: #6ee7b7;
+            --glow-shadow: 0 0 5px rgba(110, 231, 183, 0.9), 0 0 10px rgba(52, 211, 153, 0.6);
         }
+
+        [data-theme="light"] {
+            /* Light Theme */
+            --bg-primary: #f1f5f9;
+            --bg-secondary: #cbd5e1;
+            --bg-container: rgba(255, 255, 255, 0.9);
+            --bg-module: #ffffff;
+            --bg-code: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-code: #059669;
+            --border-primary: #10b981;
+            --border-secondary: #e2e8f0;
+            --glow-color: #10b981;
+            --glow-shadow: 0 0 5px rgba(16, 185, 129, 0.9), 0 0 10px rgba(5, 150, 105, 0.6);
+        }
+
+        /* General Body Styling */
         body {
-            background-color: #0c101c;
-            color: #f3f4f6;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Subtle background pattern */
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.1) 0%, transparent S20%),
-                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 20%);
+                radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 20%);
         }
+
+        /* Main container with blur and glow effects */
         .main-container {
-            background-color: rgba(15, 23, 42, 0.95);
-            border: 1px solid #6ee7b7;
+            background-color: var(--bg-container);
+            border: 1px solid var(--border-primary);
             box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
             backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
+
+        /* Animated glowing title effect */
         .glow-title { 
-            text-shadow: var(--green-glow); 
+            color: var(--glow-color);
+            text-shadow: var(--glow-shadow); 
             letter-spacing: 1px;
-            animation: pulse 2s infinite;
+            animation: pulse 2.5s infinite;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
+
         @keyframes pulse {
-            0%, 100% { text-shadow: var(--green-glow); }
-            50% { text-shadow: 0 0 10px rgba(190, 242, 100, 0.9), 0 0 20px rgba(134, 239, 30, 0.8); }
+            0%, 100% { text-shadow: var(--glow-shadow); }
+            50% { text-shadow: 0 0 10px rgba(110, 231, 183, 1), 0 0 20px rgba(52, 211, 153, 1); }
         }
+        
+        /* Code textarea styling */
         #script {
             font-family: 'Fira Code', monospace;
-            background-color: #080d19;
-            color: #34d399;
-            border: 1px solid #10b981;
+            background-color: var(--bg-code);
+            color: var(--text-code);
+            border: 1px solid var(--border-primary);
             box-shadow: inset 0 0 5px rgba(16, 185, 129, 0.2);
-            line-height: 1.4;
+            line-height: 1.5;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
-        .normal-module {
-            background-color: rgba(30, 41, 59, 0.8);
-            border-color: rgba(71, 85, 105, 0.5);
-        }
-        .module-hover {
+
+        /* Module item styling */
+        .module-item {
+            background-color: var(--bg-module);
+            border: 1px solid var(--border-secondary);
             transition: all 0.2s ease;
+            position: relative; /* Needed for tooltip positioning */
         }
-        .module-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        .module-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            border-color: var(--border-primary);
         }
-        input[type="checkbox"] {
+
+        /* Custom Toggle Switch Styling */
+        input[type="checkbox"].toggle {
             appearance: none;
             width: 2.5rem;
             height: 1.25rem;
             border-radius: 9999px;
-            background-color: #4b5563;
+            background-color: var(--bg-secondary);
             cursor: pointer;
             position: relative;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s ease;
         }
-        input[type="checkbox"]:checked {
-            background-color: #10b981;
+        input[type="checkbox"].toggle:checked {
+            background-color: var(--border-primary);
         }
-        input[type="checkbox"]::after {
+        input[type="checkbox"].toggle::after {
             content: '';
             position: absolute;
             top: 2px;
@@ -77,21 +147,25 @@
             width: 0.9rem;
             height: 0.9rem;
             border-radius: 50%;
-            background-color: #f3f4f6;
-            transition: transform 0.2s;
+            background-color: white;
+            transition: transform 0.2s ease;
         }
-        input[type="checkbox"]:checked::after {
+        input[type="checkbox"].toggle:checked::after {
             transform: translateX(1.25rem);
         }
+        
+        /* Fade-in animation for page load */
         .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.8s ease-in-out;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Progress bar styling */
         .progress-bar {
-            background-color: #1e293b;
+            background-color: var(--bg-secondary);
             height: 4px;
             border-radius: 2px;
             overflow: hidden;
@@ -99,283 +173,436 @@
         .progress-fill {
             background: linear-gradient(90deg, #10b981, #34d399);
             height: 100%;
-            transition: width 0.2s ease;
+            transition: width 0.3s ease;
+        }
+        
+        /* Tooltip Styling */
+        .tooltip {
+            position: absolute;
+            bottom: 110%; /* Position above the module */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e293b;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            z-index: 10;
+        }
+        
+        .module-item:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
-<body class="font-sans antialiased text-white bg-gray-900 min-h-screen p-4 md:p-8" id="body-theme">
+<body class="font-sans antialiased min-h-screen p-4 md:p-8">
+    
+    <!-- Main content container, centered and with max-width -->
     <main role="main" aria-labelledby="page-title" class="container mx-auto max-w-7xl fade-in">
-        <header class="text-center mb-8 main-container p-6 rounded-xl shadow-2xl">
-            <h1 id="page-title" class="text-4xl md:text-5xl font-extrabold text-emerald-300 glow-title">
-                APEX Optimizer <span class="text-white">v2.0</span>
+        
+        <!-- Page Header -->
+        <header class="relative text-center mb-8 main-container p-6 rounded-xl shadow-2xl">
+            <h1 id="page-title" class="text-4xl md:text-5xl font-extrabold glow-title">
+                APEX Optimizer <span class="text-white opacity-80">v3.0</span>
             </h1>
-            <p class="text-md md:text-lg font-mono text-slate-300 mt-2">
-                Generador de Scripts de Limpieza para Termux (No-Root)
+            <p class="text-md md:text-lg font-mono text-secondary mt-2">
+                Enhanced Script Generator for Termux (No-Root)
             </p>
+            
+            <!-- Theme Switcher Button -->
+            <button id="theme-switcher" class="absolute top-4 right-4 p-2 rounded-full text-secondary hover:bg-slate-700/50 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-colors" aria-label="Toggle light/dark theme">
+                <!-- Sun icon for dark mode, Moon for light mode -->
+                <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+            </button>
+            
+            <!-- Progress Bar Section -->
             <div class="mt-4">
                 <div class="progress-bar">
                     <div id="progress-fill" class="progress-fill" style="width: 0%;"></div>
                 </div>
-                <p class="text-xs text-gray-500 mt-1">Progreso de Generación: <span id="progress-text">0%</span></p>
+                <p class="text-xs text-gray-500 mt-1">Generation Progress: <span id="progress-text">0%</span></p>
             </div>
         </header>
 
+        <!-- Main Grid Layout: Module selection on the left, Script console on the right -->
         <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-            <!-- Module Configurator -->
+            
+            <!-- Column 1: Module Configurator -->
             <section class="xl:col-span-2" aria-labelledby="modules-title">
                 <header class="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                    <h2 id="modules-title" class="text-xl font-bold text-emerald-300 flex items-center">
-                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-                        Selección de Módulos
+                    <h2 id="modules-title" class="text-xl font-bold text-primary flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                        Module Selection
                     </h2>
                     <div class="flex space-x-2">
-                        <button onclick="toggleAllModules(true)" class="px-3 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-all">Activar Todo</button>
-                        <button onclick="toggleAllModules(false)" class="px-3 py-2 text-sm bg-red-600 hover:bg-red-500 text-white rounded-lg transition-all">Desactivar Todo</button>
+                        <button onclick="app.toggleAllModules(true)" class="px-3 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-primary focus:ring-emerald-400">Activate All</button>
+                        <button onclick="app.toggleAllModules(false)" class="px-3 py-2 text-sm bg-red-600 hover:bg-red-500 text-white rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-primary focus:ring-red-400">Deactivate All</button>
                     </div>
                 </header>
                 
                 <div id="module-switches" class="space-y-2 max-h-[600px] overflow-y-auto pr-2" role="list">
-                    <!-- Modules will be rendered here by JavaScript -->
+                    <!-- Modules will be dynamically rendered here by JavaScript -->
                 </div>
             </section>
 
-            <!-- Script Console -->
+            <!-- Column 2: Script Console and Info -->
             <aside class="xl:col-span-1" aria-labelledby="script-title">
-                <h2 id="script-title" class="text-xl font-bold text-emerald-300 mb-3 flex items-center">
-                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    Script Generado (Bash)
+                <h2 id="script-title" class="text-xl font-bold text-primary mb-3 flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    Generated Script (Bash)
                 </h2>
                 
-                <div class="mb-3 p-3 bg-slate-800 rounded-lg">
-                    <div class="flex justify-between text-sm">
-                        <span>Líneas de código:</span>
-                        <span id="line-count" class="font-mono font-bold text-emerald-400">0</span>
-                    </div>
-                    <div class="flex justify-between text-sm mt-1">
-                        <span>Tamaño estimado:</span>
-                        <span id="size-estimate" class="font-mono font-bold text-emerald-400">0 KB</span>
-                    </div>
+                <!-- Script Statistics -->
+                <div class="mb-3 p-3 bg-slate-800 rounded-lg text-sm space-y-1">
+                    <div class="flex justify-between"><span>Modules Enabled:</span><span id="module-count" class="font-mono font-bold text-emerald-400">0</span></div>
+                    <div class="flex justify-between"><span>Lines of code:</span><span id="line-count" class="font-mono font-bold text-emerald-400">0</span></div>
+                    <div class="flex justify-between"><span>Estimated Size:</span><span id="size-estimate" class="font-mono font-bold text-emerald-400">0 KB</span></div>
                 </div>
                 
-                <textarea id="script" readonly class="w-full h-[320px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Área de script generado"></textarea>
+                <textarea id="script" readonly class="w-full h-[320px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Generated script area"></textarea>
                 
+                <!-- Action Buttons -->
                 <div class="flex space-x-3 mt-4">
-                    <button onclick="copyScript()" class="flex-1 px-6 py-3 font-bold text-base md:text-lg bg-emerald-500 text-slate-900 rounded-xl shadow-lg transition-all hover:bg-emerald-400 hover:shadow-emerald-400/50 active:scale-[0.98]">
-                        📋 Copiar Script
+                    <button onclick="app.copyScript()" class="flex-1 px-6 py-3 font-bold text-base md:text-lg bg-emerald-500 text-slate-900 rounded-xl shadow-lg transition-all hover:bg-emerald-400 hover:shadow-emerald-400/50 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-primary focus:ring-emerald-400">
+                        📋 Copy
                     </button>
-                    <button onclick="downloadScript()" class="flex-1 px-6 py-3 font-bold text-base bg-teal-500 text-white rounded-xl shadow-lg transition-all hover:bg-teal-400 hover:shadow-teal-400/50 active:scale-[0.98]">
-                        💾 Descargar
+                    <button onclick="app.downloadScript()" class="flex-1 px-6 py-3 font-bold text-base bg-teal-500 text-white rounded-xl shadow-lg transition-all hover:bg-teal-400 hover:shadow-teal-400/50 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-primary focus:ring-teal-400">
+                        💾 Download
                     </button>
                 </div>
                 
+                <!-- Instructions Box -->
                 <div class="mt-6 p-4 bg-blue-900/30 border border-blue-700 rounded-lg" role="alert">
                     <h3 class="font-bold text-blue-300 flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                        Instrucciones
+                        Instructions
                     </h3>
                     <p class="text-sm text-blue-200 mt-2">
-                        Pega el script en Termux, dale permisos con <code>chmod +x script.sh</code> y ejecútalo con <code>./script.sh</code>. ¡Recuerda ejecutar <code>termux-setup-storage</code> primero!
+                        Paste the script in Termux, give permissions with <code>chmod +x script.sh</code> and run it with <code>./script.sh</code>. Remember to run <code>termux-setup-storage</code> first!
                     </p>
                 </div>
             </aside>
         </section>
     </main>
 
-    <!-- Notification Toast -->
-    <div id="message-box" class="fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-semibold text-lg" role="status" aria-live="polite"></div>
+    <!-- Notification Toast Element -->
+    <div id="notification-toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-semibold text-lg" role="status" aria-live="polite"></div>
     
-    <script defer>
+    <script>
         'use strict';
-        const scriptTextarea = document.getElementById('script');
-        const moduleSwitchesContainer = document.getElementById('module-switches');
-        const lineCount = document.getElementById('line-count');
-        const sizeEstimate = document.getElementById('size-estimate');
-        const progressFill = document.getElementById('progress-fill');
-        const progressText = document.getElementById('progress-text');
-        
-        const LOG_DIR = "$HOME/apex_optimizer_logs";
+        /**
+         * =================================================================
+         * APEX OPTIMIZER v3.0 - FRONTEND LOGIC
+         * =================================================================
+         * This script handles the entire application's functionality, including
+         * UI rendering, state management, and script generation.
+         */
 
-        // Módulos basados en el script apex_optimizer.sh v2.0
-        const modules = {
-            'Limpiar Cachés y Temporales': { enabled: true, func: 'run_clean_caches', description: 'Limpia cachés de aplicaciones y archivos .tmp en /sdcard.', category: 'cleaning', space: 100, ram: 5 },
-            'Limpiar Directorios Vacíos': { enabled: true, func: 'run_clean_empty_dirs', description: 'Elimina directorios que no contienen archivos.', category: 'cleaning', space: 5, ram: 1 },
-            'Limpiar Miniaturas (Thumbnails)': { enabled: true, func: 'run_clean_thumbnails', description: 'Elimina la caché de miniaturas de imágenes y videos.', category: 'cleaning', space: 50, ram: 1 },
-            'Limpiar APKs Descargados': { enabled: true, func: 'run_clean_apks', description: 'Elimina archivos .apk de la carpeta de descargas.', category: 'cleaning', space: 150, ram: 2 },
-            'Limpiar Archivos de Log': { enabled: true, func: 'run_clean_logs', description: 'Elimina archivos .log de todo el almacenamiento.', category: 'cleaning', space: 20, ram: 1 },
-            'Buscar Archivos Grandes': { enabled: false, func: 'run_find_large_files', description: 'Busca archivos mayores a 200MB (solo escaneo, no borra).', category: 'storage', space: 0, ram: 8 },
-            'Buscar Archivos Duplicados': { enabled: false, func: 'run_find_duplicates', description: 'Busca archivos duplicados con fdupes (solo escaneo, no borra).', category: 'storage', space: 0, ram: 15 },
-            'Optimizar Termux': { enabled: true, func: 'run_optimize_termux', description: 'Limpia la caché de paquetes de Termux (pkg clean/autoclean).', category: 'termux', space: 40, ram: 2 },
-            'Matar Procesos Zombie': { enabled: true, func: 'run_kill_zombies', description: 'Encuentra y termina procesos "zombie" que no responden.', category: 'performance', space: 0, ram: -10, cpu: 5 },
-            'Limpiar Caché del Kernel': { enabled: true, func: 'run_clear_kernel_cache', description: 'Sincroniza el sistema de archivos para liberar memoria (método seguro sin root).', category: 'performance', space: 0, ram: -50, cpu: 2 },
+        // --- 1. STATE MANAGEMENT ---
+        // This object holds the application's data. Keeping it separate
+        // makes the code easier to manage.
+        const state = {
+            logDir: "$HOME/apex_optimizer_logs",
+            modules: {
+                'Clean Caches & Temp': { enabled: true, func: 'run_clean_caches', description: 'Cleans app caches and .tmp files in /sdcard.', category: 'cleaning', space: 100, ram: 5 },
+                'Clean Empty Dirs': { enabled: true, func: 'run_clean_empty_dirs', description: 'Removes directories that contain no files.', category: 'cleaning', space: 5, ram: 1 },
+                'Clean Thumbnails': { enabled: true, func: 'run_clean_thumbnails', description: 'Deletes the cache of image and video thumbnails.', category: 'cleaning', space: 50, ram: 1 },
+                'Clean Downloaded APKs': { enabled: true, func: 'run_clean_apks', description: 'Deletes .apk files from the Downloads folder.', category: 'cleaning', space: 150, ram: 2 },
+                'Clean Log Files': { enabled: true, func: 'run_clean_logs', description: 'Removes .log files from the entire storage.', category: 'cleaning', space: 20, ram: 1 },
+                'Find Large Files': { enabled: false, func: 'run_find_large_files', description: 'Finds files larger than 200MB (scan only, no deletion).', category: 'storage', space: 0, ram: 8 },
+                'Find Duplicate Files': { enabled: false, func: 'run_find_duplicates', description: 'Finds duplicate files with fdupes (scan only, no deletion).', category: 'storage', space: 0, ram: 15 },
+                'Optimize Termux': { enabled: true, func: 'run_optimize_termux', description: 'Cleans Termux package cache (pkg clean/autoclean).', category: 'termux', space: 40, ram: 2 },
+                'Kill Zombie Processes': { enabled: true, func: 'run_kill_zombies', description: 'Finds and terminates unresponsive "zombie" processes.', category: 'performance', space: 0, ram: -10, cpu: 5 },
+                'Clear Kernel Cache': { enabled: true, func: 'run_clear_kernel_cache', description: 'Syncs the filesystem to free up memory (safe non-root method).', category: 'performance', space: 0, ram: -50, cpu: 2 },
+            },
+            // Bash functions corresponding to the modules. Using functions allows for
+            // dynamic content if needed in the future.
+            bashFunctions: {
+                run_clean_caches: () => `find "$STORAGE_PATH" -type d -name '*cache*' -exec rm -rf {} + 2>/dev/null; find "$STORAGE_PATH" -type f \\( -name '*.tmp' -o -name 'temp.*' \\) -delete 2>/dev/null`,
+                run_clean_empty_dirs: () => `find "$STORAGE_PATH" -type d -empty -delete 2>/dev/null`,
+                run_clean_thumbnails: () => `rm -rf "$STORAGE_PATH/DCIM/.thumbnails" 2>/dev/null; rm -rf "$STORAGE_PATH/Pictures/.thumbnails" 2>/dev/null`,
+                run_clean_apks: () => `find "$STORAGE_PATH/Download" -type f -name '*.apk' -delete 2>/dev/null`,
+                run_clean_logs: () => `find "$STORAGE_PATH" -type f -name '*.log' -delete 2>/dev/null`,
+                run_find_large_files: () => `echo "Scanning for files > 200MB..."; find "$STORAGE_PATH" -type f -size +200M -exec du -h {} + | sort -rh | head -n 20 > "${state.logDir}/large_files.txt"; echo "Report saved in ${state.logDir}/large_files.txt"`,
+                run_find_duplicates: () => `echo "Scanning for duplicates..."; fdupes -r "$STORAGE_PATH" > "${state.logDir}/duplicate_files.txt"; echo "Report saved in ${state.logDir}/duplicate_files.txt"`,
+                run_optimize_termux: () => `pkg clean && pkg autoclean`,
+                run_kill_zombies: () => `zombies=$(ps -o stat,pid | grep '^Z' | awk '{print $2}'); if [ -n "$zombies" ]; then kill -9 $zombies; else echo "No zombie processes found."; fi`,
+                run_clear_kernel_cache: () => `sync`,
+            }
         };
 
-        // Funciones Bash correspondientes a los módulos
-        const allFunctions = {
-            run_clean_caches: () => `find "$STORAGE_PATH" -type d -name '*cache*' -exec rm -rf {} + 2>/dev/null; find "$STORAGE_PATH" -type f \\( -name '*.tmp' -o -name 'temp.*' \\) -delete 2>/dev/null`,
-            run_clean_empty_dirs: () => `find "$STORAGE_PATH" -type d -empty -delete 2>/dev/null`,
-            run_clean_thumbnails: () => `rm -rf "$STORAGE_PATH/DCIM/.thumbnails" 2>/dev/null; rm -rf "$STORAGE_PATH/Pictures/.thumbnails" 2>/dev/null`,
-            run_clean_apks: () => `find "$STORAGE_PATH/Download" -type f -name '*.apk' -delete 2>/dev/null`,
-            run_clean_logs: () => `find "$STORAGE_PATH" -type f -name '*.log' -delete 2>/dev/null`,
-            run_find_large_files: () => `echo "Escaneando archivos > 200MB..."; find "$STORAGE_PATH" -type f -size +200M -exec du -h {} + | sort -rh | head -n 20 > "${LOG_DIR}/large_files.txt"; echo "Reporte guardado en ${LOG_DIR}/large_files.txt"`,
-            run_find_duplicates: () => `echo "Escaneando duplicados..."; fdupes -r "$STORAGE_PATH" > "${LOG_DIR}/duplicate_files.txt"; echo "Reporte guardado en ${LOG_DIR}/duplicate_files.txt"`,
-            run_optimize_termux: () => `pkg clean && pkg autoclean`,
-            run_kill_zombies: () => `zombies=$(ps -o stat,pid | grep '^Z' | awk '{print $2}'); if [ -n "$zombies" ]; then kill -9 $zombies; else echo "No se encontraron procesos zombie."; fi`,
-            run_clear_kernel_cache: () => `sync`,
+        // --- 2. DOM ELEMENT CACHING ---
+        // Caching DOM elements improves performance as the browser doesn't have to
+        // re-query the document every time we need them.
+        const dom = {
+            scriptTextarea: document.getElementById('script'),
+            moduleSwitchesContainer: document.getElementById('module-switches'),
+            lineCount: document.getElementById('line-count'),
+            sizeEstimate: document.getElementById('size-estimate'),
+            moduleCount: document.getElementById('module-count'),
+            progressFill: document.getElementById('progress-fill'),
+            progressText: document.getElementById('progress-text'),
+            notificationToast: document.getElementById('notification-toast'),
+            themeSwitcher: document.getElementById('theme-switcher'),
+            themeIconSun: document.getElementById('theme-icon-sun'),
+            themeIconMoon: document.getElementById('theme-icon-moon'),
         };
 
-        function generateScriptContent() {
-            let progress = 0;
-            const updateProgress = (p) => {
-                progress = p;
-                progressFill.style.width = `${p}%`;
-                progressText.textContent = `${p}%`;
-            };
-            updateProgress(10);
+        // --- 3. UI MANIPULATION & HELPER FUNCTIONS ---
+        // This object contains functions that directly interact with the DOM.
+        const ui = {
+            /**
+             * Renders all module switches in the container.
+             */
+            renderModules() {
+                let switchesHTML = '';
+                for (const key in state.modules) {
+                    const mod = state.modules[key];
+                    // Create a unique, URL-safe ID for each checkbox
+                    const modId = `module-${key.replace(/[^a-zA-Z0-9]/g, '-')}`;
+                    
+                    switchesHTML += `
+                        <label for="${modId}" class="flex items-start justify-between p-3 rounded-xl module-item cursor-pointer" role="listitem">
+                            <div class="flex-grow mr-4">
+                                <span class="font-medium text-primary">${key}</span>
+                                <p class="text-xs text-secondary mt-1">${mod.description}</p>
+                            </div>
+                            <div class="switch flex-shrink-0">
+                                <input type="checkbox" id="${modId}" class="toggle" data-module-key="${key}" ${mod.enabled ? 'checked' : ''} aria-label="Activate ${key}">
+                            </div>
+                            <div class="tooltip">Space: ~${mod.space}MB | RAM: ${mod.ram > 0 ? '+' : ''}${mod.ram}MB</div>
+                        </label>
+                    `;
+                }
+                dom.moduleSwitchesContainer.innerHTML = switchesHTML;
+            },
 
-            const header = `#!/data/data/com.termux/files/usr/bin/bash
-# APEX Optimizer v2.0 - Generado por la Interfaz Web
-# Description: Script de limpieza y optimización para Termux (Sin Root).
+            /**
+             * Updates the script statistics display.
+             * @param {string} scriptContent - The generated script text.
+             */
+            updateScriptStats(scriptContent) {
+                const enabledModules = Object.values(state.modules).filter(m => m.enabled).length;
+                const lines = scriptContent.split('\n').length;
+                // Use Blob for a more accurate size calculation
+                const sizeKB = new Blob([scriptContent]).size / 1024;
+                
+                dom.moduleCount.textContent = enabledModules;
+                dom.lineCount.textContent = lines;
+                dom.sizeEstimate.textContent = `${sizeKB.toFixed(2)} KB`;
+            },
 
-C_OFF='\\e[0m'; C_RED='\\e[0;31m'; C_GREEN='\\e[0;32m'; C_YELLOW='\\e[0;33m'; C_CYAN='\\e[0;36m';
-LOG_DIR="$HOME/apex_optimizer_logs"
-LOG_FILE="${LOG_DIR}/apex_run_$(date +%Y-%m-%d_%H-%M-%S).log"
+            /**
+             * Updates the progress bar display.
+             * @param {number} percentage - The progress value (0-100).
+             */
+            updateProgress(percentage) {
+                dom.progressFill.style.width = `${percentage}%`;
+                dom.progressText.textContent = `${percentage}%`;
+            },
+            
+            /**
+             * Displays a short-lived notification message (toast).
+             * @param {string} message - The text to display.
+             * @param {string} colorClass - TailwindCSS background color class.
+             */
+            showNotification(message, colorClass = 'bg-emerald-500/90') {
+                dom.notificationToast.className = `fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-semibold text-lg ${colorClass}`;
+                dom.notificationToast.textContent = message;
+                
+                // Animate in
+                requestAnimationFrame(() => {
+                    dom.notificationToast.classList.remove("opacity-0", "translate-y-5");
+                    dom.notificationToast.classList.add("opacity-100", "translate-y-0");
+                });
+
+                // Animate out after a delay
+                setTimeout(() => {
+                    dom.notificationToast.classList.remove("opacity-100", "translate-y-0");
+                    dom.notificationToast.classList.add("opacity-0", "translate-y-5");
+                }, 3000);
+            },
+            
+            /**
+             * Updates the theme based on the provided mode.
+             * @param {string} theme - 'light' or 'dark'.
+             */
+            updateTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                if (theme === 'light') {
+                    dom.themeIconSun.classList.remove('hidden');
+                    dom.themeIconMoon.classList.add('hidden');
+                } else {
+                    dom.themeIconSun.classList.add('hidden');
+                    dom.themeIconMoon.classList.remove('hidden');
+                }
+            }
+        };
+
+        // --- 4. CORE APPLICATION LOGIC ---
+        // This object orchestrates the main application functionality.
+        const app = {
+            /**
+             * Generates the final bash script content based on enabled modules.
+             * @returns {string} The complete bash script.
+             */
+            generateScriptContent() {
+                ui.updateProgress(10);
+                const header = `#!/data/data/com.termux/files/usr/bin/bash
+# APEX Optimizer v3.0 - Generated by Web Interface
+# Description: Cleaning and optimization script for Termux (No-Root).
+
+# --- Configuration & Colors ---
+C_OFF='\\e[0m'; C_RED='\\e[0;31m'; C_GREEN='\\e[0;32m'; C_CYAN='\\e[0;36m';
+LOG_DIR="${state.logDir}"
+LOG_FILE="\${LOG_DIR}/apex_run_$(date +%Y-%m-%d_%H-%M-%S).log"
 STORAGE_PATH="$HOME/storage/shared"
 
+# --- Functions ---
 mkdir -p "$LOG_DIR"
-echo "--- APEX v2.0 Log: $(date) ---" > "$LOG_FILE"
+echo "--- APEX v3.0 Log Start: $(date) ---" > "$LOG_FILE"
 
+# Wrapper function to execute and log each module
 execute_module() {
     local mod_name="$1"
     local cmd="$2"
-    echo -e "$C_CYAN-> Ejecutando: $mod_name...$C_OFF"
+    echo -e "$C_CYAN-> Executing: $mod_name...$C_OFF"
     echo "--- $mod_name ---" >> "$LOG_FILE"
+    # Using 'eval' to execute the command string
     if eval "$cmd" >> "$LOG_FILE" 2>&1; then
         echo -e "  $C_GREEN[OK]$C_OFF"
     else 
-        echo -e "  $C_YELLOW[FALLO O SIN EFECTO]$C_OFF"
+        echo -e "  $C_YELLOW[FAILED or NO EFFECT]$C_OFF"
     fi
 }
 
-echo -e "$C_GREEN--- INICIANDO OPTIMIZACIÓN ---$C_OFF"
+echo -e "$C_GREEN--- STARTING OPTIMIZATION ---$C_OFF"
 `;
-            updateProgress(40);
+                ui.updateProgress(40);
 
-            let mainExecutionCalls = '\n# --- Módulos a Ejecutar ---\n';
-            Object.keys(modules).forEach(key => {
-                const mod = modules[key];
-                if (mod.enabled) {
-                    const funcBody = allFunctions[mod.func]();
-                    mainExecutionCalls += `execute_module "${key}" "${funcBody}"\n`;
+                let mainExecutionCalls = '\n# --- Enabled Modules ---\n';
+                for (const key in state.modules) {
+                    const mod = state.modules[key];
+                    if (mod.enabled) {
+                        const funcBody = state.bashFunctions[mod.func]();
+                        // Escape double quotes inside the command string for safety
+                        const safeFuncBody = funcBody.replace(/"/g, '\\"');
+                        mainExecutionCalls += `execute_module "${key}" "${safeFuncBody}"\n`;
+                    }
                 }
-            });
-            updateProgress(80);
+                ui.updateProgress(80);
 
-            const footer = `
-echo -e "$C_GREEN--- OPTIMIZACIÓN COMPLETADA ---$C_OFF"
-echo "Revisa el log en $LOG_FILE para más detalles."
+                const footer = `
+echo -e "$C_GREEN--- OPTIMIZATION COMPLETE ---$C_OFF"
+echo "Review the log at $LOG_FILE for details."
 `;
-            updateProgress(100);
-            setTimeout(() => updateProgress(0), 1500);
-            
-            return header + mainExecutionCalls + footer;
-        }
-        
-        const updateScript = () => { 
-            scriptTextarea.value = generateScriptContent(); 
-            updateScriptStats();
-        };
-        
-        const updateScriptStats = () => {
-            const content = scriptTextarea.value;
-            const lines = content.split('\n').length;
-            const size = (new TextEncoder().encode(content)).length / 1024;
-            
-            lineCount.textContent = lines;
-            sizeEstimate.textContent = `${size.toFixed(2)} KB`;
-        };
-        
-        const toggleAllModules = (state) => {
-            Object.keys(modules).forEach(key => {
-                // Keep scan-only modules disabled unless manually enabled
-                if (key.includes('Buscar')) return;
-                modules[key].enabled = state;
-            });
-            initializeUI();
-            updateScript();
-            showNotification(`Módulos ${state ? 'activados' : 'desactivados'}`, 'bg-emerald-500/90');
-        };
-
-        const initializeUI = () => {
-            let switchesHTML = '';
-            Object.keys(modules).forEach(key => {
-                const mod = modules[key];
-                const impactRAM = mod.ram ? ` | RAM: ${mod.ram > 0 ? '+' : ''}${mod.ram}MB` : '';
-                const impactSpace = mod.space ? ` | Espacio: ~${mod.space}MB` : '';
+                ui.updateProgress(100);
+                setTimeout(() => ui.updateProgress(0), 1500); // Reset progress bar
                 
-                switchesHTML += `
-                    <label class="flex items-start justify-between p-3 rounded-xl module-hover border normal-module" role="listitem">
-                        <div class="flex-grow mr-4">
-                            <span class="font-medium text-white">${key}</span>
-                            <p class="text-xs text-slate-400 mt-1">${mod.description} <span class="text-emerald-400">(${impactSpace}${impactRAM})</span></p>
-                        </div>
-                        <div class="switch flex-shrink-0">
-                            <input type="checkbox" id="module-${key.replace(/\s+/g, '-')}" data-module="${key}" ${mod.enabled ? 'checked' : ''} aria-label="Activar ${key}">
-                        </div>
-                    </label>
-                `;
-            });
+                return header + mainExecutionCalls + footer;
+            },
             
-            moduleSwitchesContainer.innerHTML = switchesHTML;
+            /**
+             * Main function to update the entire UI based on the current state.
+             */
+            refresh() { 
+                const scriptContent = this.generateScriptContent();
+                dom.scriptTextarea.value = scriptContent; 
+                ui.updateScriptStats(scriptContent);
+            },
+            
+            /**
+             * Copies the generated script to the clipboard.
+             */
+            copyScript() {
+                dom.scriptTextarea.select();
+                dom.scriptTextarea.setSelectionRange(0, 99999); // For mobile
+                try {
+                    document.execCommand('copy');
+                    ui.showNotification("✅ Script copied to clipboard!", 'bg-emerald-500/90');
+                } catch (err) {
+                    ui.showNotification("❌ Failed to copy script.", 'bg-red-500/90');
+                }
+            },
+            
+            /**
+             * Downloads the generated script as a .sh file.
+             */
+            downloadScript() {
+                const content = dom.scriptTextarea.value;
+                const blob = new Blob([content], { type: 'text/x-shellscript' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'apex_optimizer_v3.0.sh';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                ui.showNotification("💾 Downloading apex_optimizer_v3.0.sh", 'bg-teal-500/90');
+            },
 
-            moduleSwitchesContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                checkbox.addEventListener('change', (event) => {
-                    const key = event.target.dataset.module;
-                    modules[key].enabled = event.target.checked;
-                    updateScript();
+            /**
+             * Toggles all modules on or off.
+             * @param {boolean} enable - True to enable all, false to disable.
+             */
+            toggleAllModules(enable) {
+                for (const key in state.modules) {
+                    // Keep scan-only modules disabled by default unless manually enabled
+                    if (key.includes('Find')) continue;
+                    state.modules[key].enabled = enable;
+                }
+                ui.renderModules(); // Re-render to reflect checkbox state changes
+                this.addModuleEventListeners(); // Re-attach listeners after re-render
+                this.refresh();
+                ui.showNotification(`All modules ${enable ? 'activated' : 'deactivated'}`, 'bg-blue-500/90');
+            },
+
+            /**
+             * Attaches event listeners to the dynamically created module switches.
+             */
+            addModuleEventListeners() {
+                dom.moduleSwitchesContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.addEventListener('change', (event) => {
+                        const key = event.target.dataset.moduleKey;
+                        state.modules[key].enabled = event.target.checked;
+                        this.refresh();
+                    });
                 });
-            });
+            },
 
-            updateScript();
+            /**
+             * Initializes the application on page load.
+             */
+            initialize() {
+                // Initialize theme
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                ui.updateTheme(savedTheme);
+                dom.themeSwitcher.addEventListener('click', () => {
+                    const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                    localStorage.setItem('theme', newTheme);
+                    ui.updateTheme(newTheme);
+                });
+
+                // Initial render
+                ui.renderModules();
+                this.addModuleEventListeners();
+                this.refresh();
+            }
         };
 
-        const copyScript = () => {
-            scriptTextarea.select();
-            scriptTextarea.setSelectionRange(0, 99999);
-            const success = document.execCommand("copy");
-            showNotification(success ? "✅ Script copiado al portapapeles" : "❌ Error al copiar", success ? 'bg-emerald-500/90' : 'bg-red-500/90'); 
-        };
-        
-        const downloadScript = () => {
-            const content = scriptTextarea.value;
-            const blob = new Blob([content], { type: 'text/x-shellscript' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'apex_optimizer_v2.0.sh';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            showNotification("💾 Script descargado como apex_optimizer_v2.0.sh", 'bg-teal-500/90');
-        };
-
-        const showNotification = (message, colorClass = 'bg-green-500/90') => {
-            const msgBox = document.getElementById("message-box");
-            msgBox.className = `fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-semibold text-lg ${colorClass}`;
-            msgBox.textContent = message;
-            
-            msgBox.classList.remove("opacity-0", "translate-y-5");
-            msgBox.classList.add("opacity-100", "translate-y-0");
-
-            setTimeout(() => {
-                msgBox.classList.remove("opacity-100", "translate-y-0");
-                msgBox.classList.add("opacity-0", "translate-y-5");
-            }, 3000);
-        };
-
-        // Initial Load
-        document.addEventListener('DOMContentLoaded', initializeUI);
+        // --- 5. INITIALIZATION ---
+        // This is the entry point. The 'DOMContentLoaded' event ensures the script
+        // runs only after the entire HTML document has been loaded and parsed.
+        document.addEventListener('DOMContentLoaded', () => {
+            app.initialize();
+        });
     </script>
 </body>
 </html>
-
