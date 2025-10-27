@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <!-- 
   Enhanced by Gemini
-  Version: 3.0
+  Version: 3.2 (Supercharged)
   Date: 2025-10-16
-  Description: A comprehensive rewrite of the original APEX Optimizer interface.
+  Description: A simplified version of the APEX Optimizer interface.
   Key Improvements:
-  1.  All-in-One File: CSS and JavaScript are fully embedded for maximum portability and faster loading (fewer HTTP requests).
-  2.  UI/UX Overhaul: Added a theme switcher (Light/Dark), interactive tooltips for modules, and improved responsive design.
-  3.  Code Optimization: Refactored JavaScript for better readability, maintainability, and performance.
-  4.  Enhanced Accessibility: Improved focus states and ARIA attributes for better keyboard and screen reader support.
-  5.  Detailed Documentation: Added extensive comments in HTML, CSS, and JavaScript to explain the code, making it easier to understand and learn from.
+  1.  All modules are enabled by default.
+  2.  Added more cleaning modules (backups, symlinks, pip, npm, apt).
+  3.  The script is generated automatically on page load.
 -->
 <html lang="es" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX Optimizer v3.0 - Enhanced Edition | Termux Script Generator</title>
+    <title>APEX Optimizer v3.2 - Supercharged | Termux Script Generator</title>
     
     <!-- TailwindCSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -208,10 +206,10 @@
         <!-- Page Header -->
         <header class="relative text-center mb-8 main-container p-6 rounded-xl shadow-2xl">
             <h1 id="page-title" class="text-4xl md:text-5xl font-extrabold glow-title">
-                APEX Optimizer <span class="text-white opacity-80">v3.0</span>
+                APEX Optimizer <span class="text-white opacity-80">v3.2</span>
             </h1>
             <p class="text-md md:text-lg font-mono text-secondary mt-2">
-                Enhanced Script Generator for Termux (No-Root)
+                Script Generado (Todo Activado)
             </p>
             
             <!-- Theme Switcher Button -->
@@ -230,29 +228,11 @@
             </div>
         </header>
 
-        <!-- Main Grid Layout: Module selection on the left, Script console on the right -->
-        <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <!-- Main Layout: Centered Script Console -->
+        <section class="flex justify-center">
             
-            <!-- Column 1: Module Configurator -->
-            <section class="xl:col-span-2" aria-labelledby="modules-title">
-                <header class="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                    <h2 id="modules-title" class="text-xl font-bold text-primary flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-                        Module Selection
-                    </h2>
-                    <div class="flex space-x-2">
-                        <button onclick="app.toggleAllModules(true)" class="px-3 py-2 text-sm bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-primary focus:ring-emerald-400">Activate All</button>
-                        <button onclick="app.toggleAllModules(false)" class="px-3 py-2 text-sm bg-red-600 hover:bg-red-500 text-white rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-primary focus:ring-red-400">Deactivate All</button>
-                    </div>
-                </header>
-                
-                <div id="module-switches" class="space-y-2 max-h-[600px] overflow-y-auto pr-2" role="list">
-                    <!-- Modules will be dynamically rendered here by JavaScript -->
-                </div>
-            </section>
-
-            <!-- Column 2: Script Console and Info -->
-            <aside class="xl:col-span-1" aria-labelledby="script-title">
+            <!-- Script Console and Info -->
+            <aside class="w-full max-w-3xl" aria-labelledby="script-title">
                 <h2 id="script-title" class="text-xl font-bold text-primary mb-3 flex items-center">
                     <svg class="w-6 h-6 mr-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     Generated Script (Bash)
@@ -265,7 +245,7 @@
                     <div class="flex justify-between"><span>Estimated Size:</span><span id="size-estimate" class="font-mono font-bold text-emerald-400">0 KB</span></div>
                 </div>
                 
-                <textarea id="script" readonly class="w-full h-[320px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Generated script area"></textarea>
+                <textarea id="script" readonly class="w-full h-[400px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Generated script area"></textarea>
                 
                 <!-- Action Buttons -->
                 <div class="flex space-x-3 mt-4">
@@ -298,15 +278,15 @@
         'use strict';
         /**
          * =================================================================
-         * APEX OPTIMIZER v3.0 - FRONTEND LOGIC
+         * APEX OPTIMIZER v3.2 - FRONTEND LOGIC (Auto-Activated)
          * =================================================================
          * This script handles the entire application's functionality, including
          * UI rendering, state management, and script generation.
          */
 
         // --- 1. STATE MANAGEMENT ---
-        // This object holds the application's data. Keeping it separate
-        // makes the code easier to manage.
+        // This object holds the application's data.
+        // All modules are set to enabled: true by default.
         const state = {
             logDir: "$HOME/apex_optimizer_logs",
             modules: {
@@ -315,34 +295,41 @@
                 'Clean Thumbnails': { enabled: true, func: 'run_clean_thumbnails', description: 'Deletes the cache of image and video thumbnails.', category: 'cleaning', space: 50, ram: 1 },
                 'Clean Downloaded APKs': { enabled: true, func: 'run_clean_apks', description: 'Deletes .apk files from the Downloads folder.', category: 'cleaning', space: 150, ram: 2 },
                 'Clean Log Files': { enabled: true, func: 'run_clean_logs', description: 'Removes .log files from the entire storage.', category: 'cleaning', space: 20, ram: 1 },
-                'Find Large Files': { enabled: false, func: 'run_find_large_files', description: 'Finds files larger than 200MB (scan only, no deletion).', category: 'storage', space: 0, ram: 8 },
-                'Find Duplicate Files': { enabled: false, func: 'run_find_duplicates', description: 'Finds duplicate files with fdupes (scan only, no deletion).', category: 'storage', space: 0, ram: 15 },
-                'Optimize Termux': { enabled: true, func: 'run_optimize_termux', description: 'Cleans Termux package cache (pkg clean/autoclean).', category: 'termux', space: 40, ram: 2 },
+                'Clean .bak/.old Files': { enabled: true, func: 'run_clean_backups', description: 'Deletes backup files (.bak, .old, .tmp~) from storage.' },
+                'Clean Broken Symlinks': { enabled: true, func: 'run_clean_broken_symlinks', description: 'Finds and deletes broken symbolic links.' },
+                'Find Large Files': { enabled: true, func: 'run_find_large_files', description: 'Finds files larger than 200MB (scan only, no deletion).', category: 'storage', space: 0, ram: 8 },
+                'Find Duplicate Files': { enabled: true, func: 'run_find_duplicates', description: 'Finds duplicate files with fdupes (scan only, no deletion).', category: 'storage', space: 0, ram: 15 },
+                'Optimize Termux (pkg clean)': { enabled: true, func: 'run_optimize_termux', description: 'Cleans Termux package cache (pkg clean/autoclean).', category: 'termux', space: 40, ram: 2 },
+                'Clean apt (pkg) lists': { enabled: true, func: 'run_clean_apt_lists', description: "Cleans old 'pkg' (apt) package lists." },
+                'Clean pip Cache': { enabled: true, func: 'run_clean_pip_cache', description: 'Purges the cache for pip (Python package manager).' },
+                'Clean npm Cache': { enabled: true, func: 'run_clean_npm_cache', description: 'Cleans the cache for npm (Node.js package manager).' },
                 'Kill Zombie Processes': { enabled: true, func: 'run_kill_zombies', description: 'Finds and terminates unresponsive "zombie" processes.', category: 'performance', space: 0, ram: -10, cpu: 5 },
-                'Clear Kernel Cache': { enabled: true, func: 'run_clear_kernel_cache', description: 'Syncs the filesystem to free up memory (safe non-root method).', category: 'performance', space: 0, ram: -50, cpu: 2 },
+                'Clear Kernel Cache (sync)': { enabled: true, func: 'run_clear_kernel_cache', description: 'Syncs the filesystem to free up memory (safe non-root method).', category: 'performance', space: 0, ram: -50, cpu: 2 },
             },
-            // Bash functions corresponding to the modules. Using functions allows for
-            // dynamic content if needed in the future.
+            // Bash functions corresponding to the modules.
             bashFunctions: {
                 run_clean_caches: () => `find "$STORAGE_PATH" -type d -name '*cache*' -exec rm -rf {} + 2>/dev/null; find "$STORAGE_PATH" -type f \\( -name '*.tmp' -o -name 'temp.*' \\) -delete 2>/dev/null`,
                 run_clean_empty_dirs: () => `find "$STORAGE_PATH" -type d -empty -delete 2>/dev/null`,
                 run_clean_thumbnails: () => `rm -rf "$STORAGE_PATH/DCIM/.thumbnails" 2>/dev/null; rm -rf "$STORAGE_PATH/Pictures/.thumbnails" 2>/dev/null`,
                 run_clean_apks: () => `find "$STORAGE_PATH/Download" -type f -name '*.apk' -delete 2>/dev/null`,
                 run_clean_logs: () => `find "$STORAGE_PATH" -type f -name '*.log' -delete 2>/dev/null`,
+                run_clean_backups: () => `find "$STORAGE_PATH" -type f \\( -name '*.bak' -o -name '*.old' -o -name '*~' \\) -delete 2>/dev/null`,
+                run_clean_broken_symlinks: () => `find "$STORAGE_PATH" -xtype l -delete 2>/dev/null`,
                 run_find_large_files: () => `echo "Scanning for files > 200MB..."; find "$STORAGE_PATH" -type f -size +200M -exec du -h {} + | sort -rh | head -n 20 > "${state.logDir}/large_files.txt"; echo "Report saved in ${state.logDir}/large_files.txt"`,
                 run_find_duplicates: () => `echo "Scanning for duplicates..."; fdupes -r "$STORAGE_PATH" > "${state.logDir}/duplicate_files.txt"; echo "Report saved in ${state.logDir}/duplicate_files.txt"`,
                 run_optimize_termux: () => `pkg clean && pkg autoclean`,
+                run_clean_apt_lists: () => `rm -rf $PREFIX/var/lib/apt/lists/*`,
+                run_clean_pip_cache: () => `if command -v pip &> /dev/null; then pip cache purge; else echo "pip not found, skipping."; fi`,
+                run_clean_npm_cache: () => `if command -v npm &> /dev/null; then npm cache clean --force; else echo "npm not found, skipping."; fi`,
                 run_kill_zombies: () => `zombies=$(ps -o stat,pid | grep '^Z' | awk '{print $2}'); if [ -n "$zombies" ]; then kill -9 $zombies; else echo "No zombie processes found."; fi`,
                 run_clear_kernel_cache: () => `sync`,
             }
         };
 
         // --- 2. DOM ELEMENT CACHING ---
-        // Caching DOM elements improves performance as the browser doesn't have to
-        // re-query the document every time we need them.
+        // Caching DOM elements improves performance.
         const dom = {
             scriptTextarea: document.getElementById('script'),
-            moduleSwitchesContainer: document.getElementById('module-switches'),
             lineCount: document.getElementById('line-count'),
             sizeEstimate: document.getElementById('size-estimate'),
             moduleCount: document.getElementById('module-count'),
@@ -357,32 +344,6 @@
         // --- 3. UI MANIPULATION & HELPER FUNCTIONS ---
         // This object contains functions that directly interact with the DOM.
         const ui = {
-            /**
-             * Renders all module switches in the container.
-             */
-            renderModules() {
-                let switchesHTML = '';
-                for (const key in state.modules) {
-                    const mod = state.modules[key];
-                    // Create a unique, URL-safe ID for each checkbox
-                    const modId = `module-${key.replace(/[^a-zA-Z0-9]/g, '-')}`;
-                    
-                    switchesHTML += `
-                        <label for="${modId}" class="flex items-start justify-between p-3 rounded-xl module-item cursor-pointer" role="listitem">
-                            <div class="flex-grow mr-4">
-                                <span class="font-medium text-primary">${key}</span>
-                                <p class="text-xs text-secondary mt-1">${mod.description}</p>
-                            </div>
-                            <div class="switch flex-shrink-0">
-                                <input type="checkbox" id="${modId}" class="toggle" data-module-key="${key}" ${mod.enabled ? 'checked' : ''} aria-label="Activate ${key}">
-                            </div>
-                            <div class="tooltip">Space: ~${mod.space}MB | RAM: ${mod.ram > 0 ? '+' : ''}${mod.ram}MB</div>
-                        </label>
-                    `;
-                }
-                dom.moduleSwitchesContainer.innerHTML = switchesHTML;
-            },
-
             /**
              * Updates the script statistics display.
              * @param {string} scriptContent - The generated script text.
@@ -455,7 +416,7 @@
             generateScriptContent() {
                 ui.updateProgress(10);
                 const header = `#!/data/data/com.termux/files/usr/bin/bash
-# APEX Optimizer v3.0 - Generated by Web Interface
+# APEX Optimizer v3.2 - Generated by Web Interface (All Modules Active)
 # Description: Cleaning and optimization script for Termux (No-Root).
 
 # --- Configuration & Colors ---
@@ -466,7 +427,7 @@ STORAGE_PATH="$HOME/storage/shared"
 
 # --- Functions ---
 mkdir -p "$LOG_DIR"
-echo "--- APEX v3.0 Log Start: $(date) ---" > "$LOG_FILE"
+echo "--- APEX v3.2 Log Start: $(date) ---" > "$LOG_FILE"
 
 # Wrapper function to execute and log each module
 execute_module() {
@@ -482,14 +443,14 @@ execute_module() {
     fi
 }
 
-echo -e "$C_GREEN--- STARTING OPTIMIZATION ---$C_OFF"
+echo -e "$C_GREEN--- STARTING OPTIMIZATION (ALL MODULES) ---$C_OFF"
 `;
                 ui.updateProgress(40);
 
                 let mainExecutionCalls = '\n# --- Enabled Modules ---\n';
                 for (const key in state.modules) {
                     const mod = state.modules[key];
-                    if (mod.enabled) {
+                    if (mod.enabled) { // All are enabled, but we check anyway
                         const funcBody = state.bashFunctions[mod.func]();
                         // Escape double quotes inside the command string for safety
                         const safeFuncBody = funcBody.replace(/"/g, '\\"');
@@ -540,41 +501,12 @@ echo "Review the log at $LOG_FILE for details."
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'apex_optimizer_v3.0.sh';
+                a.download = 'apex_optimizer_v3.2_full.sh';
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
-                ui.showNotification("💾 Downloading apex_optimizer_v3.0.sh", 'bg-teal-500/90');
-            },
-
-            /**
-             * Toggles all modules on or off.
-             * @param {boolean} enable - True to enable all, false to disable.
-             */
-            toggleAllModules(enable) {
-                for (const key in state.modules) {
-                    // Keep scan-only modules disabled by default unless manually enabled
-                    if (key.includes('Find')) continue;
-                    state.modules[key].enabled = enable;
-                }
-                ui.renderModules(); // Re-render to reflect checkbox state changes
-                this.addModuleEventListeners(); // Re-attach listeners after re-render
-                this.refresh();
-                ui.showNotification(`All modules ${enable ? 'activated' : 'deactivated'}`, 'bg-blue-500/90');
-            },
-
-            /**
-             * Attaches event listeners to the dynamically created module switches.
-             */
-            addModuleEventListeners() {
-                dom.moduleSwitchesContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                    checkbox.addEventListener('change', (event) => {
-                        const key = event.target.dataset.moduleKey;
-                        state.modules[key].enabled = event.target.checked;
-                        this.refresh();
-                    });
-                });
+                ui.showNotification("💾 Downloading apex_optimizer_v3.2_full.sh", 'bg-teal-500/9AF');
             },
 
             /**
@@ -590,9 +522,7 @@ echo "Review the log at $LOG_FILE for details."
                     ui.updateTheme(newTheme);
                 });
 
-                // Initial render
-                ui.renderModules();
-                this.addModuleEventListeners();
+                // Initial render (generates script immediately)
                 this.refresh();
             }
         };
@@ -606,3 +536,4 @@ echo "Review the log at $LOG_FILE for details."
     </script>
 </body>
 </html>
+
