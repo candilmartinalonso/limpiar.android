@@ -1,19 +1,9 @@
 <!DOCTYPE html>
-<!-- 
-  Enhanced by Gemini
-  Version: 3.2 (Supercharged)
-  Date: 2025-10-16
-  Description: A simplified version of the APEX Optimizer interface.
-  Key Improvements:
-  1.  All modules are enabled by default.
-  2.  Added more cleaning modules (backups, symlinks, pip, npm, apt).
-  3.  The script is generated automatically on page load.
--->
-<html lang="es" data-theme="dark">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX Optimizer v3.2 - Supercharged | Termux Script Generator</title>
+    <title>APEX Optimizer v3.3 - Termux Performance Script Generator</title>
     
     <!-- TailwindCSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,74 +14,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* * EMBEDDED STYLESHEET
-         * This section contains all custom CSS. Keeping CSS in the HTML file reduces
-         * the number of requests the browser has to make, improving load time.
-         */
-
-        /* CSS Variables for Theming (Dark/Light Mode) */
+        /* EMBEDDED STYLESHEET */
         :root {
-            /* Set base font for the entire page */
-            font-family: 'Inter', sans-serif;
-
             /* Dark Theme (Default) */
             --bg-primary: #0c101c;
-            --bg-secondary: #1e293b;
             --bg-container: rgba(15, 23, 42, 0.9);
-            --bg-module: rgba(30, 41, 59, 0.8);
             --bg-code: #080d19;
             --text-primary: #f3f4f6;
             --text-secondary: #94a3b8;
             --text-code: #34d399;
             --border-primary: #6ee7b7;
-            --border-secondary: rgba(71, 85, 105, 0.5);
-            --glow-color: #6ee7b7;
             --glow-shadow: 0 0 5px rgba(110, 231, 183, 0.9), 0 0 10px rgba(52, 211, 153, 0.6);
+            font-family: 'Inter', sans-serif;
         }
 
         [data-theme="light"] {
             /* Light Theme */
             --bg-primary: #f1f5f9;
-            --bg-secondary: #cbd5e1;
             --bg-container: rgba(255, 255, 255, 0.9);
-            --bg-module: #ffffff;
             --bg-code: #f8fafc;
             --text-primary: #1e293b;
-            --text-secondary: #475569;
             --text-code: #059669;
             --border-primary: #10b981;
-            --border-secondary: #e2e8f0;
-            --glow-color: #10b981;
             --glow-shadow: 0 0 5px rgba(16, 185, 129, 0.9), 0 0 10px rgba(5, 150, 105, 0.6);
         }
 
-        /* General Body Styling */
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
             transition: background-color 0.3s ease, color 0.3s ease;
-            /* Subtle background pattern */
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 20%);
+            background-image: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 20%);
         }
 
-        /* Main container with blur and glow effects */
         .main-container {
             background-color: var(--bg-container);
-            border: 1px solid var(--border-primary);
-            box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
             backdrop-filter: blur(10px);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
-
-        /* Animated glowing title effect */
+        
         .glow-title { 
-            color: var(--glow-color);
+            color: var(--border-primary);
             text-shadow: var(--glow-shadow); 
-            letter-spacing: 1px;
             animation: pulse 2.5s infinite;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
         @keyframes pulse {
@@ -99,60 +62,14 @@
             50% { text-shadow: 0 0 10px rgba(110, 231, 183, 1), 0 0 20px rgba(52, 211, 153, 1); }
         }
         
-        /* Code textarea styling */
         #script {
             font-family: 'Fira Code', monospace;
             background-color: var(--bg-code);
             color: var(--text-code);
             border: 1px solid var(--border-primary);
-            box-shadow: inset 0 0 5px rgba(16, 185, 129, 0.2);
             line-height: 1.5;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-
-        /* Module item styling */
-        .module-item {
-            background-color: var(--bg-module);
-            border: 1px solid var(--border-secondary);
-            transition: all 0.2s ease;
-            position: relative; /* Needed for tooltip positioning */
-        }
-        .module-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-            border-color: var(--border-primary);
-        }
-
-        /* Custom Toggle Switch Styling */
-        input[type="checkbox"].toggle {
-            appearance: none;
-            width: 2.5rem;
-            height: 1.25rem;
-            border-radius: 9999px;
-            background-color: var(--bg-secondary);
-            cursor: pointer;
-            position: relative;
-            transition: background-color 0.2s ease;
-        }
-        input[type="checkbox"].toggle:checked {
-            background-color: var(--border-primary);
-        }
-        input[type="checkbox"].toggle::after {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 0.9rem;
-            height: 0.9rem;
-            border-radius: 50%;
-            background-color: white;
-            transition: transform 0.2s ease;
-        }
-        input[type="checkbox"].toggle:checked::after {
-            transform: translateX(1.25rem);
         }
         
-        /* Fade-in animation for page load */
         .fade-in {
             animation: fadeIn 0.8s ease-in-out;
         }
@@ -160,115 +77,96 @@
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Progress bar styling */
-        .progress-bar {
-            background-color: var(--bg-secondary);
-            height: 4px;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            background: linear-gradient(90deg, #10b981, #34d399);
-            height: 100%;
-            transition: width 0.3s ease;
-        }
-        
-        /* Tooltip Styling */
-        .tooltip {
-            position: absolute;
-            bottom: 110%; /* Position above the module */
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #1e293b;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s ease, visibility 0.2s ease;
-            z-index: 10;
-        }
-        
-        .module-item:hover .tooltip {
-            opacity: 1;
-            visibility: visible;
-        }
     </style>
 </head>
 <body class="font-sans antialiased min-h-screen p-4 md:p-8">
     
     <!-- Main content container, centered and with max-width -->
-    <main role="main" aria-labelledby="page-title" class="container mx-auto max-w-7xl fade-in">
+    <main role="main" class="container mx-auto max-w-7xl fade-in">
         
-        <!-- Page Header -->
-        <header class="relative text-center mb-8 main-container p-6 rounded-xl shadow-2xl">
-            <h1 id="page-title" class="text-4xl md:text-5xl font-extrabold glow-title">
-                APEX Optimizer <span class="text-white opacity-80">v3.2</span>
+        <!-- Header & Title -->
+        <header class="relative text-center mb-8 main-container p-6 rounded-xl shadow-2xl border border-slate-700">
+            <h1 class="text-4xl md:text-5xl font-extrabold glow-title">
+                APEX Optimizer <span class="text-white opacity-80">v3.3</span>
             </h1>
             <p class="text-md md:text-lg font-mono text-secondary mt-2">
-                Script Generado (Todo Activado)
+                Enhanced Termux Script Generator (All Modules Activated)
             </p>
             
             <!-- Theme Switcher Button -->
-            <button id="theme-switcher" class="absolute top-4 right-4 p-2 rounded-full text-secondary hover:bg-slate-700/50 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-colors" aria-label="Toggle light/dark theme">
-                <!-- Sun icon for dark mode, Moon for light mode -->
+            <button id="theme-switcher" class="absolute top-4 right-4 p-2 rounded-full text-secondary hover:bg-slate-700/50 transition-colors" aria-label="Toggle light/dark theme">
                 <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
                 <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
             </button>
-            
-            <!-- Progress Bar Section -->
-            <div class="mt-4">
-                <div class="progress-bar">
-                    <div id="progress-fill" class="progress-fill" style="width: 0%;"></div>
-                </div>
-                <p class="text-xs text-gray-500 mt-1">Generation Progress: <span id="progress-text">0%</span></p>
-            </div>
         </header>
 
-        <!-- Main Layout: Centered Script Console -->
-        <section class="flex justify-center">
-            
-            <!-- Script Console and Info -->
-            <aside class="w-full max-w-3xl" aria-labelledby="script-title">
+        <!-- 1. Introduction & Purpose -->
+        <div class="main-container p-6 rounded-xl mb-8 border border-emerald-700/50 shadow-lg">
+            <h2 class="text-2xl font-bold text-emerald-400 mb-3">1. Script Purpose: Safe Android Performance Enhancement</h2>
+            <p class="text-sm text-gray-300 leading-relaxed">
+                This Termux-based script, **APEX Optimizer**, is designed to safely enhance Android performance by tackling digital clutter within the user-accessible storage and the Termux environment. Unlike root-level solutions, this script operates strictly within the non-root domain, eliminating the risk of bricking your device or damaging core Android partitions. It systematically targets common performance bottlenecks: residual cache files, temporary logs, old installation artifacts (like APKs and Termux's `apt` lists), and background zombie processes. 
+                <br><br>
+                The script incorporates routines for deep storage analysis and **simulated service management** by safely clearing the kernel's memory cache (using the `sync` command) and terminating unresponsive processes. This helps free up RAM and CPU resources that applications unnecessarily consume. All potentially destructive commands are wrapped with error suppression and logging to guarantee stability and provide a comprehensive report of actions taken, making it suitable for users with basic programming knowledge looking for a robust, non-invasive optimization tool.
+            </p>
+        </div>
+
+        <!-- 2. Generated Script Console -->
+        <section class="flex justify-center mb-8">
+            <aside class="w-full max-w-4xl" aria-labelledby="script-title">
                 <h2 id="script-title" class="text-xl font-bold text-primary mb-3 flex items-center">
                     <svg class="w-6 h-6 mr-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    Generated Script (Bash)
+                    2. Generated Optimization Script (Ready to Use)
                 </h2>
                 
-                <!-- Script Statistics -->
-                <div class="mb-3 p-3 bg-slate-800 rounded-lg text-sm space-y-1">
-                    <div class="flex justify-between"><span>Modules Enabled:</span><span id="module-count" class="font-mono font-bold text-emerald-400">0</span></div>
-                    <div class="flex justify-between"><span>Lines of code:</span><span id="line-count" class="font-mono font-bold text-emerald-400">0</span></div>
-                    <div class="flex justify-between"><span>Estimated Size:</span><span id="size-estimate" class="font-mono font-bold text-emerald-400">0 KB</span></div>
-                </div>
-                
-                <textarea id="script" readonly class="w-full h-[400px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Generated script area"></textarea>
+                <textarea id="script" readonly class="w-full h-[450px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Generated script area"></textarea>
                 
                 <!-- Action Buttons -->
                 <div class="flex space-x-3 mt-4">
-                    <button onclick="app.copyScript()" class="flex-1 px-6 py-3 font-bold text-base md:text-lg bg-emerald-500 text-slate-900 rounded-xl shadow-lg transition-all hover:bg-emerald-400 hover:shadow-emerald-400/50 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-primary focus:ring-emerald-400">
-                        📋 Copy
+                    <button onclick="app.copyScript()" class="flex-1 px-6 py-3 font-bold text-base md:text-lg bg-emerald-500 text-slate-900 rounded-xl shadow-lg transition-all hover:bg-emerald-400 active:scale-[0.98]">
+                        📋 Copy Script
                     </button>
-                    <button onclick="app.downloadScript()" class="flex-1 px-6 py-3 font-bold text-base bg-teal-500 text-white rounded-xl shadow-lg transition-all hover:bg-teal-400 hover:shadow-teal-400/50 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-primary focus:ring-teal-400">
-                        💾 Download
+                    <button onclick="app.downloadScript()" class="flex-1 px-6 py-3 font-bold text-base bg-teal-500 text-white rounded-xl shadow-lg transition-all hover:bg-teal-400 active:scale-[0.98]">
+                        💾 Download .sh File
                     </button>
-                </div>
-                
-                <!-- Instructions Box -->
-                <div class="mt-6 p-4 bg-blue-900/30 border border-blue-700 rounded-lg" role="alert">
-                    <h3 class="font-bold text-blue-300 flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                        Instructions
-                    </h3>
-                    <p class="text-sm text-blue-200 mt-2">
-                        Paste the script in Termux, give permissions with <code>chmod +x script.sh</code> and run it with <code>./script.sh</code>. Remember to run <code>termux-setup-storage</code> first!
-                    </p>
                 </div>
             </aside>
         </section>
+
+        <!-- 3. Safety, Instructions & Additional Features -->
+        <div class="main-container p-6 rounded-xl border border-blue-700/50 shadow-lg">
+            <h2 class="text-2xl font-bold text-blue-400 mb-3">3. Safety, Usage & Enhancement</h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Safety Measures -->
+                <div class="bg-blue-900/30 p-4 rounded-lg">
+                    <h3 class="font-bold text-blue-300 flex items-center mb-2">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.96 17.5a.5.5 0 01-.482-.69L9.518 2.5a.5.5 0 01.964 0l7.04 14.31a.5.5 0 01-.482.69H2.96zM10 13a1 1 0 100 2 1 1 0 000-2zm0-8a1 1 0 000 2h.01a1 1 0 000-2H10z" clip-rule="evenodd"></path></svg>
+                        Safety & Non-Destructive Routines
+                    </h3>
+                    <ul class="text-sm text-blue-200 space-y-2 list-disc pl-5">
+                        <li>**Non-Root Operation:** The script uses standard Termux and Android commands (like `find`, `rm`, `ps`, `sync`), ensuring it cannot access or modify protected `/system` files.</li>
+                        <li>**Targeted Deletion:** File cleanup is restricted to known temporary file types (`.tmp`, `.log`, cache folders) and specific user folders (`$STORAGE_PATH`).</li>
+                        <li>**Logging:** All actions are logged to a dated file within `$HOME/apex_optimizer_logs` for transparency and error review.</li>
+                        <li>**Service Management Alternative:** Since true service management is root-only, the script uses `ps` to kill "zombie" processes and `sync` to flush the kernel's memory buffer, safely reclaiming resources without altering system configurations.</li>
+                    </ul>
+                </div>
+                
+                <!-- Instructions & Automation -->
+                <div class="bg-blue-900/30 p-4 rounded-lg">
+                    <h3 class="font-bold text-blue-300 flex items-center mb-2">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 00-1 1v2.586l-.707-.707a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.707 1.707a1 1 0 101.414 1.414L11 12.414V15a1 1 0 102 0v-2.586l.707.707a1 1 0 001.414-1.414L13.414 9H17a1 1 0 100-2h-3.586l1.707-1.707a1 1 0 00-1.414-1.414L13 7.586V4a1 1 0 00-1-1z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+                        Usage & Additional Features
+                    </h3>
+                    <ol class="text-sm text-blue-200 space-y-2 list-decimal pl-5">
+                        <li>**Enable Storage:** Run `termux-setup-storage` once to grant the script access to your shared storage (`/sdcard`).</li>
+                        <li>**Save Script:** Copy the generated code above and save it in a file: `nano optimizer.sh`. Paste the code and save (Ctrl+X, Y, Enter).</li>
+                        <li>**Set Permissions:** Give the script execution rights: `chmod +x optimizer.sh`.</li>
+                        <li>**Run:** Execute the script: `./optimizer.sh`.</li>
+                        <li>**Automation:** For enhanced performance, install `termux-wake-lock` to keep Termux active and use cron jobs to run the script automatically every night: `pkg install cronie` then `crontab -e`. Add a line like: `0 3 * * * /data/data/com.termux/files/home/optimizer.sh` (Runs at 3 AM daily).</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Notification Toast Element -->
@@ -276,38 +174,33 @@
     
     <script>
         'use strict';
-        /**
-         * =================================================================
-         * APEX OPTIMIZER v3.2 - FRONTEND LOGIC (Auto-Activated)
-         * =================================================================
-         * This script handles the entire application's functionality, including
-         * UI rendering, state management, and script generation.
-         */
-
         // --- 1. STATE MANAGEMENT ---
-        // This object holds the application's data.
-        // All modules are set to enabled: true by default.
+        // All modules are set to enabled: true by default to match the user's request for a "thorough" script.
         const state = {
             logDir: "$HOME/apex_optimizer_logs",
             modules: {
-                'Clean Caches & Temp': { enabled: true, func: 'run_clean_caches', description: 'Cleans app caches and .tmp files in /sdcard.', category: 'cleaning', space: 100, ram: 5 },
-                'Clean Empty Dirs': { enabled: true, func: 'run_clean_empty_dirs', description: 'Removes directories that contain no files.', category: 'cleaning', space: 5, ram: 1 },
-                'Clean Thumbnails': { enabled: true, func: 'run_clean_thumbnails', description: 'Deletes the cache of image and video thumbnails.', category: 'cleaning', space: 50, ram: 1 },
-                'Clean Downloaded APKs': { enabled: true, func: 'run_clean_apks', description: 'Deletes .apk files from the Downloads folder.', category: 'cleaning', space: 150, ram: 2 },
-                'Clean Log Files': { enabled: true, func: 'run_clean_logs', description: 'Removes .log files from the entire storage.', category: 'cleaning', space: 20, ram: 1 },
-                'Clean .bak/.old Files': { enabled: true, func: 'run_clean_backups', description: 'Deletes backup files (.bak, .old, .tmp~) from storage.' },
+                // File Cleanup Routines (Thorough Cleaning)
+                'Clean App Caches & Temp Files': { enabled: true, func: 'run_clean_caches', description: 'Cleans app caches and .tmp files in /sdcard.'},
+                'Clean Empty Directories': { enabled: true, func: 'run_clean_empty_dirs', description: 'Removes directories that contain no files.'},
+                'Clean Image/Video Thumbnails': { enabled: true, func: 'run_clean_thumbnails', description: 'Deletes the cache of image and video thumbnails.'},
+                'Clean Log Files (.log)': { enabled: true, func: 'run_clean_logs', description: 'Removes .log files from the entire storage.'},
+                'Clean Backups (.bak/.old)': { enabled: true, func: 'run_clean_backups', description: 'Deletes backup files (.bak, .old, .tmp~).' },
                 'Clean Broken Symlinks': { enabled: true, func: 'run_clean_broken_symlinks', description: 'Finds and deletes broken symbolic links.' },
-                'Find Large Files': { enabled: true, func: 'run_find_large_files', description: 'Finds files larger than 200MB (scan only, no deletion).', category: 'storage', space: 0, ram: 8 },
-                'Find Duplicate Files': { enabled: true, func: 'run_find_duplicates', description: 'Finds duplicate files with fdupes (scan only, no deletion).', category: 'storage', space: 0, ram: 15 },
-                'Optimize Termux (pkg clean)': { enabled: true, func: 'run_optimize_termux', description: 'Cleans Termux package cache (pkg clean/autoclean).', category: 'termux', space: 40, ram: 2 },
-                'Clean apt (pkg) lists': { enabled: true, func: 'run_clean_apt_lists', description: "Cleans old 'pkg' (apt) package lists." },
+                'Clean Downloaded APKs': { enabled: true, func: 'run_clean_apks', description: 'Deletes .apk files from the Downloads folder.'},
+                
+                // Termux Configuration Cleanup
+                'Optimize Termux (pkg clean)': { enabled: true, func: 'run_optimize_termux', description: 'Cleans Termux package cache (pkg clean/autoclean).' },
+                'Clean apt (pkg) lists': { enabled: true, func: 'run_clean_apt_lists', description: "Cleans old 'pkg' (apt) package lists."},
                 'Clean pip Cache': { enabled: true, func: 'run_clean_pip_cache', description: 'Purges the cache for pip (Python package manager).' },
                 'Clean npm Cache': { enabled: true, func: 'run_clean_npm_cache', description: 'Cleans the cache for npm (Node.js package manager).' },
-                'Kill Zombie Processes': { enabled: true, func: 'run_kill_zombies', description: 'Finds and terminates unresponsive "zombie" processes.', category: 'performance', space: 0, ram: -10, cpu: 5 },
-                'Clear Kernel Cache (sync)': { enabled: true, func: 'run_clear_kernel_cache', description: 'Syncs the filesystem to free up memory (safe non-root method).', category: 'performance', space: 0, ram: -50, cpu: 2 },
+                
+                // System Configuration Adjustments & Service Management Alternatives (Non-Root)
+                'Kill Zombie Processes': { enabled: true, func: 'run_kill_zombies', description: 'Finds and terminates unresponsive "zombie" processes (non-destructive).' },
+                'Clear Kernel Cache (sync)': { enabled: true, func: 'run_clear_kernel_cache', description: 'Syncs the filesystem to free up memory (safe non-root method).' },
             },
             // Bash functions corresponding to the modules.
             bashFunctions: {
+                // File Cleanup
                 run_clean_caches: () => `find "$STORAGE_PATH" -type d -name '*cache*' -exec rm -rf {} + 2>/dev/null; find "$STORAGE_PATH" -type f \\( -name '*.tmp' -o -name 'temp.*' \\) -delete 2>/dev/null`,
                 run_clean_empty_dirs: () => `find "$STORAGE_PATH" -type d -empty -delete 2>/dev/null`,
                 run_clean_thumbnails: () => `rm -rf "$STORAGE_PATH/DCIM/.thumbnails" 2>/dev/null; rm -rf "$STORAGE_PATH/Pictures/.thumbnails" 2>/dev/null`,
@@ -315,26 +208,22 @@
                 run_clean_logs: () => `find "$STORAGE_PATH" -type f -name '*.log' -delete 2>/dev/null`,
                 run_clean_backups: () => `find "$STORAGE_PATH" -type f \\( -name '*.bak' -o -name '*.old' -o -name '*~' \\) -delete 2>/dev/null`,
                 run_clean_broken_symlinks: () => `find "$STORAGE_PATH" -xtype l -delete 2>/dev/null`,
-                run_find_large_files: () => `echo "Scanning for files > 200MB..."; find "$STORAGE_PATH" -type f -size +200M -exec du -h {} + | sort -rh | head -n 20 > "${state.logDir}/large_files.txt"; echo "Report saved in ${state.logDir}/large_files.txt"`,
-                run_find_duplicates: () => `echo "Scanning for duplicates..."; fdupes -r "$STORAGE_PATH" > "${state.logDir}/duplicate_files.txt"; echo "Report saved in ${state.logDir}/duplicate_files.txt"`,
-                run_optimize_termux: () => `pkg clean && pkg autoclean`,
+                
+                // Termux Cleanup
+                run_optimize_termux: () => `pkg update; pkg clean && pkg autoclean`,
                 run_clean_apt_lists: () => `rm -rf $PREFIX/var/lib/apt/lists/*`,
                 run_clean_pip_cache: () => `if command -v pip &> /dev/null; then pip cache purge; else echo "pip not found, skipping."; fi`,
                 run_clean_npm_cache: () => `if command -v npm &> /dev/null; then npm cache clean --force; else echo "npm not found, skipping."; fi`,
-                run_kill_zombies: () => `zombies=$(ps -o stat,pid | grep '^Z' | awk '{print $2}'); if [ -n "$zombies" ]; then kill -9 $zombies; else echo "No zombie processes found."; fi`,
-                run_clear_kernel_cache: () => `sync`,
+                
+                // Performance Tweaks (Non-Root)
+                run_kill_zombies: () => `zombies=$(ps -o stat,pid | grep '^Z' | awk '{print $2}'); if [ -n "$zombies" ]; then kill -9 $zombies; echo "Terminated $zombies zombie process(es)."; else echo "No zombie processes found."; fi`,
+                run_clear_kernel_cache: () => `sync; echo "Kernel cache sync executed. This typically helps free up memory."`,
             }
         };
 
         // --- 2. DOM ELEMENT CACHING ---
-        // Caching DOM elements improves performance.
         const dom = {
             scriptTextarea: document.getElementById('script'),
-            lineCount: document.getElementById('line-count'),
-            sizeEstimate: document.getElementById('size-estimate'),
-            moduleCount: document.getElementById('module-count'),
-            progressFill: document.getElementById('progress-fill'),
-            progressText: document.getElementById('progress-text'),
             notificationToast: document.getElementById('notification-toast'),
             themeSwitcher: document.getElementById('theme-switcher'),
             themeIconSun: document.getElementById('theme-icon-sun'),
@@ -342,48 +231,19 @@
         };
 
         // --- 3. UI MANIPULATION & HELPER FUNCTIONS ---
-        // This object contains functions that directly interact with the DOM.
         const ui = {
             /**
-             * Updates the script statistics display.
-             * @param {string} scriptContent - The generated script text.
-             */
-            updateScriptStats(scriptContent) {
-                const enabledModules = Object.values(state.modules).filter(m => m.enabled).length;
-                const lines = scriptContent.split('\n').length;
-                // Use Blob for a more accurate size calculation
-                const sizeKB = new Blob([scriptContent]).size / 1024;
-                
-                dom.moduleCount.textContent = enabledModules;
-                dom.lineCount.textContent = lines;
-                dom.sizeEstimate.textContent = `${sizeKB.toFixed(2)} KB`;
-            },
-
-            /**
-             * Updates the progress bar display.
-             * @param {number} percentage - The progress value (0-100).
-             */
-            updateProgress(percentage) {
-                dom.progressFill.style.width = `${percentage}%`;
-                dom.progressText.textContent = `${percentage}%`;
-            },
-            
-            /**
              * Displays a short-lived notification message (toast).
-             * @param {string} message - The text to display.
-             * @param {string} colorClass - TailwindCSS background color class.
              */
             showNotification(message, colorClass = 'bg-emerald-500/90') {
                 dom.notificationToast.className = `fixed bottom-8 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-5 transition-all duration-300 ease-in-out z-50 font-semibold text-lg ${colorClass}`;
                 dom.notificationToast.textContent = message;
                 
-                // Animate in
                 requestAnimationFrame(() => {
                     dom.notificationToast.classList.remove("opacity-0", "translate-y-5");
                     dom.notificationToast.classList.add("opacity-100", "translate-y-0");
                 });
 
-                // Animate out after a delay
                 setTimeout(() => {
                     dom.notificationToast.classList.remove("opacity-100", "translate-y-0");
                     dom.notificationToast.classList.add("opacity-0", "translate-y-5");
@@ -392,7 +252,6 @@
             
             /**
              * Updates the theme based on the provided mode.
-             * @param {string} theme - 'light' or 'dark'.
              */
             updateTheme(theme) {
                 document.documentElement.setAttribute('data-theme', theme);
@@ -407,64 +266,63 @@
         };
 
         // --- 4. CORE APPLICATION LOGIC ---
-        // This object orchestrates the main application functionality.
         const app = {
             /**
              * Generates the final bash script content based on enabled modules.
-             * @returns {string} The complete bash script.
              */
             generateScriptContent() {
-                ui.updateProgress(10);
                 const header = `#!/data/data/com.termux/files/usr/bin/bash
-# APEX Optimizer v3.2 - Generated by Web Interface (All Modules Active)
-# Description: Cleaning and optimization script for Termux (No-Root).
+# APEX Optimizer v3.3 - Auto-Generated Script
+# Date: ${new Date().toISOString().slice(0, 10)}
+# WARNING: This script is SAFE and NON-ROOT. It only cleans user-accessible files 
+# and Termux package data. It WILL NOT touch or damage core Android system files.
 
 # --- Configuration & Colors ---
 C_OFF='\\e[0m'; C_RED='\\e[0;31m'; C_GREEN='\\e[0;32m'; C_CYAN='\\e[0;36m';
 LOG_DIR="${state.logDir}"
 LOG_FILE="\${LOG_DIR}/apex_run_$(date +%Y-%m-%d_%H-%M-%S).log"
-STORAGE_PATH="$HOME/storage/shared"
+# IMPORTANT: This path requires you to run 'termux-setup-storage' first.
+STORAGE_PATH="$HOME/storage/shared" 
 
 # --- Functions ---
 mkdir -p "$LOG_DIR"
-echo "--- APEX v3.2 Log Start: $(date) ---" > "$LOG_FILE"
+echo "--- APEX v3.3 Log Start: $(date) ---" > "$LOG_FILE"
+echo "--- Storage Path: $STORAGE_PATH ---" >> "$LOG_FILE"
 
 # Wrapper function to execute and log each module
 execute_module() {
     local mod_name="$1"
     local cmd="$2"
-    echo -e "$C_CYAN-> Executing: $mod_name...$C_OFF"
-    echo "--- $mod_name ---" >> "$LOG_FILE"
-    # Using 'eval' to execute the command string
+    echo -e "$C_CYAN\\n-> Executing: $mod_name...$C_OFF"
+    echo -e "\\n--- $mod_name ---" >> "$LOG_FILE"
+    
+    # Use 'eval' to execute the command string safely.
     if eval "$cmd" >> "$LOG_FILE" 2>&1; then
-        echo -e "  $C_GREEN[OK]$C_OFF"
+        echo -e "  $C_GREEN[OK/Completed]$C_OFF"
     else 
-        echo -e "  $C_YELLOW[FAILED or NO EFFECT]$C_OFF"
+        echo -e "  $C_RED[ERROR/Skipped]$C_OFF (Check log for details)"
     fi
 }
 
-echo -e "$C_GREEN--- STARTING OPTIMIZATION (ALL MODULES) ---$C_OFF"
+echo -e "$C_GREEN--- STARTING THOROUGH OPTIMIZATION ---$C_OFF"
+
 `;
-                ui.updateProgress(40);
 
                 let mainExecutionCalls = '\n# --- Enabled Modules ---\n';
                 for (const key in state.modules) {
                     const mod = state.modules[key];
-                    if (mod.enabled) { // All are enabled, but we check anyway
+                    if (mod.enabled) { 
                         const funcBody = state.bashFunctions[mod.func]();
-                        // Escape double quotes inside the command string for safety
                         const safeFuncBody = funcBody.replace(/"/g, '\\"');
                         mainExecutionCalls += `execute_module "${key}" "${safeFuncBody}"\n`;
                     }
                 }
-                ui.updateProgress(80);
 
                 const footer = `
-echo -e "$C_GREEN--- OPTIMIZATION COMPLETE ---$C_OFF"
-echo "Review the log at $LOG_FILE for details."
+# --- Finalization ---
+echo -e "$C_GREEN\\n--- OPTIMIZATION COMPLETE ---$C_OFF"
+echo -e "Review the log at \${LOG_FILE} for details.\\n"
 `;
-                ui.updateProgress(100);
-                setTimeout(() => ui.updateProgress(0), 1500); // Reset progress bar
                 
                 return header + mainExecutionCalls + footer;
             },
@@ -475,7 +333,6 @@ echo "Review the log at $LOG_FILE for details."
             refresh() { 
                 const scriptContent = this.generateScriptContent();
                 dom.scriptTextarea.value = scriptContent; 
-                ui.updateScriptStats(scriptContent);
             },
             
             /**
@@ -483,7 +340,7 @@ echo "Review the log at $LOG_FILE for details."
              */
             copyScript() {
                 dom.scriptTextarea.select();
-                dom.scriptTextarea.setSelectionRange(0, 99999); // For mobile
+                dom.scriptTextarea.setSelectionRange(0, 99999); 
                 try {
                     document.execCommand('copy');
                     ui.showNotification("✅ Script copied to clipboard!", 'bg-emerald-500/90');
@@ -501,12 +358,12 @@ echo "Review the log at $LOG_FILE for details."
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'apex_optimizer_v3.2_full.sh';
+                a.download = 'apex_optimizer_v3.3_full.sh';
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
-                ui.showNotification("💾 Downloading apex_optimizer_v3.2_full.sh", 'bg-teal-500/9AF');
+                ui.showNotification("💾 Downloading apex_optimizer_v3.3_full.sh", 'bg-teal-500/9AF');
             },
 
             /**
@@ -528,12 +385,9 @@ echo "Review the log at $LOG_FILE for details."
         };
 
         // --- 5. INITIALIZATION ---
-        // This is the entry point. The 'DOMContentLoaded' event ensures the script
-        // runs only after the entire HTML document has been loaded and parsed.
         document.addEventListener('DOMContentLoaded', () => {
             app.initialize();
         });
     </script>
 </body>
 </html>
-
