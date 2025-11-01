@@ -159,7 +159,7 @@
                         Uso Rápido (Corregido)
                     </h3>
                     <ol class="text-sm text-blue-200 space-y-2 list-decimal pl-5">
-                        <li>**Habilitar Almacenamiento:** Ejecuta `termux-setup-storage`.</li>
+                        <li>**Habilitar Almacenamiento:** Ejecuta **`termux-setup-storage`**.</li>
                         <li>**Guardar Script:** Cópialo y guárdalo como `apex_optimizer_v5.0_extreme.sh`.</li>
                         <li>**Permisos:** Dale permisos de ejecución: `chmod +x apex_optimizer_v5.0_extreme.sh`.</li>
                         <li>**Ejecutar:** Lanza el script: `./apex_optimizer_v5.0_extreme.sh`.</li>
@@ -216,10 +216,12 @@ echo -e "\${C_CYAN}    Termux Optimizer v5.0 (Extreme Clean) STARTING \${C_OFF}"
 echo -e "\${C_CYAN}=================================================\${C_OFF}"
 echo -e "Comenzando la limpieza profunda a las \$(date)"
 
-# Comprobar si el almacenamiento compartido está configurado
+# Comprobar si el almacenamiento compartido está configurado (SOLUCIÓN AL ERROR DEL USUARIO)
 if [ ! -d "\$STORAGE_PATH" ]; then
     echo -e "\${C_RED}[ERROR]\${C_OFF} Acceso a almacenamiento no configurado."
-    echo -e "Ejecuta: \${C_YELLOW} termux-setup-storage \${C_OFF} y vuelve a intentarlo."
+    echo -e "El script necesita acceder a /sdcard (mediante \$HOME/storage/shared)."
+    echo -e "Ejecuta: \${C_YELLOW} termux-setup-storage \${C_OFF} y ACEPTA la solicitud de permisos."
+    echo -e "Vuelve a ejecutar el script una vez que hayas dado el permiso."
     exit 1
 fi
 
@@ -250,7 +252,7 @@ echo "-> Vaciando el directorio /tmp de Termux..."
 # Resumen: Elimina archivos temporales de la sesión actual de Termux.
 rm -rf /tmp/*
 
-# Limpieza de cachés de herramientas de desarrollo comunes
+# Limpieza de cachés de herramientas de desarrollo comunes (v5.0 EXTREME)
 echo "-> Limpiando cachés de herramientas: Python (pip), Node.js (npm), Yarn, Go, Composer..."
 # Resumen: Purga los directorios de caché de varios gestores de paquetes.
 command -v pip &> /dev/null && pip cache purge
@@ -271,7 +273,7 @@ fi
 echo -e "\${C_YELLOW}\n[SECCIÓN 2/2] Limpieza de Almacenamiento Compartido (SD Card) EXTREMA...\${C_OFF}"
 echo -e "Objetivos: logs, basura oculta, archivos de 0 bytes, APKs, DEBs y descargas antiguas."
 
-# 1. Eliminar archivos de 0 bytes (indicadores de error, archivos vacíos)
+# 1. Eliminar archivos de 0 bytes (indicadores de error, archivos vacíos) (v5.0 EXTREME)
 echo "-> Eliminando archivos de 0 bytes..."
 # Resumen: Busca y elimina archivos que no contienen datos (suelen ser residuos de procesos fallidos).
 find "\$HOME_PATH" "\$STORAGE_PATH" -type f -size 0 -delete 2>/dev/null
@@ -286,7 +288,7 @@ echo "-> Eliminando instaladores (.apk, .deb) en almacenamiento compartido..."
 # Resumen: Elimina archivos de instalación que ya no son necesarios.
 find "\$STORAGE_PATH" -type f \\( -iname '*.apk' -o -iname '*.deb' \\) -delete 2>/dev/null
 
-# 4. Limpieza de basura oculta de sistemas (Mac, Linux, Papeleras)
+# 4. Limpieza de basura oculta de sistemas (Mac, Linux, Papeleras) (v5.0 EXTREME)
 echo "-> Buscando basura oculta de sistemas (._*, .DS_Store, Papeleras)..."
 # Resumen: Busca y elimina carpetas de papelera (.Trash, .Recycle), archivos de metadatos de Mac (.DS_Store, ._*) y otros residuos comunes.
 find "\$HOME_PATH" "\$STORAGE_PATH" -type d -iname '.trash*' -exec rm -rf {} \; 2>/dev/null
