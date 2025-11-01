@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX Optimizer v4.0 - Termux Performance Script Generator</title>
+    <title>APEX Optimizer v5.0 - Termux Performance Script Generator (Extreme)</title>
     
     <!-- TailwindCSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -58,7 +58,7 @@
         }
 
         @keyframes pulse {
-            0%, 100% { text-shadow: var(--glow-shadow); }
+            0%, 100% { text-shadow: 0 0 5px rgba(110, 231, 183, 0.9), 0 0 10px rgba(52, 211, 153, 0.6); }
             50% { text-shadow: 0 0 10px rgba(110, 231, 183, 1), 0 0 20px rgba(52, 211, 153, 1); }
         }
         
@@ -87,10 +87,10 @@
         <!-- Header & Title -->
         <header class="relative text-center mb-8 main-container p-6 rounded-xl shadow-2xl border border-slate-700">
             <h1 class="text-4xl md:text-5xl font-extrabold glow-title">
-                APEX Optimizer <span class="text-white opacity-80">v4.0</span>
+                APEX Optimizer <span class="text-white opacity-80">v5.0 (Extreme)</span>
             </h1>
             <p class="text-md md:text-lg font-mono text-secondary mt-2">
-                Generador de Script Termux de Optimización Extrema
+                Generador de Script Termux de Optimización Ultra-Profunda
             </p>
             
             <!-- Theme Switcher Button -->
@@ -102,11 +102,11 @@
 
         <!-- 1. Introduction & Purpose -->
         <div class="main-container p-6 rounded-xl mb-8 border border-emerald-700/50 shadow-lg">
-            <h2 class="text-2xl font-bold text-emerald-400 mb-3">1. Propósito del Script: Optimización Extrema (v4.0)</h2>
+            <h2 class="text-2xl font-bold text-emerald-400 mb-3">1. Propósito del Script: Limpieza Profunda (v5.0)</h2>
             <p class="text-sm text-gray-300 leading-relaxed">
-                Esta versión **APEX Optimizer v4.0** está diseñada para una limpieza y optimización del rendimiento de Android no root, llevando al límite las capacidades de Termux. A diferencia de las versiones anteriores, esta utiliza comandos <code>find</code> altamente optimizados (con ejecución paralela <code>-exec {} +</code>) y consolida la limpieza de caché, logs, archivos temporales, `apk`, `deb`, e incluso basura de archivos multimedia como `.nomedia` y miniaturas.
+                La versión **APEX Optimizer v5.0** es una limpieza *extrema* no root. Incluye limpieza de cachés de desarrollador (`yarn`, `go`, `composer`), eliminación de archivos de **cero bytes**, vaciado del directorio `/tmp` de Termux, y una búsqueda agresiva de directorios de basura ocultos (`.Trash`, `.recycle`) y archivos antiguos (más de 30 días) en la carpeta de descargas.
                 <br><br>
-                El script incluye una purga agresiva de las cachés de Termux (`pkg clean`, `pip cache purge`, `npm cache clean`), una limpieza de procesos 'zombie' y una triple ejecución de `sync` para liberar la máxima cantidad de memoria RAM posible de forma segura. Todas las acciones se registran con precisión para garantizar la estabilidad y la transparencia.
+                **¡Advertencia!** Esta versión es más agresiva. Asegúrate de hacer una copia de seguridad de cualquier archivo importante que no quieras que sea considerado "basura" o "temporal".
             </p>
         </div>
 
@@ -115,7 +115,7 @@
             <aside class="w-full max-w-4xl" aria-labelledby="script-title">
                 <h2 id="script-title" class="text-xl font-bold text-primary mb-3 flex items-center">
                     <svg class="w-6 h-6 mr-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    2. Script de Optimización Generado (v4.0 Listo para Usar)
+                    2. Script de Optimización Generado (v5.0 Limpieza Extrema)
                 </h2>
                 
                 <textarea id="script" readonly class="w-full h-[450px] text-xs font-mono p-4 rounded-xl shadow-inner resize-y overflow-auto focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Generated script area"></textarea>
@@ -134,20 +134,21 @@
 
         <!-- 3. Safety, Instructions & Additional Features -->
         <div class="main-container p-6 rounded-xl border border-blue-700/50 shadow-lg">
-            <h2 class="text-2xl font-bold text-blue-400 mb-3">3. Seguridad, Uso y Mejoras (v4.0)</h2>
+            <h2 class="text-2xl font-bold text-blue-400 mb-3">3. Uso y Características Adicionales (v5.0)</h2>
 
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- Safety Measures -->
                 <div class="bg-blue-900/30 p-4 rounded-lg">
                     <h3 class="font-bold text-blue-300 flex items-center mb-2">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.96 17.5a.5.5 0 01-.482-.69L9.518 2.5a.5.5 0 01.964 0l7.04 14.31a.5.5 0 01-.482.69H2.96zM10 13a1 1 0 100 2 1 1 0 000-2zm0-8a1 1 0 000 2h.01a1 1 0 000-2H10z" clip-rule="evenodd"></path></svg>
-                        Seguridad y Rutinas No Destructivas
+                        Nuevas Rutinas de Limpieza Extrema (v5.0)
                     </h3>
                     <ul class="text-sm text-blue-200 space-y-2 list-disc pl-5">
-                        <li>**Operación No Root:** El script solo usa comandos estándar de Termux y Android, garantizando que no puede dañar archivos del sistema operativo principal.</li>
-                        <li>**Limpieza Ultra-Targeted:** La limpieza de archivos está restringida a tipos de archivos temporales conocidos y a la carpeta de almacenamiento compartido (`$STORAGE_PATH`).</li>
-                        <li>**Redirección de Logs:** Se utiliza `exec > >(tee "$LOG_FILE") 2>&1` para redirigir toda la salida a la consola **y** a un archivo de registro (log) datado para máxima transparencia.</li>
-                        <li>**Recuperación de RAM:** La triple ejecución de `sync` es el método no root más agresivo para liberar la caché de memoria del kernel de Android.</li>
+                        <li>**Cachés de Dev:** Limpieza profunda de cachés de Yarn, Go y Composer.</li>
+                        <li>**Archivos Antiguos:** Eliminación de archivos en la carpeta de *Descargas* que no han sido tocados en más de 30 días.</li>
+                        <li>**Basura Oculta:** Búsqueda y eliminación de directorios como `.Trash`, `.recycle` y archivos temporales de Mac/Linux (`._*`, `.DS_Store`).</li>
+                        <li>**Cero Bytes:** Búsqueda y eliminación de archivos que ocupan 0 bytes (generalmente errores de descarga o logs vacíos).</li>
+                        <li>**Vaciado de /tmp:** Limpieza del directorio temporal de la sesión actual de Termux.</li>
                     </ul>
                 </div>
                 
@@ -155,14 +156,14 @@
                 <div class="bg-blue-900/30 p-4 rounded-lg">
                     <h3 class="font-bold text-blue-300 flex items-center mb-2">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 00-1 1v2.586l-.707-.707a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.707 1.707a1 1 0 101.414 1.414L11 12.414V15a1 1 0 102 0v-2.586l.707.707a1 1 0 001.414-1.414L13.414 9H17a1 1 0 100-2h-3.586l1.707-1.707a1 1 0 00-1.414-1.414L13 7.586V4a1 1 0 00-1-1z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
-                        Uso y Características Adicionales
+                        Uso Rápido (Corregido)
                     </h3>
                     <ol class="text-sm text-blue-200 space-y-2 list-decimal pl-5">
-                        <li>**Habilitar Almacenamiento:** Ejecuta `termux-setup-storage` una vez para dar acceso al almacenamiento compartido (`/sdcard`).</li>
-                        <li>**Guardar Script:** Copia el código de arriba y guárdalo: `nano optimizer.sh`. Pega el código y guarda (Ctrl+X, Y, Enter).</li>
-                        <li>**Permisos:** Dale permisos de ejecución: `chmod +x optimizer.sh`.</li>
-                        <li>**Ejecutar:** Lanza el script: `./optimizer.sh`.</li>
-                        <li>**Automatización:** Puedes usar cron jobs (con `pkg install cronie`) para ejecutarlo automáticamente por la noche: `0 3 * * * /data/data/com.termux/files/home/optimizer.sh` (Ejecuta a las 3 AM diariamente).</li>
+                        <li>**Habilitar Almacenamiento:** Ejecuta `termux-setup-storage`.</li>
+                        <li>**Guardar Script:** Cópialo y guárdalo como `apex_optimizer_v5.0_extreme.sh`.</li>
+                        <li>**Permisos:** Dale permisos de ejecución: `chmod +x apex_optimizer_v5.0_extreme.sh`.</li>
+                        <li>**Ejecutar:** Lanza el script: `./apex_optimizer_v5.0_extreme.sh`.</li>
+                        <li>**Automatización:** Usa `pkg install cronie` para programar la limpieza.</li>
                     </ol>
                 </div>
             </div>
@@ -175,130 +176,141 @@
     <script>
         'use strict';
         
-        // --- 1. STATE MANAGEMENT (Simplified for V4.0 monolithic script) ---
-        // V4.0 script is highly optimized and combined into a single constant string.
-        const V4_SCRIPT_CONTENT = `#!/data/data/com.termux/files/usr/bin/bash
+        // --- 1. STATE MANAGEMENT (V5.0 Extreme Script Content) ---
+        // Este contenido ha sido actualizado con el script corregido y las variables Bash escapadas.
+        const V5_SCRIPT_CONTENT = `#!/data/data/com.termux/files/usr/bin/bash
 #
-# APEX Optimizer v4.0 - Extreme Termux and Android Device Cleaner (Non-Root)
+# Termux Device Cleaner & Optimizer (Non-Root) - v5.0 EXTREME CLEAN
+# Script Author: Gemini
+# Date: \$(date +%Y-%m-%d)
 #
-# Date: $(date +%Y-%m-%d)
-# Author: Gemini
-# License: Public Domain
+# PURPOSE: Script de mantenimiento no-root para optimizar Termux y limpiar
+# el almacenamiento accesible del usuario de forma agresiva.
 #
-# WARNING: This script is designed for safety and operates strictly within the non-root
-# Termux environment and user-accessible shared storage (like /sdcard).
-# It WILL NOT touch or damage core Android system files or protected partitions.
+# ====================================================================
+# [!] ADVERTENCIA DE SEGURIDAD [!]
+# ====================================================================
+# ESTA VERSIÓN (v5.0) ES MÁS AGRESIVA. Asegúrate de que no haya
+# archivos importantes sin copia de seguridad en \$HOME/storage/shared/Download
+# o en tu carpeta \$HOME.
+# El script ELIMINA: logs, caché de paquetes, archivos de 0 bytes,
+# archivos con más de 30 días en la carpeta Descargas y basura oculta.
+# ====================================================================
 
-# --- Configuration & Colors ---
-C_OFF='\\e[0m'; C_RED='\\e[0;31m'; C_GREEN='\\e[0;32m'; C_YELLOW='\\e[0;33m'; C_CYAN='\\e[0;36m';
-LOG_DIR="$HOME/apex_optimizer_logs"
-LOG_FILE="\${LOG_DIR}/extreme_run_$(date +%Y-%m-%d_%H-%M-%S).log"
-# IMPORTANT: This path requires you to run 'termux-setup-storage' once.
-STORAGE_PATH="$HOME/storage/shared"
+# --- 1. Inicialización del Entorno Termux ---
 
-# --- Setup and Pre-flight Checks ---
-mkdir -p "$LOG_DIR"
-exec > >(tee "$LOG_FILE") 2>&1 # Redirect all output to console and log file
-echo -e "$C_GREEN===============================================$C_OFF"
-echo -e "$C_CYAN  APEX OPTIMIZER v4.0 - EXTREME CLEANING START $C_OFF"
-echo -e "$C_GREEN===============================================$C_OFF"
-echo "Log file: \${LOG_FILE}"
-START_TIME=$(date +%s.%N) # Start timing
+# Definir códigos de color
+C_RED='\\033[0;31m'
+C_GREEN='\\033[0;32m'
+C_YELLOW='\\033[0;33m'
+C_CYAN='\\033[0;36m'
+C_OFF='\\033[0m'
 
-if [ ! -d "$STORAGE_PATH" ]; then
-    echo -e "$C_RED[ERROR]$C_OFF Storage access not enabled."
-    echo "Please run: termux-setup-storage"
+# Definir rutas
+STORAGE_PATH="\$HOME/storage/shared"
+HOME_PATH="\$HOME"
+
+echo -e "\$C_CYAN=================================================\$C_OFF"
+echo -e "\$C_CYAN    Termux Optimizer v5.0 (Extreme Clean) STARTING \$C_OFF"
+echo -e "\$C_CYAN=================================================\$C_OFF"
+echo -e "Comenzando la limpieza profunda a las \$(date)"
+
+# Comprobar si el almacenamiento compartido está configurado
+if [ ! -d "\$STORAGE_PATH" ]; then
+    echo -e "\$C_RED[ERROR]\$C_OFF Acceso a almacenamiento no configurado."
+    echo -e "Ejecuta: \$C_YELLOW termux-setup-storage \$C_OFF y vuelve a intentarlo."
     exit 1
 fi
-echo "Starting cleanup in $STORAGE_PATH"
 
-# ----------------------------------------------------------------------
-# 1. DEEP FILE CLEANUP (HIGHLY OPTIMIZED FIND COMMANDS)
-# Optimization: Merges multiple 'find' calls into two highly efficient commands
-# using parallel execution (+), reducing I/O and process overhead significantly.
-# ----------------------------------------------------------------------
-echo -e "$C_YELLOW\\n[PHASE 1/3] Deep File System Cleanup...$C_OFF"
+# --- 2. Limpieza Profunda del Entorno Termux (Cachés de Desarrollador y Sistema) ---
 
-# Command 1: Targets transient junk files and directories for quick, safe deletion.
-# Includes: caches, logs, temp files, backup files, and installer files (.apk, .deb)
-echo "-> Cleaning caches, logs, and temp files..."
-find "$STORAGE_PATH" \\
-    \\( -type d -iname '*cache*' -o -iname '*temp*' -o -iname '*log*' \\) \\
-    -exec rm -rf {} + 2>/dev/null
-    
-# Command 2: Targets specific file extensions (logs, backups, temp files) and broken symlinks
-echo "-> Cleaning specific file extensions and broken links..."
-find "$STORAGE_PATH" -type f \\
-    \\( -iname '*.log' -o -iname '*.bak' -o -iname '*.old' -o -iname '*.tmp' -o -iname '*~' -o -iname '*.apk' -o -iname '*.deb' \\) \\
-    -delete 2>/dev/null
-    
-# Command 3 (New Functionality): Remove residual media junk and empty directories
-echo "-> Cleaning media remnants (.thumbnails, .nomedia, empty folders)..."
-rm -rf "$STORAGE_PATH"/*/DCIM/.thumbnails "$STORAGE_PATH"/*/Pictures/.thumbnails 2>/dev/null
-find "$STORAGE_PATH" -type f -name '.nomedia' -delete 2>/dev/null
-# Clean empty directories: crucial for reducing filesystem clutter
-find "$STORAGE_PATH" -type d -empty -delete 2>/dev/null
+echo -e "\$C_YELLOW\\n[SECCIÓN 1/2] Limpieza de Caché y Paquetes de Termux...\$C_OFF"
 
-# ----------------------------------------------------------------------
-# 2. TERMUX SYSTEM & PACKAGE OPTIMIZATION
-# Optimization: Combines package management with system-specific cache purges.
-# ----------------------------------------------------------------------
-echo -e "$C_YELLOW\\n[PHASE 2/3] Termux System Optimization...$C_OFF"
+# Limpiar caché de repositorios y paquetes (MANDATORIO)
+echo -e "-> \$C_GREEN Limpiando paquetes descargados (pkg clean)..\$C_OFF"
+# Resumen: Elimina archivos de paquetes (.deb) descargados pero ya no necesarios.
+pkg clean
+echo -e "-> \$C_GREEN Eliminando paquetes obsoletos (autoclean)..\$C_OFF"
+# Resumen: Elimina dependencias de paquetes que fueron desinstalados.
+pkg autoclean
 
-echo "-> Updating package lists and purging cache..."
-# 'pkg clean' removes downloaded packages; 'pkg autoclean' removes obsolete packages
-pkg update > /dev/null 2>&1
-pkg clean && pkg autoclean
-rm -rf \$PREFIX/var/lib/apt/lists/* # Forcefully remove old apt list metadata
+# Eliminar metadatos de listas apt antiguas
+echo "-> Eliminando metadatos de listas apt antiguas..."
+# Resumen: Borra las listas de paquetes cacheadas de los servidores.
+rm -rf \$PREFIX/var/lib/apt/lists/*
 
-echo "-> Cleaning Termux application caches (pip, npm, bash history)..."
-# Clean pip cache if Python is installed
-if command -v pip &> /dev/null; then pip cache purge; fi
-# Clean npm cache if Node.js is installed
-if command -v npm &> /dev/null; then npm cache clean --force; fi
+# Limpiar la caché de páginas 'man'
+echo "-> Limpiando la caché de páginas 'man'..."
+# Resumen: Elimina el caché de páginas de manual, que puede acumularse.
+rm -rf \$PREFIX/var/cache/man/*
 
-# New Functionality: Truncate large Termux history to save on load time/disk usage
-if [ -f "$HOME/.bash_history" ] && [ \$(wc -l < "$HOME/.bash_history") -gt 5000 ]; then
-    echo "Truncating large Bash history to last 5000 lines."
-    tail -n 5000 "$HOME/.bash_history" > "$HOME/.bash_history.tmp" && mv "$HOME/.bash_history.tmp" "$HOME/.bash_history"
+# Vaciando el directorio /tmp de Termux
+echo "-> Vaciando el directorio /tmp de Termux..."
+# Resumen: Elimina archivos temporales de la sesión actual de Termux.
+rm -rf /tmp/*
+
+# Limpieza de cachés de herramientas de desarrollo comunes
+echo "-> Limpiando cachés de herramientas: Python (pip), Node.js (npm), Yarn, Go, Composer..."
+# Resumen: Purga los directorios de caché de varios gestores de paquetes.
+command -v pip &> /dev/null && pip cache purge
+command -v npm &> /dev/null && npm cache clean --force
+command -v yarn &> /dev/null && yarn cache clean
+command -v go &> /dev/null && go clean -cache -modcache -i -r
+command -v composer &> /dev/null && composer clear-cache
+
+# Truncar Historial de Bash si es muy grande
+if [ -f "\$HOME/.bash_history" ] && [ \$(wc -l < "\$HOME/.bash_history") -gt 2500 ]; then
+    echo "-> Acortando Historial de Bash a 2500 líneas."
+    # Resumen: Mantiene el archivo de historial de comandos pequeño para una carga rápida.
+    tail -n 2500 "\$HOME/.bash_history" > "\$HOME/.bash_history.tmp" && mv "\$HOME/.bash_history.tmp" "\$HOME/.bash_history"
 fi
 
-# ----------------------------------------------------------------------
-# 3. EXTREME PERFORMANCE TWEAKS (NON-ROOT)
-# Optimization: Enhanced process cleanup and kernel cache flushing.
-# ----------------------------------------------------------------------
-echo -e "$C_YELLOW\\n[PHASE 3/3] Extreme Performance Tweaks...$C_OFF"
+# --- 3. Limpieza de Almacenamiento Compartido (MODO EXTREMO) ---
 
-echo "-> Killing zombie processes..."
-# Finds processes in the 'Z' (zombie) state and attempts to terminate them.
-ZOMBIES=\$(ps -o stat,pid | awk '\$1 == "Z" {print \$2}')
-if [ -n "$ZOMBIES" ]; then
-    echo "Terminating the following zombie PIDs: \$ZOMBIES"
-    kill -9 \$ZOMBIES 2>/dev/null
-else
-    echo "No zombie processes found (Zombies are processes that have terminated but whose entry in the process table remains because their parent has not called wait())."
+echo -e "\$C_YELLOW\\n[SECCIÓN 2/2] Limpieza de Almacenamiento Compartido (SD Card) EXTREMA...\$C_OFF"
+echo -e "Objetivos: logs, basura oculta, archivos de 0 bytes, APKs, DEBs y descargas antiguas."
+
+# 1. Eliminar archivos de 0 bytes (indicadores de error, archivos vacíos)
+echo "-> Eliminando archivos de 0 bytes..."
+# Resumen: Busca y elimina archivos que no contienen datos (suelen ser residuos de procesos fallidos).
+find "\$HOME_PATH" "\$STORAGE_PATH" -type f -size 0 -delete 2>/dev/null
+
+# 2. Buscar y eliminar archivos temporales, logs y backups comunes
+echo "-> Eliminando logs (.log), temporales (.tmp), backups (.bak, ~) y .swp..."
+# Resumen: Usa 'find' para localizar y eliminar archivos temporales comunes en todas las rutas.
+find "\$HOME_PATH" "\$STORAGE_PATH" -type f \\( -iname '*.log' -o -iname '*.tmp' -o -iname '*.bak' -o -iname '*~' -o -iname '*.swp' \\) -delete 2>/dev/null
+
+# 3. Eliminar instaladores (APK y DEB)
+echo "-> Eliminando instaladores (.apk, .deb) en almacenamiento compartido..."
+# Resumen: Elimina archivos de instalación que ya no son necesarios.
+find "\$STORAGE_PATH" -type f \\( -iname '*.apk' -o -iname '*.deb' \\) -delete 2>/dev/null
+
+# 4. Limpieza de basura oculta de sistemas (Mac, Linux, Papeleras)
+echo "-> Buscando basura oculta de sistemas (._*, .DS_Store, Papeleras)..."
+# Resumen: Busca y elimina carpetas de papelera (.Trash, .Recycle), archivos de metadatos de Mac (.DS_Store, ._*) y otros residuos comunes.
+find "\$HOME_PATH" "\$STORAGE_PATH" -type d -iname '.trash*' -exec rm -rf {} \; 2>/dev/null
+find "\$HOME_PATH" "\$STORAGE_PATH" -type d -iname '.recycle*' -exec rm -rf {} \; 2>/dev/null
+find "\$HOME_PATH" "\$STORAGE_PATH" -type f -iname '.ds_store' -delete 2>/dev/null
+find "\$HOME_PATH" "\$STORAGE_PATH" -type f -iname 'thumbs.db' -delete 2>/dev/null
+find "\$HOME_PATH" "\$STORAGE_PATH" -type f -iname '._*' -delete 2>/dev/null
+
+# 5. Eliminar descargas antiguas (archivos con más de 30 días) (MODO EXTREMO)
+echo "-> Eliminando archivos en \$STORAGE_PATH/Download con más de 30 días..."
+# Resumen: ELIMINACIÓN AGRESIVA. Borra recursivamente archivos y directorios no accedidos/modificados en el último mes.
+# Solo borra si la carpeta 'Download' existe para evitar errores.
+if [ -d "\$STORAGE_PATH/Download" ]; then
+    find "\$STORAGE_PATH/Download" -type f -mtime +30 -delete 2>/dev/null
+    # Eliminar directorios vacíos remanentes, pero solo dentro de Download
+    find "\$STORAGE_PATH/Download" -type d -empty -delete 2>/dev/null
 fi
 
-# Optimization: Aggressive kernel memory flushing (safe, non-root)
-# The 'sync' command flushes pending file system buffers to disk, which
-# often triggers the kernel to drop page caches and free up RAM on Android.
-echo "-> Aggressively syncing filesystem to free up RAM (sync command)..."
-sync
-sync
-sync
+# --- 4. Finalización y Resumen ---
 
-# --- Finalization & Report ---
-END_TIME=\$(date +%s.%N)
-RUNTIME=\$(echo "$END_TIME - $START_TIME" | bc)
-echo -e "$C_GREEN\\n===============================================$C_OFF"
-echo -e "$C_GREEN  OPTIMIZATION COMPLETE!$C_OFF"
-echo "Total runtime: \${RUNTIME} seconds"
-echo -e "$C_GREEN===============================================$C_OFF"
-
-# End log redirection
-exec > /dev/tty 2>&1
-echo -e "$C_CYAN\\n[DONE] Check the console output or \${LOG_FILE} for details.$C_OFF"
-`;
+echo -e "\$C_CYAN\\n=================================================\$C_OFF"
+echo -e "\$C_GREEN          ✅ Limpieza Profunda Completa ✅        \$C_OFF"
+echo -e "\$C_CYAN=================================================\$C_OFF"
+echo -e "Finalizado a las \$(date)"
+echo -e "\$C_YELLOW Por favor, considera reiniciar Termux (escribe 'exit' y vuelve a abrir) para aplicar todos los cambios de caché.\$C_OFF"`;
 
         const dom = {
             scriptTextarea: document.getElementById('script'),
@@ -346,11 +358,11 @@ echo -e "$C_CYAN\\n[DONE] Check the console output or \${LOG_FILE} for details.$
         // --- 4. CORE APPLICATION LOGIC ---
         const app = {
             /**
-             * Generates the final bash script content (V4.0 constant).
+             * Generates the final bash script content (V5.0 constant).
              */
             generateScriptContent() {
-                // Returns the monolithic, highly optimized V4.0 script content
-                return V4_SCRIPT_CONTENT;
+                // Returns the monolithic, highly optimized V5.0 script content
+                return V5_SCRIPT_CONTENT;
             },
             
             /**
@@ -385,13 +397,13 @@ echo -e "$C_CYAN\\n[DONE] Check the console output or \${LOG_FILE} for details.$
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                // Updated filename for V4.0
-                a.download = 'apex_optimizer_v4.0_full.sh'; 
+                // Updated filename for V5.0
+                a.download = 'apex_optimizer_v5.0_extreme.sh'; 
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
-                ui.showNotification("💾 Descargando apex_optimizer_v4.0_full.sh", 'bg-teal-500/9AF');
+                ui.showNotification("💾 Descargando apex_optimizer_v5.0_extreme.sh", 'bg-teal-500/9AF');
             },
 
             /**
