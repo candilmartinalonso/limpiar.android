@@ -177,7 +177,8 @@
         'use strict';
         
         // --- 1. STATE MANAGEMENT (V5.0 Extreme Script Content) ---
-        // Este contenido ha sido actualizado con el script corregido y las variables Bash escapadas.
+        // Se han eliminado las variables de color personalizadas y se han usado los códigos ANSI directos
+        // para máxima compatibilidad y robustez de ejecución.
         const V5_SCRIPT_CONTENT = `#!/data/data/com.termux/files/usr/bin/bash
 #
 # Termux Device Cleaner & Optimizer (Non-Root) - v5.0 EXTREME CLEAN
@@ -199,7 +200,7 @@
 
 # --- 1. Inicialización del Entorno Termux ---
 
-# Definir códigos de color
+# Códigos ANSI (Directos para mayor robustez)
 C_RED='\\033[0;31m'
 C_GREEN='\\033[0;32m'
 C_YELLOW='\\033[0;33m'
@@ -210,27 +211,27 @@ C_OFF='\\033[0m'
 STORAGE_PATH="\$HOME/storage/shared"
 HOME_PATH="\$HOME"
 
-echo -e "\$C_CYAN=================================================\$C_OFF"
-echo -e "\$C_CYAN    Termux Optimizer v5.0 (Extreme Clean) STARTING \$C_OFF"
-echo -e "\$C_CYAN=================================================\$C_OFF"
+echo -e "\${C_CYAN}=================================================\${C_OFF}"
+echo -e "\${C_CYAN}    Termux Optimizer v5.0 (Extreme Clean) STARTING \${C_OFF}"
+echo -e "\${C_CYAN}=================================================\${C_OFF}"
 echo -e "Comenzando la limpieza profunda a las \$(date)"
 
 # Comprobar si el almacenamiento compartido está configurado
 if [ ! -d "\$STORAGE_PATH" ]; then
-    echo -e "\$C_RED[ERROR]\$C_OFF Acceso a almacenamiento no configurado."
-    echo -e "Ejecuta: \$C_YELLOW termux-setup-storage \$C_OFF y vuelve a intentarlo."
+    echo -e "\${C_RED}[ERROR]\${C_OFF} Acceso a almacenamiento no configurado."
+    echo -e "Ejecuta: \${C_YELLOW} termux-setup-storage \${C_OFF} y vuelve a intentarlo."
     exit 1
 fi
 
 # --- 2. Limpieza Profunda del Entorno Termux (Cachés de Desarrollador y Sistema) ---
 
-echo -e "\$C_YELLOW\\n[SECCIÓN 1/2] Limpieza de Caché y Paquetes de Termux...\$C_OFF"
+echo -e "\${C_YELLOW}\n[SECCIÓN 1/2] Limpieza de Caché y Paquetes de Termux...\${C_OFF}"
 
 # Limpiar caché de repositorios y paquetes (MANDATORIO)
-echo -e "-> \$C_GREEN Limpiando paquetes descargados (pkg clean)..\$C_OFF"
+echo -e "-> \${C_GREEN} Limpiando paquetes descargados (pkg clean)..\${C_OFF}"
 # Resumen: Elimina archivos de paquetes (.deb) descargados pero ya no necesarios.
 pkg clean
-echo -e "-> \$C_GREEN Eliminando paquetes obsoletos (autoclean)..\$C_OFF"
+echo -e "-> \${C_GREEN} Eliminando paquetes obsoletos (autoclean)..\${C_OFF}"
 # Resumen: Elimina dependencias de paquetes que fueron desinstalados.
 pkg autoclean
 
@@ -267,7 +268,7 @@ fi
 
 # --- 3. Limpieza de Almacenamiento Compartido (MODO EXTREMO) ---
 
-echo -e "\$C_YELLOW\\n[SECCIÓN 2/2] Limpieza de Almacenamiento Compartido (SD Card) EXTREMA...\$C_OFF"
+echo -e "\${C_YELLOW}\n[SECCIÓN 2/2] Limpieza de Almacenamiento Compartido (SD Card) EXTREMA...\${C_OFF}"
 echo -e "Objetivos: logs, basura oculta, archivos de 0 bytes, APKs, DEBs y descargas antiguas."
 
 # 1. Eliminar archivos de 0 bytes (indicadores de error, archivos vacíos)
@@ -306,11 +307,11 @@ fi
 
 # --- 4. Finalización y Resumen ---
 
-echo -e "\$C_CYAN\\n=================================================\$C_OFF"
-echo -e "\$C_GREEN          ✅ Limpieza Profunda Completa ✅        \$C_OFF"
-echo -e "\$C_CYAN=================================================\$C_OFF"
+echo -e "\${C_CYAN}\n=================================================\${C_OFF}"
+echo -e "\${C_GREEN}          ✅ Limpieza Profunda Completa ✅        \${C_OFF}"
+echo -e "\${C_CYAN}=================================================\${C_OFF}"
 echo -e "Finalizado a las \$(date)"
-echo -e "\$C_YELLOW Por favor, considera reiniciar Termux (escribe 'exit' y vuelve a abrir) para aplicar todos los cambios de caché.\$C_OFF"`;
+echo -e "\${C_YELLOW} Por favor, considera reiniciar Termux (escribe 'exit' y vuelve a abrir) para aplicar todos los cambios de caché.\${C_OFF}"`;
 
         const dom = {
             scriptTextarea: document.getElementById('script'),
