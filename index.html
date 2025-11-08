@@ -132,6 +132,19 @@
             </aside>
         </section>
 
+        <!-- NEW: Critical Setup Alert -->
+        <div class="main-container p-4 rounded-xl mb-8 border border-red-500/50 bg-red-900/30 shadow-lg">
+            <h3 class="font-extrabold text-red-400 flex items-center mb-2 text-xl">
+                🚨 PASO CRÍTICO PREVIO (SOLO 1 VEZ)
+            </h3>
+            <p class="text-sm text-red-200 leading-relaxed">
+                Si el script te devuelve el error **"Acceso a almacenamiento no configurado"**, debes ejecutar manualmente este comando en tu terminal de Termux y **aceptar** la ventana de permisos de Android que aparecerá. El script no puede funcionar sin este permiso:
+                <br>
+                <code class="block mt-2 p-2 bg-red-800/50 text-yellow-300 rounded-lg font-mono text-base">termux-setup-storage</code>
+            </p>
+        </div>
+
+
         <!-- 3. Safety, Instructions & Additional Features -->
         <div class="main-container p-6 rounded-xl border border-blue-700/50 shadow-lg">
             <h2 class="text-2xl font-bold text-blue-400 mb-3">3. Uso y Características Adicionales (v5.0)</h2>
@@ -156,10 +169,10 @@
                 <div class="bg-blue-900/30 p-4 rounded-lg">
                     <h3 class="font-bold text-blue-300 flex items-center mb-2">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 00-1 1v2.586l-.707-.707a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.707 1.707a1 1 0 101.414 1.414L11 12.414V15a1 1 0 102 0v-2.586l.707.707a1 1 0 001.414-1.414L13.414 9H17a1 1 0 100 2h-3.586l1.707-1.707a1 1 0 00-1.414-1.414L13 7.586V4a1 1 0 00-1-1z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
-                        Uso Rápido (Corregido)
+                        Uso Rápido
                     </h3>
                     <ol class="text-sm text-blue-200 space-y-2 list-decimal pl-5">
-                        <li>**Habilitar Almacenamiento:** Ejecuta **`termux-setup-storage`**.</li>
+                        <li>**Habilitar Almacenamiento:** Ejecuta **`termux-setup-storage`** y ACEPTA el permiso.</li>
                         <li>**Guardar Script:** Cópialo y guárdalo como `apex_optimizer_v5.0_extreme.sh`.</li>
                         <li>**Permisos:** Dale permisos de ejecución: `chmod +x apex_optimizer_v5.0_extreme.sh`.</li>
                         <li>**Ejecutar:** Lanza el script: `./apex_optimizer_v5.0_extreme.sh`.</li>
