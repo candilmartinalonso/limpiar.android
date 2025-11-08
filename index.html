@@ -177,37 +177,36 @@
         'use strict';
         
         // --- 1. STATE MANAGEMENT (V5.0 Extreme Script Content) ---
-        // Se han eliminado las variables de color personalizadas y se han usado los códigos ANSI directos
-        // para máxima compatibilidad y robustez de ejecución.
+        // ANSI codes are used directly for maximum compatibility and robustness.
         const V5_SCRIPT_CONTENT = `#!/data/data/com.termux/files/usr/bin/bash
 #
 # Termux Device Cleaner & Optimizer (Non-Root) - v5.0 EXTREME CLEAN
 # Script Author: Gemini
 # Date: \$(date +%Y-%m-%d)
 #
-# PURPOSE: Script de mantenimiento no-root para optimizar Termux y limpiar
-# el almacenamiento accesible del usuario de forma agresiva.
+# PURPOSE: Non-root maintenance script to optimize Termux and aggressively
+# clean accessible user storage.
 #
 # ====================================================================
-# [!] ADVERTENCIA DE SEGURIDAD [!]
+# [!] SECURITY WARNING [!]
 # ====================================================================
-# ESTA VERSIÓN (v5.0) ES MÁS AGRESIVA. Asegúrate de que no haya
-# archivos importantes sin copia de seguridad en \$HOME/storage/shared/Download
-# o en tu carpeta \$HOME.
-# El script ELIMINA: logs, caché de paquetes, archivos de 0 bytes,
-# archivos con más de 30 días en la carpeta Descargas y basura oculta.
+# THIS VERSION (v5.0) IS MORE AGGRESSIVE. Ensure that there are no
+# important files without backup in \$HOME/storage/shared/Download
+# or in your \$HOME folder.
+# The script DELETES: logs, package cache, 0-byte files,
+# files older than 30 days in the Download folder, and hidden junk.
 # ====================================================================
 
-# --- 1. Inicialización del Entorno Termux ---
+# --- 1. Termux Environment Initialization ---
 
-# Códigos ANSI (Directos para mayor robustez)
+# ANSI Codes (Direct for better robustness)
 C_RED='\\033[0;31m'
 C_GREEN='\\033[0;32m'
 C_YELLOW='\\033[0;33m'
 C_CYAN='\\033[0;36m'
 C_OFF='\\033[0m'
 
-# Definir rutas
+# Define paths
 STORAGE_PATH="\$HOME/storage/shared"
 HOME_PATH="\$HOME"
 
@@ -216,7 +215,7 @@ echo -e "\${C_CYAN}    Termux Optimizer v5.0 (Extreme Clean) STARTING \${C_OFF}"
 echo -e "\${C_CYAN}=================================================\${C_OFF}"
 echo -e "Comenzando la limpieza profunda a las \$(date)"
 
-# Comprobar si el almacenamiento compartido está configurado (SOLUCIÓN AL ERROR DEL USUARIO)
+# Check if shared storage is configured (SOLUTION TO USER ERROR)
 if [ ! -d "\$STORAGE_PATH" ]; then
     echo -e "\${C_RED}[ERROR]\${C_OFF} Acceso a almacenamiento no configurado."
     echo -e "El script necesita acceder a /sdcard (mediante \$HOME/storage/shared)."
@@ -225,89 +224,89 @@ if [ ! -d "\$STORAGE_PATH" ]; then
     exit 1
 fi
 
-# --- 2. Limpieza Profunda del Entorno Termux (Cachés de Desarrollador y Sistema) ---
+# --- 2. Deep Cleaning of Termux Environment (Developer Caches and System) ---
 
 echo -e "\${C_YELLOW}\n[SECCIÓN 1/2] Limpieza de Caché y Paquetes de Termux...\${C_OFF}"
 
-# Limpiar caché de repositorios y paquetes (MANDATORIO)
+# Clean repository and package cache (MANDATORY)
 echo -e "-> \${C_GREEN} Limpiando paquetes descargados (pkg clean)..\${C_OFF}"
-# Resumen: Elimina archivos de paquetes (.deb) descargados pero ya no necesarios.
+# Summary: Deletes downloaded package files (.deb) that are no longer needed.
 pkg clean
 echo -e "-> \${C_GREEN} Eliminando paquetes obsoletos (autoclean)..\${C_OFF}"
-# Resumen: Elimina dependencias de paquetes que fueron desinstalados.
+# Summary: Deletes dependencies of uninstalled packages.
 pkg autoclean
 
-# Eliminar metadatos de listas apt antiguas
+# Delete old apt list metadata
 echo "-> Eliminando metadatos de listas apt antiguas..."
-# Resumen: Borra las listas de paquetes cacheadas de los servidores.
+# Summary: Clears cached package lists from servers.
 rm -rf \$PREFIX/var/lib/apt/lists/*
 
-# Limpiar la caché de páginas 'man'
+# Clean 'man' page cache
 echo "-> Limpiando la caché de páginas 'man'..."
-# Resumen: Elimina el caché de páginas de manual, que puede acumularse.
+# Summary: Deletes the man page cache, which can accumulate.
 rm -rf \$PREFIX/var/cache/man/*
 
-# Vaciando el directorio /tmp de Termux
+# Emptying the Termux /tmp directory
 echo "-> Vaciando el directorio /tmp de Termux..."
-# Resumen: Elimina archivos temporales de la sesión actual de Termux.
+# Summary: Deletes temporary files from the current Termux session.
 rm -rf /tmp/*
 
-# Limpieza de cachés de herramientas de desarrollo comunes (v5.0 EXTREME)
+# Cleaning common development tool caches (v5.0 EXTREME)
 echo "-> Limpiando cachés de herramientas: Python (pip), Node.js (npm), Yarn, Go, Composer..."
-# Resumen: Purga los directorios de caché de varios gestores de paquetes.
+# Summary: Purges cache directories for various package managers.
 command -v pip &> /dev/null && pip cache purge
 command -v npm &> /dev/null && npm cache clean --force
 command -v yarn &> /dev/null && yarn cache clean
 command -v go &> /dev/null && go clean -cache -modcache -i -r
 command -v composer &> /dev/null && composer clear-cache
 
-# Truncar Historial de Bash si es muy grande
+# Truncate Bash History if too large
 if [ -f "\$HOME/.bash_history" ] && [ \$(wc -l < "\$HOME/.bash_history") -gt 2500 ]; then
     echo "-> Acortando Historial de Bash a 2500 líneas."
-    # Resumen: Mantiene el archivo de historial de comandos pequeño para una carga rápida.
+    # Summary: Keeps the command history file small for fast loading.
     tail -n 2500 "\$HOME/.bash_history" > "\$HOME/.bash_history.tmp" && mv "\$HOME/.bash_history.tmp" "\$HOME/.bash_history"
 fi
 
-# --- 3. Limpieza de Almacenamiento Compartido (MODO EXTREMO) ---
+# --- 3. Shared Storage Cleanup (EXTREME MODE) ---
 
 echo -e "\${C_YELLOW}\n[SECCIÓN 2/2] Limpieza de Almacenamiento Compartido (SD Card) EXTREMA...\${C_OFF}"
 echo -e "Objetivos: logs, basura oculta, archivos de 0 bytes, APKs, DEBs y descargas antiguas."
 
-# 1. Eliminar archivos de 0 bytes (indicadores de error, archivos vacíos) (v5.0 EXTREME)
+# 1. Delete 0-byte files (error indicators, empty files) (v5.0 EXTREME)
 echo "-> Eliminando archivos de 0 bytes..."
-# Resumen: Busca y elimina archivos que no contienen datos (suelen ser residuos de procesos fallidos).
+# Summary: Finds and deletes files that contain no data (often remnants of failed processes).
 find "\$HOME_PATH" "\$STORAGE_PATH" -type f -size 0 -delete 2>/dev/null
 
-# 2. Buscar y eliminar archivos temporales, logs y backups comunes
+# 2. Find and delete common temporary files, logs, and backups
 echo "-> Eliminando logs (.log), temporales (.tmp), backups (.bak, ~) y .swp..."
-# Resumen: Usa 'find' para localizar y eliminar archivos temporales comunes en todas las rutas.
+# Summary: Uses 'find' to locate and delete common temporary files in all paths.
 find "\$HOME_PATH" "\$STORAGE_PATH" -type f \\( -iname '*.log' -o -iname '*.tmp' -o -iname '*.bak' -o -iname '*~' -o -iname '*.swp' \\) -delete 2>/dev/null
 
-# 3. Eliminar instaladores (APK y DEB)
+# 3. Delete installers (APK and DEB)
 echo "-> Eliminando instaladores (.apk, .deb) en almacenamiento compartido..."
-# Resumen: Elimina archivos de instalación que ya no son necesarios.
+# Summary: Deletes installation files that are no longer needed.
 find "\$STORAGE_PATH" -type f \\( -iname '*.apk' -o -iname '*.deb' \\) -delete 2>/dev/null
 
-# 4. Limpieza de basura oculta de sistemas (Mac, Linux, Papeleras) (v5.0 EXTREME)
+# 4. Cleaning hidden system junk (Mac, Linux, Trash) (v5.0 EXTREME)
 echo "-> Buscando basura oculta de sistemas (._*, .DS_Store, Papeleras)..."
-# Resumen: Busca y elimina carpetas de papelera (.Trash, .Recycle), archivos de metadatos de Mac (.DS_Store, ._*) y otros residuos comunes.
+# Summary: Finds and deletes trash folders (.Trash, .Recycle), Mac metadata files (.DS_Store, ._*) and other common remnants.
 find "\$HOME_PATH" "\$STORAGE_PATH" -type d -iname '.trash*' -exec rm -rf {} \; 2>/dev/null
 find "\$HOME_PATH" "\$STORAGE_PATH" -type d -iname '.recycle*' -exec rm -rf {} \; 2>/dev/null
 find "\$HOME_PATH" "\$STORAGE_PATH" -type f -iname '.ds_store' -delete 2>/dev/null
 find "\$HOME_PATH" "\$STORAGE_PATH" -type f -iname 'thumbs.db' -delete 2>/dev/null
 find "\$HOME_PATH" "\$STORAGE_PATH" -type f -iname '._*' -delete 2>/dev/null
 
-# 5. Eliminar descargas antiguas (archivos con más de 30 días) (MODO EXTREMO)
+# 5. Delete old downloads (files older than 30 days) (EXTREME MODE)
 echo "-> Eliminando archivos en \$STORAGE_PATH/Download con más de 30 días..."
-# Resumen: ELIMINACIÓN AGRESIVA. Borra recursivamente archivos y directorios no accedidos/modificados en el último mes.
-# Solo borra si la carpeta 'Download' existe para evitar errores.
+# Summary: AGGRESSIVE DELETION. Recursively deletes files and directories not accessed/modified in the last month.
+# Only deletes if the 'Download' folder exists to avoid errors.
 if [ -d "\$STORAGE_PATH/Download" ]; then
     find "\$STORAGE_PATH/Download" -type f -mtime +30 -delete 2>/dev/null
-    # Eliminar directorios vacíos remanentes, pero solo dentro de Download
+    # Delete remaining empty directories, but only within Download
     find "\$STORAGE_PATH/Download" -type d -empty -delete 2>/dev/null
 fi
 
-# --- 4. Finalización y Resumen ---
+# --- 4. Finalization and Summary ---
 
 echo -e "\${C_CYAN}\n=================================================\${C_OFF}"
 echo -e "\${C_GREEN}          ✅ Limpieza Profunda Completa ✅        \${C_OFF}"
