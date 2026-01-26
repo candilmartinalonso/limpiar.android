@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TITAN ANDROID [TERMUX] - Script Bash para optimización directa en Android">
-    <title>TITAN ANDROID [TERMUX] - Native Optimizer</title>
+    <meta name="description" content="TITAN ANDROID [EXTREME] - Script Bash para optimización agresiva en Android">
+    <title>TITAN ANDROID [EXTREME] - Native Optimizer</title>
     
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,17 +30,20 @@
                     },
                     colors: {
                         termux: {
-                            50: '#f0fdf4',
-                            400: '#4ade80',
-                            500: '#22c55e', /* Terminal Green */
-                            600: '#16a34a',
-                            900: '#14532d',
+                            50: '#fff1f2',
+                            400: '#fb7185',
+                            500: '#e11d48', /* Extreme Red */
+                            600: '#be123c',
+                            900: '#881337',
                             bg: '#000000',
-                            panel: '#101010',
+                            panel: '#0a0a0a',
+                        },
+                        accent: {
+                            500: '#f43f5e'
                         }
                     },
                     animation: {
-                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -51,15 +54,15 @@
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #22c55e; }
+        ::-webkit-scrollbar-thumb:hover { background: #e11d48; }
 
         pre { counter-reset: line; }
         code { counter-increment: line; }
         
         .glass {
-            background: rgba(16, 16, 16, 0.95);
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(225, 29, 72, 0.2); /* Red Border */
         }
 
         .line-number::before {
@@ -72,32 +75,25 @@
             font-size: 0.8em;
         }
 
-        /* Syntax Colors (Termux/Hack Style) */
+        /* Syntax Colors (Extreme Theme) */
         .syntax-comment { color: #666; font-style: italic; }
-        .syntax-string { color: #4ade80; } /* Green */
-        .syntax-keyword { color: #facc15; font-weight: bold; } /* Yellow for bash keywords */
+        .syntax-string { color: #f43f5e; } /* Red/Pink */
+        .syntax-keyword { color: #fbbf24; font-weight: bold; } /* Amber */
         .syntax-function { color: #38bdf8; } /* Blue */
-        .syntax-variable { color: #f472b6; } 
+        .syntax-variable { color: #a78bfa; } 
         .syntax-cmd { color: #fff; font-weight: bold; }
         
-        ::selection { background: #22c55e; color: black; }
+        ::selection { background: #e11d48; color: white; }
 
-        /* Modal Transitions */
-        .modal {
-            transition: opacity 0.25s ease;
-        }
-        body.modal-active {
-            overflow-x: hidden;
-            overflow-y: hidden !important;
-        }
+        .modal { transition: opacity 0.25s ease; }
+        body.modal-active { overflow: hidden !important; }
     </style>
 </head>
 <body class="bg-[#050505] text-gray-300 antialiased min-h-screen flex flex-col overflow-hidden">
 
     <!-- Background Decoration -->
     <div class="fixed inset-0 z-0 pointer-events-none">
-        <!-- Matrix-like subtle grid -->
-        <div class="absolute inset-0 bg-[linear-gradient(rgba(0,255,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,0,0.03)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(225,29,72,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(225,29,72,0.05)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
         <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-termux-900/20 to-transparent"></div>
     </div>
 
@@ -106,26 +102,25 @@
         <!-- Header -->
         <header class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
             <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded bg-termux-panel border border-termux-500/30 flex items-center justify-center shadow-[0_0_15px_rgba(34,197,94,0.2)]">
-                    <span class="font-mono text-2xl font-bold text-termux-500">&gt;_</span>
+                <div class="w-12 h-12 rounded bg-termux-panel border border-termux-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(225,29,72,0.3)]">
+                    <span class="font-mono text-2xl font-bold text-termux-500">X</span>
                 </div>
                 <div>
-                    <h1 class="text-3xl font-extrabold tracking-tight text-white font-mono">TITAN <span class="text-termux-500">TERMUX</span></h1>
+                    <h1 class="text-3xl font-extrabold tracking-tight text-white font-mono">TITAN <span class="text-termux-500">v20</span></h1>
                     <div class="flex items-center gap-2">
-                        <span class="text-xs font-bold bg-termux-900/30 text-termux-400 px-2 py-0.5 rounded border border-termux-500/20 font-mono">BASH SCRIPT</span>
-                        <p class="text-xs text-gray-500 font-mono">AUTO-DETECT MODE</p>
+                        <span class="text-xs font-bold bg-termux-900/30 text-termux-400 px-2 py-0.5 rounded border border-termux-500/20 font-mono animate-pulse">EXTREME EDITION</span>
                     </div>
                 </div>
             </div>
 
             <div class="flex items-center gap-3 glass p-1.5 rounded border-gray-800">
                 <div class="hidden sm:flex gap-2 px-3 text-xs font-mono text-gray-400">
-                    <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-blue-500"></div> Lite (Sin Config)</span>
-                    <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-green-500"></div> Root / ADB</span>
+                    <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-blue-500"></div> Lite</span>
+                    <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-red-500"></div> Root</span>
                 </div>
                 <div class="h-6 w-px bg-gray-800 hidden sm:block"></div>
-                <button onclick="toggleModal()" class="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-termux-500/10 hover:bg-termux-500/20 text-termux-400 rounded transition-all border border-termux-500/20 animate-pulse-fast">
-                    <i class="ph-bold ph-read-cv-logo"></i> 
+                <button onclick="toggleModal()" class="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-termux-500/10 hover:bg-termux-500/20 text-termux-400 rounded transition-all border border-termux-500/20">
+                    <i class="ph-bold ph-lightning"></i> 
                     <span>Instalar Fácil</span>
                 </button>
             </div>
@@ -136,15 +131,15 @@
             <!-- Search -->
             <div class="relative w-full sm:w-96 group">
                 <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-termux-400 transition-colors"></i>
-                <input type="text" id="searchInput" placeholder="Buscar comando (ej: 'clean', 'rm')..." 
+                <input type="text" id="searchInput" placeholder="Buscar función (ej: 'trim', 'reset')..." 
                     class="w-full bg-black border border-gray-800 text-sm rounded font-mono pl-10 pr-12 py-2 focus:ring-1 focus:ring-termux-500 focus:border-termux-500 outline-none text-gray-300 placeholder-gray-700">
                 <span id="matchCount" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-termux-500 hidden">0</span>
             </div>
 
             <!-- Actions -->
             <div class="flex gap-3 w-full sm:w-auto">
-                <button onclick="copyOneLiner()" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2 bg-termux-600 hover:bg-termux-500 text-black rounded font-bold font-mono text-sm transition-all shadow-[0_0_10px_rgba(34,197,94,0.3)] active:scale-95">
-                    <i class="ph-bold ph-lightning"></i> Copiar Todo (1 Click)
+                <button onclick="copyOneLiner()" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2 bg-termux-600 hover:bg-termux-500 text-white rounded font-bold font-mono text-sm transition-all shadow-[0_0_15px_rgba(225,29,72,0.4)] active:scale-95">
+                    <i class="ph-bold ph-rocket-launch"></i> Copiar Comando
                 </button>
                 <button onclick="copyToClipboard()" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2 bg-[#222] hover:bg-[#333] text-gray-300 rounded font-mono font-medium text-sm transition-all border border-gray-700 active:scale-95">
                     <i class="ph-bold ph-code"></i> Ver Código
@@ -157,7 +152,7 @@
             <!-- File Info Badge -->
             <div class="absolute top-0 right-0 z-20 flex text-xs font-mono border-l border-b border-gray-800 rounded-bl bg-[#101010]">
                  <div class="text-termux-500 px-4 py-1.5 font-bold">
-                    titan_v19_auto.sh
+                    titan_extreme.sh
                  </div>
             </div>
 
@@ -168,7 +163,7 @@
 
         <footer class="mt-4 flex justify-between items-center text-xs text-gray-500 font-mono">
             <div>
-                <span class="text-termux-500 font-bold">INFO:</span> Detecta tu entorno automáticamente.
+                <span class="text-termux-500 font-bold">WARNING:</span> La opción 0x elimina las animaciones totalmente.
             </div>
             <div class="flex gap-4">
                 <span>Lines: <span id="loc" class="text-gray-400">0</span></span>
@@ -180,12 +175,12 @@
     <div id="installModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
         <div class="modal-overlay absolute w-full h-full bg-black opacity-90" onclick="toggleModal()"></div>
         
-        <div class="modal-container bg-[#111] w-11/12 md:max-w-md mx-auto rounded border border-termux-500/30 shadow-[0_0_30px_rgba(34,197,94,0.1)] z-50 overflow-y-auto max-h-[90vh]">
+        <div class="modal-container bg-[#111] w-11/12 md:max-w-md mx-auto rounded border border-termux-500/30 shadow-[0_0_30px_rgba(225,29,72,0.2)] z-50 overflow-y-auto max-h-[90vh]">
             
             <div class="modal-content py-4 text-left px-6">
                 <!-- Title -->
                 <div class="flex justify-between items-center pb-3 border-b border-gray-800">
-                    <p class="text-xl font-bold text-termux-500 font-mono">Instalación en 1 Paso</p>
+                    <p class="text-xl font-bold text-termux-500 font-mono">Instalación Extrema</p>
                     <div class="modal-close cursor-pointer z-50 text-gray-400 hover:text-white" onclick="toggleModal()">
                         <i class="ph-bold ph-x"></i>
                     </div>
@@ -195,16 +190,17 @@
                 <div class="my-5 text-gray-300 text-sm font-mono space-y-4">
                     
                     <div class="bg-termux-900/20 p-3 rounded border border-termux-500/20">
-                        <p class="font-bold text-termux-400 mb-1">🚀 MODO AUTOMÁTICO</p>
-                        <p class="text-xs mb-2">Solo necesitas tener la app Termux instalada. Copia este comando, pégalo en Termux y presiona Enter. ¡Hace todo solo!</p>
-                        <button onclick="copyOneLiner()" class="w-full py-2 bg-termux-600 hover:bg-termux-500 text-black font-bold rounded text-xs flex items-center justify-center gap-2">
+                        <p class="font-bold text-termux-400 mb-1">🔥 ONE-CLICK INSTALL</p>
+                        <p class="text-xs mb-2">Pega este comando en Termux. Detectará si eres Root o Usuario Normal y aplicará la optimización máxima posible.</p>
+                        <button onclick="copyOneLiner()" class="w-full py-2 bg-termux-600 hover:bg-termux-500 text-white font-bold rounded text-xs flex items-center justify-center gap-2">
                             <i class="ph-bold ph-copy"></i> COPIAR COMANDO MÁGICO
                         </button>
                     </div>
 
                     <div class="text-xs text-gray-500 pt-2">
-                        * Si tienes Root, desbloquea todas las funciones.<br>
-                        * Si NO tienes Root ni ADB configurado, activa el <b>Modo Básico</b> (limpieza segura) automáticamente.
+                        * <b class="text-termux-400">Modo Gaming:</b> Desactiva brillo auto y compila apps.<br>
+                        * <b class="text-termux-400">Limpieza Extrema:</b> Borra duplicados de WhatsApp y caché oculta.<br>
+                        * <b class="text-termux-400">Velocidad 0x:</b> Elimina animaciones para respuesta instantánea.
                     </div>
                 </div>
 
@@ -216,11 +212,11 @@
         </div>
     </div>
 
-    <!-- Toast Notification -->
+    <!-- Toast -->
     <div id="toast" class="fixed bottom-8 right-8 translate-y-24 opacity-0 transition-all duration-300 z-[60]">
         <div class="glass bg-[#101010] border border-termux-500/30 text-white px-5 py-4 rounded shadow-2xl flex items-center gap-4 relative overflow-hidden">
             <div class="absolute left-0 top-0 bottom-0 w-1 bg-termux-500"></div>
-            <i id="toastIcon" class="ph-fill ph-terminal text-termux-500 text-xl"></i>
+            <i id="toastIcon" class="ph-fill ph-check-circle text-termux-500 text-xl"></i>
             <div>
                 <h4 id="toastTitle" class="font-bold text-sm text-termux-400 font-mono">System</h4>
                 <p id="toastMessage" class="text-xs text-gray-400 font-mono">Operation successful.</p>
@@ -229,139 +225,173 @@
     </div>
 
     <script>
-        // --- TITAN TERMUX SCRIPT (BASH - AUTO MODE) ---
+        // --- TITAN v20 EXTREME SCRIPT ---
         const bashScript = `#!/bin/bash
 # =============================================================================
-#   TITAN v19 [AUTO-DETECT]
-#   Funciona con Root, ADB o SIN NADA (Modo Básico).
+#   TITAN v20 [EXTREME EDITION]
+#   Optimización agresiva. Usar con precaución.
 # =============================================================================
 
-GREEN='\\033[0;32m'
-CYAN='\\033[0;36m'
+# Colors
 RED='\\033[0;31m'
+GREEN='\\033[0;32m'
 YELLOW='\\033[1;33m'
 BLUE='\\033[0;34m'
+PURPLE='\\033[0;35m'
 NC='\\033[0m'
 
 clear
-echo -e "\${GREEN}
-  TITAN v19 [AUTO]
-  ================
+echo -e "\${RED}
+  TITAN v20 [EXTREME]
+  ===================
 \${NC}"
 
-# --- 1. DETECCIÓN INTELIGENTE ---
-MODE="LITE" # Por defecto
+# --- 1. DETECCIÓN DE ENTORNO ---
+MODE="LITE"
 
-echo -e "\${YELLOW}[*] Escaneando permisos...\${NC}"
-
-# Check ROOT
+echo -e "\${YELLOW}[*] Escaneando privilegios...\${NC}"
 if command -v su &> /dev/null; then
     if su -c "id" &> /dev/null; then
         MODE="ROOT"
-        echo -e "\${GREEN}[✓] ROOT DETECTADO. Acceso Total.\${NC}"
+        echo -e "\${RED}[!!!] MODO GOD (ROOT) ACTIVADO.\${NC}"
     fi
 fi
 
-# Check ADB (Si no hay root)
 if [ "$MODE" == "LITE" ]; then
     if command -v adb &> /dev/null; then
         ADB_CHECK=$(adb devices 2>/dev/null | grep "device$")
         if [ ! -z "$ADB_CHECK" ]; then
             MODE="ADB"
-            echo -e "\${CYAN}[✓] ADB DETECTADO. Acceso Alto.\${NC}"
+            echo -e "\${GREEN}[✓] MODO ADB DETECTADO.\${NC}"
         fi
     fi
 fi
 
 if [ "$MODE" == "LITE" ]; then
-    echo -e "\${BLUE}[i] Sin Root ni ADB. Activando MODO BÁSICO (Seguro).\${NC}"
+    echo -e "\${BLUE}[i] Modo Lite (Seguro/Sin Root).\${NC}"
 fi
+sleep 0.5
 
-sleep 1
-
-# --- 2. FUNCIONES DEL SISTEMA ---
-
+# --- 2. WRAPPER DE COMANDOS ---
 run_cmd() {
     CMD="$1"
     if [ "$MODE" == "ROOT" ]; then
-        su -c "$CMD"
+        su -c "$CMD" >/dev/null 2>&1
     elif [ "$MODE" == "ADB" ]; then
         CLEAN="\${CMD#adb shell }"
-        adb shell "$CLEAN"
-    else
-        echo -e "\${RED}[x] Requiere Root/ADB\${NC}"
+        adb shell "$CLEAN" >/dev/null 2>&1
     fi
 }
 
-# --- 3. FUNCIONES DE LIMPIEZA (LITE - Funciona para todos) ---
+# --- 3. FUNCIONES EXTREMAS ---
 
-clean_lite() {
-    echo -e "\n\${BLUE}[*] Iniciando Limpieza Segura (Sin Root)...\${NC}"
+# >> LIMPIEZA NUCLEAR (Funciona en Lite)
+clean_extreme() {
+    echo -e "\n\${PURPLE}[*] Iniciando Limpieza Nuclear...\${NC}"
     
-    # 1. Limpiar carpetas vacías en /sdcard
-    echo -e " -> Buscando carpetas vacías..."
+    # 1. Carpetas vacías
+    echo -e " -> Eliminando carpetas vacías..."
     find /sdcard -type d -empty -delete 2>/dev/null
     
-    # 2. Limpiar archivos temporales (.log, .tmp)
-    echo -e " -> Eliminando archivos basura (.log, .tmp)..."
-    find /sdcard -name "*.log" -type f -delete 2>/dev/null
-    find /sdcard -name "*.tmp" -type f -delete 2>/dev/null
-    find /sdcard -name "*.chk" -type f -delete 2>/dev/null
+    # 2. Archivos basura extendidos
+    echo -e " -> Eliminando residuos (.log, .tmp, .bak, .chk)..."
+    find /sdcard -type f \\( -name "*.log" -o -name "*.tmp" -o -name "*.bak" -o -name "*.chk" -o -name "LOST.DIR" \\) -delete 2>/dev/null
     
-    # 3. Limpiar caché de miniaturas (seguro)
-    echo -e " -> Limpiando caché de miniaturas..."
-    rm -rf /sdcard/DCIM/.thumbnails/* 2>/dev/null
-    rm -rf /sdcard/Pictures/.thumbnails/* 2>/dev/null
+    # 3. Duplicados de WhatsApp/Telegram (Carpetas 'Sent')
+    echo -e " -> Purgando archivos enviados (duplicados) de WhatsApp/Telegram..."
+    rm -rf /sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp\\ Images/Sent/* 2>/dev/null
+    rm -rf /sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp\\ Video/Sent/* 2>/dev/null
+    rm -rf /sdcard/Telegram/Telegram\\ Images/Sent/* 2>/dev/null
     
-    echo -e "\${GREEN}[OK] Limpieza Básica Terminada.\${NC}"
-}
-
-# --- 4. FUNCIONES AVANZADAS (Solo Root/ADB) ---
-
-optimize_full() {
-    if [ "$MODE" == "LITE" ]; then
-        echo -e "\${RED}[!] Necesitas Root o ADB para esto.\${NC}"
-        return
+    # 4. Trim Caches (Solo ADB/Root)
+    if [ "$MODE" != "LITE" ]; then
+        echo -e " -> Ejecutando TRIM de caché de apps..."
+        run_cmd "pm trim-caches 999G"
     fi
     
-    echo -e "\n\${CYAN}[*] Optimizando Sistema (Speed UI)...\${NC}"
-    run_cmd "settings put global window_animation_scale 0.5"
-    run_cmd "settings put global transition_animation_scale 0.5"
-    run_cmd "settings put global animator_duration_scale 0.5"
-    run_cmd "cmd deviceidle enable"
-    echo -e "\${GREEN}[OK] Sistema Optimizado.\${NC}"
+    echo -e "\${GREEN}[OK] Limpieza Finalizada.\${NC}"
 }
 
-debloat_facebook() {
-    if [ "$MODE" == "LITE" ]; then
-        echo -e "\${RED}[!] Necesitas Root o ADB para esto.\${NC}"
-        return
-    fi
+# >> VELOCIDAD INSTANTÁNEA (0x)
+speed_zero() {
+    if [ "$MODE" == "LITE" ]; then echo -e "\${RED}[x] Requiere Root/ADB\${NC}"; return; fi
     
-    echo -e "\n\${CYAN}[*] Eliminando Facebook Services...\${NC}"
-    run_cmd "pm uninstall --user 0 com.facebook.katana"
-    run_cmd "pm uninstall --user 0 com.facebook.services"
-    run_cmd "pm uninstall --user 0 com.facebook.system"
-    run_cmd "pm uninstall --user 0 com.facebook.appmanager"
-    echo -e "\${GREEN}[OK] Bloatware Eliminado.\${NC}"
+    echo -e "\n\${RED}[*] Aplicando Velocidad 0x (Instantánea)...\${NC}"
+    run_cmd "settings put global window_animation_scale 0.0"
+    run_cmd "settings put global transition_animation_scale 0.0"
+    run_cmd "settings put global animator_duration_scale 0.0"
+    # Oculto: Spectrum animation
+    run_cmd "settings put global spectrum_animation_scale 0.0" 
+    echo -e "\${GREEN}[OK] Animaciones Desactivadas.\${NC}"
 }
 
-# --- 5. MENÚ DINÁMICO ---
+# >> DEBLOAT AGRESIVO
+debloat_extreme() {
+    if [ "$MODE" == "LITE" ]; then echo -e "\${RED}[x] Requiere Root/ADB\${NC}"; return; fi
+    
+    echo -e "\n\${RED}[*] Eliminando Servicios Pesados...\${NC}"
+    
+    # Lista Agresiva
+    APPS=(
+        "com.google.android.apps.wellbeing" # Digital Wellbeing (Consume CPU)
+        "com.google.android.printservice.recommendation" # Print Service
+        "com.android.printspooler"
+        "com.facebook.katana"
+        "com.facebook.services"
+        "com.facebook.system"
+        "com.facebook.appmanager"
+        "com.samsung.android.game.gametools" # Samsung bloat
+        "com.miui.analytics" # Xiaomi Analytics
+    )
 
+    for app in "\${APPS[@]}"; do
+        echo -e " -> Kill: $app"
+        run_cmd "pm uninstall --user 0 $app"
+    done
+    echo -e "\${GREEN}[OK] Debloat Extremo Completado.\${NC}"
+}
+
+# >> MODO GAMING (Experimental)
+gaming_mode() {
+    if [ "$MODE" == "LITE" ]; then echo -e "\${RED}[x] Requiere Root/ADB\${NC}"; return; fi
+    
+    echo -e "\n\${PURPLE}[*] Activando Modo Gaming...\${NC}"
+    # Compilar paquetes para velocidad (bg-dexopt)
+    echo -e " -> Optimizando paquetes en segundo plano (Puede tardar)..."
+    run_cmd "cmd package bg-dexopt-job"
+    
+    # Ajustes de brillo y rotación
+    run_cmd "settings put system screen_brightness_mode 0" # Brillo Manual
+    run_cmd "settings put system accelerometer_rotation 0" # Bloquear rotación
+    
+    echo -e "\${GREEN}[OK] Listo para jugar.\${NC}"
+}
+
+restore_all() {
+    if [ "$MODE" == "LITE" ]; then echo -e "\${RED}[x] Requiere Root/ADB\${NC}"; return; fi
+    echo -e "\n\${YELLOW}[*] Restaurando valores...\${NC}"
+    run_cmd "settings put global window_animation_scale 1.0"
+    run_cmd "settings put global transition_animation_scale 1.0"
+    run_cmd "settings put global animator_duration_scale 1.0"
+    run_cmd "settings put system screen_brightness_mode 1"
+    echo -e "\${GREEN}[OK] Restaurado.\${NC}"
+}
+
+# --- 4. MENÚ ---
 while true; do
     echo -e "\n------------------------------"
-    echo -e " MODO ACTUAL: \${YELLOW}$MODE\${NC}"
+    echo -e " NIVEL: \${RED}$MODE\${NC}"
     echo -e "------------------------------"
     
-    echo -e " 1. Limpieza Básica (Funciona Siempre)"
+    echo -e " 1. Limpieza Nuclear (Files + Sent + Cache)"
     
     if [ "$MODE" != "LITE" ]; then
-        echo -e " 2. [PRO] Acelerar UI + Batería"
-        echo -e " 3. [PRO] Debloat Facebook"
-        echo -e " 4. [PRO] Restaurar Todo"
+        echo -e " 2. \${RED}[EXTREME]\${NC} Velocidad 0x (Instantánea)"
+        echo -e " 3. \${RED}[EXTREME]\${NC} Debloat (Wellbeing + Fb + Analytics)"
+        echo -e " 4. \${PURPLE}[GAMING]\${NC}  Compilar Apps + Brillo Fijo"
+        echo -e " 5. Restaurar Valores"
     else
-        echo -e " 2. \${RED}[Bloqueado] Acelerar UI (Requiere Root)\${NC}"
-        echo -e " 3. \${RED}[Bloqueado] Debloat (Requiere Root)\${NC}"
+        echo -e " 2-5. \${RED}[Bloqueado] Requiere ADB o Root\${NC}"
     fi
     
     echo -e " Q. Salir"
@@ -369,19 +399,13 @@ while true; do
     read -p " Opción: " opt
 
     case $opt in
-        1) clean_lite ;;
-        2) optimize_full ;;
-        3) debloat_facebook ;;
-        4) 
-           if [ "$MODE" != "LITE" ]; then
-               run_cmd "settings put global window_animation_scale 1.0"
-               run_cmd "settings put global transition_animation_scale 1.0"
-               run_cmd "settings put global animator_duration_scale 1.0"
-               echo -e "\${GREEN}Restaurado.\${NC}"
-           fi
-           ;;
+        1) clean_extreme ;;
+        2) speed_zero ;;
+        3) debloat_extreme ;;
+        4) gaming_mode ;;
+        5) restore_all ;;
         q|Q) exit ;;
-        *) echo -e "Opción inválida" ;;
+        *) echo -e "Inválido" ;;
     esac
     
     echo ""
@@ -389,15 +413,15 @@ while true; do
 done
 `;
 
-        // --- SYNTAX HIGHLIGHTING (BASH) ---
+        // --- SYNTAX HIGHLIGHTING ---
         const syntaxRules = [
             { regex: /#.*/g, class: 'syntax-comment' }, 
             { regex: /"(?:[^"\\]|\\.)*"/g, class: 'syntax-string' },
             { regex: /\b(if|then|else|elif|fi|case|esac|for|do|done|while|in|return|exit|function)\b/g, class: 'syntax-keyword' },
             { regex: /\b(echo|read|clear|command|grep|su|adb|find|rm|sleep)\b/g, class: 'syntax-function' },
-            { regex: /\b(settings put|pm uninstall|cmd deviceidle)\b/g, class: 'syntax-cmd' },
+            { regex: /\b(settings put|pm uninstall|pm trim-caches|cmd package)\b/g, class: 'syntax-cmd' },
             { regex: /\$[a-zA-Z0-9_]+/g, class: 'syntax-variable' },
-            { regex: /\b\d+\b/g, class: 'syntax-string' } 
+            { regex: /\b\d+(\.\d+)?\b/g, class: 'syntax-string' } 
         ];
 
         function highlightCode(code) {
@@ -405,123 +429,65 @@ done
                 .replace(/&/g, "&amp;")
                 .replace(/</g, "&lt;")
                 .replace(/>/g, "&gt;");
-
             const placeholders = [];
-            const save = (match, cls) => {
-                placeholders.push(`<span class="${cls}">${match}</span>`);
-                return `%%%${placeholders.length - 1}%%%`;
-            };
-
-            syntaxRules.forEach(rule => {
-                highlighted = highlighted.replace(rule.regex, (match) => save(match, rule.class));
-            });
-
+            const save = (match, cls) => { placeholders.push(`<span class="${cls}">${match}</span>`); return `%%%${placeholders.length - 1}%%%`; };
+            syntaxRules.forEach(rule => { highlighted = highlighted.replace(rule.regex, (match) => save(match, rule.class)); });
             highlighted = highlighted.replace(/%%%(\d+)%%%/g, (_, index) => placeholders[index]);
-
             const lines = highlighted.split('\n');
             document.getElementById('loc').textContent = lines.length;
-            
-            return lines.map(line => `<span class="line-number opacity-50 select-none border-r border-gray-800 pr-4 mr-4"></span>${line}`).join('\n');
+            return lines.map(line => `<span class="line-number opacity-50 select-none border-r border-termux-900 pr-4 mr-4"></span>${line}`).join('\n');
         }
 
-        // --- INIT ---
         const codeBlock = document.getElementById('codeBlock');
         codeBlock.innerHTML = highlightCode(bashScript);
 
-        // --- UTILS ---
         async function copyTextToClipboard(text, successTitle, successMsg) {
-            try {
-                await navigator.clipboard.writeText(text);
+            try { await navigator.clipboard.writeText(text); showToast(successTitle, successMsg); } 
+            catch (err) { 
+                const ta = document.createElement('textarea'); ta.value = text; 
+                ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); 
+                ta.focus(); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
                 showToast(successTitle, successMsg);
-            } catch (err) {
-                const ta = document.createElement('textarea');
-                ta.value = text;
-                ta.style.position = 'fixed';
-                ta.style.opacity = '0';
-                document.body.appendChild(ta);
-                ta.focus();
-                ta.select();
-                try {
-                    document.execCommand('copy');
-                    showToast(successTitle, successMsg);
-                } catch (e) {
-                    showToast('Error', 'Copy failed');
-                }
-                document.body.removeChild(ta);
             }
         }
 
-        function copyToClipboard() {
-            copyTextToClipboard(bashScript, 'Copiado', 'Script listo para pegar en Termux.');
-        }
-
+        function copyToClipboard() { copyTextToClipboard(bashScript, 'Copiado', 'Script listo para Termux.'); }
+        
         function copyOneLiner() {
-            // Updated One-Liner: No dependencies needed for Basic Mode (removed android-tools requirement for basic cleanup)
-            // But we keep android-tools install attempt for ADB checks, suppressing errors if it fails.
+            // One Liner actualizado para modo extremo
             const b64 = btoa(unescape(encodeURIComponent(bashScript)));
-            
-            // Logic: Try to update/install tools. If it fails (no internet/repo issues), continue anyway because Basic Mode uses standard linux commands (find, rm).
-            const oneLiner = `pkg update -y >/dev/null 2>&1; pkg install -y android-tools >/dev/null 2>&1; echo "${b64}" | base64 -d > titan.sh && chmod +x titan.sh && bash titan.sh`;
-            
-            copyTextToClipboard(oneLiner, 'Comando Mágico Copiado', 'Pega esto en Termux y pulsa Enter.');
+            // Intenta instalar herramientas pero silencia errores si fallan (para modo lite offline)
+            const oneLiner = `pkg update -y >/dev/null 2>&1; pkg install -y android-tools >/dev/null 2>&1; echo "${b64}" | base64 -d > titan_extreme.sh && chmod +x titan_extreme.sh && bash titan_extreme.sh`;
+            copyTextToClipboard(oneLiner, 'Comando Extremo Copiado', 'Pega en Termux y dale caña.');
         }
 
-        // Search
         const searchInput = document.getElementById('searchInput');
-        const matchCount = document.getElementById('matchCount');
-
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
-            if (term.length < 2) {
-                codeBlock.innerHTML = highlightCode(bashScript);
-                matchCount.classList.add('hidden');
-                return;
-            }
-
+            if (term.length < 2) { codeBlock.innerHTML = highlightCode(bashScript); return; }
             const lines = bashScript.split('\n');
-            let matches = 0;
-            
             const processedLines = lines.map(line => {
-                let htmlLine = line
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;");
-                
+                let htmlLine = line.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
                 if (line.toLowerCase().includes(term)) {
-                    matches++;
                     const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-                    htmlLine = htmlLine.replace(regex, '<span class="bg-termux-500 text-black font-bold rounded px-1">$1</span>');
-                    return `<span class="line-number opacity-50 border-r border-gray-800 pr-4 mr-4"></span><span class="bg-termux-900/30 block w-full border-l-2 border-termux-500 pl-2">${htmlLine}</span>`;
+                    htmlLine = htmlLine.replace(regex, '<span class="bg-termux-500 text-white font-bold rounded px-1">$1</span>');
+                    return `<span class="line-number opacity-50 border-r border-termux-900 pr-4 mr-4"></span><span class="bg-termux-900/40 block w-full border-l-2 border-termux-500 pl-2 text-white">${htmlLine}</span>`;
                 }
-                return `<span class="line-number opacity-20 border-r border-gray-800 pr-4 mr-4"></span><span class="opacity-20 blur-[1px] transition-all hover:blur-0 hover:opacity-100 duration-300">${htmlLine}</span>`;
+                return `<span class="line-number opacity-20 border-r border-termux-900 pr-4 mr-4"></span><span class="opacity-20 blur-[1px]">${htmlLine}</span>`;
             }).join('\n');
-
             codeBlock.innerHTML = processedLines;
-            matchCount.textContent = matches;
-            matchCount.classList.remove('hidden');
         });
 
-        // Modal Logic
         const modal = document.getElementById('installModal');
         const body = document.body;
-
-        function toggleModal() {
-            modal.classList.toggle('opacity-0');
-            modal.classList.toggle('pointer-events-none');
-            body.classList.toggle('modal-active');
-        }
+        function toggleModal() { modal.classList.toggle('opacity-0'); modal.classList.toggle('pointer-events-none'); body.classList.toggle('modal-active'); }
 
         let toastTimeout;
         function showToast(title, msg) {
             const toast = document.getElementById('toast');
-            document.getElementById('toastTitle').textContent = title;
-            document.getElementById('toastMessage').textContent = msg;
-
-            toast.classList.remove('translate-y-24', 'opacity-0');
-            clearTimeout(toastTimeout);
-            toastTimeout = setTimeout(() => {
-                toast.classList.add('translate-y-24', 'opacity-0');
-            }, 3000);
+            document.getElementById('toastTitle').textContent = title; document.getElementById('toastMessage').textContent = msg;
+            toast.classList.remove('translate-y-24', 'opacity-0'); clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => { toast.classList.add('translate-y-24', 'opacity-0'); }, 3000);
         }
     </script>
 </body>
