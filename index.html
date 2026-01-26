@@ -113,20 +113,20 @@
                     <h1 class="text-3xl font-extrabold tracking-tight text-white font-mono">TITAN <span class="text-termux-500">TERMUX</span></h1>
                     <div class="flex items-center gap-2">
                         <span class="text-xs font-bold bg-termux-900/30 text-termux-400 px-2 py-0.5 rounded border border-termux-500/20 font-mono">BASH SCRIPT</span>
-                        <p class="text-xs text-gray-500 font-mono">NATIVE ANDROID</p>
+                        <p class="text-xs text-gray-500 font-mono">AUTO-DETECT MODE</p>
                     </div>
                 </div>
             </div>
 
             <div class="flex items-center gap-3 glass p-1.5 rounded border-gray-800">
                 <div class="hidden sm:flex gap-2 px-3 text-xs font-mono text-gray-400">
-                    <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-red-500"></div> No Root</span>
-                    <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-green-500"></div> Root</span>
+                    <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-blue-500"></div> Lite (Sin Config)</span>
+                    <span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-green-500"></div> Root / ADB</span>
                 </div>
                 <div class="h-6 w-px bg-gray-800 hidden sm:block"></div>
                 <button onclick="toggleModal()" class="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-termux-500/10 hover:bg-termux-500/20 text-termux-400 rounded transition-all border border-termux-500/20 animate-pulse-fast">
                     <i class="ph-bold ph-read-cv-logo"></i> 
-                    <span>Guía Instalación</span>
+                    <span>Instalar Fácil</span>
                 </button>
             </div>
         </header>
@@ -136,7 +136,7 @@
             <!-- Search -->
             <div class="relative w-full sm:w-96 group">
                 <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-termux-400 transition-colors"></i>
-                <input type="text" id="searchInput" placeholder="Buscar comando (ej: 'pm uninstall')..." 
+                <input type="text" id="searchInput" placeholder="Buscar comando (ej: 'clean', 'rm')..." 
                     class="w-full bg-black border border-gray-800 text-sm rounded font-mono pl-10 pr-12 py-2 focus:ring-1 focus:ring-termux-500 focus:border-termux-500 outline-none text-gray-300 placeholder-gray-700">
                 <span id="matchCount" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-termux-500 hidden">0</span>
             </div>
@@ -144,10 +144,10 @@
             <!-- Actions -->
             <div class="flex gap-3 w-full sm:w-auto">
                 <button onclick="copyOneLiner()" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2 bg-termux-600 hover:bg-termux-500 text-black rounded font-bold font-mono text-sm transition-all shadow-[0_0_10px_rgba(34,197,94,0.3)] active:scale-95">
-                    <i class="ph-bold ph-lightning"></i> Copiar Auto-Instalador
+                    <i class="ph-bold ph-lightning"></i> Copiar Todo (1 Click)
                 </button>
                 <button onclick="copyToClipboard()" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2 bg-[#222] hover:bg-[#333] text-gray-300 rounded font-mono font-medium text-sm transition-all border border-gray-700 active:scale-95">
-                    <i class="ph-bold ph-code"></i> Código
+                    <i class="ph-bold ph-code"></i> Ver Código
                 </button>
             </div>
         </div>
@@ -157,7 +157,7 @@
             <!-- File Info Badge -->
             <div class="absolute top-0 right-0 z-20 flex text-xs font-mono border-l border-b border-gray-800 rounded-bl bg-[#101010]">
                  <div class="text-termux-500 px-4 py-1.5 font-bold">
-                    titan_v19.sh
+                    titan_v19_auto.sh
                  </div>
             </div>
 
@@ -168,7 +168,7 @@
 
         <footer class="mt-4 flex justify-between items-center text-xs text-gray-500 font-mono">
             <div>
-                <span class="text-termux-500 font-bold">REQ:</span> App Termux (F-Droid).
+                <span class="text-termux-500 font-bold">INFO:</span> Detecta tu entorno automáticamente.
             </div>
             <div class="flex gap-4">
                 <span>Lines: <span id="loc" class="text-gray-400">0</span></span>
@@ -185,7 +185,7 @@
             <div class="modal-content py-4 text-left px-6">
                 <!-- Title -->
                 <div class="flex justify-between items-center pb-3 border-b border-gray-800">
-                    <p class="text-xl font-bold text-termux-500 font-mono">Instalación en Termux</p>
+                    <p class="text-xl font-bold text-termux-500 font-mono">Instalación en 1 Paso</p>
                     <div class="modal-close cursor-pointer z-50 text-gray-400 hover:text-white" onclick="toggleModal()">
                         <i class="ph-bold ph-x"></i>
                     </div>
@@ -195,25 +195,16 @@
                 <div class="my-5 text-gray-300 text-sm font-mono space-y-4">
                     
                     <div class="bg-termux-900/20 p-3 rounded border border-termux-500/20">
-                        <p class="font-bold text-termux-400 mb-1">⚡ MÉTODO RÁPIDO (Auto)</p>
-                        <p class="text-xs mb-2">Pega esto en Termux y pulsa Enter. Instala y ejecuta todo solo.</p>
+                        <p class="font-bold text-termux-400 mb-1">🚀 MODO AUTOMÁTICO</p>
+                        <p class="text-xs mb-2">Solo necesitas tener la app Termux instalada. Copia este comando, pégalo en Termux y presiona Enter. ¡Hace todo solo!</p>
                         <button onclick="copyOneLiner()" class="w-full py-2 bg-termux-600 hover:bg-termux-500 text-black font-bold rounded text-xs flex items-center justify-center gap-2">
                             <i class="ph-bold ph-copy"></i> COPIAR COMANDO MÁGICO
                         </button>
                     </div>
 
-                    <div class="border-t border-gray-800 pt-4">
-                        <p class="font-bold text-gray-400 mb-2">🛠️ MÉTODO MANUAL</p>
-                        <ol class="list-decimal list-inside space-y-2 text-xs text-gray-400">
-                            <li>Descarga <b>Termux</b> (F-Droid).</li>
-                            <li>Escribe: <code class="bg-gray-800 px-1 rounded text-white">pkg install nano</code></li>
-                            <li>Escribe: <code class="bg-gray-800 px-1 rounded text-white">nano titan.sh</code></li>
-                            <li>Copia el código (botón "Código" abajo).</li>
-                            <li>Pégalo en Termux (mantén pulsado > Paste).</li>
-                            <li>Guarda: <code class="text-white">CTRL + O</code>, Enter.</li>
-                            <li>Sal: <code class="text-white">CTRL + X</code>.</li>
-                            <li>Ejecuta: <code class="bg-gray-800 px-1 rounded text-white">bash titan.sh</code></li>
-                        </ol>
+                    <div class="text-xs text-gray-500 pt-2">
+                        * Si tienes Root, desbloquea todas las funciones.<br>
+                        * Si NO tienes Root ni ADB configurado, activa el <b>Modo Básico</b> (limpieza segura) automáticamente.
                     </div>
                 </div>
 
@@ -238,156 +229,163 @@
     </div>
 
     <script>
-        // --- TITAN TERMUX SCRIPT (BASH) ---
+        // --- TITAN TERMUX SCRIPT (BASH - AUTO MODE) ---
         const bashScript = `#!/bin/bash
 # =============================================================================
-#   TITAN v19 [TERMUX EDITION]
-#   Ejecución nativa en Android.
-#   
-#   MODOS DE USO:
-#   1. ROOT: Ejecutar 'su' y luego el script. Funciona al 100%.
-#   2. NO-ROOT: Requiere configuración previa de ADB Wireless en Termux.
+#   TITAN v19 [AUTO-DETECT]
+#   Funciona con Root, ADB o SIN NADA (Modo Básico).
 # =============================================================================
 
-# Colores para la terminal
 GREEN='\\033[0;32m'
 CYAN='\\033[0;36m'
 RED='\\033[0;31m'
 YELLOW='\\033[1;33m'
-NC='\\033[0m' # No Color
+BLUE='\\033[0;34m'
+NC='\\033[0m'
 
-# Cabecera
 clear
 echo -e "\${GREEN}
-  _______  _____  _______  _______  __   __ 
- |       ||     ||       ||   _   ||  | |  |
- |_     _||_   _||_     _||  |_|  ||   \\|  |
-   |   |    | |    |   |  |       ||  . \`  |
-   |___|    |_|    |___|  |___|___||__| \\__|
-   \${CYAN}[TERMUX EDITION] v19\${NC}
-"
+  TITAN v19 [AUTO]
+  ================
+\${NC}"
 
-# --- DETECCIÓN DE ENTORNO (ROOT vs ADB) ---
-MODE="UNKNOWN"
+# --- 1. DETECCIÓN INTELIGENTE ---
+MODE="LITE" # Por defecto
 
-check_env() {
-    echo -e "\${YELLOW}[*] Verificando permisos...\${NC}"
-    
-    # 1. Intentar Root
-    if command -v su &> /dev/null; then
-        # Verificar si 'su' realmente funciona
-        if su -c "id" &> /dev/null; then
-            MODE="ROOT"
-            echo -e "\${GREEN}[✓] Acceso ROOT detectado.\${NC}"
-            return
-        fi
+echo -e "\${YELLOW}[*] Escaneando permisos...\${NC}"
+
+# Check ROOT
+if command -v su &> /dev/null; then
+    if su -c "id" &> /dev/null; then
+        MODE="ROOT"
+        echo -e "\${GREEN}[✓] ROOT DETECTADO. Acceso Total.\${NC}"
     fi
+fi
 
-    # 2. Intentar ADB local (para Termux con Wireless Debugging)
+# Check ADB (Si no hay root)
+if [ "$MODE" == "LITE" ]; then
     if command -v adb &> /dev/null; then
-        ADB_STATUS=$(adb devices | grep "device$")
-        if [ ! -z "$ADB_STATUS" ]; then
+        ADB_CHECK=$(adb devices 2>/dev/null | grep "device$")
+        if [ ! -z "$ADB_CHECK" ]; then
             MODE="ADB"
-            echo -e "\${CYAN}[✓] ADB Local detectado.\${NC}"
-            return
+            echo -e "\${CYAN}[✓] ADB DETECTADO. Acceso Alto.\${NC}"
         fi
     fi
+fi
 
-    echo -e "\${RED}[!] ERROR: No se detectó ni Root ni ADB configurado.\${NC}"
-    echo -e "    Para usar sin root, configura ADB Wireless en Termux:"
-    echo -e "    1. pkg install android-tools"
-    echo -e "    2. Activa Depuración Inalámbrica en Opciones de Dev."
-    echo -e "    3. Empareja: adb pair ip:port code"
-    echo -e "    4. Conecta: adb connect ip:port"
-    echo ""
-    read -p "Presiona Enter para salir..."
-    exit 1
-}
+if [ "$MODE" == "LITE" ]; then
+    echo -e "\${BLUE}[i] Sin Root ni ADB. Activando MODO BÁSICO (Seguro).\${NC}"
+fi
 
-# --- WRAPPERS DE COMANDOS ---
-# Función para ejecutar comandos según el modo
+sleep 1
+
+# --- 2. FUNCIONES DEL SISTEMA ---
+
 run_cmd() {
     CMD="$1"
     if [ "$MODE" == "ROOT" ]; then
-        # Ejecutar con su
         su -c "$CMD"
     elif [ "$MODE" == "ADB" ]; then
-        # Ejecutar con adb shell
-        # Quitamos 'adb shell' si el comando ya empieza por él para evitar duplicados
-        CLEAN_CMD="\${CMD#adb shell }"
-        adb shell "$CLEAN_CMD"
+        CLEAN="\${CMD#adb shell }"
+        adb shell "$CLEAN"
+    else
+        echo -e "\${RED}[x] Requiere Root/ADB\${NC}"
     fi
 }
 
-# --- FUNCIONES ---
+# --- 3. FUNCIONES DE LIMPIEZA (LITE - Funciona para todos) ---
 
-optimize_ui() {
-    echo -e "\n\${CYAN}[*] Acelerando UI (0.5x)...\${NC}"
+clean_lite() {
+    echo -e "\n\${BLUE}[*] Iniciando Limpieza Segura (Sin Root)...\${NC}"
+    
+    # 1. Limpiar carpetas vacías en /sdcard
+    echo -e " -> Buscando carpetas vacías..."
+    find /sdcard -type d -empty -delete 2>/dev/null
+    
+    # 2. Limpiar archivos temporales (.log, .tmp)
+    echo -e " -> Eliminando archivos basura (.log, .tmp)..."
+    find /sdcard -name "*.log" -type f -delete 2>/dev/null
+    find /sdcard -name "*.tmp" -type f -delete 2>/dev/null
+    find /sdcard -name "*.chk" -type f -delete 2>/dev/null
+    
+    # 3. Limpiar caché de miniaturas (seguro)
+    echo -e " -> Limpiando caché de miniaturas..."
+    rm -rf /sdcard/DCIM/.thumbnails/* 2>/dev/null
+    rm -rf /sdcard/Pictures/.thumbnails/* 2>/dev/null
+    
+    echo -e "\${GREEN}[OK] Limpieza Básica Terminada.\${NC}"
+}
+
+# --- 4. FUNCIONES AVANZADAS (Solo Root/ADB) ---
+
+optimize_full() {
+    if [ "$MODE" == "LITE" ]; then
+        echo -e "\${RED}[!] Necesitas Root o ADB para esto.\${NC}"
+        return
+    fi
+    
+    echo -e "\n\${CYAN}[*] Optimizando Sistema (Speed UI)...\${NC}"
     run_cmd "settings put global window_animation_scale 0.5"
     run_cmd "settings put global transition_animation_scale 0.5"
     run_cmd "settings put global animator_duration_scale 0.5"
-    echo -e "\${GREEN}[OK] Animaciones ajustadas.\${NC}"
-}
-
-debloat_safe() {
-    echo -e "\n\${CYAN}[*] Eliminando Bloatware Seguro...\${NC}"
-    APPS=(
-        "com.facebook.katana"
-        "com.facebook.services"
-        "com.facebook.system"
-        "com.facebook.appmanager"
-        "com.google.android.apps.tachyon"
-        "com.google.android.videos"
-    )
-
-    for app in "\${APPS[@]}"; do
-        echo -e " -> Eliminando: $app"
-        run_cmd "pm uninstall --user 0 $app"
-    done
-    echo -e "\${GREEN}[OK] Limpieza completada.\${NC}"
-}
-
-optimize_battery() {
-    echo -e "\n\${CYAN}[*] Optimizando Batería (Doze)...\${NC}"
     run_cmd "cmd deviceidle enable"
-    run_cmd "settings put global adaptive_battery_management_enabled 1"
-    # Desactivar búsqueda de impresoras (común drain de batería)
-    run_cmd "pm disable-user com.android.printspooler"
-    echo -e "\${GREEN}[OK] Doze activado.\${NC}"
+    echo -e "\${GREEN}[OK] Sistema Optimizado.\${NC}"
 }
 
-restore_defaults() {
-    echo -e "\n\${YELLOW}[*] Restaurando valores por defecto...\${NC}"
-    run_cmd "settings put global window_animation_scale 1.0"
-    run_cmd "settings put global transition_animation_scale 1.0"
-    run_cmd "settings put global animator_duration_scale 1.0"
-    echo -e "\${GREEN}[OK] Restaurado.\${NC}"
+debloat_facebook() {
+    if [ "$MODE" == "LITE" ]; then
+        echo -e "\${RED}[!] Necesitas Root o ADB para esto.\${NC}"
+        return
+    fi
+    
+    echo -e "\n\${CYAN}[*] Eliminando Facebook Services...\${NC}"
+    run_cmd "pm uninstall --user 0 com.facebook.katana"
+    run_cmd "pm uninstall --user 0 com.facebook.services"
+    run_cmd "pm uninstall --user 0 com.facebook.system"
+    run_cmd "pm uninstall --user 0 com.facebook.appmanager"
+    echo -e "\${GREEN}[OK] Bloatware Eliminado.\${NC}"
 }
 
-# --- MAIN LOOP ---
-check_env
+# --- 5. MENÚ DINÁMICO ---
 
 while true; do
-    echo -e "\n=============================="
-    echo -e " 1. Acelerar Interfaz (Speed)"
-    echo -e " 2. Debloat Facebook/Google"
-    echo -e " 3. Optimizar Batería"
-    echo -e " 4. Restaurar todo (Reset)"
+    echo -e "\n------------------------------"
+    echo -e " MODO ACTUAL: \${YELLOW}$MODE\${NC}"
+    echo -e "------------------------------"
+    
+    echo -e " 1. Limpieza Básica (Funciona Siempre)"
+    
+    if [ "$MODE" != "LITE" ]; then
+        echo -e " 2. [PRO] Acelerar UI + Batería"
+        echo -e " 3. [PRO] Debloat Facebook"
+        echo -e " 4. [PRO] Restaurar Todo"
+    else
+        echo -e " 2. \${RED}[Bloqueado] Acelerar UI (Requiere Root)\${NC}"
+        echo -e " 3. \${RED}[Bloqueado] Debloat (Requiere Root)\${NC}"
+    fi
+    
     echo -e " Q. Salir"
-    echo -e "=============================="
+    echo -e "------------------------------"
     read -p " Opción: " opt
 
     case $opt in
-        1) optimize_ui ;;
-        2) debloat_safe ;;
-        3) optimize_battery ;;
-        4) restore_defaults ;;
+        1) clean_lite ;;
+        2) optimize_full ;;
+        3) debloat_facebook ;;
+        4) 
+           if [ "$MODE" != "LITE" ]; then
+               run_cmd "settings put global window_animation_scale 1.0"
+               run_cmd "settings put global transition_animation_scale 1.0"
+               run_cmd "settings put global animator_duration_scale 1.0"
+               echo -e "\${GREEN}Restaurado.\${NC}"
+           fi
+           ;;
         q|Q) exit ;;
-        *) echo -e "\${RED}Opción inválida\${NC}" ;;
+        *) echo -e "Opción inválida" ;;
     esac
     
     echo ""
-    read -p "Presiona Enter para continuar..."
+    read -p "Enter para continuar..."
 done
 `;
 
@@ -396,10 +394,10 @@ done
             { regex: /#.*/g, class: 'syntax-comment' }, 
             { regex: /"(?:[^"\\]|\\.)*"/g, class: 'syntax-string' },
             { regex: /\b(if|then|else|elif|fi|case|esac|for|do|done|while|in|return|exit|function)\b/g, class: 'syntax-keyword' },
-            { regex: /\b(echo|read|clear|command|grep|su|adb)\b/g, class: 'syntax-function' },
-            { regex: /\b(settings put|pm uninstall|cmd deviceidle|pm disable-user)\b/g, class: 'syntax-cmd' },
+            { regex: /\b(echo|read|clear|command|grep|su|adb|find|rm|sleep)\b/g, class: 'syntax-function' },
+            { regex: /\b(settings put|pm uninstall|cmd deviceidle)\b/g, class: 'syntax-cmd' },
             { regex: /\$[a-zA-Z0-9_]+/g, class: 'syntax-variable' },
-            { regex: /\b\d+\b/g, class: 'syntax-string' } // Numbers as string color for cleaner look
+            { regex: /\b\d+\b/g, class: 'syntax-string' } 
         ];
 
         function highlightCode(code) {
@@ -458,26 +456,14 @@ done
         }
 
         function copyOneLiner() {
-            // Encode script to base64 to avoid quoting hell in shell
-            // Uses UTF-8 safe encoding
+            // Updated One-Liner: No dependencies needed for Basic Mode (removed android-tools requirement for basic cleanup)
+            // But we keep android-tools install attempt for ADB checks, suppressing errors if it fails.
             const b64 = btoa(unescape(encodeURIComponent(bashScript)));
             
-            // The magic command: updates pkg, installs android-tools (for ADB checks), creates file from base64, gives permission, runs it.
-            const oneLiner = `pkg update -y && pkg install -y android-tools && echo "${b64}" | base64 -d > titan.sh && chmod +x titan.sh && bash titan.sh`;
+            // Logic: Try to update/install tools. If it fails (no internet/repo issues), continue anyway because Basic Mode uses standard linux commands (find, rm).
+            const oneLiner = `pkg update -y >/dev/null 2>&1; pkg install -y android-tools >/dev/null 2>&1; echo "${b64}" | base64 -d > titan.sh && chmod +x titan.sh && bash titan.sh`;
             
             copyTextToClipboard(oneLiner, 'Comando Mágico Copiado', 'Pega esto en Termux y pulsa Enter.');
-        }
-
-        function downloadScript() {
-            const blob = new Blob([bashScript], { type: 'text/x-sh' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'titan_v19.sh';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            showToast('Descargando', 'titan_v19.sh');
         }
 
         // Search
