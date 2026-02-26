@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TITAN v24 [ABSOLUTE GOD MODE] - Optimización extrema definitiva">
-    <title>TITAN v24 - Nuclear Android Optimizer</title>
-    
+    <meta name="description" content="TITAN v24 [ABSOLUTE GOD MODE] - Optimización segura NO-ROOT para Android (ADB)">
+    <title>TITAN v24 - Nuclear Android Optimizer (NO-ROOT)</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -30,7 +30,7 @@
         .glass { background: rgba(8, 8, 8, 0.98); backdrop-filter: blur(20px); border: 1px solid rgba(245, 158, 11, 0.25); }
         .crt::before {
             content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%),
                         linear-gradient(90deg, rgba(255, 200, 0, 0.03), rgba(0, 0, 0, 0.01), rgba(255, 200, 0, 0.03));
             z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none;
         }
@@ -38,14 +38,14 @@
         .syntax-keyword { color: #ef4444; font-weight: bold; }
         .syntax-string { color: #fbbf24; }
         .syntax-func { color: #10b981; font-weight: bold; }
-        .syntax-cmd { color: #f59e0b; }
         .line-num { color: #374151; display: inline-block; width: 35px; text-align: right; margin-right: 12px; user-select: none; }
     </style>
 </head>
+
 <body class="bg-god-dark text-gray-200 antialiased min-h-screen flex flex-col overflow-hidden">
 
     <div class="relative z-10 flex flex-col h-screen max-w-7xl mx-auto p-4 lg:p-6 w-full">
-        
+
         <header class="flex flex-col lg:flex-row justify-between items-center mb-6 gap-6">
             <div class="flex items-center gap-5">
                 <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-god-500 to-orange-600 flex items-center justify-center shadow-2xl border-2 border-god-400/50">
@@ -57,7 +57,7 @@
                     </h1>
                     <div class="flex items-center gap-3 mt-2">
                         <span class="px-3 py-0.5 bg-god-500 text-black text-[10px] font-bold font-mono rounded">ABSOLUTE GOD MODE</span>
-                        <span class="text-xs text-god-400 font-mono hidden sm:inline">NUCLEAR OPTIMIZATION ENGINE</span>
+                        <span class="text-xs text-god-400 font-mono hidden sm:inline">ANDROID ADB SAFE (NO-ROOT)</span>
                     </div>
                 </div>
             </div>
@@ -74,19 +74,21 @@
         <div class="glass rounded-xl p-3 border border-god-500/20 flex flex-col lg:flex-row gap-4 items-center justify-between mb-4">
             <div class="relative w-full lg:w-96">
                 <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-god-400"></i>
-                <input type="text" id="searchInput" oninput="highlightSearch()" placeholder="Buscar comando (ej: trim, clean, root)..." class="w-full bg-black/50 border border-god-500/30 text-xs font-mono pl-10 pr-4 py-2.5 outline-none focus:border-god-500 text-white rounded">
+                <input type="text" id="searchInput" oninput="highlightSearch()"
+                    placeholder="Buscar comando (ej: trim, cache, animations, reboot)..."
+                    class="w-full bg-black/50 border border-god-500/30 text-xs font-mono pl-10 pr-4 py-2.5 outline-none focus:border-god-500 text-white rounded">
             </div>
             <div class="flex gap-2 text-[10px] font-mono text-god-400">
-                <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10">800+ OPS</span>
-                <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10 uppercase">No-Root Support</span>
-                <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">STABLE v24.0.1</span>
+                <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10">SAFE OPS</span>
+                <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10 uppercase">No-Root (ADB)</span>
+                <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">STABLE v24.0.2</span>
             </div>
         </div>
 
         <div class="flex-1 relative glass rounded-xl overflow-hidden bg-black crt border border-god-500/10">
             <div class="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur border border-god-500/40 rounded px-3 py-1.5 flex items-center gap-2">
                 <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_v24_absolute.sh</span>
+                <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_v24_no_root_adb.sh</span>
             </div>
             <div class="absolute inset-0 overflow-auto p-4 lg:p-6" id="codeContainer">
                 <pre class="font-mono text-[12px] leading-relaxed"><code id="codeBlock" class="block min-w-max"></code></pre>
@@ -94,7 +96,7 @@
         </div>
 
         <footer class="mt-4 flex justify-between items-center text-[10px] text-god-400 font-mono uppercase tracking-tighter opacity-60">
-            <span>⚡ TITAN ENGINE v24 [NUCLEAR_STRIKE_ENABLED]</span>
+            <span>⚡ TITAN ENGINE v24 [NO_ROOT_SAFE_PROFILE]</span>
             <span id="linesCount">Lines: 0</span>
         </footer>
     </div>
@@ -107,92 +109,142 @@
         </div>
     </div>
 
-    <script>
-        const titanV24 = `#!/bin/bash
+    <!-- ✅ Script RAW sin template literal: evita que JS interprete ${...} -->
+    <script id="titanScript" type="text/plain">#!/system/bin/sh
 #===============================================================================
-# TITAN v24 [ABSOLUTE GOD MODE]
-# Optimización EXTREMA Definitiva para Android
+# TITAN v24 [ABSOLUTE GOD MODE] - NO-ROOT ADB SAFE
+# Optimización segura para Android usando usuario "shell" (ADB), sin root.
 #===============================================================================
 
-R='\\033[0;31m'; G='\\033[0;32m'; Y='\\033[1;33m'; C='\\033[0;36m'; P='\\033[0;35m'; NC='\\033[0m'
+R='\033[0;31m'; G='\033[0;32m'; Y='\033[1;33m'; C='\033[0;36m'; P='\033[0;35m'; NC='\033[0m'
 
-echo -e "\${Y}"
-echo "    ████████╗██╗████████╗ █████╗ ███╗    ██╗    ██╗  ██╗██╗   ██╗"
-echo "    ╚══██╔══╝██║╚══██╔══╝██╔══██╗████╗  ██║    ██║  ██║██║   ██║"
-echo "       ██║   ██║   ██║   ███████║██╔██╗ ██║    ███████║██║   ██║"
-echo "       ██║   ██║   ██║   ██╔══██║██║╚██╗██║    ╚════██║██║   ██║"
-echo "       ██║   ██║   ██║   ██║  ██║██║ ╚████║          ██║╚██████╔╝"
-echo "       ╚═╝   ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝          ╚═╝ ╚═════╝ "
-echo -e "\${C}                    [ABSOLUTE GOD MODE v24]\${NC}\\n"
+echo -e "${Y}"
+echo "    ████████╗██╗████████╗ █████╗ ███╗    ██╗"
+echo "    ╚══██╔══╝██║╚══██╔══╝██╔══██╗████╗  ██║"
+echo "       ██║   ██║   ██║   ███████║██╔██╗ ██║"
+echo "       ██║   ██║   ██║   ██╔══██║██║╚██╗██║"
+echo "       ██║   ██║   ██║   ██║  ██║██║ ╚████║"
+echo "       ╚═╝   ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝"
+echo -e "${C}           [ABSOLUTE GOD MODE v24 - NO ROOT / ADB SAFE]${NC}"
+echo ""
 
-#--- DETECCIÓN DE PRIVILEGIOS ---
-MODE="LITE"; ROOTED=false
-if [ "$(id -u)" -eq 0 ]; then
-    MODE="ROOT"; ROOTED=true
-    echo -e "\${R}[GOD] ACCESO ROOT DETECTADO\${NC}"
-fi
+#---------------------------
+# CONFIG SAFE (editar si querés)
+#---------------------------
+TITAN_DISABLE_ANIMATIONS=1   # 1 reduce animaciones (0.5), 0 no toca
+TITAN_AGGRESSIVE_RAM=0       # 1 intenta kill-all (cierra apps), 0 seguro
+TITAN_TRY_ANDROID_DATA_CACHE=1  # 1 intenta limpiar Android/data (Android 11+ puede bloquear)
 
-#--- FASE 1: LIMPIEZA NUCLEAR ---
-nuclear_clean() {
-    echo -e "\\n\${P}[⚡] FASE 1: ELIMINACIÓN NUCLEAR\${NC}"
-    pm trim-caches 999G 2>/dev/null
-    
-    CLEAN_PATHS=("/data/cache" "/cache" "/sdcard/Android/data/*/cache" "/sdcard/LOST.DIR")
-    for path in "\${CLEAN_PATHS[@]}"; do
-        find $path -type f -delete 2>/dev/null
+UID="$(id -u 2>/dev/null)"
+USER="$(id 2>/dev/null | tr '\n' ' ')"
+echo -e "${P}[i] UID: ${UID} | ${USER}${NC}"
+echo -e "${P}[i] Perfil: NO-ROOT SAFE${NC}"
+
+#===============================================================================
+# FASE 1: LIMPIEZA SAFE
+#===============================================================================
+safe_clean() {
+  echo -e "\n${P}[⚡] FASE 1: SAFE CLEAN${NC}"
+
+  pm trim-caches 999G 2>/dev/null && echo -e "${G}[✓] pm trim-caches ejecutado${NC}" || echo -e "${Y}[!] pm trim-caches no disponible/bloqueado${NC}"
+
+  # Basura típica en Download (solo tmp/log/bak/old)
+  find /sdcard/Download -maxdepth 1 -type f \( -name "*.tmp" -o -name "*.log" -o -name "*.bak" -o -name "*.old" \) -delete 2>/dev/null
+
+  # Intento silencioso en Android/data/*/cache (puede fallar por scoped storage)
+  if [ "${TITAN_TRY_ANDROID_DATA_CACHE}" = "1" ]; then
+    find /sdcard/Android/data -type d -path "*/cache" 2>/dev/null | while read -r d; do
+      find "$d" -type f -delete 2>/dev/null
     done
+  fi
+
+  echo -e "${G}[✓] Safe Clean completado${NC}"
 }
 
-#--- FASE 2: LIBERACIÓN RAM ---
-ram_boost() {
-    echo -e "\\n\${P}[⚡] FASE 2: MAXIMIZACIÓN DE RAM\${NC}"
-    am kill-all 2>/dev/null
-    cmd activity memory-factor critical 2>/dev/null
-    
-    if [ "$ROOTED" = true ]; then
-        echo 3 > /proc/sys/vm/drop_caches
-        fstrim -v /data
-    fi
+#===============================================================================
+# FASE 2: RAM SAFE (sin root)
+#===============================================================================
+ram_safe() {
+  echo -e "\n${P}[⚡] FASE 2: RAM SAFE${NC}"
+
+  if [ "${TITAN_AGGRESSIVE_RAM}" = "1" ]; then
+    am kill-all 2>/dev/null && echo -e "${Y}[!] am kill-all ejecutado (agresivo)${NC}"
+  else
+    echo -e "${C}[i] Modo seguro: no se ejecuta kill-all (TITAN_AGGRESSIVE_RAM=0)${NC}"
+  fi
+
+  cmd activity memory-factor normal 2>/dev/null >/dev/null
+  echo -e "${G}[✓] RAM SAFE completado${NC}"
 }
 
-#--- FASE 3: FLUIDEZ EXTREMA ---
-fluidity_max() {
-    echo -e "\\n\${P}[⚡] FASE 3: FLUIDEZ SIN COMPROMISOS\${NC}"
-    settings put global window_animation_scale 0
-    settings put global transition_animation_scale 0
-    settings put global animator_duration_scale 0
-    
-    # Touch improvement
-    settings put secure long_press_timeout 250
-    settings put system pointer_speed 7
+#===============================================================================
+# FASE 3: FLUIDEZ SAFE
+#===============================================================================
+fluidity_safe() {
+  echo -e "\n${P}[⚡] FASE 3: FLUIDEZ SAFE${NC}"
+
+  if [ "${TITAN_DISABLE_ANIMATIONS}" = "1" ]; then
+    settings put global window_animation_scale 0.5 2>/dev/null
+    settings put global transition_animation_scale 0.5 2>/dev/null
+    settings put global animator_duration_scale 0.5 2>/dev/null
+    echo -e "${G}[✓] Animaciones reducidas (0.5)${NC}"
+  else
+    echo -e "${C}[i] Animaciones sin cambios${NC}"
+  fi
+
+  settings put secure long_press_timeout 250 2>/dev/null
+  settings put system pointer_speed 7 2>/dev/null
+
+  echo -e "${G}[✓] Fluidez SAFE aplicada${NC}"
 }
 
-#--- EJECUCIÓN ---
-nuclear_clean
-ram_boost
-fluidity_max
+#===============================================================================
+# FASE 4: MANTENIMIENTO SAFE
+#===============================================================================
+maintenance_safe() {
+  echo -e "\n${P}[⚡] FASE 4: MANTENIMIENTO SAFE${NC}"
 
-echo -e "\\n\${G}[✓] SISTEMA TRASPASADO AL MODO DIOS\${NC}"
-exit 0`;
+  # speed-profile (si está disponible)
+  if cmd package compile -h 2>/dev/null | grep -qi "compile"; then
+    cmd package compile -m speed-profile -f all 2>/dev/null && echo -e "${G}[✓] speed-profile aplicado${NC}" || echo -e "${Y}[!] compile bloqueado/no soportado${NC}"
+  else
+    echo -e "${C}[i] cmd package compile no disponible${NC}"
+  fi
+
+  echo -e "${G}[✓] Mantenimiento SAFE completado${NC}"
+}
+
+safe_clean
+ram_safe
+fluidity_safe
+maintenance_safe
+
+echo -e "\n${G}[✓] TITAN NO-ROOT SAFE: OPTIMIZACIÓN COMPLETADA${NC}"
+echo -e "${C}[i] Sugerencia: reiniciá si querés consolidar cambios${NC}"
+exit 0
+</script>
+
+    <script>
+        // Leer el script desde el tag text/plain (sin template literals)
+        const titanV24 = (document.getElementById('titanScript').textContent || "").replace(/^\s+|\s+$/g, "");
 
         function renderCode() {
             const codeBlock = document.getElementById('codeBlock');
             const lines = titanV24.split('\n');
             document.getElementById('linesCount').innerText = `Lines: ${lines.length}`;
-            
+
             const highlighted = lines.map((line, index) => {
                 let formattedLine = line
                     .replace(/&/g, "&amp;")
                     .replace(/</g, "&lt;")
                     .replace(/>/g, "&gt;");
 
-                // Syntax Highlighting simple
-                if (formattedLine.startsWith('#')) {
+                if (formattedLine.trim().startsWith('#')) {
                     formattedLine = `<span class="syntax-comment">${formattedLine}</span>`;
                 } else {
                     formattedLine = formattedLine
-                        .replace(/\b(if|then|else|fi|for|in|do|done|exit|function)\b/g, '<span class="syntax-keyword">$1</span>')
-                        .replace(/(echo|pm|am|cmd|find|settings|fstrim)\b/g, '<span class="syntax-func">$1</span>')
+                        .replace(/\b(if|then|else|fi|for|in|do|done|exit|while|case|esac|function)\b/g, '<span class="syntax-keyword">$1</span>')
+                        .replace(/\b(echo|pm|am|cmd|find|settings|grep|id|tr|read)\b/g, '<span class="syntax-func">$1</span>')
                         .replace(/"([^"]*)"/g, '<span class="syntax-string">"$1"</span>')
                         .replace(/'([^']*)'/g, '<span class="syntax-string">\'$1\'</span>');
                 }
@@ -214,31 +266,47 @@ exit 0`;
             }, 2500);
         }
 
-        function copyRaw() {
+        function copyText(text, toastMsg) {
             const el = document.createElement('textarea');
-            el.value = titanV24;
+            el.value = text;
             document.body.appendChild(el);
             el.select();
             document.execCommand('copy');
             document.body.removeChild(el);
-            showToast("SCRIPT COMPLETO COPIADO");
+            showToast(toastMsg);
         }
 
+        function copyRaw() {
+            copyText(titanV24, "SCRIPT COMPLETO COPIADO");
+        }
+
+        // Base64 robusto (TextEncoder + chunk)
+        function base64FromUtf8(str) {
+            const bytes = new TextEncoder().encode(str);
+            let binary = "";
+            const chunk = 0x8000;
+            for (let i = 0; i < bytes.length; i += chunk) {
+                binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+            }
+            return btoa(binary);
+        }
+
+        // One-liner ADB real:
+        // - escribe base64 a /data/local/tmp
+        // - decodifica usando 'base64 -d' o 'toybox base64 -d' (fallback)
+        // - ejecuta
         function copyOneLiner() {
-            const oneLiner = `adb shell "sh -c '$(echo "${titanV24}" | base64 | tr -d '\n')' | base64 -d | sh"`;
-            const el = document.createElement('textarea');
-            el.value = "adb shell \"settings put global debug.titan.execute 1 && reboot\""; // Placeholder simplificado para ejemplo
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            showToast("COMANDO AUTO-RUN ADB COPIADO");
+            const b64 = base64FromUtf8(titanV24);
+
+            const oneLiner =
+`adb shell "TMP=/data/local/tmp/titan_v24_no_root.sh; B=/data/local/tmp/titan_v24_no_root.b64; echo '${b64}' > \\$B; (base64 -d \\$B 2>/dev/null || toybox base64 -d \\$B 2>/dev/null) > \\$TMP; chmod 755 \\$TMP; sh \\$TMP; rc=\\$?; rm -f \\$TMP \\$B; exit \\$rc"`;
+
+            copyText(oneLiner, "COMANDO AUTO-RUN ADB COPIADO");
         }
 
         function highlightSearch() {
             const term = document.getElementById('searchInput').value.toLowerCase();
             const codeLines = document.querySelectorAll('#codeBlock span:not(.line-num)');
-            
             codeLines.forEach(line => {
                 if (term && line.innerText.toLowerCase().includes(term)) {
                     line.style.backgroundColor = 'rgba(245, 158, 11, 0.3)';
