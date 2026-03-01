@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TITAN v24 [ABSOLUTE GOD MODE] - Optimización segura NO-ROOT para Android (ADB)">
-    <title>TITAN v24 - Nuclear Android Optimizer (NO-ROOT)</title>
+    <meta name="description" content="TITAN v25 PRO - Optimización segura NO-ROOT para Android (ADB)">
+    <title>TITAN v25 PRO - Nuclear Android Optimizer (NO-ROOT)</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -53,10 +53,10 @@
                 </div>
                 <div>
                     <h1 class="text-4xl lg:text-5xl font-black tracking-tight text-white font-mono uppercase">
-                        TITAN <span class="text-god-500">v24</span>
+                        TITAN <span class="text-god-500">v25</span>
                     </h1>
                     <div class="flex items-center gap-3 mt-2">
-                        <span class="px-3 py-0.5 bg-god-500 text-black text-[10px] font-bold font-mono rounded">ABSOLUTE GOD MODE</span>
+                        <span class="px-3 py-0.5 bg-god-500 text-black text-[10px] font-bold font-mono rounded">PRO MODE</span>
                         <span class="text-xs text-god-400 font-mono hidden sm:inline">ANDROID ADB SAFE (NO-ROOT)</span>
                     </div>
                 </div>
@@ -75,20 +75,20 @@
             <div class="relative w-full lg:w-96">
                 <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-god-400"></i>
                 <input type="text" id="searchInput" oninput="highlightSearch()"
-                    placeholder="Buscar comando (ej: trim, cache, animations, reboot)..."
+                    placeholder="Buscar comando (ej: trim, cache, animations, restore, compile)..."
                     class="w-full bg-black/50 border border-god-500/30 text-xs font-mono pl-10 pr-4 py-2.5 outline-none focus:border-god-500 text-white rounded">
             </div>
             <div class="flex gap-2 text-[10px] font-mono text-god-400">
                 <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10">SAFE OPS</span>
                 <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10 uppercase">No-Root (ADB)</span>
-                <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">STABLE v24.0.2</span>
+                <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">STABLE v25.0</span>
             </div>
         </div>
 
         <div class="flex-1 relative glass rounded-xl overflow-hidden bg-black crt border border-god-500/10">
             <div class="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur border border-god-500/40 rounded px-3 py-1.5 flex items-center gap-2">
                 <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_v24_no_root_adb.sh</span>
+                <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_v25_pro_no_root_adb.sh</span>
             </div>
             <div class="absolute inset-0 overflow-auto p-4 lg:p-6" id="codeContainer">
                 <pre class="font-mono text-[12px] leading-relaxed"><code id="codeBlock" class="block min-w-max"></code></pre>
@@ -96,7 +96,7 @@
         </div>
 
         <footer class="mt-4 flex justify-between items-center text-[10px] text-god-400 font-mono uppercase tracking-tighter opacity-60">
-            <span>⚡ TITAN ENGINE v24 [NO_ROOT_SAFE_PROFILE]</span>
+            <span>⚡ TITAN ENGINE v25 [NO_ROOT_SAFE_PROFILE]</span>
             <span id="linesCount">Lines: 0</span>
         </footer>
     </div>
@@ -112,125 +112,465 @@
     <!-- ✅ Script RAW sin template literal: evita que JS interprete ${...} -->
     <script id="titanScript" type="text/plain">#!/system/bin/sh
 #===============================================================================
-# TITAN v24 [ABSOLUTE GOD MODE] - NO-ROOT ADB SAFE
+# TITAN v25 PRO (NO-ROOT / ADB SAFE)
 # Optimización segura para Android usando usuario "shell" (ADB), sin root.
+#
+# Novedades vs v24:
+#  - Log + reporte final (antes/después)
+#  - DRY-RUN (no borra, solo muestra) + confirmación
+#  - Limpieza inteligente por antigüedad y tamaño
+#  - Detección de Android (SDK) + avisos por scoped storage
+#  - Modo RESTORE de animaciones (vuelve a valores guardados)
+#  - Diagnóstico opcional (top almacenamiento / paquetes grandes)
+#  - Bloatware opcional (MANUAL, lista comentada por defecto)
+#
+# Uso recomendado (ADB):
+#   adb shell sh /sdcard/Download/titan_v25.sh
+#   adb shell sh /sdcard/Download/titan_v25.sh --dry-run
+#   adb shell sh /sdcard/Download/titan_v25.sh --restore
+#
 #===============================================================================
 
+# ---------------------------
+# Colores
+# ---------------------------
 R='\033[0;31m'; G='\033[0;32m'; Y='\033[1;33m'; C='\033[0;36m'; P='\033[0;35m'; NC='\033[0m'
 
-echo -e "${Y}"
-echo "    ████████╗██╗████████╗ █████╗ ███╗    ██╗"
-echo "    ╚══██╔══╝██║╚══██╔══╝██╔══██╗████╗  ██║"
-echo "       ██║   ██║   ██║   ███████║██╔██╗ ██║"
-echo "       ██║   ██║   ██║   ██╔══██║██║╚██╗██║"
-echo "       ██║   ██║   ██║   ██║  ██║██║ ╚████║"
-echo "       ╚═╝   ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝"
-echo -e "${C}           [ABSOLUTE GOD MODE v24 - NO ROOT / ADB SAFE]${NC}"
-echo ""
+# ---------------------------
+# CONFIG (editá si querés)
+# ---------------------------
 
-#---------------------------
-# CONFIG SAFE (editar si querés)
-#---------------------------
-TITAN_DISABLE_ANIMATIONS=1   # 1 reduce animaciones (0.5), 0 no toca
-TITAN_AGGRESSIVE_RAM=0       # 1 intenta kill-all (cierra apps), 0 seguro
-TITAN_TRY_ANDROID_DATA_CACHE=1  # 1 intenta limpiar Android/data (Android 11+ puede bloquear)
+# Seguridad / interacción
+DRY_RUN=0            # 1 = NO borra, solo imprime qué haría
+ASK_CONFIRM=1        # 1 = pide confirmación si va a borrar
+VERBOSE=1            # 1 = más salida por pantalla
 
+# Limpieza Download: solo extensiones típicas + filtros por edad/tamaño
+DAYS_OLD=14          # borra basura si tiene más de X días
+MIN_SIZE_KB=64       # borra basura si pesa más de X KB
+DOWNLOAD_MAXDEPTH=1  # profundidad en /sdcard/Download
+
+# Android/data cache: Android 11+ puede bloquear (scoped storage)
+TITAN_TRY_ANDROID_DATA_CACHE=1
+
+# Fluidez: animaciones + ajustes
+TITAN_DISABLE_ANIMATIONS=1
+ANIM_SCALE="0.5"     # 0, 0.5, 1 (recomendado 0.5)
+SET_LONG_PRESS_TIMEOUT=1
+LONG_PRESS_TIMEOUT_MS=250
+SET_POINTER_SPEED=1
+POINTER_SPEED=7
+
+# RAM / procesos (por defecto seguro)
+TITAN_AGGRESSIVE_RAM=0    # 1 ejecuta am kill-all (agresivo)
+
+# Mantenimiento: compile
+ENABLE_SPEED_PROFILE=1     # intenta cmd package compile
+COMPILE_ALL=1              # 1 = all, 0 = solo lista grande sugerida abajo
+COMPILE_LIST="
+# com.whatsapp
+# com.instagram.android
+# com.google.android.youtube
+"
+
+# Diagnóstico opcional
+ENABLE_DIAGNOSTICS=1
+TOP_DU_COUNT=15            # top carpetas pesadas en /sdcard
+TOP_PACKAGES_COUNT=15      # top paquetes por size (si dumpsys lo da)
+
+# Bloatware opcional (MANUAL, con lista por defecto comentada)
+BLOAT_MODE=0               # 1 = aplica disable-user a los paquetes listados
+BLOAT_ACTION="disable"     # "disable" o "uninstall" (uninstall --user 0)
+BLOAT_LIST="
+# EJEMPLOS (NO ACTIVAR SIN SABER QUÉ SON):
+# com.facebook.appmanager
+# com.facebook.services
+# com.facebook.system
+"
+
+# Paths / archivos
+LOGFILE="/sdcard/Download/titan_v25.log"
+STATEFILE="/sdcard/Download/titan_state_v25.conf"   # guarda valores previos para restore
+
+# ---------------------------
+# Args
+# ---------------------------
+MODE="run"
+for arg in "$@"; do
+  case "$arg" in
+    --dry-run) DRY_RUN=1 ;;
+    --restore) MODE="restore" ;;
+    --yes) ASK_CONFIRM=0 ;;
+    --quiet) VERBOSE=0 ;;
+  esac
+done
+
+# ---------------------------
+# Helpers
+# ---------------------------
+strip_ansi() { sed 's/\x1b\[[0-9;]*m//g'; }
+
+log_init() { : > "$LOGFILE" 2>/dev/null; }
+log() { echo "$(date '+%F %T') | $*" >> "$LOGFILE" 2>/dev/null; }
+
+say() {
+  # imprime y loguea (sin ANSI)
+  if [ "$VERBOSE" = "1" ]; then
+    echo -e "$*"
+  fi
+  echo -e "$*" | strip_ansi | log
+}
+
+run() {
+  # Ejecuta comando con DRY_RUN y logging
+  if [ "$DRY_RUN" = "1" ]; then
+    say "${C}[dry] $*${NC}"
+    return 0
+  fi
+  sh -c "$*" >> "$LOGFILE" 2>&1
+  return $?
+}
+
+getprop_safe() { getprop "$1" 2>/dev/null; }
+
+get_sdk() { getprop_safe ro.build.version.sdk; }
+get_model() { getprop_safe ro.product.model; }
+get_manu() { getprop_safe ro.product.manufacturer; }
+
+human_kb() { awk -v k="$1" 'BEGIN{printf "%.1f MB", k/1024}'; }
+
+avail_kb_data() {
+  # df puede variar, intentamos /data y si falla, devolvemos vacío
+  df -k /data 2>/dev/null | awk 'NR==2{print $4}'
+}
+
+count_download_candidates() {
+  find /sdcard/Download -maxdepth "$DOWNLOAD_MAXDEPTH" -type f \
+    \( -name "*.tmp" -o -name "*.log" -o -name "*.bak" -o -name "*.old" \) \
+    -mtime +"$DAYS_OLD" -size +"${MIN_SIZE_KB}k" 2>/dev/null | wc -l
+}
+
+list_download_candidates() {
+  find /sdcard/Download -maxdepth "$DOWNLOAD_MAXDEPTH" -type f \
+    \( -name "*.tmp" -o -name "*.log" -o -name "*.bak" -o -name "*.old" \) \
+    -mtime +"$DAYS_OLD" -size +"${MIN_SIZE_KB}k" -print 2>/dev/null
+}
+
+save_state() {
+  # Guarda valores actuales para restore
+  # Si settings get falla, guardamos vacío.
+  W="$(settings get global window_animation_scale 2>/dev/null)"
+  T="$(settings get global transition_animation_scale 2>/dev/null)"
+  A="$(settings get global animator_duration_scale 2>/dev/null)"
+  LP="$(settings get secure long_press_timeout 2>/dev/null)"
+  PS="$(settings get system pointer_speed 2>/dev/null)"
+
+  cat > "$STATEFILE" 2>/dev/null <<EOF
+# TITAN v25 state (para --restore)
+window_animation_scale=${W}
+transition_animation_scale=${T}
+animator_duration_scale=${A}
+long_press_timeout=${LP}
+pointer_speed=${PS}
+EOF
+}
+
+load_state() {
+  # Carga valores previos si existe
+  [ -f "$STATEFILE" ] || return 1
+  # shellcheck disable=SC1090
+  . "$STATEFILE" 2>/dev/null
+  return 0
+}
+
+confirm_or_exit() {
+  # $1 mensaje
+  msg="$1"
+  [ "$ASK_CONFIRM" = "0" ] && return 0
+  if [ "$DRY_RUN" = "1" ]; then
+    # en dry-run no hace falta confirmar
+    return 0
+  fi
+  echo -e "${Y}${msg} (y/N)${NC} \c"
+  read ans
+  if [ "$ans" != "y" ] && [ "$ans" != "Y" ]; then
+    say "${Y}[!] Cancelado por el usuario${NC}"
+    exit 0
+  fi
+}
+
+# ---------------------------
+# Banner
+# ---------------------------
+log_init
+SDK="$(get_sdk)"
+MANU="$(get_manu)"
+MODEL="$(get_model)"
 UID="$(id -u 2>/dev/null)"
-USER="$(id 2>/dev/null | tr '\n' ' ')"
-echo -e "${P}[i] UID: ${UID} | ${USER}${NC}"
-echo -e "${P}[i] Perfil: NO-ROOT SAFE${NC}"
+USERINFO="$(id 2>/dev/null | tr '\n' ' ')"
+
+say "${Y}"
+say "    ████████╗██╗████████╗ █████╗ ███╗    ██╗"
+say "    ╚══██╔══╝██║╚══██╔══╝██╔══██╗████╗  ██║"
+say "       ██║   ██║   ██║   ███████║██╔██╗ ██║"
+say "       ██║   ██║   ██║   ██╔══██║██║╚██╗██║"
+say "       ██║   ██║   ██║   ██║  ██║██║ ╚████║"
+say "       ╚═╝   ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝"
+say -e "${C}        [TITAN v25 PRO - NO ROOT / ADB SAFE]${NC}"
+say ""
+say "${P}[i] UID: ${UID} | ${USERINFO}${NC}"
+say "${P}[i] Dispositivo: ${MANU} ${MODEL} | SDK: ${SDK}${NC}"
+say "${P}[i] Modo: ${MODE} | DRY_RUN=${DRY_RUN} | LOG=${LOGFILE}${NC}"
+
+BEFORE_KB="$(avail_kb_data)"
+[ -n "$BEFORE_KB" ] && say "${C}[i] Espacio libre /data (antes): $(human_kb "$BEFORE_KB")${NC}"
 
 #===============================================================================
-# FASE 1: LIMPIEZA SAFE
+# MODO RESTORE
 #===============================================================================
-safe_clean() {
-  echo -e "\n${P}[⚡] FASE 1: SAFE CLEAN${NC}"
+restore_settings() {
+  say "\n${P}[⚡] RESTORE: Revirtiendo valores guardados${NC}"
 
-  pm trim-caches 999G 2>/dev/null && echo -e "${G}[✓] pm trim-caches ejecutado${NC}" || echo -e "${Y}[!] pm trim-caches no disponible/bloqueado${NC}"
-
-  # Basura típica en Download (solo tmp/log/bak/old)
-  find /sdcard/Download -maxdepth 1 -type f \( -name "*.tmp" -o -name "*.log" -o -name "*.bak" -o -name "*.old" \) -delete 2>/dev/null
-
-  # Intento silencioso en Android/data/*/cache (puede fallar por scoped storage)
-  if [ "${TITAN_TRY_ANDROID_DATA_CACHE}" = "1" ]; then
-    find /sdcard/Android/data -type d -path "*/cache" 2>/dev/null | while read -r d; do
-      find "$d" -type f -delete 2>/dev/null
-    done
+  if ! load_state; then
+    say "${R}[x] No encontré statefile: ${STATEFILE}${NC}"
+    say "${C}[i] Ejecutá el script en modo normal una vez para guardar estado.${NC}"
+    exit 1
   fi
 
-  echo -e "${G}[✓] Safe Clean completado${NC}"
+  # Restaurar animaciones (si hay valores)
+  [ -n "${window_animation_scale}" ] && run "settings put global window_animation_scale ${window_animation_scale}"
+  [ -n "${transition_animation_scale}" ] && run "settings put global transition_animation_scale ${transition_animation_scale}"
+  [ -n "${animator_duration_scale}" ] && run "settings put global animator_duration_scale ${animator_duration_scale}"
+
+  # Restaurar long press / pointer speed si existían
+  [ -n "${long_press_timeout}" ] && run "settings put secure long_press_timeout ${long_press_timeout}"
+  [ -n "${pointer_speed}" ] && run "settings put system pointer_speed ${pointer_speed}"
+
+  say "${G}[✓] Restore completado${NC}"
+  say "${C}[i] Log: ${LOGFILE}${NC}"
 }
 
 #===============================================================================
-# FASE 2: RAM SAFE (sin root)
+# DIAGNÓSTICO (opcional)
+#===============================================================================
+diagnostics() {
+  [ "$ENABLE_DIAGNOSTICS" = "1" ] || return 0
+  say "\n${P}[🧪] DIAGNÓSTICO (opcional)${NC}"
+
+  # Top carpetas grandes en /sdcard (rápido, sin entrar en infinito)
+  if command -v du >/dev/null 2>&1; then
+    say "${C}[i] Top ${TOP_DU_COUNT} carpetas pesadas en /sdcard:${NC}"
+    run "du -sk /sdcard/* 2>/dev/null | sort -nr | head -n ${TOP_DU_COUNT}" || true
+  else
+    say "${Y}[!] 'du' no disponible en este entorno${NC}"
+  fi
+
+  # Meminfo rápida
+  if command -v dumpsys >/dev/null 2>&1; then
+    say "${C}[i] dumpsys meminfo (resumen):${NC}"
+    run "dumpsys meminfo | head -n 80" || true
+  fi
+
+  # Paquetes grandes (puede variar por OEM)
+  if command -v dumpsys >/dev/null 2>&1; then
+    say "${C}[i] Top ${TOP_PACKAGES_COUNT} paquetes por 'code/data/cache' (si está disponible):${NC}"
+    run "dumpsys package packages 2>/dev/null | grep -E 'Package \\[|codePath=|dataDir=|versionName=' | head -n 200" || true
+    say "${C}[i] (Nota) Algunos sistemas no exponen tamaños por paquete en dumpsys.${NC}"
+  fi
+
+  say "${G}[✓] Diagnóstico finalizado${NC}"
+}
+
+#===============================================================================
+# FASE 1: LIMPIEZA SAFE+
+#===============================================================================
+safe_clean_plus() {
+  say "\n${P}[⚡] FASE 1: SAFE CLEAN+${NC}"
+
+  # 1) Trim caches (si está permitido)
+  run "pm trim-caches 999G" \
+    && say "${G}[✓] pm trim-caches ejecutado${NC}" \
+    || say "${Y}[!] pm trim-caches no disponible/bloqueado${NC}"
+
+  # 2) Candidatos Download
+  CAND="$(count_download_candidates)"
+  say "${C}[i] Candidatos en Download (>${DAYS_OLD}d y >${MIN_SIZE_KB}KB): ${CAND}${NC}"
+  if [ "$CAND" -gt 0 ]; then
+    say "${C}[i] Lista (preview):${NC}"
+    list_download_candidates | head -n 50 | while read -r f; do
+      say "  - ${f}"
+    done
+    [ "$CAND" -gt 50 ] && say "${C}[i] ... (mostrando 50 de ${CAND})${NC}"
+    confirm_or_exit "¿Borrar estos archivos de Download?"
+    run "find /sdcard/Download -maxdepth ${DOWNLOAD_MAXDEPTH} -type f \
+      \( -name '*.tmp' -o -name '*.log' -o -name '*.bak' -o -name '*.old' \) \
+      -mtime +${DAYS_OLD} -size +${MIN_SIZE_KB}k -print -delete" \
+      && say "${G}[✓] Limpieza Download completada${NC}" \
+      || say "${Y}[!] No se pudo limpiar Download (permisos/ruta)${NC}"
+  else
+    say "${G}[✓] Nada para limpiar en Download con esos filtros${NC}"
+  fi
+
+  # 3) Android/data cache (scoped storage)
+  if [ "${TITAN_TRY_ANDROID_DATA_CACHE}" = "1" ]; then
+    if [ -n "$SDK" ] && [ "$SDK" -ge 30 ] 2>/dev/null; then
+      say "${Y}[!] Android 11+ suele bloquear /sdcard/Android/data (scoped storage). Puede fallar.${NC}"
+    fi
+    # Intento silencioso: solo borra archivos dentro de */cache
+    run "find /sdcard/Android/data -type d -path '*/cache' 2>/dev/null | while read -r d; do find \"\$d\" -type f -delete 2>/dev/null; done" \
+      && say "${G}[✓] Intento Android/data/*/cache completado${NC}" \
+      || say "${Y}[!] Android/data no accesible (esperable en Android 11+)${NC}"
+  fi
+
+  say "${G}[✓] Safe Clean+ completado${NC}"
+}
+
+#===============================================================================
+# FASE 2: RAM SAFE
 #===============================================================================
 ram_safe() {
-  echo -e "\n${P}[⚡] FASE 2: RAM SAFE${NC}"
+  say "\n${P}[⚡] FASE 2: RAM SAFE${NC}"
 
   if [ "${TITAN_AGGRESSIVE_RAM}" = "1" ]; then
-    am kill-all 2>/dev/null && echo -e "${Y}[!] am kill-all ejecutado (agresivo)${NC}"
+    confirm_or_exit "TITAN_AGGRESSIVE_RAM=1 ejecuta am kill-all (puede cerrar apps). ¿Continuar?"
+    run "am kill-all" \
+      && say "${Y}[!] am kill-all ejecutado (agresivo)${NC}" \
+      || say "${Y}[!] am kill-all no soportado/bloqueado${NC}"
   else
-    echo -e "${C}[i] Modo seguro: no se ejecuta kill-all (TITAN_AGGRESSIVE_RAM=0)${NC}"
+    say "${C}[i] Modo seguro: no se ejecuta kill-all (TITAN_AGGRESSIVE_RAM=0)${NC}"
   fi
 
-  cmd activity memory-factor normal 2>/dev/null >/dev/null
-  echo -e "${G}[✓] RAM SAFE completado${NC}"
+  # Esto puede ser ignorado por algunos builds; igual es seguro intentar
+  run "cmd activity memory-factor normal >/dev/null 2>&1" || true
+
+  say "${G}[✓] RAM SAFE completado${NC}"
 }
 
 #===============================================================================
-# FASE 3: FLUIDEZ SAFE
+# FASE 3: FLUIDEZ SAFE (con guardado de estado)
 #===============================================================================
 fluidity_safe() {
-  echo -e "\n${P}[⚡] FASE 3: FLUIDEZ SAFE${NC}"
+  say "\n${P}[⚡] FASE 3: FLUIDEZ SAFE${NC}"
+
+  # Guardar estado actual para poder restaurar
+  save_state
+  say "${C}[i] Estado guardado en: ${STATEFILE}${NC}"
 
   if [ "${TITAN_DISABLE_ANIMATIONS}" = "1" ]; then
-    settings put global window_animation_scale 0.5 2>/dev/null
-    settings put global transition_animation_scale 0.5 2>/dev/null
-    settings put global animator_duration_scale 0.5 2>/dev/null
-    echo -e "${G}[✓] Animaciones reducidas (0.5)${NC}"
+    run "settings put global window_animation_scale ${ANIM_SCALE}"
+    run "settings put global transition_animation_scale ${ANIM_SCALE}"
+    run "settings put global animator_duration_scale ${ANIM_SCALE}"
+    say "${G}[✓] Animaciones seteadas a ${ANIM_SCALE}${NC}"
   else
-    echo -e "${C}[i] Animaciones sin cambios${NC}"
+    say "${C}[i] Animaciones sin cambios${NC}"
   fi
 
-  settings put secure long_press_timeout 250 2>/dev/null
-  settings put system pointer_speed 7 2>/dev/null
+  if [ "${SET_LONG_PRESS_TIMEOUT}" = "1" ]; then
+    run "settings put secure long_press_timeout ${LONG_PRESS_TIMEOUT_MS}"
+    say "${G}[✓] long_press_timeout = ${LONG_PRESS_TIMEOUT_MS}${NC}"
+  fi
 
-  echo -e "${G}[✓] Fluidez SAFE aplicada${NC}"
+  if [ "${SET_POINTER_SPEED}" = "1" ]; then
+    run "settings put system pointer_speed ${POINTER_SPEED}"
+    say "${G}[✓] pointer_speed = ${POINTER_SPEED}${NC}"
+  fi
+
+  say "${G}[✓] Fluidez SAFE aplicada${NC}"
 }
 
 #===============================================================================
-# FASE 4: MANTENIMIENTO SAFE
+# FASE 4: MANTENIMIENTO SAFE (compile)
 #===============================================================================
 maintenance_safe() {
-  echo -e "\n${P}[⚡] FASE 4: MANTENIMIENTO SAFE${NC}"
+  say "\n${P}[⚡] FASE 4: MANTENIMIENTO SAFE${NC}"
 
-  # speed-profile (si está disponible)
-  if cmd package compile -h 2>/dev/null | grep -qi "compile"; then
-    cmd package compile -m speed-profile -f all 2>/dev/null && echo -e "${G}[✓] speed-profile aplicado${NC}" || echo -e "${Y}[!] compile bloqueado/no soportado${NC}"
-  else
-    echo -e "${C}[i] cmd package compile no disponible${NC}"
+  if [ "${ENABLE_SPEED_PROFILE}" != "1" ]; then
+    say "${C}[i] compile desactivado (ENABLE_SPEED_PROFILE=0)${NC}"
+    return 0
   fi
 
-  echo -e "${G}[✓] Mantenimiento SAFE completado${NC}"
+  if cmd package compile -h 2>/dev/null | grep -qi "compile"; then
+    if [ "${COMPILE_ALL}" = "1" ]; then
+      confirm_or_exit "Aplicar speed-profile a ALL puede tardar. ¿Continuar?"
+      run "cmd package compile -m speed-profile -f all" \
+        && say "${G}[✓] speed-profile aplicado (all)${NC}" \
+        || say "${Y}[!] compile bloqueado/no soportado${NC}"
+    else
+      say "${C}[i] Compilando lista seleccionada (COMPILE_ALL=0)${NC}"
+      echo "$COMPILE_LIST" | sed '/^\s*#/d;/^\s*$/d' | while read -r pkg; do
+        run "cmd package compile -m speed-profile -f $pkg" \
+          && say "${G}[✓] speed-profile: $pkg${NC}" \
+          || say "${Y}[!] no se pudo compilar: $pkg${NC}"
+      done
+    fi
+  else
+    say "${C}[i] cmd package compile no disponible${NC}"
+  fi
+
+  say "${G}[✓] Mantenimiento SAFE completado${NC}"
 }
 
-safe_clean
+#===============================================================================
+# FASE 5: BLOATWARE (OPCIONAL / MANUAL)
+#===============================================================================
+bloatware_optional() {
+  [ "${BLOAT_MODE}" = "1" ] || return 0
+
+  say "\n${P}[⚡] FASE 5: BLOATWARE (OPCIONAL / MANUAL)${NC}"
+  say "${Y}[!] Advertencia: deshabilitar/desinstalar paquetes puede romper funciones. Usá bajo tu responsabilidad.${NC}"
+
+  confirm_or_exit "BLOAT_MODE=1 está activo. ¿Aplicar acciones a la lista?"
+
+  echo "$BLOAT_LIST" | sed '/^\s*#/d;/^\s*$/d' | while read -r pkg; do
+    if [ "$BLOAT_ACTION" = "uninstall" ]; then
+      run "pm uninstall --user 0 $pkg" \
+        && say "${G}[✓] Uninstall (user 0): $pkg${NC}" \
+        || say "${Y}[!] No se pudo uninstall: $pkg${NC}"
+    else
+      run "pm disable-user --user 0 $pkg" \
+        && say "${G}[✓] Disabled: $pkg${NC}" \
+        || say "${Y}[!] No se pudo disable: $pkg${NC}"
+    fi
+  done
+
+  say "${G}[✓] Bloatware fase completada${NC}"
+}
+
+#===============================================================================
+# MAIN
+#===============================================================================
+if [ "$MODE" = "restore" ]; then
+  restore_settings
+  exit 0
+fi
+
+# Diagnóstico primero (opcional)
+diagnostics
+
+# Ejecutar fases
+safe_clean_plus
 ram_safe
 fluidity_safe
 maintenance_safe
+bloatware_optional
 
-echo -e "\n${G}[✓] TITAN NO-ROOT SAFE: OPTIMIZACIÓN COMPLETADA${NC}"
-echo -e "${C}[i] Sugerencia: reiniciá si querés consolidar cambios${NC}"
+AFTER_KB="$(avail_kb_data)"
+[ -n "$AFTER_KB" ] && say "\n${C}[i] Espacio libre /data (después): $(human_kb "$AFTER_KB")${NC}"
+
+say "\n${G}[✓] TITAN v25 PRO: OPTIMIZACIÓN COMPLETADA${NC}"
+say "${C}[i] Log guardado en: ${LOGFILE}${NC}"
+say "${C}[i] Para revertir ajustes: adb shell sh <ruta>/titan_v25.sh --restore${NC}"
+say "${C}[i] Sugerencia: reiniciá si querés consolidar cambios${NC}"
 exit 0
 </script>
 
     <script>
         // Leer el script desde el tag text/plain (sin template literals)
-        const titanV24 = (document.getElementById('titanScript').textContent || "").replace(/^\s+|\s+$/g, "");
+        const titanV25 = (document.getElementById('titanScript').textContent || "").replace(/^\s+|\s+$/g, "");
 
         function renderCode() {
             const codeBlock = document.getElementById('codeBlock');
-            const lines = titanV24.split('\n');
+            const lines = titanV25.split('\n');
             document.getElementById('linesCount').innerText = `Lines: ${lines.length}`;
 
             const highlighted = lines.map((line, index) => {
@@ -244,7 +584,7 @@ exit 0
                 } else {
                     formattedLine = formattedLine
                         .replace(/\b(if|then|else|fi|for|in|do|done|exit|while|case|esac|function)\b/g, '<span class="syntax-keyword">$1</span>')
-                        .replace(/\b(echo|pm|am|cmd|find|settings|grep|id|tr|read)\b/g, '<span class="syntax-func">$1</span>')
+                        .replace(/\b(echo|pm|am|cmd|find|settings|grep|id|tr|read|du|dumpsys|getprop|awk|df|sort|head|sed)\b/g, '<span class="syntax-func">$1</span>')
                         .replace(/"([^"]*)"/g, '<span class="syntax-string">"$1"</span>')
                         .replace(/'([^']*)'/g, '<span class="syntax-string">\'$1\'</span>');
                 }
@@ -277,7 +617,7 @@ exit 0
         }
 
         function copyRaw() {
-            copyText(titanV24, "SCRIPT COMPLETO COPIADO");
+            copyText(titanV25, "SCRIPT COMPLETO COPIADO");
         }
 
         // Base64 robusto (TextEncoder + chunk)
@@ -296,10 +636,10 @@ exit 0
         // - decodifica usando 'base64 -d' o 'toybox base64 -d' (fallback)
         // - ejecuta
         function copyOneLiner() {
-            const b64 = base64FromUtf8(titanV24);
+            const b64 = base64FromUtf8(titanV25);
 
             const oneLiner =
-`adb shell "TMP=/data/local/tmp/titan_v24_no_root.sh; B=/data/local/tmp/titan_v24_no_root.b64; echo '${b64}' > \\$B; (base64 -d \\$B 2>/dev/null || toybox base64 -d \\$B 2>/dev/null) > \\$TMP; chmod 755 \\$TMP; sh \\$TMP; rc=\\$?; rm -f \\$TMP \\$B; exit \\$rc"`;
+`adb shell "TMP=/data/local/tmp/titan_v25_pro_no_root.sh; B=/data/local/tmp/titan_v25_pro_no_root.b64; echo '${b64}' > \\$B; (base64 -d \\$B 2>/dev/null || toybox base64 -d \\$B 2>/dev/null) > \\$TMP; chmod 755 \\$TMP; sh \\$TMP; rc=\\$?; rm -f \\$TMP \\$B; exit \\$rc"`;
 
             copyText(oneLiner, "COMANDO AUTO-RUN ADB COPIADO");
         }
