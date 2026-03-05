@@ -1,116 +1,114 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TITAN v27 ULTRA PRO - Optimización EXTREMA NO-ROOT para Android (ADB)">
-    <title>TITAN v27 ULTRA PRO - Nuclear Android Optimizer (NO-ROOT)</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TITAN v27 ULTRA PRO - Optimización EXTREMA NO-ROOT para Android (ADB)" />
+  <title>TITAN v27 ULTRA PRO - Nuclear Android Optimizer (NO-ROOT)</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
-                    colors: {
-                        god: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 900: '#78350f', dark: '#010101' }
-                    }
-                }
-            }
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+          colors: {
+            god: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 900: '#78350f', dark: '#010101' }
+          }
         }
-    </script>
+      }
+    }
+  </script>
 
-    <style>
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 3px; }
-        .glass { background: rgba(8, 8, 8, 0.98); backdrop-filter: blur(20px); border: 1px solid rgba(245, 158, 11, 0.25); }
-        .crt::before {
-            content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%),
-                        linear-gradient(90deg, rgba(255, 200, 0, 0.03), rgba(0, 0, 0, 0.01), rgba(255, 200, 0, 0.03));
-            z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none;
-        }
-        .syntax-comment { color: #6b7280; font-style: italic; }
-        .syntax-keyword { color: #ef4444; font-weight: bold; }
-        .syntax-string { color: #fbbf24; }
-        .syntax-func { color: #10b981; font-weight: bold; }
-        .line-num { color: #374151; display: inline-block; width: 35px; text-align: right; margin-right: 12px; user-select: none; }
-    </style>
+  <style>
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 3px; }
+    .glass { background: rgba(8, 8, 8, 0.98); backdrop-filter: blur(20px); border: 1px solid rgba(245, 158, 11, 0.25); }
+    .crt::before {
+      content: " "; display: block; position: absolute; inset: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%),
+                  linear-gradient(90deg, rgba(255, 200, 0, 0.03), rgba(0, 0, 0, 0.01), rgba(255, 200, 0, 0.03));
+      z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none;
+    }
+    .line-num { color: #374151; display: inline-block; width: 44px; text-align: right; margin-right: 12px; user-select: none; }
+    mark { border-radius: 4px; }
+  </style>
 </head>
 
 <body class="bg-god-dark text-gray-200 antialiased min-h-screen flex flex-col overflow-hidden">
+  <div class="relative z-10 flex flex-col h-screen max-w-7xl mx-auto p-4 lg:p-6 w-full">
 
-    <div class="relative z-10 flex flex-col h-screen max-w-7xl mx-auto p-4 lg:p-6 w-full">
-
-        <header class="flex flex-col lg:flex-row justify-between items-center mb-6 gap-6">
-            <div class="flex items-center gap-5">
-                <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-god-500 to-orange-600 flex items-center justify-center shadow-2xl border-2 border-god-400/50">
-                    <i class="ph-fill ph-lightning text-black text-3xl"></i>
-                </div>
-                <div>
-                    <h1 class="text-4xl lg:text-5xl font-black tracking-tight text-white font-mono uppercase">
-                        TITAN <span class="text-god-500">v27</span>
-                    </h1>
-                    <div class="flex items-center gap-3 mt-2">
-                        <span class="px-3 py-0.5 bg-god-500 text-black text-[10px] font-bold font-mono rounded">ULTRA PRO</span>
-                        <span class="text-xs text-god-400 font-mono hidden sm:inline">ANDROID ADB SAFE (NO-ROOT) - EXTREME FLUIDITY</span>
-                    </div>
-                </div>
-            </div>
-            <div class="flex gap-3">
-                <button onclick="copyRaw()" class="flex items-center gap-2 px-5 py-3 bg-white/5 text-white border border-white/10 font-bold text-xs uppercase hover:bg-white/10 transition-all rounded">
-                    <i class="ph-bold ph-copy"></i> Copiar Script
-                </button>
-                <button onclick="copyOneLiner()" class="flex items-center gap-2 px-6 py-3 bg-god-500 text-black font-bold text-xs uppercase hover:bg-god-400 transition-all shadow-lg shadow-god-500/20 rounded">
-                    <i class="ph-bold ph-terminal"></i> AUTO-RUN ADB
-                </button>
-            </div>
-        </header>
-
-        <div class="glass rounded-xl p-3 border border-god-500/20 flex flex-col lg:flex-row gap-4 items-center justify-between mb-4">
-            <div class="relative w-full lg:w-96">
-                <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-god-400"></i>
-                <input type="text" id="searchInput" oninput="highlightSearch()"
-                    placeholder="Buscar (ultra, ram, fluidity, compile, updates, gpu, touch)..."
-                    class="w-full bg-black/50 border border-god-500/30 text-xs font-mono pl-10 pr-4 py-2.5 outline-none focus:border-god-500 text-white rounded">
-            </div>
-            <div class="flex gap-2 text-[10px] font-mono text-god-400">
-                <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10">ULTRA OPS</span>
-                <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10 uppercase">No-Root (ADB)</span>
-                <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">v27 ULTRA</span>
-            </div>
+    <header class="flex flex-col lg:flex-row justify-between items-center mb-6 gap-6">
+      <div class="flex items-center gap-5">
+        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-god-500 to-orange-600 flex items-center justify-center shadow-2xl border-2 border-god-400/50">
+          <i class="ph-fill ph-lightning text-black text-3xl"></i>
         </div>
-
-        <div class="flex-1 relative glass rounded-xl overflow-hidden bg-black crt border border-god-500/10">
-            <div class="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur border border-god-500/40 rounded px-3 py-1.5 flex items-center gap-2">
-                <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_v27_ultra_pro_no_root_adb.sh</span>
-            </div>
-            <div class="absolute inset-0 overflow-auto p-4 lg:p-6" id="codeContainer">
-                <pre class="font-mono text-[12px] leading-relaxed"><code id="codeBlock" class="block min-w-max"></code></pre>
-            </div>
+        <div>
+          <h1 class="text-4xl lg:text-5xl font-black tracking-tight text-white font-mono uppercase">
+            TITAN <span class="text-god-500">v27</span>
+          </h1>
+          <div class="flex items-center gap-3 mt-2">
+            <span class="px-3 py-0.5 bg-god-500 text-black text-[10px] font-bold font-mono rounded">ULTRA PRO</span>
+            <span class="text-xs text-god-400 font-mono hidden sm:inline">ANDROID ADB SAFE (NO-ROOT) - EXTREME FLUIDITY</span>
+          </div>
         </div>
+      </div>
 
-        <footer class="mt-4 flex justify-between items-center text-[10px] text-god-400 font-mono uppercase tracking-tighter opacity-60">
-            <span>⚡ TITAN v27 ULTRA ENGINE [EXTREME_NO_ROOT] - Anim 0.1x | RAM Critical | GPU Tweaks</span>
-            <span id="linesCount">Lines: 0</span>
-        </footer>
+      <div class="flex gap-3">
+        <button onclick="copyRaw()" class="flex items-center gap-2 px-5 py-3 bg-white/5 text-white border border-white/10 font-bold text-xs uppercase hover:bg-white/10 transition-all rounded">
+          <i class="ph-bold ph-copy"></i> Copiar Script
+        </button>
+        <button onclick="copyOneLiner()" class="flex items-center gap-2 px-6 py-3 bg-god-500 text-black font-bold text-xs uppercase hover:bg-god-400 transition-all shadow-lg shadow-god-500/20 rounded">
+          <i class="ph-bold ph-terminal"></i> AUTO-RUN ADB
+        </button>
+      </div>
+    </header>
+
+    <div class="glass rounded-xl p-3 border border-god-500/20 flex flex-col lg:flex-row gap-4 items-center justify-between mb-4">
+      <div class="relative w-full lg:w-96">
+        <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-god-400"></i>
+        <input type="text" id="searchInput" oninput="highlightSearch()"
+          placeholder="Buscar (ultra, ram, fluidity, compile, updates, gpu, touch)..."
+          class="w-full bg-black/50 border border-god-500/30 text-xs font-mono pl-10 pr-4 py-2.5 outline-none focus:border-god-500 text-white rounded">
+      </div>
+      <div class="flex gap-2 text-[10px] font-mono text-god-400">
+        <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10">ULTRA OPS</span>
+        <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10 uppercase">No-Root (ADB)</span>
+        <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">v27 ULTRA</span>
+      </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none transition-all duration-300 z-50">
-        <div class="bg-white text-black px-6 py-3 font-bold font-mono text-xs shadow-2xl flex items-center gap-3 rounded-full border border-god-500">
-            <i class="ph-bold ph-check-circle text-lg"></i>
-            <span id="toastText">COMMAND COPIED TO CLIPBOARD</span>
-        </div>
+    <div class="flex-1 relative glass rounded-xl overflow-hidden bg-black crt border border-god-500/10">
+      <div class="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur border border-god-500/40 rounded px-3 py-1.5 flex items-center gap-2">
+        <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+        <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_v27_ultra_pro_no_root_adb.sh</span>
+      </div>
+
+      <div class="absolute inset-0 overflow-auto p-4 lg:p-6" id="codeContainer">
+        <pre class="font-mono text-[12px] leading-relaxed"><code id="codeBlock" class="block min-w-max"></code></pre>
+      </div>
     </div>
 
-    <!-- ✅ TITAN v27 ULTRA PRO Script RAW -->
-    <script id="titanScript" type="text/plain">#!/system/bin/sh
+    <footer class="mt-4 flex justify-between items-center text-[10px] text-god-400 font-mono uppercase tracking-tighter opacity-60">
+      <span>⚡ TITAN v27 ULTRA ENGINE [EXTREME_NO_ROOT] - Anim 0.1x | RAM Critical | GPU Tweaks</span>
+      <span id="linesCount">Lines: 0</span>
+    </footer>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none transition-all duration-300 z-50">
+    <div class="bg-white text-black px-6 py-3 font-bold font-mono text-xs shadow-2xl flex items-center gap-3 rounded-full border border-god-500">
+      <i class="ph-bold ph-check-circle text-lg"></i>
+      <span id="toastText">COMMAND COPIED TO CLIPBOARD</span>
+    </div>
+  </div>
+
+  <!-- ✅ TITAN v27 ULTRA PRO Script RAW -->
+  <script id="titanScript" type="text/plain">#!/system/bin/sh
 #===============================================================================
 # TITAN v27 ULTRA PRO (NO-ROOT / ADB SAFE) - OPTIMIZADO EXTREMO
 # Mejoras vs v26:
@@ -221,30 +219,29 @@ exists() { command -v "$1" >/dev/null 2>&1; }
 getprop_safe() { getprop "$1" 2>/dev/null; }
 get_sdk() { getprop_safe ro.build.version.sdk; }
 human_kb() { awk -v k="$1" 'BEGIN{printf "%.1f MB", k/1024}'; }
-avail_kb_path() { df -k "$p" 2>/dev/null | awk 'NR==2{print $4}'; }  # Fix: p="$1"
+avail_kb_path() { p="$1"; df -k "$p" 2>/dev/null | awk 'NR==2{print $4}'; }
 sd_avail_kb() { df -k /sdcard 2>/dev/null | awk 'NR==2{print $4}'; }
 confirm_or_exit() {
   [ "$ASK_CONFIRM" = "0" ] || [ "$DRY_RUN" = "1" ] && return 0
   echo -e "${Y}${1} (y/N)? ${NC}"; read ans
   [ "$ans" = "y" ] || [ "$ans" = "Y" ] || { say "${Y}[!] Cancelado.${NC}"; exit 0; }
 }
-rotate_logs() {  # Mejorado para más rotaciones
+rotate_logs() {
   i="$LOG_ROTATE"; while [ "$i" -ge 1 ]; do
-    prev=$((i-1)); [ "$prev" -eq 0 ] && [ -f "$LOGFILE" ] && mv -f "$LOGFILE" "${LOGFILE}.${i}"
+    prev=$((i-1))
+    [ "$prev" -eq 0 ] && [ -f "$LOGFILE" ] && mv -f "$LOGFILE" "${LOGFILE}.${i}"
     [ -f "${LOGFILE}.${prev}" ] && mv -f "${LOGFILE}.${prev}" "${LOGFILE}.${i}"
     i=$((i-1))
   done
 }
-# ... (mantener file_size_bytes, save_state, load_state, trap_handler, battery_status, is_charging)
 
 # ---------------------------
-# Banner actualizado
+# Banner actualizado (placeholders)
 # ---------------------------
 rotate_logs; log_init
-SDK="$(get_sdk)"; MODEL="$(getprop_safe ro.product.model)"; BAT="$(battery_status)"
-say "${Y} ████████╗... (mismo banner) ${C}[TITAN v27 ULTRA PRO]${NC}"
+SDK="$(get_sdk)"; MODEL="$(getprop_safe ro.product.model)"
+say "${Y} ████████╗ ... ${C}[TITAN v27 ULTRA PRO]${NC}"
 say "${P}[i] Perfil: ${PROFILE} | Ultra tweaks: ${TITAN_ULTRA_TWEAKS}${NC}"
-# ... (espacio antes/después)
 
 #===============================================================================
 # FASE NUEVA: CHECK UPDATES (no actualiza auto, chequea y lista)
@@ -276,26 +273,23 @@ ${P}[🧪] DIAGNÓSTICO ULTRA${NC}"
 }
 
 #===============================================================================
-# SAFE CLEAN ULTRA
+# SAFE CLEAN ULTRA (placeholders list_download_junk/sum_bytes_from_stdin/bytes_to_mb)
 #===============================================================================
 safe_clean_ultra() {
   say "
 ${P}[🧹] FASE 1: CLEAN ULTRA${NC}"
   run "pm trim-caches 999G" && say "${G}[✓] Trim-caches.${NC}"
-  
-  # Download + más filtros
+
   CAND_COUNT="$(list_download_junk | wc -l)"; EST_BYTES="$(list_download_junk | sum_bytes_from_stdin)"
   say "${C}Candidatos: ${CAND_COUNT} ($(bytes_to_mb $EST_BYTES))${NC}"
-  [ "$PLAN_ONLY" != "1" ] && confirm_or_exit "¿Borrar Download junk?" && run "find /sdcard/Download -maxdepth $DOWNLOAD_MAXDEPTH -type f ( $(echo $JUNK_EXTS | sed 's/ / -o -name *./g' | sed 's/^/ -name *./') ) -mtime +$DAYS_OLD -size +${MIN_SIZE_KB}k -delete"
-  
-  # Más dirs
+
+  run "find /sdcard/Download -maxdepth $DOWNLOAD_MAXDEPTH -type f \\( $(echo $JUNK_EXTS | sed 's/ / -o -name *./g' | sed 's/^/ -name *./') \\) -mtime +$DAYS_OLD -size +${MIN_SIZE_KB}k -delete"
+
   echo "$SDCARD_TRASH_DIRS" | while read d; do
     [ -e "$d" ] && run "find '$d' -type f -mtime +$DAYS_OLD -size +${MIN_SIZE_KB}k -delete" && say "${G}[✓] $d${NC}"
   done
-  
-  # App caches individuales (seguro)
+
   run "pm list packages | while read pkg; do pm trim-caches $pkg 1G 2>/dev/null; done" && say "${G}[✓] App caches.${NC}"
-  
   say "${G}[✓] CLEAN ULTRA.${NC}"
 }
 
@@ -313,20 +307,17 @@ ${P}[💾] FASE 2: RAM ULTRA${NC}"
 }
 
 #===============================================================================
-# FLUIDEZ ULTRA (expandido)
+# FLUIDEZ ULTRA
 #===============================================================================
 fluidity_ultra() {
   say "
 ${P}[⚡] FASE 3: FLUIDEZ ULTRA${NC}"
-  save_state
-  
-  # Animaciones granulares
+
   run "settings put global window_animation_scale $ANIM_SCALE"
   run "settings put global transition_animation_scale $ANIM_SCALE"
   run "settings put global animator_duration_scale $ANIM_SCALE"
   say "${G}[✓] Anim: ${ANIM_SCALE}x${NC}"
-  
-  # Touch tweaks
+
   [ "$TITAN_ULTRA_TWEAKS" = "1" ] && {
     run "settings put secure long_press_timeout $TOUCH_TIMEOUT"
     run "settings put secure multi_press_timeout $TOUCH_TIMEOUT"
@@ -338,7 +329,7 @@ ${P}[⚡] FASE 3: FLUIDEZ ULTRA${NC}"
     run "setprop debug.hwc.force_gpu_vsync 1"
     say "${G}[✓] Touch/GPU tweaks.${NC}"
   }
-  
+
   say "${G}[✓] Fluidez ULTRA.${NC}"
 }
 
@@ -348,7 +339,7 @@ ${P}[⚡] FASE 3: FLUIDEZ ULTRA${NC}"
 maintenance_ultra() {
   say "
 ${P}[🔧] FASE 4: MAINT ULTRA${NC}"
-  if [ "$COMPILE_MODE" != "none" ] && exists "cmd package"; then
+  if [ "$COMPILE_MODE" != "none" ] && exists "cmd"; then
     if [ "$COMPILE_MODE" = "all" ]; then
       confirm_or_exit "Compilar ALL (lento)?"; run "cmd package compile -m speed-profile -f all"
     else
@@ -358,16 +349,14 @@ ${P}[🔧] FASE 4: MAINT ULTRA${NC}"
     fi
     say "${G}[✓] Compilación.${NC}"
   fi
-  
-  # Dalvik/OTA clean simulado
+
   run "pm dexopt-job" 2>/dev/null && say "${G}[✓] Dexopt.${NC}"
   say "${C}[i] Chequea Ajustes > Sistema > Actualización para OTA.${NC}"
-  
   say "${G}[✓] Mantenimiento.${NC}"
 }
 
 #===============================================================================
-# MAIN ULTRA
+# MAIN ULTRA (placeholders restore_settings)
 #===============================================================================
 if [ "$MODE" = "restore" ]; then restore_settings; exit 0; fi
 
@@ -378,12 +367,109 @@ ram_ultra
 fluidity_ultra
 maintenance_ultra
 
-# Reporte final
 say "
 ${G}[🎉] TITAN v27 ULTRA: COMPLETADO! Reinicia para max fluidez.${NC}"
 say "${C}[i] --restore para revertir. Log: $LOGFILE${NC}"
 exit 0
-    </script>
+</script>
 
+  <!-- ✅ JS de render/copy/search (CORREGIDO) -->
+  <script>
+    const titanEl = document.getElementById('titanScript');
+    const codeEl = document.getElementById('codeBlock');
+    const linesEl = document.getElementById('linesCount');
+    const toastEl = document.getElementById('toast');
+    const toastTextEl = document.getElementById('toastText');
+    const searchInputEl = document.getElementById('searchInput');
+
+    function getRawScript() {
+      // textContent es clave para type="text/plain"
+      return (titanEl?.textContent || '').replace(/\r\n/g, '\n').trimEnd();
+    }
+
+    function escapeHtml(s) {
+      return s
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function showToast(msg) {
+      toastTextEl.textContent = msg;
+      toastEl.classList.remove('opacity-0', 'pointer-events-none');
+      toastEl.classList.add('opacity-100');
+      clearTimeout(toastEl._t);
+      toastEl._t = setTimeout(() => {
+        toastEl.classList.add('opacity-0', 'pointer-events-none');
+        toastEl.classList.remove('opacity-100');
+      }, 1200);
+    }
+
+    async function copyText(txt, msg) {
+      if (!txt) return showToast('NO HAY TEXTO PARA COPIAR');
+      try {
+        await navigator.clipboard.writeText(txt);
+        showToast(msg || 'COPIADO');
+      } catch {
+        // fallback
+        const ta = document.createElement('textarea');
+        ta.value = txt;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(msg || 'COPIADO');
+      }
+    }
+
+    function render(raw, query = '') {
+      const lines = raw.split('\n');
+      linesEl.textContent = `Lines: ${lines.length}`;
+
+      const q = (query || '').trim();
+      const qRe = q ? new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi') : null;
+
+      const html = lines.map((line, i) => {
+        let safe = escapeHtml(line);
+        if (qRe) {
+          safe = safe.replace(qRe, m => `<mark class="bg-god-500/30 text-god-400 px-0.5">${m}</mark>`);
+        }
+        return `<span class="line-num">${String(i + 1).padStart(3, ' ')}</span>${safe}`;
+      }).join('\n');
+
+      codeEl.innerHTML = html;
+    }
+
+    // Expuestas para tus botones
+    window.copyRaw = function () {
+      const raw = getRawScript();
+      copyText(raw, 'SCRIPT COPIADO');
+    };
+
+    window.copyOneLiner = function () {
+      // One-liner recomendado (ajustá el nombre si lo guardás distinto)
+      const cmd = `adb shell sh /sdcard/Download/titan_v27.sh --ultra`;
+      copyText(cmd, 'COMANDO ADB COPIADO');
+    };
+
+    window.highlightSearch = function () {
+      render(getRawScript(), searchInputEl?.value || '');
+    };
+
+    // Render inicial
+    (function init() {
+      const raw = getRawScript();
+      if (!raw) {
+        codeEl.textContent = '⚠️ No se encontró contenido en #titanScript (vacío).';
+        linesEl.textContent = 'Lines: 0';
+        return;
+      }
+      render(raw, '');
+    })();
+  </script>
 </body>
 </html>
