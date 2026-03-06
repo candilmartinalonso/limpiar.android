@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="TITAN v29 GOD MODE - Optimización EXTREMA NO-ROOT para Android (ADB) + WhatsApp SAFE" />
-  <title>TITAN v29 GOD MODE - Nuclear Android Optimizer (NO-ROOT)</title>
+  <meta name="description" content="TITAN v33 EXTREME FLUIDITY - Optimización EXTREMA NO-ROOT para Android (ADB) + WhatsApp SAFE" />
+  <title>TITAN v33 EXTREME FLUIDITY - Android Optimizer (NO-ROOT)</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -49,10 +49,10 @@
         </div>
         <div>
           <h1 class="text-4xl lg:text-5xl font-black tracking-tight text-white font-mono uppercase">
-            TITAN <span class="text-god-500">v29</span>
+            TITAN <span class="text-god-500">v33</span>
           </h1>
           <div class="flex items-center gap-3 mt-2">
-            <span class="px-3 py-0.5 bg-god-500 text-black text-[10px] font-bold font-mono rounded">GOD MODE</span>
+            <span class="px-3 py-0.5 bg-god-500 text-black text-[10px] font-bold font-mono rounded">EXTREME FLUIDITY</span>
             <span class="text-xs text-god-400 font-mono hidden sm:inline">ANDROID ADB SAFE (NO-ROOT) - EXTREME FLUIDITY + WHATSAPP SAFE</span>
           </div>
         </div>
@@ -72,20 +72,20 @@
       <div class="relative w-full lg:w-96">
         <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-god-400"></i>
         <input type="text" id="searchInput" oninput="highlightSearch()"
-          placeholder="Buscar (god, ram, fluidity, compile, updates, gpu, touch, whatsapp)..."
+          placeholder="Buscar (extreme, ram, fluidity, compile, dexopt, cache, whatsapp)..."
           class="w-full bg-black/50 border border-god-500/30 text-xs font-mono pl-10 pr-4 py-2.5 outline-none focus:border-god-500 text-white rounded">
       </div>
       <div class="flex gap-2 text-[10px] font-mono text-god-400">
-        <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10">GOD OPS</span>
+        <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10">EXTREME OPS</span>
         <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10 uppercase">No-Root (ADB)</span>
-        <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">v29 GOD</span>
+        <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">v33 EXTREME</span>
       </div>
     </div>
 
     <div class="flex-1 relative glass rounded-xl overflow-hidden bg-black crt border border-god-500/10">
       <div class="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur border border-god-500/40 rounded px-3 py-1.5 flex items-center gap-2">
         <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-        <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_v29_god_mode_no_root_adb.sh</span>
+        <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_v33_extreme_no_root_adb.sh</span>
       </div>
 
       <div class="absolute inset-0 overflow-auto p-4 lg:p-6" id="codeContainer">
@@ -94,12 +94,11 @@
     </div>
 
     <footer class="mt-4 flex justify-between items-center text-[10px] text-god-400 font-mono uppercase tracking-tighter opacity-60">
-      <span>⚡ TITAN v29 GOD MODE [EXTREME_NO_ROOT] - Anim 0.05x | RAM GOD | AUTO-UI UPDATES | WHATSAPP SAFE</span>
+      <span>⚡ TITAN v33 EXTREME FLUIDITY [EXTREME_NO_ROOT] - CLEANUP | DEXOPT | WHATSAPP SAFE</span>
       <span id="linesCount">Lines: 0</span>
     </footer>
   </div>
 
-  <!-- Toast Notification -->
   <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none transition-all duration-300 z-50">
     <div class="bg-white text-black px-6 py-3 font-bold font-mono text-xs shadow-2xl flex items-center gap-3 rounded-full border border-god-500">
       <i class="ph-bold ph-check-circle text-lg"></i>
@@ -107,469 +106,918 @@
     </div>
   </div>
 
-  <!-- ✅ TITAN v29 GOD MODE Script RAW (WhatsApp SAFE) -->
   <script id="titanScript" type="text/plain">#!/system/bin/sh
-#===============================================================================
-# TITAN v29 GOD MODE (NO-ROOT / ADB SAFE) - EXTREME OPTIMIZER (AUTO-YES)
-# - Limpieza brutal /sdcard + caches típicos (SIN ROOT)
-# - Fluidez máxima (anim/touch/perf best-effort)
-# - RAM agresiva / límites background (puede afectar multitarea/notifs)
-# - Doze/idle agresivo (best-effort)
-# - Compilación/dexopt (best-effort)
-# - Update Hub: Play Store + OTA (AUTO-UI best-effort, Android en Español)
+# =============================================================================
+# TITAN v33 EXTREME FLUIDITY EDITION (NO-ROOT / ADB SAFE)
+# -----------------------------------------------------------------------------
+# Objetivo:
+# - Maximizar fluidez real sin root
+# - Limpiar profundamente residuos comunes en /sdcard
+# - Aplicar ajustes perceptibles de respuesta
+# - Ejecutar mantenimiento y dexopt best-effort
+# - Hacer alivio de memoria por perfil
+# - Mantener exclusión dura para WhatsApp
+# - Permitir restore completo de settings tocados
 #
-# 🔒 WHATSAPP SAFE GUARANTEE:
-#   NO BORRA NADA de WhatsApp (enviados/recibidos/caches/media):
-#   - /sdcard/WhatsApp/**
-#   - /sdcard/Android/media/com.whatsapp/**
-#   - /sdcard/Android/data/com.whatsapp/**
+# Uso:
+#   adb shell sh /sdcard/Download/titan_v33.sh
+#   adb shell sh /sdcard/Download/titan_v33.sh --profile safe
+#   adb shell sh /sdcard/Download/titan_v33.sh --profile balanced
+#   adb shell sh /sdcard/Download/titan_v33.sh --profile max
+#   adb shell sh /sdcard/Download/titan_v33.sh --profile extreme
+#   adb shell sh /sdcard/Download/titan_v33.sh --dry-run
+#   adb shell sh /sdcard/Download/titan_v33.sh --restore
+#   adb shell sh /sdcard/Download/titan_v33.sh --dexopt-all
+#   adb shell sh /sdcard/Download/titan_v33.sh --force-heavy
+#   adb shell sh /sdcard/Download/titan_v33.sh --disable-haptics
 #
-# Uso recomendado:
-#   adb shell sh /sdcard/Download/titan_v29.sh
-#
-# Restore (revierte settings que tocamos):
-#   adb shell sh /sdcard/Download/titan_v29.sh --restore
-#===============================================================================
+# Notas:
+# - NO usa root
+# - NO promete OTA silenciosa universal
+# - Muchas acciones dependen del OEM / versión de Android
+# - NO borra contenido de WhatsApp:
+#     /sdcard/WhatsApp/**
+#     /sdcard/Android/media/com.whatsapp/**
+#     /sdcard/Android/data/com.whatsapp/**
+# =============================================================================
 
-# ---------------------------
-# Colores / Config
-# ---------------------------
-R='\u001B[0;31m'; G='\u001B[0;32m'; Y='\u001B[1;33m'; C='\u001B[0;36m'; P='\u001B[0;35m'; B='\u001B[0;34m'; NC='\u001B[0m'
+# -----------------------------------------------------------------------------
+# Colores
+# -----------------------------------------------------------------------------
+R='\033[0;31m'
+G='\033[0;32m'
+Y='\033[1;33m'
+C='\033[0;36m'
+P='\033[0;35m'
+B='\033[0;34m'
+NC='\033[0m'
 
-# 100% AUTO
+# -----------------------------------------------------------------------------
+# Configuración base
+# -----------------------------------------------------------------------------
 DRY_RUN=0
-ASK_CONFIRM=0
 VERBOSE=1
 MODE="run"
+PROFILE="balanced"
 
-# Perfil GOD (máximo)
-PROFILE="god"
-PLAN_ONLY=0
-AUTO_UI_UPDATES=1
+AUTO_TRIM_CACHES=1
+AUTO_DEXOPT=1
+AUTO_DROP_CACHES=0
+AUTO_DISABLE_HAPTICS=0
+AUTO_REBOOT_HINT=1
+AUTO_FIXED_PERF_TEMPORARY=1
+AUTO_CLEAR_CLIPBOARD=0
+AUTO_FORCE_STOP=0
+AUTO_PRUNE_EMPTY_DIRS=1
+AUTO_TRIM_LOGFILE=1
+AUTO_CLEAR_BUGREPORTS=1
+AUTO_CLEAR_TOMBSTONES=1
+AUTO_CLEAR_EMPTY_FILES=1
+AUTO_CLEAR_OLD_INSTALLERS=1
+AUTO_CLEAR_DOWNLOAD_JUNK=1
+AUTO_CLEAR_MEDIA_THUMBS=1
+AUTO_CLEAR_TMP_DIRS=1
+AUTO_CLEAR_LOG_DIRS=1
+AUTO_CLEAR_APP_CACHE_DIRS=1
 
-# Tuning GOD
-DAYS_OLD=1
-MIN_SIZE_KB=4
+DEXOPT_ALL=0
+FORCE_HEAVY_TASKS=0
+FORCE_STOP_MAX_COUNT=10
+FORCE_STOP_NONCRITICAL=0
+
+DAYS_OLD=2
+MIN_SIZE_KB=8
 DOWNLOAD_MAXDEPTH=4
+MAX_LOG_SIZE_MB=24
+BATTERY_MIN_FOR_HEAVY=35
+TEMP_MAX_C=43
 
-BG_LIMIT=1
-ANIM_SCALE="0.05"
-TOUCH_TIMEOUT=80
-POINTER_SPEED="7"
-FONT_SCALE="0.82"
+ANIM_SCALE="0.35"
+TOUCH_TIMEOUT="110"
+POINTER_SPEED="5"
+FONT_SCALE=""
+BG_LIMIT=""
+MEDIA_SCAN_HINT=1
 
-TITAN_AGGRESSIVE_RAM=1
-TITAN_ULTRA_TWEAKS=1
-TITAN_FORCE_DOZE=1
-TITAN_KILL_BG_APPS=1
-TITAN_COMPILE=1
-COMPILE_MODE="all"          # all = heavy
+LOGDIR="/sdcard/Download"
+LOGFILE="${LOGDIR}/titan_v33.log"
+STATEFILE="${LOGDIR}/titan_state_v33.conf"
 
-# Limpieza targets
-JUNK_EXTS="tmp log bak old ~ swp part crdownload dmp sav shm sql journal lock cache"
-SDCARD_TRASH_DIRS="
+# -----------------------------------------------------------------------------
+# Protección WhatsApp
+# -----------------------------------------------------------------------------
+WHATSAPP_EXCLUDE_1="/sdcard/WhatsApp"
+WHATSAPP_EXCLUDE_2="/sdcard/Android/media/com.whatsapp"
+WHATSAPP_EXCLUDE_3="/sdcard/Android/data/com.whatsapp"
+
+# -----------------------------------------------------------------------------
+# Basura común
+# -----------------------------------------------------------------------------
+JUNK_EXTS="tmp temp log bak old ~ swp part crdownload dmp sav shm journal lock trace stacktrace tombstone tombstones"
+INSTALLER_EXTS="apk apks xapk apkm"
+CACHE_NAMES="cache code_cache tmp temp logs log bugreport bugreports crash tombstone tombstones"
+THUMB_PATTERNS=".thumbnails .thumbnail thumbs thumbcache"
+
+TRASH_GLOBS="
 /sdcard/Download
 /sdcard/DCIM/.thumbnails
 /sdcard/Pictures/.thumbnails
 /sdcard/Movies/.thumbnails
-/sdcard/Android/media/*/*/cache
-/sdcard/Android/media/*/*/tmp
+/sdcard/MIUI/debug_log
+/sdcard/tencent/MicroMsg/CheckResUpdate
+/sdcard/bugreports
+/sdcard/Telegram/Telegram Images/.cache
+/sdcard/Telegram/Telegram Video/.cache
+/sdcard/Telegram/Telegram Documents/.cache
 /sdcard/Android/data/*/cache
+/sdcard/Android/data/*/code_cache
 /sdcard/Android/data/*/files/cache
+/sdcard/Android/data/*/files/code_cache
 /sdcard/Android/data/*/files/tmp
 /sdcard/Android/data/*/files/log*
-/sdcard/Telegram/Telegram Video/.cache
-/sdcard/Telegram/Telegram Images/.cache
-/sdcard/Telegram/Telegram Documents/.cache
+/sdcard/Android/media/*/*/cache
+/sdcard/Android/media/*/*/tmp
+/sdcard/Android/media/*/*/log*
 /sdcard/LOST.DIR
 "
 
-# 🔒 EXCLUSIONES ABSOLUTAS (WhatsApp)
-WHATSAPP_EXCLUDE_DIRS="
-/sdcard/WhatsApp
-/sdcard/Android/media/com.whatsapp
-/sdcard/Android/data/com.whatsapp
-"
+# -----------------------------------------------------------------------------
+# Helpers
+# -----------------------------------------------------------------------------
+strip_ansi() {
+  sed 's/\x1b\[[0-9;]*m//g'
+}
 
-# Logs
-LOGDIR="/sdcard/Download"
-LOGFILE="${LOGDIR}/titan_v29.log"
-STATEFILE="${LOGDIR}/titan_state_v29.conf"
-LOG_ROTATE=5
-UIXML="${LOGDIR}/titan_ui.xml"
+log_init() {
+  mkdir -p "$LOGDIR" 2>/dev/null
+  : > "$LOGFILE" 2>/dev/null
+}
 
-# ---------------------------
+log() {
+  echo "$(date '+%F %T') | $*" >> "$LOGFILE" 2>/dev/null
+}
+
+say() {
+  if [ "$VERBOSE" = "1" ]; then
+    echo -e "$*"
+  fi
+  echo -e "$*" | strip_ansi | log
+}
+
+exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+run() {
+  if [ "$DRY_RUN" = "1" ]; then
+    say "${C}[dry] $*${NC}"
+    return 0
+  fi
+  sh -c "$*" >> "$LOGFILE" 2>&1
+  return $?
+}
+
+run_quiet() {
+  if [ "$DRY_RUN" = "1" ]; then
+    say "${C}[dry] $*${NC}"
+    return 0
+  fi
+  sh -c "$*" >/dev/null 2>&1
+  return $?
+}
+
+getprop_safe() {
+  getprop "$1" 2>/dev/null
+}
+
+settings_get_safe() {
+  ns="$1"
+  key="$2"
+  settings get "$ns" "$key" 2>/dev/null
+}
+
+settings_put_safe() {
+  ns="$1"
+  key="$2"
+  val="$3"
+  run "settings put $ns $key '$val'"
+}
+
+settings_delete_safe() {
+  ns="$1"
+  key="$2"
+  run "settings delete $ns $key" || true
+}
+
+sdk() { getprop_safe ro.build.version.sdk; }
+brand() { getprop_safe ro.product.brand; }
+model() { getprop_safe ro.product.model; }
+manufacturer() { getprop_safe ro.product.manufacturer; }
+release_ver() { getprop_safe ro.build.version.release; }
+secpatch() { getprop_safe ro.build.version.security_patch; }
+
+sd_avail_kb() {
+  df -k /sdcard 2>/dev/null | awk 'NR==2{print $4}'
+}
+
+sd_avail_bytes() {
+  kb="$(sd_avail_kb)"
+  [ -z "$kb" ] && kb=0
+  awk -v kb="$kb" 'BEGIN{print kb*1024}'
+}
+
+bytes_to_mb() {
+  b="$1"
+  [ -z "$b" ] && b=0
+  awk -v b="$b" 'BEGIN{printf "%.1f MB", b/1024/1024}'
+}
+
+bytes_to_gb() {
+  b="$1"
+  [ -z "$b" ] && b=0
+  awk -v b="$b" 'BEGIN{printf "%.2f GB", b/1024/1024/1024}'
+}
+
+sum_bytes_from_stdin() {
+  awk '{s+=$1} END{print s+0}'
+}
+
+file_size_mb() {
+  f="$1"
+  ls -l "$f" 2>/dev/null | awk '{printf "%.1f", $5/1024/1024}'
+}
+
+battery_level() {
+  dumpsys battery 2>/dev/null | awk -F': ' '/level:/{print $2; exit}'
+}
+
+battery_temp_c() {
+  t="$(dumpsys battery 2>/dev/null | awk -F': ' '/temperature:/{print $2; exit}')"
+  [ -z "$t" ] && t=0
+  awk -v x="$t" 'BEGIN{printf "%.1f", x/10}'
+}
+
+battery_status_text() {
+  dumpsys battery 2>/dev/null | awk -F': ' '/status:/{print $2; exit}'
+}
+
+rotate_log_if_needed() {
+  [ "$AUTO_TRIM_LOGFILE" = "1" ] || return 0
+  [ -f "$LOGFILE" ] || return 0
+  cur="$(file_size_mb "$LOGFILE")"
+  cur_int="$(echo "$cur" | awk -F. '{print $1}')"
+  [ -z "$cur_int" ] && cur_int=0
+  if [ "$cur_int" -ge "$MAX_LOG_SIZE_MB" ]; then
+    mv "$LOGFILE" "${LOGFILE}.old" 2>/dev/null
+    : > "$LOGFILE" 2>/dev/null
+  fi
+}
+
+is_whatsapp_path() {
+  p="$1"
+  case "$p" in
+    ${WHATSAPP_EXCLUDE_1}*|${WHATSAPP_EXCLUDE_2}*|${WHATSAPP_EXCLUDE_3}*)
+      return 0
+      ;;
+  esac
+  return 1
+}
+
+should_run_heavy_tasks() {
+  [ "$FORCE_HEAVY_TASKS" = "1" ] && return 0
+
+  lvl="$(battery_level)"
+  temp="$(battery_temp_c)"
+
+  [ -z "$lvl" ] && lvl=100
+  [ -z "$temp" ] && temp=0
+
+  temp_int="$(echo "$temp" | awk -F. '{print $1}')"
+  [ -z "$temp_int" ] && temp_int=0
+
+  if [ "$lvl" -lt "$BATTERY_MIN_FOR_HEAVY" ]; then
+    return 1
+  fi
+
+  if [ "$temp_int" -ge "$TEMP_MAX_C" ]; then
+    return 1
+  fi
+
+  return 0
+}
+
+with_fixed_perf_begin() {
+  [ "$AUTO_FIXED_PERF_TEMPORARY" = "1" ] || return 0
+  exists cmd || return 0
+  run_quiet "cmd power set-fixed-performance-mode-enabled true" || true
+}
+
+with_fixed_perf_end() {
+  [ "$AUTO_FIXED_PERF_TEMPORARY" = "1" ] || return 0
+  exists cmd || return 0
+  run_quiet "cmd power set-fixed-performance-mode-enabled false" || true
+}
+
+media_scan_hint() {
+  [ "$MEDIA_SCAN_HINT" = "1" ] || return 0
+  exists am || return 0
+  run_quiet "am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard" || true
+}
+
+cleanup_on_exit() {
+  with_fixed_perf_end
+  rotate_log_if_needed
+}
+trap cleanup_on_exit EXIT INT TERM
+
+# -----------------------------------------------------------------------------
 # Args
-# ---------------------------
-for arg in "$@"; do
-  case "$arg" in
+# -----------------------------------------------------------------------------
+while [ $# -gt 0 ]; do
+  case "$1" in
     --dry-run) DRY_RUN=1 ;;
-    --plan) PLAN_ONLY=1; DRY_RUN=1 ;;
     --quiet) VERBOSE=0 ;;
     --restore) MODE="restore" ;;
-    --no-ui-updates) AUTO_UI_UPDATES=0 ;;
-    --compile-none) COMPILE_MODE="none" ;;
-    --compile-smart) COMPILE_MODE="smart" ;;
-    --compile-all) COMPILE_MODE="all" ;;
+
+    --profile)
+      shift
+      PROFILE="$1"
+      ;;
+
+    --profile=safe) PROFILE="safe" ;;
+    --profile=balanced) PROFILE="balanced" ;;
+    --profile=max) PROFILE="max" ;;
+    --profile=extreme) PROFILE="extreme" ;;
+
+    --disable-haptics) AUTO_DISABLE_HAPTICS=1 ;;
+    --drop-caches) AUTO_DROP_CACHES=1 ;;
+    --no-dexopt) AUTO_DEXOPT=0 ;;
+    --no-trim-caches) AUTO_TRIM_CACHES=0 ;;
+    --dexopt-all) DEXOPT_ALL=1 ;;
+    --force-heavy) FORCE_HEAVY_TASKS=1 ;;
+    --clear-clipboard) AUTO_CLEAR_CLIPBOARD=1 ;;
   esac
+  shift
 done
 
-# ---------------------------
-# Helpers
-# ---------------------------
-strip_ansi() { sed 's/\u001B[[0-9;]*m//g'; }
-log_init() { : > "$LOGFILE" 2>/dev/null; }
-log() { echo "$(date '+%F %T') | $*" >> "$LOGFILE" 2>/dev/null; }
-say() { [ "$VERBOSE" = "1" ] && echo -e "$*"; echo -e "$*" | strip_ansi | log; }
-exists() { command -v "$1" >/dev/null 2>&1; }
-run() {
-  if [ "$DRY_RUN" = "1" ]; then say "${C}[dry] $*${NC}"; return 0; fi
-  sh -c "$*" >> "$LOGFILE" 2>&1; return $?
+# -----------------------------------------------------------------------------
+# Perfil
+# -----------------------------------------------------------------------------
+apply_profile() {
+  case "$PROFILE" in
+    safe)
+      ANIM_SCALE="0.50"
+      TOUCH_TIMEOUT="120"
+      POINTER_SPEED="4"
+      BG_LIMIT=""
+      FORCE_STOP_NONCRITICAL=0
+      FORCE_STOP_MAX_COUNT=0
+      DAYS_OLD=4
+      MIN_SIZE_KB=16
+      AUTO_DISABLE_HAPTICS=0
+      AUTO_FORCE_STOP=0
+      ;;
+    balanced)
+      ANIM_SCALE="0.35"
+      TOUCH_TIMEOUT="110"
+      POINTER_SPEED="5"
+      BG_LIMIT=""
+      FORCE_STOP_NONCRITICAL=0
+      FORCE_STOP_MAX_COUNT=0
+      DAYS_OLD=2
+      MIN_SIZE_KB=8
+      AUTO_DISABLE_HAPTICS=0
+      AUTO_FORCE_STOP=0
+      ;;
+    max)
+      ANIM_SCALE="0.25"
+      TOUCH_TIMEOUT="100"
+      POINTER_SPEED="6"
+      BG_LIMIT="4"
+      FORCE_STOP_NONCRITICAL=1
+      FORCE_STOP_MAX_COUNT=8
+      DAYS_OLD=2
+      MIN_SIZE_KB=4
+      AUTO_DISABLE_HAPTICS=0
+      AUTO_FORCE_STOP=1
+      ;;
+    extreme)
+      ANIM_SCALE="0.20"
+      TOUCH_TIMEOUT="90"
+      POINTER_SPEED="7"
+      BG_LIMIT="3"
+      FORCE_STOP_NONCRITICAL=1
+      FORCE_STOP_MAX_COUNT=16
+      DAYS_OLD=1
+      MIN_SIZE_KB=2
+      AUTO_DISABLE_HAPTICS=1
+      AUTO_FORCE_STOP=1
+      DEXOPT_ALL=1
+      ;;
+    *)
+      say "${Y}[!] Perfil inválido: ${PROFILE}. Usando balanced.${NC}"
+      PROFILE="balanced"
+      apply_profile
+      return
+      ;;
+  esac
 }
 
-# AUTO-YES: nunca pregunta, siempre sigue
-confirm_or_exit() { say "${C}[AUTO] $1 -> YES${NC}"; return 0; }
-
-rotate_logs() {
-  i="$LOG_ROTATE"
-  while [ "$i" -ge 1 ]; do
-    prev=$((i-1))
-    [ "$prev" -eq 0 ] && [ -f "$LOGFILE" ] && mv -f "$LOGFILE" "${LOGFILE}.${i}"
-    [ -f "${LOGFILE}.${prev}" ] && mv -f "${LOGFILE}.${prev}" "${LOGFILE}.${i}"
-    i=$((i-1))
-  done
-}
-
-getprop_safe() { getprop "$1" 2>/dev/null; }
-get_sdk() { getprop_safe ro.build.version.sdk; }
-get_model() { getprop_safe ro.product.model; }
-get_release() { getprop_safe ro.build.version.release; }
-get_secpatch() { getprop_safe ro.build.version.security_patch; }
-sd_avail_kb() { df -k /sdcard 2>/dev/null | awk 'NR==2{print $4}'; }
-
-bytes_to_mb() { b="$1"; [ -z "$b" ] && b=0; awk -v b="$b" 'BEGIN{printf "%.1f MB", b/1024/1024}'; }
-sum_bytes_from_stdin() { awk '{s+=$1} END{print s+0}'; }
-
-# Listado basura en Download
-list_download_junk() {
-  pat="$(echo "$JUNK_EXTS" | awk '{for(i=1;i<=NF;i++) printf "-name *.%s%s",$i,(i<NF?" -o ":"")}')"
-  eval "find /sdcard/Download -maxdepth $DOWNLOAD_MAXDEPTH -type f \\( $pat \\) -mtime +$DAYS_OLD -size +${MIN_SIZE_KB}k -print" 2>/dev/null
-}
-
-# Guardar settings para restore
+# -----------------------------------------------------------------------------
+# Save / restore
+# -----------------------------------------------------------------------------
 save_state() {
   [ -f "$STATEFILE" ] && return 0
+
   say "${C}[i] Guardando estado para --restore...${NC}"
   {
-    echo "window_animation_scale=$(settings get global window_animation_scale 2>/dev/null)"
-    echo "transition_animation_scale=$(settings get global transition_animation_scale 2>/dev/null)"
-    echo "animator_duration_scale=$(settings get global animator_duration_scale 2>/dev/null)"
-    echo "always_finish_activities=$(settings get global always_finish_activities 2>/dev/null)"
-    echo "limit_background_processes=$(settings get global limit_background_processes 2>/dev/null)"
-    echo "long_press_timeout=$(settings get secure long_press_timeout 2>/dev/null)"
-    echo "multi_press_timeout=$(settings get secure multi_press_timeout 2>/dev/null)"
-    echo "pointer_speed=$(settings get system pointer_speed 2>/dev/null)"
-    echo "haptic_feedback_enabled=$(settings get secure haptic_feedback_enabled 2>/dev/null)"
-    echo "font_scale=$(settings get system font_scale 2>/dev/null)"
+    echo "window_animation_scale=$(settings_get_safe global window_animation_scale)"
+    echo "transition_animation_scale=$(settings_get_safe global transition_animation_scale)"
+    echo "animator_duration_scale=$(settings_get_safe global animator_duration_scale)"
+    echo "long_press_timeout=$(settings_get_safe secure long_press_timeout)"
+    echo "multi_press_timeout=$(settings_get_safe secure multi_press_timeout)"
+    echo "pointer_speed=$(settings_get_safe system pointer_speed)"
+    echo "haptic_feedback_enabled=$(settings_get_safe system haptic_feedback_enabled)"
+    echo "font_scale=$(settings_get_safe system font_scale)"
+    echo "limit_background_processes=$(settings_get_safe global limit_background_processes)"
   } > "$STATEFILE" 2>/dev/null
 }
 
 restore_settings() {
-  [ ! -f "$STATEFILE" ] && { say "${Y}[!] No hay statefile: $STATEFILE${NC}"; return 1; }
+  if [ ! -f "$STATEFILE" ]; then
+    say "${Y}[!] No existe statefile: $STATEFILE${NC}"
+    return 1
+  fi
+
   say "${P}[↩] Restaurando settings...${NC}"
   . "$STATEFILE" 2>/dev/null
 
-  [ -n "$window_animation_scale" ] && run "settings put global window_animation_scale $window_animation_scale"
-  [ -n "$transition_animation_scale" ] && run "settings put global transition_animation_scale $transition_animation_scale"
-  [ -n "$animator_duration_scale" ] && run "settings put global animator_duration_scale $animator_duration_scale"
-  [ -n "$always_finish_activities" ] && run "settings put global always_finish_activities $always_finish_activities"
-  [ -n "$limit_background_processes" ] && run "settings put global limit_background_processes $limit_background_processes"
-  [ -n "$long_press_timeout" ] && run "settings put secure long_press_timeout $long_press_timeout"
-  [ -n "$multi_press_timeout" ] && run "settings put secure multi_press_timeout $multi_press_timeout"
-  [ -n "$pointer_speed" ] && run "settings put system pointer_speed $pointer_speed"
-  [ -n "$haptic_feedback_enabled" ] && run "settings put secure haptic_feedback_enabled $haptic_feedback_enabled"
-  [ -n "$font_scale" ] && run "settings put system font_scale $font_scale"
+  [ -n "$window_animation_scale" ] && settings_put_safe global window_animation_scale "$window_animation_scale"
+  [ -n "$transition_animation_scale" ] && settings_put_safe global transition_animation_scale "$transition_animation_scale"
+  [ -n "$animator_duration_scale" ] && settings_put_safe global animator_duration_scale "$animator_duration_scale"
+  [ -n "$long_press_timeout" ] && settings_put_safe secure long_press_timeout "$long_press_timeout"
+  [ -n "$multi_press_timeout" ] && settings_put_safe secure multi_press_timeout "$multi_press_timeout"
+  [ -n "$pointer_speed" ] && settings_put_safe system pointer_speed "$pointer_speed"
+  [ -n "$haptic_feedback_enabled" ] && settings_put_safe system haptic_feedback_enabled "$haptic_feedback_enabled"
+  [ -n "$font_scale" ] && settings_put_safe system font_scale "$font_scale"
+
+  if [ -n "$limit_background_processes" ] && [ "$limit_background_processes" != "null" ]; then
+    settings_put_safe global limit_background_processes "$limit_background_processes"
+  else
+    settings_delete_safe global limit_background_processes
+  fi
 
   say "${G}[✓] Restore completado.${NC}"
   return 0
 }
 
-# ---------------------------
-# UI helpers (AUTO-UI best-effort)
-# ---------------------------
-ui_dump() {
-  exists uiautomator || return 1
-  run "uiautomator dump /sdcard/Download/.titan_ui.xml" || return 1
-  run "cp -f /sdcard/Download/.titan_ui.xml '$UIXML'" || true
-  return 0
-}
-
-ui_center_for_text() {
-  needle="$1"
-  [ ! -f "$UIXML" ] && return 1
-  line="$(grep -n "$needle" "$UIXML" 2>/dev/null | head -n1)"
-  [ -z "$line" ] && return 1
-  bounds="$(echo "$line" | sed -n 's/.*bounds="\([^"]*\)".*/\1/p')"
-  [ -z "$bounds" ] && return 1
-
-  l="$(echo "$bounds" | sed -n 's/^\[\([0-9]*\),.*/\1/p')"
-  t="$(echo "$bounds" | sed -n 's/^\[[0-9]*,\([0-9]*\)\].*/\1/p')"
-  r="$(echo "$bounds" | sed -n 's/.*\[\([0-9]*\),[0-9]*\]$/\1/p')"
-  b="$(echo "$bounds" | sed -n 's/.*,[0-9]*\]\[\([0-9]*\),\([0-9]*\)\]$/\2/p')"
-
-  [ -z "$l" ] || [ -z "$t" ] || [ -z "$r" ] || [ -z "$b" ] && return 1
-
-  x=$(( (l + r) / 2 ))
-  y=$(( (t + b) / 2 ))
-  echo "$x $y"
-  return 0
-}
-
-ui_tap_text_any() {
-  list="$1"
-  oldIFS="$IFS"; IFS='|'
-  for n in $list; do
-    IFS="$oldIFS"
-    xy="$(ui_center_for_text "$n")"
-    IFS='|'
-    if [ -n "$xy" ]; then
-      x="$(echo "$xy" | awk '{print $1}')"
-      y="$(echo "$xy" | awk '{print $2}')"
-      run "input tap $x $y"
-      say "${G}[✓] Tap: ${n}${NC}"
-      IFS="$oldIFS"
-      return 0
-    fi
-  done
-  IFS="$oldIFS"
-  return 1
-}
-
-# ---------------------------
+# -----------------------------------------------------------------------------
 # Banner
-# ---------------------------
-rotate_logs; log_init
-SDK="$(get_sdk)"; MODEL="$(get_model)"; REL="$(get_release)"; SECPATCH="$(get_secpatch)"
-FREEKB="$(sd_avail_kb)"
+# -----------------------------------------------------------------------------
+banner() {
+  FREEKB="$(sd_avail_kb)"
+  BATT="$(battery_level)"
+  TEMP="$(battery_temp_c)"
 
-say "${Y}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-say "${Y}  TITAN v29 GOD MODE  ${C}[NO-ROOT / ADB SAFE]${NC}"
-say "${Y}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-say "${P}[i] Device: ${MODEL} | Android: ${REL} | SDK: ${SDK}${NC}"
-say "${P}[i] Security patch: ${SECPATCH}${NC}"
-say "${P}[i] AUTO: YES | UI Updates: ${AUTO_UI_UPDATES} | DRY_RUN: ${DRY_RUN}${NC}"
-say "${C}[i] /sdcard libres (KB): ${FREEKB}${NC}"
-say "${Y}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-say "${G}[LOCK] WhatsApp protegido: NO se elimina nada de WhatsApp.${NC}"
-
-# ---------------------------
-# FASE 0: UPDATE HUB (Play Store ES + OTA ES)
-# ---------------------------
-update_hub() {
-  say "
-${P}[🔄] FASE 0: UPDATE HUB (BEST-EFFORT)${NC}"
-
-  say "${C}[i] Play Store > Actualizaciones...${NC}"
-  run "am start -a android.intent.action.VIEW -d 'market://updates'" || true
-  run "sleep 2"
-
-  if [ "$AUTO_UI_UPDATES" = "1" ] && exists uiautomator; then
-    ui_dump && {
-      ui_tap_text_any "Actualizar todo|ACTUALIZAR TODO|Update all|UPDATE ALL" || true
-      run "sleep 1"
-      ui_dump && ui_tap_text_any "Actualizar|ACTUALIZAR|Update" || true
-    }
-  fi
-
-  say "${C}[i] Ajustes > Actualización del sistema (OTA)...${NC}"
-  run "am start -a android.settings.SYSTEM_UPDATE_SETTINGS" || run "am start -a android.settings.SETTINGS" || true
-  run "sleep 2"
-
-  if [ "$AUTO_UI_UPDATES" = "1" ] && exists uiautomator; then
-    ui_dump && {
-      ui_tap_text_any "Buscar actualizaciones|BUSCAR ACTUALIZACIONES|Comprobar actualizaciones|COMPROBAR ACTUALIZACIONES" || true
-      run "sleep 2"
-      ui_dump && ui_tap_text_any "Descargar e instalar|DESCARGAR E INSTALAR|Descargar|Instalar|INSTALAR" || true
-    }
-  fi
-
-  say "${G}[✓] Update Hub: listo (best-effort).${NC}"
+  say "${Y}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+  say "${Y}  TITAN v33 EXTREME FLUIDITY  ${C}[NO-ROOT / ADB SAFE]${NC}"
+  say "${Y}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+  say "${P}[i] Device: $(model) | Brand: $(brand) | OEM: $(manufacturer)${NC}"
+  say "${P}[i] Android: $(release_ver) | SDK: $(sdk) | Patch: $(secpatch)${NC}"
+  say "${P}[i] Profile: ${PROFILE} | DRY_RUN: ${DRY_RUN}${NC}"
+  say "${C}[i] /sdcard libres: ${FREEKB} KB (~$(bytes_to_gb "$(sd_avail_bytes)"))${NC}"
+  say "${C}[i] Batería: ${BATT}% | Temp: ${TEMP}°C${NC}"
+  say "${G}[LOCK] WhatsApp protegido: NO se borra contenido de WhatsApp.${NC}"
 }
 
-# ---------------------------
-# FASE 1: DIAGNÓSTICO
-# ---------------------------
-diagnostics() {
-  say "
-${P}[🧪] FASE 1: DIAGNÓSTICO${NC}"
-  exists dumpsys && run "dumpsys meminfo | head -60" || true
-  exists top && run "top -n 1 | head -25" || true
-  say "${G}[✓] Diagnóstico listo.${NC}"
+# -----------------------------------------------------------------------------
+# Diagnóstico
+# -----------------------------------------------------------------------------
+diagnostics_pre() {
+  say "\n${P}[1/9] DIAGNÓSTICO INICIAL${NC}"
+
+  exists getprop && run "getprop | grep -E 'ro.product|ro.build.version|dalvik|persist.sys' | head -120" || true
+  exists dumpsys && run "dumpsys meminfo | head -100" || true
+  exists top && run "top -n 1 | head -50" || true
+  exists df && run "df -h /data /sdcard" || true
+  exists dumpsys && run "dumpsys battery | head -60" || true
+  exists dumpsys && run "dumpsys package dexopt | head -150" || true
+  exists dumpsys && run "dumpsys diskstats | head -100" || true
+
+  say "${G}[✓] Diagnóstico inicial listo.${NC}"
 }
 
-# ---------------------------
-# FASE 2: CLEAN / NUKE (SIN WhatsApp)
-# ---------------------------
-clean_god() {
-  say "
-${P}[🧹] FASE 2: CLEAN / NUKE (SIN WhatsApp)${NC}"
+# -----------------------------------------------------------------------------
+# OTA informativo
+# -----------------------------------------------------------------------------
+ota_best_effort() {
+  say "\n${P}[2/9] OTA / UPDATE CHECK INFO${NC}"
 
-  exists pm && run "pm trim-caches 999G" || true
+  BRAND_L="$(brand | tr '[:upper:]' '[:lower:]')"
+  OEM_L="$(manufacturer | tr '[:upper:]' '[:lower:]')"
 
-  CANDS="$(list_download_junk)"
-  CAND_COUNT="$(echo "$CANDS" | sed '/^$/d' | wc -l | tr -d ' ')"
-  EST_BYTES="$(echo "$CANDS" | while read f; do ls -l "$f" 2>/dev/null | awk '{print $5}'; done | sum_bytes_from_stdin)"
-  say "${C}Download junk: ${CAND_COUNT} (~$(bytes_to_mb $EST_BYTES))${NC}"
+  say "${C}[i] No se abrirá la pantalla de actualización del sistema.${NC}"
+  say "${C}[i] No existe OTA silenciosa universal por ADB normal en Android stock.${NC}"
 
-  pat="$(echo "$JUNK_EXTS" | awk '{for(i=1;i<=NF;i++) printf "-name *.%s%s",$i,(i<NF?" -o ":"")}')"
-  run "find /sdcard/Download -maxdepth $DOWNLOAD_MAXDEPTH -type f \\( $pat \\) -mtime +$DAYS_OLD -size +${MIN_SIZE_KB}k -delete"
+  case "$BRAND_L $OEM_L" in
+    *google*) say "${Y}[i] Pixel detectado: OTA gestionada por el sistema.${NC}" ;;
+    *samsung*) say "${Y}[i] Samsung detectado: sin flujo silencioso universal no-root.${NC}" ;;
+    *xiaomi*|*redmi*|*poco*) say "${Y}[i] Xiaomi/Redmi/POCO detectado: OTA silenciosa genérica no garantizada.${NC}" ;;
+    *motorola*|*moto*) say "${Y}[i] Motorola detectado: OTA silenciosa genérica no garantizada.${NC}" ;;
+    *oneplus*) say "${Y}[i] OnePlus detectado: OTA silenciosa genérica no garantizada.${NC}" ;;
+    *) say "${Y}[i] OEM sin interfaz estándar accesible para OTA silenciosa.${NC}" ;;
+  esac
 
-  echo "$SDCARD_TRASH_DIRS" | while read d; do
+  say "${G}[✓] Fase OTA informativa completada.${NC}"
+}
+
+# -----------------------------------------------------------------------------
+# Inventario
+# -----------------------------------------------------------------------------
+list_download_junk() {
+  pat="$(echo "$JUNK_EXTS" | awk '{for(i=1;i<=NF;i++) printf "-iname \"*.%s\"%s",$i,(i<NF?" -o ":"")}')"
+  eval "find /sdcard/Download -maxdepth $DOWNLOAD_MAXDEPTH -type f \\( $pat \\) -mtime +$DAYS_OLD -size +${MIN_SIZE_KB}k -print" 2>/dev/null
+}
+
+list_old_installers() {
+  pat="$(echo "$INSTALLER_EXTS" | awk '{for(i=1;i<=NF;i++) printf "-iname \"*.%s\"%s",$i,(i<NF?" -o ":"")}')"
+  eval "find /sdcard/Download -maxdepth 5 -type f \\( $pat \\) -mtime +15 -size +1024k -print" 2>/dev/null
+}
+
+list_logs_dumps() {
+  find /sdcard -maxdepth 5 -type f \
+    \( -iname "*.log" -o -iname "*logcat*" -o -iname "*.dmp" -o -iname "*.trace" -o -iname "*.stacktrace" -o -iname "*tombstone*" \) \
+    -not -path "${WHATSAPP_EXCLUDE_1}/*" \
+    -not -path "${WHATSAPP_EXCLUDE_2}/*" \
+    -not -path "${WHATSAPP_EXCLUDE_3}/*" 2>/dev/null
+}
+
+estimate_paths_bytes() {
+  while IFS= read -r f; do
+    [ -n "$f" ] && ls -ln "$f" 2>/dev/null | awk '{print $5}'
+  done | sum_bytes_from_stdin
+}
+
+report_cleanup_inventory() {
+  say "\n${P}[3/9] INVENTARIO DE LIMPIEZA${NC}"
+
+  DL_JUNK="$(list_download_junk)"
+  DL_JUNK_N="$(echo "$DL_JUNK" | sed '/^$/d' | wc -l | tr -d ' ')"
+  DL_JUNK_B="$(echo "$DL_JUNK" | estimate_paths_bytes)"
+
+  OLD_APK="$(list_old_installers)"
+  OLD_APK_N="$(echo "$OLD_APK" | sed '/^$/d' | wc -l | tr -d ' ')"
+  OLD_APK_B="$(echo "$OLD_APK" | estimate_paths_bytes)"
+
+  DUMPS="$(list_logs_dumps)"
+  DUMPS_N="$(echo "$DUMPS" | sed '/^$/d' | wc -l | tr -d ' ')"
+  DUMPS_B="$(echo "$DUMPS" | estimate_paths_bytes)"
+
+  say "${C}[i] Junk Download: ${DL_JUNK_N} (~$(bytes_to_mb "$DL_JUNK_B"))${NC}"
+  say "${C}[i] Instaladores viejos: ${OLD_APK_N} (~$(bytes_to_mb "$OLD_APK_B"))${NC}"
+  say "${C}[i] Logs/dumps: ${DUMPS_N} (~$(bytes_to_mb "$DUMPS_B"))${NC}"
+  say "${G}[✓] Inventario generado.${NC}"
+}
+
+# -----------------------------------------------------------------------------
+# Limpieza profunda
+# -----------------------------------------------------------------------------
+pm_trim_caches() {
+  [ "$AUTO_TRIM_CACHES" = "1" ] || return 0
+  exists pm || return 0
+  run "pm trim-caches 999G" || true
+}
+
+cleanup_download_junk() {
+  [ "$AUTO_CLEAR_DOWNLOAD_JUNK" = "1" ] || return 0
+  pat="$(echo "$JUNK_EXTS" | awk '{for(i=1;i<=NF;i++) printf "-iname \"*.%s\"%s",$i,(i<NF?" -o ":"")}')"
+  run "find /sdcard/Download -maxdepth $DOWNLOAD_MAXDEPTH -type f \( $pat \) -mtime +$DAYS_OLD -size +${MIN_SIZE_KB}k -delete"
+}
+
+cleanup_old_installers() {
+  [ "$AUTO_CLEAR_OLD_INSTALLERS" = "1" ] || return 0
+  pat="$(echo "$INSTALLER_EXTS" | awk '{for(i=1;i<=NF;i++) printf "-iname \"*.%s\"%s",$i,(i<NF?" -o ":"")}')"
+  run "find /sdcard/Download -maxdepth 5 -type f \( $pat \) -mtime +15 -size +1024k -delete"
+}
+
+cleanup_trash_globs() {
+  echo "$TRASH_GLOBS" | while IFS= read -r d; do
     [ -z "$d" ] && continue
-    run "sh -c \"
+    run "sh -c '
       for x in $d; do
-        [ -e \\\"\\\$x\\\" ] || continue
-        case \\\"\\\$x\\\" in
-          *'/Android/media/com.whatsapp'*|*'/Android/data/com.whatsapp'*|*'/WhatsApp'*) continue ;;
+        [ -e \"\$x\" ] || continue
+        case \"\$x\" in
+          ${WHATSAPP_EXCLUDE_1}*|${WHATSAPP_EXCLUDE_2}*|${WHATSAPP_EXCLUDE_3}*) continue ;;
         esac
-        find \\\"\\\$x\\\" -type f -mtime +$DAYS_OLD -size +${MIN_SIZE_KB}k -delete
+        find \"\$x\" -type f -mtime +$DAYS_OLD -size +${MIN_SIZE_KB}k -delete
       done
-    \""
+    '"
   done
+}
 
-  run "sh -c \"
-    find /sdcard -type f \\( -name '*.thumbnails*' -o -name '*.thumb*' \\) \
-      -not -path '/sdcard/WhatsApp/*' \
-      -not -path '/sdcard/Android/media/com.whatsapp/*' \
-      -not -path '/sdcard/Android/data/com.whatsapp/*' \
+cleanup_thumbnails() {
+  [ "$AUTO_CLEAR_MEDIA_THUMBS" = "1" ] || return 0
+  run "sh -c '
+    find /sdcard -type f \
+      \( -iname \"*.thumb*\" -o -path \"*/.thumbnails/*\" -o -iname \"*thumbcache*\" \) \
+      -not -path \"${WHATSAPP_EXCLUDE_1}/*\" \
+      -not -path \"${WHATSAPP_EXCLUDE_2}/*\" \
+      -not -path \"${WHATSAPP_EXCLUDE_3}/*\" \
       -mtime +$DAYS_OLD -size +${MIN_SIZE_KB}k -delete
-  \"" || true
+  '" || true
+}
 
-  run "sh -c \"
-    find /sdcard -maxdepth 4 -type f \\( -name '*.log' -o -name '*logcat*' -o -name '*.dmp' \\) \
-      -not -path '/sdcard/WhatsApp/*' \
-      -not -path '/sdcard/Android/media/com.whatsapp/*' \
-      -not -path '/sdcard/Android/data/com.whatsapp/*' \
+cleanup_logs_dumps() {
+  [ "$AUTO_CLEAR_LOG_DIRS" = "1" ] || return 0
+  run "sh -c '
+    find /sdcard -maxdepth 5 -type f \
+      \( -iname \"*.log\" -o -iname \"*logcat*\" -o -iname \"*.dmp\" -o -iname \"*.trace\" -o -iname \"*.stacktrace\" -o -iname \"*tombstone*\" \) \
+      -not -path \"${WHATSAPP_EXCLUDE_1}/*\" \
+      -not -path \"${WHATSAPP_EXCLUDE_2}/*\" \
+      -not -path \"${WHATSAPP_EXCLUDE_3}/*\" \
       -mtime +$DAYS_OLD -size +${MIN_SIZE_KB}k -delete
-  \"" || true
-
-  say "${G}[✓] Clean GOD completado. WhatsApp intacto.${NC}"
+  '" || true
 }
 
-# ---------------------------
-# FASE 3: RAM / BG LIMITS (agresivo)
-# ---------------------------
-ram_god() {
-  say "
-${P}[💾] FASE 3: RAM / BACKGROUND (GOD)${NC}"
+cleanup_bugreports() {
+  [ "$AUTO_CLEAR_BUGREPORTS" = "1" ] || return 0
+  run "sh -c '
+    find /sdcard -maxdepth 4 -type f \
+      \( -iname \"bugreport*\" -o -iname \"*.zip\" -o -iname \"*.txt\" \) \
+      -path \"/sdcard/bugreports/*\" \
+      -mtime +1 -delete
+  '" || true
+}
+
+cleanup_tombstones_named() {
+  [ "$AUTO_CLEAR_TOMBSTONES" = "1" ] || return 0
+  run "sh -c '
+    find /sdcard -maxdepth 5 -type f \
+      \( -iname \"*tombstone*\" -o -iname \"*.tombstone\" \) \
+      -not -path \"${WHATSAPP_EXCLUDE_1}/*\" \
+      -not -path \"${WHATSAPP_EXCLUDE_2}/*\" \
+      -not -path \"${WHATSAPP_EXCLUDE_3}/*\" \
+      -mtime +1 -delete
+  '" || true
+}
+
+cleanup_zero_byte_files() {
+  [ "$AUTO_CLEAR_EMPTY_FILES" = "1" ] || return 0
+  run "sh -c '
+    find /sdcard -maxdepth 6 -type f -size 0 \
+      -not -path \"${WHATSAPP_EXCLUDE_1}/*\" \
+      -not -path \"${WHATSAPP_EXCLUDE_2}/*\" \
+      -not -path \"${WHATSAPP_EXCLUDE_3}/*\" \
+      -delete
+  '" || true
+}
+
+cleanup_tmp_and_cache_dirs() {
+  [ "$AUTO_CLEAR_TMP_DIRS" = "1" ] || return 0
+  run "sh -c '
+    find /sdcard -maxdepth 6 -type d \
+      \( -iname \"cache\" -o -iname \"code_cache\" -o -iname \"tmp\" -o -iname \"temp\" \) \
+      -not -path \"${WHATSAPP_EXCLUDE_1}*\" \
+      -not -path \"${WHATSAPP_EXCLUDE_2}*\" \
+      -not -path \"${WHATSAPP_EXCLUDE_3}*\" | while read d; do
+        [ -z \"\$d\" ] && continue
+        find \"\$d\" -type f -mtime +$DAYS_OLD -size +${MIN_SIZE_KB}k -delete
+      done
+  '" || true
+}
+
+prune_empty_dirs() {
+  [ "$AUTO_PRUNE_EMPTY_DIRS" = "1" ] || return 0
+  run "sh -c '
+    find /sdcard -maxdepth 6 -type d -empty \
+      -not -path \"/sdcard\" \
+      -not -path \"${WHATSAPP_EXCLUDE_1}\" \
+      -not -path \"${WHATSAPP_EXCLUDE_2}\" \
+      -not -path \"${WHATSAPP_EXCLUDE_3}\" \
+      -delete
+  '" || true
+}
+
+cleanup_storage() {
+  say "\n${P}[4/9] LIMPIEZA PROFUNDA${NC}"
+
+  BEFORE="$(sd_avail_bytes)"
+
+  pm_trim_caches
+  cleanup_download_junk
+  cleanup_old_installers
+  cleanup_trash_globs
+  cleanup_thumbnails
+  cleanup_logs_dumps
+  cleanup_bugreports
+  cleanup_tombstones_named
+  cleanup_zero_byte_files
+  cleanup_tmp_and_cache_dirs
+  prune_empty_dirs
+
+  AFTER="$(sd_avail_bytes)"
+  DELTA="$(awk -v a="$AFTER" -v b="$BEFORE" 'BEGIN{print a-b}')"
+
+  say "${G}[✓] Limpieza completada. Recuperado aprox: $(bytes_to_mb "$DELTA").${NC}"
+
+  if [ -f "$LOGFILE" ]; then
+    say "${C}[i] Log actual: $(file_size_mb "$LOGFILE") MB${NC}"
+  fi
+}
+
+# -----------------------------------------------------------------------------
+# Fluidez / input
+# -----------------------------------------------------------------------------
+tune_fluidity() {
+  say "\n${P}[5/9] FLUIDEZ / INPUT${NC}"
   save_state
-  exists cmd && run "cmd activity memory-factor critical" || true
-  run "settings put global always_finish_activities 1"
-  run "settings put global limit_background_processes $BG_LIMIT"
-  say "${G}[✓] RAM aplicada: BG_LIMIT=${BG_LIMIT}${NC}"
+
+  settings_put_safe global window_animation_scale "$ANIM_SCALE"
+  settings_put_safe global transition_animation_scale "$ANIM_SCALE"
+  settings_put_safe global animator_duration_scale "$ANIM_SCALE"
+
+  settings_put_safe secure long_press_timeout "$TOUCH_TIMEOUT" || true
+  settings_put_safe secure multi_press_timeout "$TOUCH_TIMEOUT" || true
+  settings_put_safe system pointer_speed "$POINTER_SPEED" || true
+
+  if [ "$AUTO_DISABLE_HAPTICS" = "1" ]; then
+    settings_put_safe system haptic_feedback_enabled "0" || true
+  fi
+
+  if [ -n "$FONT_SCALE" ]; then
+    settings_put_safe system font_scale "$FONT_SCALE" || true
+  fi
+
+  if [ -n "$BG_LIMIT" ]; then
+    settings_put_safe global limit_background_processes "$BG_LIMIT" || true
+  fi
+
+  if [ "$AUTO_CLEAR_CLIPBOARD" = "1" ]; then
+    run_quiet "cmd clipboard set text ''" || true
+  fi
+
+  say "${G}[✓] Ajustes de fluidez aplicados.${NC}"
 }
 
-# ---------------------------
-# FASE 4: FLUIDEZ / INPUT / GPU
-# ---------------------------
-fluidity_god() {
-  say "
-${P}[⚡] FASE 4: FLUIDEZ / INPUT / GPU (GOD)${NC}"
-  save_state
+# -----------------------------------------------------------------------------
+# Dexopt / compilación
+# -----------------------------------------------------------------------------
+dexopt_phase() {
+  say "\n${P}[6/9] DEXOPT / COMPILACIÓN${NC}"
 
-  run "settings put global window_animation_scale $ANIM_SCALE"
-  run "settings put global transition_animation_scale $ANIM_SCALE"
-  run "settings put global animator_duration_scale $ANIM_SCALE"
-
-  run "settings put secure long_press_timeout $TOUCH_TIMEOUT" || true
-  run "settings put secure multi_press_timeout $TOUCH_TIMEOUT" || true
-  run "settings put system pointer_speed $POINTER_SPEED" || true
-  run "settings put secure haptic_feedback_enabled 0" || true
-  run "settings put system font_scale $FONT_SCALE" || true
-
-  run "cmd power set-fixed-performance-mode-enabled true" 2>/dev/null || true
-  run "setprop debug.force-opengl 1" 2>/dev/null || true
-  run "setprop debug.hwc.force_gpu_vsync 1" 2>/dev/null || true
-  run "setprop debug.hwui.renderer skiagl" 2>/dev/null || true
-
-  say "${G}[✓] Fluidez aplicada: anim=${ANIM_SCALE}x touch=${TOUCH_TIMEOUT}${NC}"
-}
-
-# ---------------------------
-# FASE 5: DOZE / IDLE (agresivo)
-# ---------------------------
-doze_god() {
-  say "
-${P}[🌙] FASE 5: DOZE / IDLE (GOD)${NC}"
-  exists dumpsys && {
-    run "dumpsys deviceidle enable" 2>/dev/null || true
-    run "dumpsys deviceidle force-idle" 2>/dev/null || true
+  [ "$AUTO_DEXOPT" = "1" ] || {
+    say "${Y}[i] Dexopt desactivado por parámetro.${NC}"
+    return 0
   }
-  say "${G}[✓] Doze aplicado (best-effort).${NC}"
-}
 
-# ---------------------------
-# FASE 6: FORCE-STOP apps (SIN WhatsApp)
-# ---------------------------
-kill_bg_god() {
-  say "
-${P}[💀] FASE 6: FORCE-STOP (SIN WhatsApp)${NC}"
-
-  if exists pm && exists am; then
-    run "pm list packages -3 | cut -d: -f2 | while read p; do
-      [ \"\$p\" = \"com.whatsapp\" ] && continue
-      am force-stop \$p
-    done"
-    say "${G}[✓] force-stop aplicado (WhatsApp excluido).${NC}"
+  if ! should_run_heavy_tasks; then
+    say "${Y}[i] Saltando tareas pesadas por batería/temperatura. Usa --force-heavy para forzarlas.${NC}"
+    return 0
   fi
-}
 
-# ---------------------------
-# FASE 7: COMPILACIÓN / DEXOPT (heavy)
-# ---------------------------
-compile_god() {
-  say "
-${P}[🔧] FASE 7: DEXOPT / COMPILE (GOD)${NC}"
+  with_fixed_perf_begin
 
-  [ "$COMPILE_MODE" = "none" ] && { say "${C}[i] Compile desactivado.${NC}"; return 0; }
+  exists pm && run "pm dexopt-job" || true
+  exists cmd && run "cmd package bg-dexopt-job" || true
 
-  if exists cmd; then
-    run "pm dexopt-job" 2>/dev/null || true
-    if [ "$COMPILE_MODE" = "all" ]; then
-      run "cmd package compile -m speed-profile -f all" || true
-    fi
-    say "${G}[✓] Compile/Dexopt listo.${NC}"
+  if [ "$DEXOPT_ALL" = "1" ]; then
+    exists cmd && run "cmd package compile -m speed-profile -f -a" || true
   else
-    say "${Y}[!] cmd no disponible; compile omitido.${NC}"
+    exists cmd && run "cmd package compile -m speed-profile -f all" || true
   fi
+
+  say "${G}[✓] Dexopt/compilación best-effort completado.${NC}"
 }
 
-# ---------------------------
-# MAIN
-# ---------------------------
-if [ "$MODE" = "restore" ]; then
-  restore_settings
-  exit $?
-fi
+# -----------------------------------------------------------------------------
+# Alivio de memoria
+# -----------------------------------------------------------------------------
+force_stop_candidates() {
+  pm list packages -3 2>/dev/null | cut -d: -f2
+}
 
-update_hub
-diagnostics
-clean_god
-ram_god
-fluidity_god
-doze_god
-kill_bg_god
-compile_god
+memory_relief() {
+  say "\n${P}[7/9] ALIVIO DE MEMORIA${NC}"
 
-say "
-${G}[🎉] TITAN v29 GOD MODE COMPLETADO.${NC}"
-say "${C}[i] Recomendado: reiniciar para máxima fluidez.${NC}"
-say "${C}[i] Log: $LOGFILE${NC}"
-say "${C}[i] Revertir settings: adb shell sh /sdcard/Download/titan_v29.sh --restore${NC}"
-exit 0
-</script>
+  if [ "$AUTO_FORCE_STOP" = "1" ] && [ "$FORCE_STOP_NONCRITICAL" = "1" ] && exists am && exists pm; then
+    say "${Y}[i] Force-stop selectivo de apps de usuario no críticas.${NC}"
 
-  <!-- ✅ JS de render/copy/search (CORREGIDO) -->
+    EXCL="
+com.whatsapp
+com.whatsapp.w4b
+com.android.systemui
+com.android.settings
+com.google.android.gms
+com.google.android.gsf
+com.google.android.inputmethod.latin
+com.google.android.apps.nexuslauncher
+com.android.launcher
+com.android.launcher3
+com.android.dialer
+com.google.android.dialer
+com.android.contacts
+com.google.android.contacts
+com.android.camera
+com.google.android.GoogleCamera
+com.google.android.apps.messaging
+"
+
+    CNT=0
+    force_stop_candidates | while IFS= read -r p; do
+      [ -z "$p" ] && continue
+
+      echo "$EXCL" | grep -qx "$p" && continue
+
+      case "$p" in
+        *keyboard*|*inputmethod*|*launcher*|*camera*|*dialer*|*contacts*|*clock*|*alarm*|*packageinstaller*|*systemui*)
+          continue
+          ;;
+      esac
+
+      run "am force-stop $p"
+
+      CNT=$((CNT+1))
+      [ "$CNT" -ge "$FORCE_STOP_MAX_COUNT" ] && break
+    done
+  else
+    say "${C}[i] Sin cierres masivos. Se prioriza estabilidad.${NC}"
+  fi
+
+  if [ "$AUTO_DROP_CACHES" = "1" ]; then
+    say "${Y}[i] drop_caches omitido: casi siempre requiere root.${NC}"
+  fi
+
+  say "${G}[✓] Alivio de memoria completado.${NC}"
+}
+
+# -----------------------------------------------------------------------------
+# Mantenimiento extra
+# -----------------------------------------------------------------------------
+extra_maintenance() {
+  say "\n${P}[8/9] MANTENIMIENTO EXTRA${NC}"
+
+  exists cmd && run_quiet "cmd jobscheduler monitor-battery on" || true
+  exists dumpsys && run "dumpsys usagestats | head -80" || true
+  exists dumpsys && run "dumpsys procstats | head -120" || true
+  exists dumpsys && run "dumpsys activity processes | head -120" || true
+
+  media_scan_hint
+
+  say "${G}[✓] Mantenimiento extra completado.${NC}"
+}
+
+# -----------------------------------------------------------------------------
+# Reporte final
+# -----------------------------------------------------------------------------
+diagnostics_post() {
+  say "\n${P}[9/9] DIAGNÓSTICO FINAL${NC}"
+
+  exists dumpsys && run "dumpsys meminfo | head -100" || true
+  exists top && run "top -n 1 | head -50" || true
+  exists df && run "df -h /data /sdcard" || true
+  exists dumpsys && run "dumpsys package dexopt | head -150" || true
+
+  say "${G}[✓] Diagnóstico final listo.${NC}"
+}
+
+# -----------------------------------------------------------------------------
+# Main
+# -----------------------------------------------------------------------------
+main() {
+  mkdir -p "$LOGDIR" 2>/dev/null
+  log_init
+  apply_profile
+  banner
+
+  if [ "$MODE" = "restore" ]; then
+    restore_settings
+    exit $?
+  fi
+
+  diagnostics_pre
+  ota_best_effort
+  report_cleanup_inventory
+  cleanup_storage
+  tune_fluidity
+  dexopt_phase
+  memory_relief
+  extra_maintenance
+  diagnostics_post
+
+  say "\n${G}[🎉] TITAN v33 completado.${NC}"
+  say "${C}[i] Perfil aplicado: ${PROFILE}${NC}"
+  say "${C}[i] Log: ${LOGFILE}${NC}"
+  say "${C}[i] Restore: adb shell sh /sdcard/Download/titan_v33.sh --restore${NC}"
+
+  if [ "$AUTO_REBOOT_HINT" = "1" ]; then
+    say "${C}[i] Recomendado: reiniciar manualmente para consolidar cambios.${NC}"
+  fi
+
+  exit 0
+}
+
+main "$@"</script>
+
   <script>
     const titanEl = document.getElementById('titanScript');
     const codeEl = document.getElementById('codeBlock');
@@ -644,7 +1092,7 @@ exit 0
     };
 
     window.copyOneLiner = function () {
-      const cmd = `adb shell sh /sdcard/Download/titan_v29.sh`;
+      const cmd = `adb shell sh /sdcard/Download/titan_v33.sh`;
       copyText(cmd, 'COMANDO ADB COPIADO');
     };
 
