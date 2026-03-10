@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="TITAN v38 RAZR60 EXTREME - Optimización NO-ROOT para Motorola razr 60 (ADB) + WhatsApp SAFE + limpieza extrema" />
-  <title>TITAN v38 RAZR60 EXTREME - Android Optimizer (NO-ROOT)</title>
+  <meta name="description" content="TITAN v46 OMEGA - Optimización NO-ROOT para Motorola razr 60 (ADB) + WhatsApp SAFE + limpieza extrema" />
+  <title>TITAN v46 OMEGA - Android Optimizer (NO-ROOT)</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -49,11 +49,11 @@
         </div>
         <div>
           <h1 class="text-4xl lg:text-5xl font-black tracking-tight text-white font-mono uppercase">
-            TITAN <span class="text-god-500">v38</span>
+            TITAN <span class="text-god-500">v46</span>
           </h1>
           <div class="flex items-center gap-3 mt-2">
-            <span class="px-3 py-0.5 bg-god-500 text-black text-[10px] font-bold font-mono rounded">RAZR60 EXTREME</span>
-            <span class="text-xs text-god-400 font-mono hidden sm:inline">MOTOROLA ADB SAFE (NO-ROOT) - EXTREME CLEANUP + FLUIDITY + WHATSAPP SAFE</span>
+            <span class="px-3 py-0.5 bg-god-500 text-black text-[10px] font-bold font-mono rounded">OMEGA</span>
+            <span class="text-xs text-god-400 font-mono hidden sm:inline">MOTOROLA ADB SAFE (NO-ROOT) - OMEGA CLEANUP + FLUIDITY + WHATSAPP SAFE</span>
           </div>
         </div>
       </div>
@@ -72,20 +72,20 @@
       <div class="relative w-full lg:w-96">
         <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-god-400"></i>
         <input type="text" id="searchInput" oninput="highlightSearch()"
-          placeholder="Buscar (extreme, razr, motorola, dexopt, cache, aggressive, whatsapp)..."
+          placeholder="Buscar (omega, dexopt, motorola, finalboss, cache, whatsapp, aggressive)..."
           class="w-full bg-black/50 border border-god-500/30 text-xs font-mono pl-10 pr-4 py-2.5 outline-none focus:border-god-500 text-white rounded">
       </div>
       <div class="flex gap-2 text-[10px] font-mono text-god-400">
         <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10">RAZR60 OPS</span>
         <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10 uppercase">No-Root (ADB)</span>
-        <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">v38 EXTREME</span>
+        <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">v46 OMEGA</span>
       </div>
     </div>
 
     <div class="flex-1 relative glass rounded-xl overflow-hidden bg-black crt border border-god-500/10">
       <div class="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur border border-god-500/40 rounded px-3 py-1.5 flex items-center gap-2">
         <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-        <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_razr60_v38.sh</span>
+        <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_razr60_v46_omega.sh</span>
       </div>
 
       <div class="absolute inset-0 overflow-auto p-4 lg:p-6" id="codeContainer">
@@ -94,7 +94,7 @@
     </div>
 
     <footer class="mt-4 flex justify-between items-center text-[10px] text-god-400 font-mono uppercase tracking-tighter opacity-60">
-      <span>⚡ TITAN v38 RAZR60 EXTREME - CLEANUP | DEXOPT | DEBLOAT | WHATSAPP SAFE</span>
+      <span>⚡ TITAN v46 OMEGA - CLEANUP | DEXOPT | DEBLOAT | WHATSAPP SAFE</span>
       <span id="linesCount">Lines: 0</span>
     </footer>
   </div>
@@ -108,8 +108,9 @@
 
   <script id="titanScript" type="text/plain">#!/system/bin/sh
 # =============================================================================
-# TITAN v38 RAZR60 EXTREME EDITION
-# Motorola razr 60 / no-root / reversible / OEM-aware / aggressive-safe
+# TITAN v46 OMEGA
+# Motorola razr 60 / stock / no-root / reversible / OEM-aware
+# OMEGA cleanup + fluidity + debloat + restore + reports
 # =============================================================================
 
 R='\033[0;31m'
@@ -123,10 +124,28 @@ DRY_RUN=0
 VERBOSE=1
 MODE="run"
 
-PROFILE="max"
+PROFILE="beast"                 # daily | turbo | beast | omega
+USAGE_MODE="auto"              # auto | daily | work | travel | gaming | battery
+DEBLOAT_LEVEL="aggressive"     # safe | balanced | aggressive
 DEBLOAT_ONLY=0
-DEBLOAT_LEVEL="balanced"
+PARANOID_SAFE=0
+OMEGA_CONFIRM=0
+AUTO_TUNE=1
+
 ALLOW_VENDOR_AGGRESSIVE=0
+ALLOW_GOOGLE_AGGRESSIVE=0
+ALLOW_SOCIAL_REMOVAL=1
+ALLOW_MICROSOFT_REMOVAL=1
+ALLOW_AMAZON_REMOVAL=1
+ALLOW_MEDIA_APP_REMOVAL=1
+ALLOW_TRAVEL_SHOP_REMOVAL=1
+ALLOW_GAMING_REMOVAL=1
+ALLOW_EXTRA_CHINA_REMOVAL=1
+ALLOW_OPTIONAL_GOOGLE_DISABLE=1
+ALLOW_EDUCATION_REMOVAL=1
+ALLOW_PRODUCTIVITY_REMOVAL=1
+ALLOW_CLOUD_REMOVAL=1
+ALLOW_STREAMING_REMOVAL=1
 
 UPDATE_APKS=0
 APK_DIR="/sdcard/Download/APKs"
@@ -135,10 +154,10 @@ PURGE_DOWNLOAD_TEMP_ONLY=0
 
 AUTO_TRIM_CACHES=1
 AUTO_DEXOPT=1
-AUTO_DISABLE_HAPTICS=0
+AUTO_DISABLE_HAPTICS=1
 AUTO_REBOOT_HINT=1
 AUTO_CLEAR_CLIPBOARD=0
-AUTO_FORCE_STOP=0
+AUTO_FORCE_STOP=1
 AUTO_PRUNE_EMPTY_DIRS=1
 AUTO_TRIM_LOGFILE=1
 AUTO_CLEAR_BUGREPORTS=1
@@ -154,47 +173,71 @@ AUTO_CLEAR_CRASH_RESIDUE=1
 AUTO_CLEAR_MISC_JUNK=1
 AUTO_SET_REFRESH_RATE=1
 AUTO_DEBLOAT=1
-AUTO_LIMIT_BG=0
+AUTO_LIMIT_BG=1
 AUTO_MEDIA_SCAN_HINT=1
 AUTO_FIXED_PERF_TEMPORARY=1
+AUTO_DISABLE_WINDOW_BLURS=1
+AUTO_DISABLE_ASSISTANT=0
+AUTO_DISABLE_PRINT_SERVICE=1
+AUTO_TUNE_FONT_SCALE=0
+AUTO_DISABLE_NOTIFY_BADGING=0
 
 DEXOPT_ALL=0
 FORCE_HEAVY_TASKS=0
-FORCE_STOP_MAX_COUNT=8
-FORCE_STOP_NONCRITICAL=0
+FORCE_STOP_MAX_COUNT=24
+FORCE_STOP_NONCRITICAL=1
 
-DAYS_OLD=2
-MIN_SIZE_KB=8
-DOWNLOAD_MAXDEPTH=5
-MAX_LOG_SIZE_MB=24
+MAX_LOG_SIZE_MB=96
 BATTERY_MIN_FOR_HEAVY=35
 TEMP_MAX_C=43
 
-ANIM_SCALE="0.25"
-TOUCH_TIMEOUT="100"
-POINTER_SPEED="5"
-BG_LIMIT=""
+ANIM_SCALE="0.15"
+TOUCH_TIMEOUT="80"
+POINTER_SPEED="7"
+FONT_SCALE_TARGET="0.95"
+BG_LIMIT="3"
 TARGET_PEAK_REFRESH=""
 TARGET_MIN_REFRESH=""
 
 WORKDIR="/sdcard/Download/TITAN"
 LOGDIR="$WORKDIR"
-LOGFILE="$LOGDIR/titan_razr60_v38.log"
-STATEFILE="$LOGDIR/titan_razr60_state_v38.conf"
-DEBLOAT_STATEFILE="$LOGDIR/titan_razr60_debloat_state_v38.txt"
-DISABLED_STATEFILE="$LOGDIR/titan_razr60_disabled_state_v38.txt"
-UPDATED_APKS_LOG="$LOGDIR/titan_razr60_updated_apks_v38.txt"
+CFGDIR="$WORKDIR/config"
+REPORTDIR="$WORKDIR/reports"
+
+LOGFILE="$LOGDIR/titan_razr60_v46_omega.log"
+SUMMARYFILE="$LOGDIR/titan_razr60_summary_v46.txt"
+STATEFILE="$LOGDIR/titan_razr60_state_v46.conf"
+DEBLOAT_STATEFILE="$LOGDIR/titan_razr60_debloat_state_v46.txt"
+DISABLED_STATEFILE="$LOGDIR/titan_razr60_disabled_state_v46.txt"
+UPDATED_APKS_LOG="$LOGDIR/titan_razr60_updated_apks_v46.txt"
+
+SNAPSHOT_SETTINGS="$REPORTDIR/settings_before_v46.txt"
+SNAPSHOT_AFTER_SETTINGS="$REPORTDIR/settings_after_v46.txt"
+SNAPSHOT_DISABLED="$REPORTDIR/disabled_before_v46.txt"
+SNAPSHOT_AFTER_DISABLED="$REPORTDIR/disabled_after_v46.txt"
+SNAPSHOT_REMOVED="$REPORTDIR/removed_user0_v46.txt"
+SNAPSHOT_REPORT="$REPORTDIR/before_after_report_v46.txt"
+SMART_RECOMMENDATIONS="$REPORTDIR/smart_recommendations_v46.txt"
+ENV_REPORT="$REPORTDIR/environment_v46.txt"
+
+EXTERNAL_PROTECT_LIST="$CFGDIR/protected_extra.txt"
+EXTERNAL_DISABLE_LIST="$CFGDIR/disable_extra.txt"
+EXTERNAL_UNINSTALL_LIST="$CFGDIR/uninstall_extra.txt"
+EXTERNAL_FORCESTOP_EXCLUDE="$CFGDIR/forcestop_exclude.txt"
+EXTERNAL_DEBLOAT_NEVER="$CFGDIR/never_touch.txt"
 
 TMP_PROTECTED="$LOGDIR/.protected_pkgs.tmp"
 TMP_SCAN_ALL="$LOGDIR/.scan_all.tmp"
 TMP_JUNK_DL="$LOGDIR/.junk_dl.tmp"
 TMP_OLD_APK="$LOGDIR/.old_apk.tmp"
 TMP_LOG_DUMPS="$LOGDIR/.log_dumps.tmp"
+TMP_DISABLE_LIST="$LOGDIR/.disable_list.tmp"
+TMP_UNINSTALL_LIST="$LOGDIR/.uninstall_list.tmp"
+TMP_FORCESTOP_LIST="$LOGDIR/.forcestop_list.tmp"
 
 WHATSAPP_EXCLUDE_1="/sdcard/WhatsApp"
 WHATSAPP_EXCLUDE_2="/sdcard/Android/media/com.whatsapp"
 WHATSAPP_EXCLUDE_3="/sdcard/Android/data/com.whatsapp"
-
 TYPELESS_EXCLUDE_1="/sdcard/Android/media/com.typeless.mobile"
 TYPELESS_EXCLUDE_2="/sdcard/Android/data/com.typeless.mobile"
 
@@ -217,28 +260,191 @@ com.google.android.gms
 com.google.android.gsf
 com.google.android.gsf.login
 com.google.android.feedback
+com.android.phone
+com.android.server.telecom
+com.android.contacts
+com.android.messaging
+com.google.android.contacts
+com.google.android.dialer
+com.android.bluetooth
+com.android.nfc
+com.android.networkstack
+com.android.cellbroadcastreceiver
+com.android.emergency
+com.android.inputmethod.latin
+com.google.android.inputmethod.latin
+com.motorola.launcher
+com.motorola.settings
+com.motorola.camera
+com.motorola.camera3
+com.motorola.genie
+com.motorola.mobiledesktop
+com.motorola.moto
+com.motorola.actions
 com.whatsapp
 com.whatsapp.w4b
 com.typeless.mobile
-com.motorola.launcher
+"
+
+COMMON_DISABLE="
+com.google.android.apps.wellbeing
+com.google.android.printservice.recommendation
+com.android.traceur
+com.google.android.apps.tachyon
+com.google.android.apps.magazines
+com.google.android.videos
+com.google.android.music
+com.google.android.apps.youtube.music
+com.google.android.apps.docs
+com.google.android.keep
+com.google.android.apps.youtube.kids
+"
+
+SOCIAL_BLOAT="
+com.facebook.appmanager
+com.facebook.services
+com.facebook.system
+com.meta.appmanager
+com.meta.services
+com.meta.system
+com.twitter.android
+com.snapchat.android
+com.pinterest
+com.reddit.frontpage
+com.discord
+com.zhiliaoapp.musically
+com.tiktok
+com.instagram.android
+"
+
+MICROSOFT_BLOAT="
+com.microsoft.skydrive
+com.microsoft.office.outlook
+com.microsoft.office.officehubrow
+com.microsoft.office.excel
+com.microsoft.office.word
+com.microsoft.office.powerpoint
+com.microsoft.office.onenote
+com.skype.raider
+com.microsoft.teams
+"
+
+AMAZON_BLOAT="
+com.amazon.mShop.android.shopping
+com.amazon.kindle
+com.amazon.mp3
+com.amazon.avod.thirdpartyclient
+com.amazon.venezia
+"
+
+MEDIA_BLOAT="
+com.spotify.music
+com.netflix.partner.activation
+com.netflix.mediaclient
+"
+
+STREAMING_BLOAT="
+com.google.android.videos
+com.disney.disneyplus
+com.hbo.hbonow
+"
+
+TRAVEL_SHOP_BLOAT="
+com.booking
+com.booking.hotelreservations
+com.airbnb.android
+com.ebay.mobile
+com.alibaba.aliexpresshd
+com.alibaba.aliexpresshdmi
+"
+
+GAMING_BLOAT="
+com.supercell.clashofclans
+com.supercell.brawlstars
+com.roblox.client
+com.dts.freefireth
+com.activision.callofduty.shooter
+com.mojang.minecraftpe
+com.epicgames.fortnite
+"
+
+EXTRA_CHINA_BLOAT="
+com.miui.analytics
+com.miui.msa.global
+com.heytap.browser
+com.heytap.market
+com.heytap.music
+"
+
+EDUCATION_BLOAT="
+com.duolingo
+org.khanacademy.android
+"
+
+PRODUCTIVITY_BLOAT="
+com.evernote
+notion.id
+com.todoist
+"
+
+CLOUD_BLOAT="
+com.dropbox.android
+com.google.android.apps.photos
+"
+
+MOTOROLA_SAFE_DISABLE="
+com.motorola.help
+com.motorola.discovery
+com.motorola.gamemode
+com.motorola.gamespace
+com.motorola.mototour
+com.motorola.android.fmradio
+com.motorola.brapps
+com.motorola.demo
+"
+
+MOTOROLA_AGGRESSIVE_UNINSTALL="
+com.motorola.help
+com.motorola.discovery
+com.motorola.gamemode
+com.motorola.gamespace
+com.motorola.mototour
+com.motorola.android.fmradio
+com.motorola.brapps
+com.motorola.ccc.notification
+com.motorola.demo
+"
+
+GOOGLE_OPTIONAL_AGGRESSIVE="
+com.google.android.apps.tachyon
+com.google.android.apps.wellbeing
+com.google.android.googlequicksearchbox
+com.google.android.apps.magazines
+com.google.android.videos
+com.google.android.music
+com.google.android.apps.youtube.music
+com.google.android.apps.docs
+com.google.android.apps.photos
+com.google.android.keep
+com.google.android.apps.youtube.kids
 "
 
 strip_ansi() { sed 's/\x1b\[[0-9;]*m//g'; }
 
 log_init() {
-  mkdir -p "$LOGDIR" 2>/dev/null
-  : > "$LOGFILE" 2>/dev/null
+  mkdir -p "$LOGDIR" "$CFGDIR" "$REPORTDIR" 2>/dev/null
+  touch "$LOGFILE" "$SUMMARYFILE" "$EXTERNAL_PROTECT_LIST" "$EXTERNAL_DISABLE_LIST" \
+        "$EXTERNAL_UNINSTALL_LIST" "$EXTERNAL_FORCESTOP_EXCLUDE" "$EXTERNAL_DEBLOAT_NEVER" 2>/dev/null
 }
 
-log() {
-  echo "$(date '+%F %T') | $*" >> "$LOGFILE" 2>/dev/null
-}
+log() { echo "$(date '+%F %T') | $*" >> "$LOGFILE" 2>/dev/null; }
 
 say() {
   [ "$VERBOSE" = "1" ] && echo -e "$*"
   echo -e "$*" | strip_ansi | log
 }
 
+note() { echo "$*" >> "$SUMMARYFILE" 2>/dev/null; }
 exists() { command -v "$1" >/dev/null 2>&1; }
 
 run() {
@@ -262,6 +468,7 @@ run_quiet() {
 append_unique_line() {
   f="$1"
   line="$2"
+  [ -z "$f" ] && return 0
   [ -z "$line" ] && return 0
   mkdir -p "$(dirname "$f")" 2>/dev/null
   touch "$f" 2>/dev/null
@@ -278,24 +485,14 @@ brand() { getprop_safe ro.product.brand; }
 model() { getprop_safe ro.product.model; }
 manufacturer() { getprop_safe ro.product.manufacturer; }
 release_ver() { getprop_safe ro.build.version.release; }
-secpatch() { getprop_safe ro.build.version.security_patch; }
+carrier_name() { getprop_safe ro.carrier; }
+channel_name() { getprop_safe ro.boot.carrier; }
+retail_name() { getprop_safe ro.com.google.clientidbase.ms; }
 
 sd_avail_kb() { df -k /sdcard 2>/dev/null | awk 'NR==2{print $4}'; }
-sd_avail_bytes() {
-  kb="$(sd_avail_kb)"
-  [ -z "$kb" ] && kb=0
-  awk -v kb="$kb" 'BEGIN{print kb*1024}'
-}
-bytes_to_mb() {
-  b="$1"
-  [ -z "$b" ] && b=0
-  awk -v b="$b" 'BEGIN{printf "%.1f MB", b/1024/1024}'
-}
-bytes_to_gb() {
-  b="$1"
-  [ -z "$b" ] && b=0
-  awk -v b="$b" 'BEGIN{printf "%.2f GB", b/1024/1024/1024}'
-}
+sd_avail_bytes() { kb="$(sd_avail_kb)"; [ -z "$kb" ] && kb=0; awk -v kb="$kb" 'BEGIN{print kb*1024}'; }
+bytes_to_mb() { b="$1"; [ -z "$b" ] && b=0; awk -v b="$b" 'BEGIN{printf "%.1f MB", b/1024/1024}'; }
+bytes_to_gb() { b="$1"; [ -z "$b" ] && b=0; awk -v b="$b" 'BEGIN{printf "%.2f GB", b/1024/1024/1024}'; }
 
 battery_level() { dumpsys battery 2>/dev/null | awk -F': ' '/level:/{print $2; exit}'; }
 battery_temp_c() {
@@ -303,6 +500,8 @@ battery_temp_c() {
   [ -z "$t" ] && t=0
   awk -v x="$t" 'BEGIN{printf "%.1f", x/10}'
 }
+
+pkg_installed() { p="$1"; pm list packages 2>/dev/null | cut -d: -f2 | grep -Fxq "$p"; }
 
 rotate_log_if_needed() {
   [ "$AUTO_TRIM_LOGFILE" = "1" ] || return 0
@@ -343,7 +542,9 @@ with_fixed_perf_end() {
 cleanup_on_exit() {
   with_fixed_perf_end
   rotate_log_if_needed
-  rm -f "$TMP_PROTECTED" "$TMP_SCAN_ALL" "$TMP_JUNK_DL" "$TMP_OLD_APK" "$TMP_LOG_DUMPS" 2>/dev/null
+  rm -f "$TMP_PROTECTED" "$TMP_SCAN_ALL" "$TMP_JUNK_DL" "$TMP_OLD_APK" \
+        "$TMP_LOG_DUMPS" "$TMP_DISABLE_LIST" "$TMP_UNINSTALL_LIST" \
+        "$TMP_FORCESTOP_LIST" 2>/dev/null
 }
 trap cleanup_on_exit EXIT INT TERM
 
@@ -352,18 +553,47 @@ while [ $# -gt 0 ]; do
     --dry-run) DRY_RUN=1 ;;
     --quiet) VERBOSE=0 ;;
     --restore) MODE="restore" ;;
+    --menu) MODE="menu" ;;
+    --report-only) MODE="report-only" ;;
     --debloat-only) DEBLOAT_ONLY=1 ;;
+    --paranoid-safe) PARANOID_SAFE=1 ;;
+    --omega-confirm) OMEGA_CONFIRM=1 ;;
+    --no-auto-tune) AUTO_TUNE=0 ;;
+
     --profile) shift; PROFILE="$1" ;;
-    --profile=safe) PROFILE="safe" ;;
-    --profile=balanced) PROFILE="balanced" ;;
-    --profile=max) PROFILE="max" ;;
-    --profile=extreme) PROFILE="extreme" ;;
+    --profile=daily) PROFILE="daily" ;;
+    --profile=turbo) PROFILE="turbo" ;;
+    --profile=beast) PROFILE="beast" ;;
+    --profile=omega) PROFILE="omega" ;;
+
+    --usage-mode) shift; USAGE_MODE="$1" ;;
+    --usage-mode=auto) USAGE_MODE="auto" ;;
+    --usage-mode=daily) USAGE_MODE="daily" ;;
+    --usage-mode=work) USAGE_MODE="work" ;;
+    --usage-mode=travel) USAGE_MODE="travel" ;;
+    --usage-mode=gaming) USAGE_MODE="gaming" ;;
+    --usage-mode=battery) USAGE_MODE="battery" ;;
+
     --debloat-level) shift; DEBLOAT_LEVEL="$1" ;;
     --debloat-level=safe) DEBLOAT_LEVEL="safe" ;;
     --debloat-level=balanced) DEBLOAT_LEVEL="balanced" ;;
     --debloat-level=aggressive) DEBLOAT_LEVEL="aggressive" ;;
+
     --allow-vendor-aggressive) ALLOW_VENDOR_AGGRESSIVE=1 ;;
-    --disable-haptics) AUTO_DISABLE_HAPTICS=1 ;;
+    --allow-google-aggressive) ALLOW_GOOGLE_AGGRESSIVE=1 ;;
+    --no-social-removal) ALLOW_SOCIAL_REMOVAL=0 ;;
+    --no-microsoft-removal) ALLOW_MICROSOFT_REMOVAL=0 ;;
+    --no-amazon-removal) ALLOW_AMAZON_REMOVAL=0 ;;
+    --no-media-removal) ALLOW_MEDIA_APP_REMOVAL=0 ;;
+    --no-streaming-removal) ALLOW_STREAMING_REMOVAL=0 ;;
+    --no-travel-removal) ALLOW_TRAVEL_SHOP_REMOVAL=0 ;;
+    --no-gaming-removal) ALLOW_GAMING_REMOVAL=0 ;;
+    --no-extra-china-removal) ALLOW_EXTRA_CHINA_REMOVAL=0 ;;
+    --no-google-optional-disable) ALLOW_OPTIONAL_GOOGLE_DISABLE=0 ;;
+    --no-education-removal) ALLOW_EDUCATION_REMOVAL=0 ;;
+    --no-productivity-removal) ALLOW_PRODUCTIVITY_REMOVAL=0 ;;
+    --no-cloud-removal) ALLOW_CLOUD_REMOVAL=0 ;;
+
     --no-dexopt) AUTO_DEXOPT=0 ;;
     --no-trim-caches) AUTO_TRIM_CACHES=0 ;;
     --dexopt-all) DEXOPT_ALL=1 ;;
@@ -373,78 +603,185 @@ while [ $# -gt 0 ]; do
     --apk-dir) shift; APK_DIR="$1" ;;
     --keep-apks) KEEP_APKS=1 ;;
     --purge-download-temp-only) PURGE_DOWNLOAD_TEMP_ONLY=1 ;;
+    --no-force-stop) AUTO_FORCE_STOP=0 ;;
+    --no-debloat) AUTO_DEBLOAT=0 ;;
+    --no-refresh) AUTO_SET_REFRESH_RATE=0 ;;
   esac
   shift
 done
 
+interactive_menu() {
+  say "${Y}=== TITAN v46 OMEGA MENU ===${NC}"
+  say "1) daily"
+  say "2) turbo"
+  say "3) beast"
+  say "4) omega"
+  printf "Elegí perfil [1-4]: "
+  read ans
+  case "$ans" in
+    1) PROFILE="daily" ;;
+    2) PROFILE="turbo" ;;
+    3) PROFILE="beast" ;;
+    4) PROFILE="omega"; OMEGA_CONFIRM=1 ;;
+    *) PROFILE="beast" ;;
+  esac
+
+  say "1) auto"
+  say "2) daily"
+  say "3) work"
+  say "4) travel"
+  say "5) gaming"
+  say "6) battery"
+  printf "Elegí modo [1-6]: "
+  read ans2
+  case "$ans2" in
+    1) USAGE_MODE="auto" ;;
+    2) USAGE_MODE="daily" ;;
+    3) USAGE_MODE="work" ;;
+    4) USAGE_MODE="travel" ;;
+    5) USAGE_MODE="gaming" ;;
+    6) USAGE_MODE="battery" ;;
+    *) USAGE_MODE="auto" ;;
+  esac
+}
+
 apply_profile() {
   case "$PROFILE" in
-    safe)
-      ANIM_SCALE="0.50"
-      TOUCH_TIMEOUT="120"
-      POINTER_SPEED="4"
-      BG_LIMIT=""
-      FORCE_STOP_NONCRITICAL=0
-      FORCE_STOP_MAX_COUNT=0
-      DAYS_OLD=4
-      MIN_SIZE_KB=16
-      AUTO_DISABLE_HAPTICS=0
-      AUTO_FORCE_STOP=0
-      AUTO_LIMIT_BG=0
-      DEBLOAT_LEVEL="safe"
-      ;;
-    balanced)
+    daily)
       ANIM_SCALE="0.35"
       TOUCH_TIMEOUT="110"
       POINTER_SPEED="5"
       BG_LIMIT=""
       FORCE_STOP_NONCRITICAL=0
       FORCE_STOP_MAX_COUNT=0
-      DAYS_OLD=2
-      MIN_SIZE_KB=8
       AUTO_DISABLE_HAPTICS=0
-      AUTO_FORCE_STOP=0
       AUTO_LIMIT_BG=0
-      ;;
-    max)
-      ANIM_SCALE="0.25"
-      TOUCH_TIMEOUT="100"
-      POINTER_SPEED="5"
-      BG_LIMIT=""
-      FORCE_STOP_NONCRITICAL=0
-      FORCE_STOP_MAX_COUNT=8
-      DAYS_OLD=2
-      MIN_SIZE_KB=4
-      AUTO_DISABLE_HAPTICS=0
       AUTO_FORCE_STOP=0
-      AUTO_LIMIT_BG=0
+      AUTO_DISABLE_ASSISTANT=0
+      DEBLOAT_LEVEL="balanced"
       ;;
-    extreme)
+    turbo)
       ANIM_SCALE="0.20"
       TOUCH_TIMEOUT="90"
       POINTER_SPEED="6"
       BG_LIMIT="4"
       FORCE_STOP_NONCRITICAL=1
-      FORCE_STOP_MAX_COUNT=12
-      DAYS_OLD=1
-      MIN_SIZE_KB=2
+      FORCE_STOP_MAX_COUNT=16
       AUTO_DISABLE_HAPTICS=1
-      AUTO_FORCE_STOP=1
       AUTO_LIMIT_BG=1
+      AUTO_FORCE_STOP=1
+      [ "$DEBLOAT_LEVEL" = "balanced" ] && DEBLOAT_LEVEL="aggressive"
+      ;;
+    beast)
+      ANIM_SCALE="0.15"
+      TOUCH_TIMEOUT="80"
+      POINTER_SPEED="7"
+      BG_LIMIT="3"
+      FORCE_STOP_NONCRITICAL=1
+      FORCE_STOP_MAX_COUNT=24
+      AUTO_DISABLE_HAPTICS=1
+      AUTO_LIMIT_BG=1
+      AUTO_FORCE_STOP=1
+      AUTO_DISABLE_ASSISTANT=1
       DEXOPT_ALL=1
       [ "$DEBLOAT_LEVEL" = "balanced" ] && DEBLOAT_LEVEL="aggressive"
       ;;
+    omega)
+      ANIM_SCALE="0.10"
+      TOUCH_TIMEOUT="75"
+      POINTER_SPEED="7"
+      BG_LIMIT="2"
+      FORCE_STOP_NONCRITICAL=1
+      FORCE_STOP_MAX_COUNT=60
+      AUTO_DISABLE_HAPTICS=1
+      AUTO_LIMIT_BG=1
+      AUTO_FORCE_STOP=1
+      AUTO_DISABLE_ASSISTANT=1
+      AUTO_DISABLE_NOTIFY_BADGING=1
+      DEXOPT_ALL=1
+      DEBLOAT_LEVEL="aggressive"
+      ALLOW_VENDOR_AGGRESSIVE=1
+      ALLOW_GOOGLE_AGGRESSIVE=1
+      ;;
     *)
-      PROFILE="max"
+      PROFILE="beast"
       apply_profile
       return
       ;;
   esac
 }
 
+apply_usage_mode() {
+  case "$USAGE_MODE" in
+    auto) ;;
+    daily) ;;
+    work)
+      BG_LIMIT="3"
+      ANIM_SCALE="0.18"
+      TARGET_PEAK_REFRESH="120"
+      TARGET_MIN_REFRESH="60"
+      ALLOW_PRODUCTIVITY_REMOVAL=0
+      ALLOW_CLOUD_REMOVAL=0
+      ALLOW_MICROSOFT_REMOVAL=0
+      ;;
+    travel)
+      BG_LIMIT="3"
+      ANIM_SCALE="0.18"
+      TARGET_PEAK_REFRESH="90"
+      TARGET_MIN_REFRESH="60"
+      ALLOW_TRAVEL_SHOP_REMOVAL=0
+      ALLOW_GOOGLE_AGGRESSIVE=0
+      ;;
+    gaming)
+      TARGET_PEAK_REFRESH="120"
+      TARGET_MIN_REFRESH="120"
+      BG_LIMIT="2"
+      ANIM_SCALE="0.12"
+      AUTO_DISABLE_HAPTICS=1
+      AUTO_LIMIT_BG=1
+      ;;
+    battery)
+      TARGET_PEAK_REFRESH="60"
+      TARGET_MIN_REFRESH="60"
+      BG_LIMIT="3"
+      ANIM_SCALE="0.20"
+      AUTO_FORCE_STOP=1
+      FORCE_STOP_MAX_COUNT=18
+      ;;
+  esac
+}
+
+auto_tune_profile() {
+  [ "$AUTO_TUNE" = "1" ] || return 0
+  [ "$USAGE_MODE" != "auto" ] && return 0
+
+  lvl="$(battery_level)"
+  temp="$(battery_temp_c)"
+  temp_int="$(echo "$temp" | awk -F. '{print $1}')"
+  [ -z "$lvl" ] && lvl=100
+  [ -z "$temp_int" ] && temp_int=0
+
+  if [ "$lvl" -lt 25 ] || [ "$temp_int" -ge 41 ]; then
+    USAGE_MODE="battery"
+  elif [ "$lvl" -ge 60 ] && [ "$temp_int" -lt 39 ]; then
+    USAGE_MODE="gaming"
+  else
+    USAGE_MODE="daily"
+  fi
+
+  apply_usage_mode
+  note "AutoTune_usage=$USAGE_MODE"
+}
+
+require_omega_confirmation() {
+  [ "$PROFILE" != "omega" ] && return 0
+  [ "$OMEGA_CONFIRM" = "1" ] && return 0
+  say "${R}[x] Perfil omega requiere --omega-confirm${NC}"
+  exit 1
+}
+
 save_state() {
   [ -f "$STATEFILE" ] && return 0
-  say "${C}[i] Guardando estado para restore...${NC}"
   {
     echo "window_animation_scale=$(settings_get_safe global window_animation_scale)"
     echo "transition_animation_scale=$(settings_get_safe global transition_animation_scale)"
@@ -457,19 +794,23 @@ save_state() {
     echo "limit_background_processes=$(settings_get_safe global limit_background_processes)"
     echo "peak_refresh_rate=$(settings_get_safe system peak_refresh_rate)"
     echo "min_refresh_rate=$(settings_get_safe system min_refresh_rate)"
+    echo "disable_window_blurs=$(settings_get_safe global disable_window_blurs)"
+    echo "assistant=$(settings_get_safe secure assistant)"
+    echo "enabled_print_services=$(settings_get_safe secure enabled_print_services)"
+    echo "notification_badging=$(settings_get_safe secure notification_badging)"
   } > "$STATEFILE" 2>/dev/null
 }
 
 restore_debloat() {
   if [ -f "$DISABLED_STATEFILE" ]; then
-    say "${P}[↩] Rehabilitando paquetes disabled-user...${NC}"
+    say "${P}[↩] Rehabilitando paquetes deshabilitados...${NC}"
     sed '/^$/d' "$DISABLED_STATEFILE" 2>/dev/null | while IFS= read -r p; do
       run "pm enable --user 0 '$p'" || true
     done
   fi
 
   if [ -f "$DEBLOAT_STATEFILE" ]; then
-    say "${P}[↩] Restaurando paquetes removidos para user 0...${NC}"
+    say "${P}[↩] Restaurando paquetes removidos user0...${NC}"
     sed '/^$/d' "$DEBLOAT_STATEFILE" 2>/dev/null | while IFS= read -r p; do
       run "cmd package install-existing --user 0 '$p'" || true
       run "pm enable --user 0 '$p'" || true
@@ -479,7 +820,6 @@ restore_debloat() {
 
 restore_settings() {
   if [ -f "$STATEFILE" ]; then
-    say "${P}[↩] Restaurando settings...${NC}"
     . "$STATEFILE" 2>/dev/null
     [ -n "$window_animation_scale" ] && settings_put_safe global window_animation_scale "$window_animation_scale"
     [ -n "$transition_animation_scale" ] && settings_put_safe global transition_animation_scale "$transition_animation_scale"
@@ -491,45 +831,34 @@ restore_settings() {
     [ -n "$font_scale" ] && settings_put_safe system font_scale "$font_scale"
     [ -n "$peak_refresh_rate" ] && settings_put_safe system peak_refresh_rate "$peak_refresh_rate"
     [ -n "$min_refresh_rate" ] && settings_put_safe system min_refresh_rate "$min_refresh_rate"
+    [ -n "$disable_window_blurs" ] && settings_put_safe global disable_window_blurs "$disable_window_blurs"
+    [ -n "$assistant" ] && settings_put_safe secure assistant "$assistant"
+    [ -n "$enabled_print_services" ] && settings_put_safe secure enabled_print_services "$enabled_print_services"
+    [ -n "$notification_badging" ] && settings_put_safe secure notification_badging "$notification_badging"
     if [ -n "$limit_background_processes" ] && [ "$limit_background_processes" != "null" ]; then
       settings_put_safe global limit_background_processes "$limit_background_processes"
     else
       settings_delete_safe global limit_background_processes
     fi
-  else
-    say "${Y}[i] No existe statefile de settings.${NC}"
   fi
+
   restore_debloat
   say "${G}[✓] Restore completado.${NC}"
 }
 
-current_ime() {
-  settings get secure default_input_method 2>/dev/null | awk -F/ '{print $1}'
-}
-
-current_launcher() {
-  cmd package resolve-activity --brief -c android.intent.category.HOME android.intent.action.MAIN 2>/dev/null | tail -n 1 | awk -F/ '{print $1}'
-}
-
-default_dialer_pkg() {
-  settings get secure dialer_default_application 2>/dev/null
-}
-
-default_sms_pkg() {
-  settings get secure sms_default_application 2>/dev/null
-}
-
-default_assistant_pkg() {
-  settings get secure assistant 2>/dev/null | awk -F/ '{print $1}'
-}
+current_ime() { settings get secure default_input_method 2>/dev/null | awk -F/ '{print $1}'; }
+current_launcher() { cmd package resolve-activity --brief -c android.intent.category.HOME android.intent.action.MAIN 2>/dev/null | tail -n 1 | awk -F/ '{print $1}'; }
+default_dialer_pkg() { settings get secure dialer_default_application 2>/dev/null; }
+default_sms_pkg() { settings get secure sms_default_application 2>/dev/null; }
+default_assistant_pkg() { settings get secure assistant 2>/dev/null | awk -F/ '{print $1}'; }
 
 camera_candidates() {
-  cmd package query-intent-activities -a android.media.action.IMAGE_CAPTURE 2>/dev/null | sed -n 's/.*name=//p' | awk -F/ '{print $1}' | sort -u
+  cmd package query-intent-activities -a android.media.action.IMAGE_CAPTURE 2>/dev/null \
+  | sed -n 's/.*name=//p' | awk -F/ '{print $1}' | sort -u
 }
 
 build_protected_packages() {
   : > "$TMP_PROTECTED"
-
   echo "$CRITICAL_PACKAGES_STATIC" | sed '/^$/d' | while IFS= read -r p; do
     append_unique_line "$TMP_PROTECTED" "$p"
   done
@@ -550,13 +879,8 @@ build_protected_packages() {
     [ -n "$p" ] && append_unique_line "$TMP_PROTECTED" "$p"
   done
 
-  pm list packages 2>/dev/null | cut -d: -f2 | while IFS= read -r p; do
-    case "$p" in
-      *keyboard*|*inputmethod*|*launcher*|*camera*|*dialer*|*contacts*|*messaging*|*telephony*|*permissioncontroller*|*externalstorage*|*documentsui*|*vending*|*gms*|*gsf*|*systemui*|*whatsapp*|*typeless*|com.motorola.launcher|com.motorola.camera*|com.motorola.mobiledesktop*|com.motorola.moto*|com.motorola.genie*|com.motorola.systemui*|com.motorola.setup*|com.motorola.blur*)
-        append_unique_line "$TMP_PROTECTED" "$p"
-        ;;
-    esac
-  done
+  [ -f "$EXTERNAL_PROTECT_LIST" ] && sed '/^$/d' "$EXTERNAL_PROTECT_LIST" | while IFS= read -r p; do append_unique_line "$TMP_PROTECTED" "$p"; done
+  [ -f "$EXTERNAL_DEBLOAT_NEVER" ] && sed '/^$/d' "$EXTERNAL_DEBLOAT_NEVER" | while IFS= read -r p; do append_unique_line "$TMP_PROTECTED" "$p"; done
 }
 
 is_protected_package() {
@@ -566,32 +890,160 @@ is_protected_package() {
   return 1
 }
 
+detect_environment_phase() {
+  : > "$ENV_REPORT"
+  {
+    echo "brand=$(brand)"
+    echo "manufacturer=$(manufacturer)"
+    echo "model=$(model)"
+    echo "android=$(release_ver)"
+    echo "sdk=$(sdk)"
+    echo "carrier=$(carrier_name)"
+    echo "boot_carrier=$(channel_name)"
+    echo "retail=$(retail_name)"
+    echo "battery=$(battery_level)"
+    echo "temp_c=$(battery_temp_c)"
+  } >> "$ENV_REPORT"
+}
+
+generate_smart_recommendations() {
+  : > "$SMART_RECOMMENDATIONS"
+  lvl="$(battery_level)"
+  temp="$(battery_temp_c)"
+  temp_int="$(echo "$temp" | awk -F. '{print $1}')"
+  [ -z "$lvl" ] && lvl=100
+  [ -z "$temp_int" ] && temp_int=0
+
+  echo "=== SMART RECOMMENDATIONS ===" >> "$SMART_RECOMMENDATIONS"
+
+  if [ "$temp_int" -ge 41 ]; then
+    echo "- Temperatura alta: mejor usage-mode=battery o daily." >> "$SMART_RECOMMENDATIONS"
+    echo "- Evitá omega sostenido." >> "$SMART_RECOMMENDATIONS"
+  fi
+
+  if [ "$lvl" -lt 30 ]; then
+    echo "- Batería baja: conviene 60 Hz y menos dexopt pesado." >> "$SMART_RECOMMENDATIONS"
+  fi
+
+  if [ "$USAGE_MODE" = "work" ]; then
+    echo "- Modo work: se preservan apps de productividad, nube y Microsoft." >> "$SMART_RECOMMENDATIONS"
+  fi
+
+  if [ "$USAGE_MODE" = "travel" ]; then
+    echo "- Modo travel: se preservan apps de viaje y reservas." >> "$SMART_RECOMMENDATIONS"
+  fi
+
+  if [ "$PROFILE" = "omega" ]; then
+    echo "- Perfil omega: revisá never_touch.txt antes de usarlo a diario." >> "$SMART_RECOMMENDATIONS"
+  fi
+}
+
+snapshot_before() {
+  {
+    echo "window_animation_scale=$(settings_get_safe global window_animation_scale)"
+    echo "transition_animation_scale=$(settings_get_safe global transition_animation_scale)"
+    echo "animator_duration_scale=$(settings_get_safe global animator_duration_scale)"
+    echo "long_press_timeout=$(settings_get_safe secure long_press_timeout)"
+    echo "multi_press_timeout=$(settings_get_safe secure multi_press_timeout)"
+    echo "pointer_speed=$(settings_get_safe system pointer_speed)"
+    echo "haptic_feedback_enabled=$(settings_get_safe system haptic_feedback_enabled)"
+    echo "font_scale=$(settings_get_safe system font_scale)"
+    echo "limit_background_processes=$(settings_get_safe global limit_background_processes)"
+    echo "peak_refresh_rate=$(settings_get_safe system peak_refresh_rate)"
+    echo "min_refresh_rate=$(settings_get_safe system min_refresh_rate)"
+    echo "disable_window_blurs=$(settings_get_safe global disable_window_blurs)"
+    echo "assistant=$(settings_get_safe secure assistant)"
+    echo "enabled_print_services=$(settings_get_safe secure enabled_print_services)"
+    echo "notification_badging=$(settings_get_safe secure notification_badging)"
+  } > "$SNAPSHOT_SETTINGS" 2>/dev/null
+
+  pm list packages -d 2>/dev/null | cut -d: -f2 | sort > "$SNAPSHOT_DISABLED" 2>/dev/null
+}
+
+snapshot_after() {
+  {
+    echo "window_animation_scale=$(settings_get_safe global window_animation_scale)"
+    echo "transition_animation_scale=$(settings_get_safe global transition_animation_scale)"
+    echo "animator_duration_scale=$(settings_get_safe global animator_duration_scale)"
+    echo "long_press_timeout=$(settings_get_safe secure long_press_timeout)"
+    echo "multi_press_timeout=$(settings_get_safe secure multi_press_timeout)"
+    echo "pointer_speed=$(settings_get_safe system pointer_speed)"
+    echo "haptic_feedback_enabled=$(settings_get_safe system haptic_feedback_enabled)"
+    echo "font_scale=$(settings_get_safe system font_scale)"
+    echo "limit_background_processes=$(settings_get_safe global limit_background_processes)"
+    echo "peak_refresh_rate=$(settings_get_safe system peak_refresh_rate)"
+    echo "min_refresh_rate=$(settings_get_safe system min_refresh_rate)"
+    echo "disable_window_blurs=$(settings_get_safe global disable_window_blurs)"
+    echo "assistant=$(settings_get_safe secure assistant)"
+    echo "enabled_print_services=$(settings_get_safe secure enabled_print_services)"
+    echo "notification_badging=$(settings_get_safe secure notification_badging)"
+  } > "$SNAPSHOT_AFTER_SETTINGS" 2>/dev/null
+
+  pm list packages -d 2>/dev/null | cut -d: -f2 | sort > "$SNAPSHOT_AFTER_DISABLED" 2>/dev/null
+  cp "$DEBLOAT_STATEFILE" "$SNAPSHOT_REMOVED" 2>/dev/null || true
+}
+
+generate_before_after_report() {
+  : > "$SNAPSHOT_REPORT"
+  {
+    echo "=== TITAN v46 OMEGA REPORT ==="
+    echo "Perfil=$PROFILE"
+    echo "Uso=$USAGE_MODE"
+    echo "Debloat=$DEBLOAT_LEVEL"
+    echo "Bateria=$(battery_level)%"
+    echo "Temp=$(battery_temp_c)C"
+    echo
+    echo "--- SETTINGS BEFORE ---"
+    cat "$SNAPSHOT_SETTINGS" 2>/dev/null
+    echo
+    echo "--- SETTINGS AFTER ---"
+    cat "$SNAPSHOT_AFTER_SETTINGS" 2>/dev/null
+    echo
+    echo "--- DISABLED BEFORE ---"
+    wc -l "$SNAPSHOT_DISABLED" 2>/dev/null
+    echo "--- DISABLED AFTER ---"
+    wc -l "$SNAPSHOT_AFTER_DISABLED" 2>/dev/null
+    echo "--- REMOVED USER0 ---"
+    wc -l "$SNAPSHOT_REMOVED" 2>/dev/null
+    echo
+    echo "--- ENVIRONMENT ---"
+    cat "$ENV_REPORT" 2>/dev/null
+    echo
+    echo "--- SMART RECOMMENDATIONS ---"
+    cat "$SMART_RECOMMENDATIONS" 2>/dev/null
+  } >> "$SNAPSHOT_REPORT"
+  note "Report=$SNAPSHOT_REPORT"
+}
+
 banner() {
+  : > "$SUMMARYFILE" 2>/dev/null
   say "${Y}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-  say "${Y}  TITAN v38 RAZR60 EXTREME ${C}[NO-ROOT / REVERSIBLE / MOTOROLA-AWARE]${NC}"
+  say "${Y}  TITAN v46 OMEGA ${C}[NO-ROOT / REVERSIBLE / MOTOROLA-AWARE]${NC}"
   say "${Y}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
   say "${P}[i] Device: $(model) | Brand: $(brand) | OEM: $(manufacturer)${NC}"
-  say "${P}[i] Android: $(release_ver) | SDK: $(sdk) | Patch: $(secpatch)${NC}"
-  say "${P}[i] Profile: ${PROFILE} | Debloat: ${DEBLOAT_LEVEL} | DRY_RUN: ${DRY_RUN}${NC}"
+  say "${P}[i] Android: $(release_ver) | SDK: $(sdk)${NC}"
+  say "${P}[i] Profile: ${PROFILE} | Usage: ${USAGE_MODE} | Debloat: ${DEBLOAT_LEVEL}${NC}"
+  say "${C}[i] Carrier: $(carrier_name) | Channel: $(channel_name)${NC}"
   say "${C}[i] /sdcard libre: $(sd_avail_kb) KB (~$(bytes_to_gb "$(sd_avail_bytes)"))${NC}"
   say "${C}[i] Batería: $(battery_level)% | Temp: $(battery_temp_c)°C${NC}"
-  say "${G}[LOCK] WhatsApp protegido${NC}"
-  say "${G}[LOCK] Typeless protegido${NC}"
+  note "Perfil=$PROFILE"
+  note "Usage=$USAGE_MODE"
+  note "Debloat=$DEBLOAT_LEVEL"
 }
 
 diagnostics_pre() {
-  say "\n${P}[1/9] DIAGNÓSTICO INICIAL${NC}"
+  say "\n${P}[1/13] DIAGNÓSTICO INICIAL${NC}"
   exists dumpsys && run "dumpsys meminfo | head -120" || true
-  exists top && run "top -n 1 | head -50" || true
+  exists top && run "top -n 1 | head -60" || true
   exists df && run "df -h /data /sdcard" || true
+  exists pm && run "pm list packages -d | head -120" || true
   say "${G}[✓] Diagnóstico inicial listo.${NC}"
 }
 
 ota_best_effort() {
-  say "\n${P}[2/9] OTA / UPDATE INFO${NC}"
-  say "${C}[i] No existe update-all universal real por ADB stock sin root.${NC}"
+  say "\n${P}[2/13] OTA / UPDATE INFO${NC}"
+  say "${C}[i] No existe update-all universal real por shell stock sin root.${NC}"
   say "${C}[i] Sí se pueden actualizar APKs locales con --update-apks.${NC}"
-  say "${Y}[i] En Motorola las OTAs las gestiona el sistema.${NC}"
   say "${G}[✓] Fase informativa completada.${NC}"
 }
 
@@ -622,7 +1074,7 @@ mk_filter_files() {
   grep '^/sdcard/Download/' "$TMP_SCAN_ALL" 2>/dev/null | while IFS= read -r p; do
     [ -f "$p" ] || continue
     case "$p" in
-      *.tmp|*.temp|*.log|*.bak|*.old|*.swp|*.part|*.partial|*.crdownload|*.dmp|*.sav|*.shm|*.journal|*.lock|*.trace|*.stacktrace|*tombstone*|*.err|*.out)
+      *.tmp|*.temp|*.log|*.bak|*.old|*.swp|*.part|*.partial|*.crdownload|*.dmp|*.sav|*.shm|*.journal|*.lock|*.trace|*.stacktrace|*.err|*.out|*.download|*.pending)
         echo "$p" >> "$TMP_JUNK_DL"
         ;;
       *.apk|*.apks|*.xapk|*.apkm)
@@ -642,7 +1094,7 @@ mk_filter_files() {
 }
 
 report_cleanup_inventory() {
-  say "\n${P}[3/9] INVENTARIO DE LIMPIEZA${NC}"
+  say "\n${P}[3/13] INVENTARIO DE LIMPIEZA${NC}"
   scan_storage_once
   mk_filter_files
 
@@ -657,7 +1109,7 @@ report_cleanup_inventory() {
   say "${C}[i] Junk Download: ${junk_n} (~$(bytes_to_mb "$junk_b"))${NC}"
   say "${C}[i] Instaladores/APKs: ${apk_n} (~$(bytes_to_mb "$apk_b"))${NC}"
   say "${C}[i] Logs/dumps: ${dump_n} (~$(bytes_to_mb "$dump_b"))${NC}"
-  say "${G}[✓] Inventario generado.${NC}"
+  note "Inventario junk=$junk_n apk=$apk_n dumps=$dump_n"
 }
 
 pm_trim_caches() {
@@ -669,29 +1121,20 @@ pm_trim_caches() {
 cleanup_download_junk() {
   [ "$AUTO_CLEAR_DOWNLOAD_JUNK" = "1" ] || return 0
   [ -f "$TMP_JUNK_DL" ] || return 0
-  while IFS= read -r f; do
-    [ -f "$f" ] || continue
-    rm -f "$f" 2>/dev/null || true
-  done < "$TMP_JUNK_DL"
+  while IFS= read -r f; do [ -f "$f" ] && rm -f "$f" 2>/dev/null || true; done < "$TMP_JUNK_DL"
 }
 
 cleanup_old_installers() {
   [ "$AUTO_CLEAR_OLD_INSTALLERS" = "1" ] || return 0
   [ "$KEEP_APKS" = "1" ] && return 0
   [ -f "$TMP_OLD_APK" ] || return 0
-  while IFS= read -r f; do
-    [ -f "$f" ] || continue
-    rm -f "$f" 2>/dev/null || true
-  done < "$TMP_OLD_APK"
+  while IFS= read -r f; do [ -f "$f" ] && rm -f "$f" 2>/dev/null || true; done < "$TMP_OLD_APK"
 }
 
 cleanup_logs_dumps() {
   [ "$AUTO_CLEAR_LOG_DIRS" = "1" ] || return 0
   [ -f "$TMP_LOG_DUMPS" ] || return 0
-  while IFS= read -r f; do
-    [ -f "$f" ] || continue
-    rm -f "$f" 2>/dev/null || true
-  done < "$TMP_LOG_DUMPS"
+  while IFS= read -r f; do [ -f "$f" ] && rm -f "$f" 2>/dev/null || true; done < "$TMP_LOG_DUMPS"
 }
 
 cleanup_thumbnails() {
@@ -706,98 +1149,17 @@ cleanup_thumbnails() {
     -delete" || true
 }
 
-cleanup_bugreports() {
-  [ "$AUTO_CLEAR_BUGREPORTS" = "1" ] || return 0
-  run "find /sdcard/bugreports -maxdepth 4 -type f -delete" || true
-}
-
-cleanup_tombstones_named() {
-  [ "$AUTO_CLEAR_TOMBSTONES" = "1" ] || return 0
-  run "find /sdcard -maxdepth 7 -type f \
-    \\( -iname '*tombstone*' -o -iname '*.tombstone' -o -iname '*.anr' \\) \
-    -not -path '${WHATSAPP_EXCLUDE_1}/*' \
-    -not -path '${WHATSAPP_EXCLUDE_2}/*' \
-    -not -path '${WHATSAPP_EXCLUDE_3}/*' \
-    -not -path '${TYPELESS_EXCLUDE_1}/*' \
-    -not -path '${TYPELESS_EXCLUDE_2}/*' \
-    -delete" || true
-}
-
-cleanup_zero_byte_files() {
-  [ "$AUTO_CLEAR_EMPTY_FILES" = "1" ] || return 0
-  run "find /sdcard -maxdepth 7 -type f -size 0 \
-    -not -path '${WHATSAPP_EXCLUDE_1}/*' \
-    -not -path '${WHATSAPP_EXCLUDE_2}/*' \
-    -not -path '${WHATSAPP_EXCLUDE_3}/*' \
-    -not -path '${TYPELESS_EXCLUDE_1}/*' \
-    -not -path '${TYPELESS_EXCLUDE_2}/*' \
-    -delete" || true
-}
-
-cleanup_tmp_and_cache_dirs() {
-  [ "$AUTO_CLEAR_TMP_DIRS" = "1" ] || return 0
-  run "find /sdcard -maxdepth 7 -type d \
-    \\( -iname 'cache' -o -iname 'code_cache' -o -iname 'tmp' -o -iname 'temp' -o -iname '.tmp' -o -iname '.cache' \\) \
-    -not -path '${WHATSAPP_EXCLUDE_1}*' \
-    -not -path '${WHATSAPP_EXCLUDE_2}*' \
-    -not -path '${WHATSAPP_EXCLUDE_3}*' \
-    -not -path '${TYPELESS_EXCLUDE_1}*' \
-    -not -path '${TYPELESS_EXCLUDE_2}*' \
-    | while read d; do
-        [ -z \"\$d\" ] && continue
-        find \"\$d\" -type f -delete
-      done" || true
-}
-
-cleanup_android_temp_dirs() {
-  [ "$AUTO_CLEAR_ANDROID_TEMP" = "1" ] || return 0
-  run "find /sdcard/Android -maxdepth 7 \
-    \\( -path '*/cache/*' -o -path '*/code_cache/*' -o -path '*/files/cache/*' -o -path '*/files/tmp/*' -o -path '*/tmp/*' -o -path '*/logs/*' \\) \
-    -not -path '${WHATSAPP_EXCLUDE_2}/*' \
-    -not -path '${WHATSAPP_EXCLUDE_3}/*' \
-    -not -path '${TYPELESS_EXCLUDE_1}/*' \
-    -not -path '${TYPELESS_EXCLUDE_2}/*' \
-    -type f -delete" || true
-}
-
-cleanup_crash_residue() {
-  [ "$AUTO_CLEAR_CRASH_RESIDUE" = "1" ] || return 0
-  run "find /sdcard -maxdepth 7 -type f \
-    \\( -iname '*.stacktrace' -o -iname '*.trace' -o -iname '*.dmp' -o -iname '*.crash' -o -iname 'anr_*' -o -iname 'bugreport*' -o -iname '*.dropbox' \\) \
-    -not -path '${WHATSAPP_EXCLUDE_1}/*' \
-    -not -path '${WHATSAPP_EXCLUDE_2}/*' \
-    -not -path '${WHATSAPP_EXCLUDE_3}/*' \
-    -not -path '${TYPELESS_EXCLUDE_1}/*' \
-    -not -path '${TYPELESS_EXCLUDE_2}/*' \
-    -delete" || true
-}
-
-cleanup_misc_junk() {
-  [ "$AUTO_CLEAR_MISC_JUNK" = "1" ] || return 0
-  run "find /sdcard -maxdepth 7 -type f \
-    \\( -iname '*.nomedia.bak' -o -iname '*.orig' -o -iname '*.rej' -o -iname '*.pending' -o -iname '*.download' -o -iname '*.broken' \\) \
-    -not -path '${WHATSAPP_EXCLUDE_1}/*' \
-    -not -path '${WHATSAPP_EXCLUDE_2}/*' \
-    -not -path '${WHATSAPP_EXCLUDE_3}/*' \
-    -not -path '${TYPELESS_EXCLUDE_1}/*' \
-    -not -path '${TYPELESS_EXCLUDE_2}/*' \
-    -delete" || true
-}
-
-prune_empty_dirs() {
-  [ "$AUTO_PRUNE_EMPTY_DIRS" = "1" ] || return 0
-  run "find /sdcard -maxdepth 7 -type d -empty \
-    -not -path '/sdcard' \
-    -not -path '${WHATSAPP_EXCLUDE_1}' \
-    -not -path '${WHATSAPP_EXCLUDE_2}' \
-    -not -path '${WHATSAPP_EXCLUDE_3}' \
-    -not -path '${TYPELESS_EXCLUDE_1}' \
-    -not -path '${TYPELESS_EXCLUDE_2}' \
-    -delete" || true
-}
+cleanup_bugreports() { [ "$AUTO_CLEAR_BUGREPORTS" = "1" ] || return 0; run "find /sdcard/bugreports -maxdepth 4 -type f -delete" || true; }
+cleanup_tombstones_named() { [ "$AUTO_CLEAR_TOMBSTONES" = "1" ] || return 0; run "find /sdcard -maxdepth 7 -type f \\( -iname '*tombstone*' -o -iname '*.tombstone' -o -iname '*.anr' \\) -not -path '${WHATSAPP_EXCLUDE_1}/*' -not -path '${WHATSAPP_EXCLUDE_2}/*' -not -path '${WHATSAPP_EXCLUDE_3}/*' -not -path '${TYPELESS_EXCLUDE_1}/*' -not -path '${TYPELESS_EXCLUDE_2}/*' -delete" || true; }
+cleanup_zero_byte_files() { [ "$AUTO_CLEAR_EMPTY_FILES" = "1" ] || return 0; run "find /sdcard -maxdepth 7 -type f -size 0 -not -path '${WHATSAPP_EXCLUDE_1}/*' -not -path '${WHATSAPP_EXCLUDE_2}/*' -not -path '${WHATSAPP_EXCLUDE_3}/*' -not -path '${TYPELESS_EXCLUDE_1}/*' -not -path '${TYPELESS_EXCLUDE_2}/*' -delete" || true; }
+cleanup_tmp_and_cache_dirs() { [ "$AUTO_CLEAR_TMP_DIRS" = "1" ] || return 0; run "find /sdcard -maxdepth 7 -type d \\( -iname 'cache' -o -iname 'code_cache' -o -iname 'tmp' -o -iname 'temp' -o -iname '.tmp' -o -iname '.cache' \\) -not -path '${WHATSAPP_EXCLUDE_1}*' -not -path '${WHATSAPP_EXCLUDE_2}*' -not -path '${WHATSAPP_EXCLUDE_3}*' -not -path '${TYPELESS_EXCLUDE_1}*' -not -path '${TYPELESS_EXCLUDE_2}*' | while read d; do [ -z \"\$d\" ] && continue; find \"\$d\" -type f -delete; done" || true; }
+cleanup_android_temp_dirs() { [ "$AUTO_CLEAR_ANDROID_TEMP" = "1" ] || return 0; run "find /sdcard/Android -maxdepth 7 \\( -path '*/cache/*' -o -path '*/code_cache/*' -o -path '*/files/cache/*' -o -path '*/files/tmp/*' -o -path '*/tmp/*' -o -path '*/logs/*' \\) -not -path '${WHATSAPP_EXCLUDE_2}/*' -not -path '${WHATSAPP_EXCLUDE_3}/*' -not -path '${TYPELESS_EXCLUDE_1}/*' -not -path '${TYPELESS_EXCLUDE_2}/*' -type f -delete" || true; }
+cleanup_crash_residue() { [ "$AUTO_CLEAR_CRASH_RESIDUE" = "1" ] || return 0; run "find /sdcard -maxdepth 7 -type f \\( -iname '*.stacktrace' -o -iname '*.trace' -o -iname '*.dmp' -o -iname '*.crash' -o -iname 'anr_*' -o -iname 'bugreport*' -o -iname '*.dropbox' \\) -not -path '${WHATSAPP_EXCLUDE_1}/*' -not -path '${WHATSAPP_EXCLUDE_2}/*' -not -path '${WHATSAPP_EXCLUDE_3}/*' -not -path '${TYPELESS_EXCLUDE_1}/*' -not -path '${TYPELESS_EXCLUDE_2}/*' -delete" || true; }
+cleanup_misc_junk() { [ "$AUTO_CLEAR_MISC_JUNK" = "1" ] || return 0; run "find /sdcard -maxdepth 7 -type f \\( -iname '*.nomedia.bak' -o -iname '*.orig' -o -iname '*.rej' -o -iname '*.pending' -o -iname '*.download' -o -iname '*.broken' \\) -not -path '${WHATSAPP_EXCLUDE_1}/*' -not -path '${WHATSAPP_EXCLUDE_2}/*' -not -path '${WHATSAPP_EXCLUDE_3}/*' -not -path '${TYPELESS_EXCLUDE_1}/*' -not -path '${TYPELESS_EXCLUDE_2}/*' -delete" || true; }
+prune_empty_dirs() { [ "$AUTO_PRUNE_EMPTY_DIRS" = "1" ] || return 0; run "find /sdcard -maxdepth 7 -type d -empty -not -path '/sdcard' -not -path '${WHATSAPP_EXCLUDE_1}' -not -path '${WHATSAPP_EXCLUDE_2}' -not -path '${WHATSAPP_EXCLUDE_3}' -not -path '${TYPELESS_EXCLUDE_1}' -not -path '${TYPELESS_EXCLUDE_2}' -delete" || true; }
 
 cleanup_storage() {
-  say "\n${P}[4/9] LIMPIEZA PROFUNDA${NC}"
+  say "\n${P}[4/13] LIMPIEZA PROFUNDA${NC}"
   before="$(sd_avail_bytes)"
   pm_trim_caches
 
@@ -821,15 +1183,19 @@ cleanup_storage() {
   after="$(sd_avail_bytes)"
   delta="$(awk -v a="$after" -v b="$before" 'BEGIN{print a-b}')"
   say "${G}[✓] Limpieza completada. Recuperado aprox: $(bytes_to_mb "$delta").${NC}"
+  note "Espacio_recuperado=$(bytes_to_mb "$delta")"
 }
 
 detect_refresh_caps() {
   exists dumpsys || return 0
-  txt="$(dumpsys display 2>/dev/null | grep -E 'fps|refresh rate|RefreshRate|modeId' | head -160)"
-  echo "$txt" | grep -q '120' && TARGET_PEAK_REFRESH="120"
+  txt="$(dumpsys display 2>/dev/null | grep -E 'fps|refresh rate|RefreshRate|modeId' | head -240)"
+  [ -n "$TARGET_PEAK_REFRESH" ] && return 0
+  echo "$txt" | grep -q '165' && TARGET_PEAK_REFRESH="165"
+  [ -z "$TARGET_PEAK_REFRESH" ] && echo "$txt" | grep -q '144' && TARGET_PEAK_REFRESH="144"
+  [ -z "$TARGET_PEAK_REFRESH" ] && echo "$txt" | grep -q '120' && TARGET_PEAK_REFRESH="120"
   [ -z "$TARGET_PEAK_REFRESH" ] && echo "$txt" | grep -q '90' && TARGET_PEAK_REFRESH="90"
   [ -z "$TARGET_PEAK_REFRESH" ] && echo "$txt" | grep -q '60' && TARGET_PEAK_REFRESH="60"
-  [ -n "$TARGET_PEAK_REFRESH" ] && TARGET_MIN_REFRESH="$TARGET_PEAK_REFRESH"
+  [ -n "$TARGET_PEAK_REFRESH" ] && [ -z "$TARGET_MIN_REFRESH" ] && TARGET_MIN_REFRESH="$TARGET_PEAK_REFRESH"
 }
 
 set_refresh_rate_hint() {
@@ -839,24 +1205,36 @@ set_refresh_rate_hint() {
   [ -n "$TARGET_MIN_REFRESH" ] && settings_put_safe system min_refresh_rate "$TARGET_MIN_REFRESH" || true
 }
 
+disable_blurs_best_effort() { [ "$AUTO_DISABLE_WINDOW_BLURS" = "1" ] || return 0; settings_put_safe global disable_window_blurs 1 || true; }
+
 tune_fluidity() {
-  say "\n${P}[5/9] FLUIDEZ / INPUT${NC}"
+  say "\n${P}[5/13] FLUIDEZ / INPUT / DISPLAY${NC}"
   save_state
+
   settings_put_safe global window_animation_scale "$ANIM_SCALE"
   settings_put_safe global transition_animation_scale "$ANIM_SCALE"
   settings_put_safe global animator_duration_scale "$ANIM_SCALE"
   settings_put_safe secure long_press_timeout "$TOUCH_TIMEOUT" || true
   settings_put_safe secure multi_press_timeout "$TOUCH_TIMEOUT" || true
   settings_put_safe system pointer_speed "$POINTER_SPEED" || true
+
   [ "$AUTO_DISABLE_HAPTICS" = "1" ] && settings_put_safe system haptic_feedback_enabled 0 || true
+  [ "$AUTO_TUNE_FONT_SCALE" = "1" ] && settings_put_safe system font_scale "$FONT_SCALE_TARGET" || true
+  [ "$AUTO_DISABLE_NOTIFY_BADGING" = "1" ] && settings_put_safe secure notification_badging 0 || true
 
   if [ "$AUTO_LIMIT_BG" = "1" ] && [ -n "$BG_LIMIT" ]; then
     settings_put_safe global limit_background_processes "$BG_LIMIT" || true
   fi
 
   [ "$AUTO_CLEAR_CLIPBOARD" = "1" ] && run_quiet "cmd clipboard set text ''" || true
+  [ "$AUTO_DISABLE_ASSISTANT" = "1" ] && settings_put_safe secure assistant "" || true
+  [ "$AUTO_DISABLE_PRINT_SERVICE" = "1" ] && settings_put_safe secure enabled_print_services "" || true
+
+  disable_blurs_best_effort
   set_refresh_rate_hint
+
   say "${G}[✓] Ajustes de fluidez aplicados.${NC}"
+  note "Anim=$ANIM_SCALE Pointer=$POINTER_SPEED BG_LIMIT=$BG_LIMIT Refresh=$TARGET_PEAK_REFRESH"
 }
 
 hot_packages() {
@@ -868,25 +1246,27 @@ com.android.chrome
 com.whatsapp
 com.typeless.mobile
 com.motorola.launcher
+com.motorola.camera3
+com.google.android.inputmethod.latin
 " | sed '/^$/d'
 }
 
-recent_user_packages() {
-  pm list packages -3 2>/dev/null | cut -d: -f2 | head -50
-}
+recent_user_packages() { pm list packages -3 2>/dev/null | cut -d: -f2 | head -100; }
 
 dexopt_package_best_effort() {
   p="$1"
   [ -z "$p" ] && return 0
+  pkg_installed "$p" || return 0
   run_quiet "cmd package compile -m speed-profile -f '$p'" || true
 }
 
 dexopt_phase() {
-  say "\n${P}[6/9] DEXOPT / COMPILACIÓN${NC}"
+  say "\n${P}[6/13] DEXOPT / COMPILACIÓN${NC}"
   [ "$AUTO_DEXOPT" = "1" ] || { say "${Y}[i] Dexopt desactivado.${NC}"; return 0; }
 
   if ! should_run_heavy_tasks; then
-    say "${Y}[i] Saltando tareas pesadas por batería/temperatura. Usa --force-heavy para forzarlas.${NC}"
+    say "${Y}[i] Saltando tareas pesadas por batería/temperatura.${NC}"
+    note "Dexopt=saltado_por_condiciones"
     return 0
   fi
 
@@ -896,49 +1276,50 @@ dexopt_phase() {
 
   if [ "$DEXOPT_ALL" = "1" ]; then
     run "cmd package compile -m speed-profile -f -a" || true
+    note "Dexopt=all"
   else
-    hot_packages | while IFS= read -r p; do
-      dexopt_package_best_effort "$p"
-    done
-    recent_user_packages | while IFS= read -r p; do
-      dexopt_package_best_effort "$p"
-    done
+    hot_packages | while IFS= read -r p; do dexopt_package_best_effort "$p"; done
+    recent_user_packages | while IFS= read -r p; do dexopt_package_best_effort "$p"; done
+    note "Dexopt=hot+recent"
   fi
 
-  say "${G}[✓] Dexopt/compilación completado.${NC}"
+  say "${G}[✓] Dexopt completado.${NC}"
 }
 
-user_packages() { pm list packages -3 2>/dev/null | cut -d: -f2; }
-all_packages() { pm list packages 2>/dev/null | cut -d: -f2; }
-
-looks_like_bloat() {
+looks_like_bloat_by_name() {
   p="$1"
   case "$p" in
-    *facebook*|*meta*|*netflix*|*booking*|*spotify*|*tiktok*|*linkedin*|*amazon*|*aliexpress*|*agoda*|*trivago*|*weather*|*music*|*video*|*tips*|*help*|*demo*|*games*|*gamecenter*|*hotapps*|*hotgames*|*wellbeing*|*kids*|*cleaner*|*optimizer*|*safetyhub*|*partnerbookmarks*|*booking*|*office*|*onenote*|*outlook*|*skype*)
-      return 0
-      ;;
+    *facebook*|*meta*|*netflix*|*booking*|*spotify*|*tiktok*|*linkedin*|*amazon*|*aliexpress*|*agoda*|*trivago*|*weather*|*music*|*video*|*tips*|*help*|*demo*|*games*|*gamecenter*|*hotapps*|*hotgames*|*wellbeing*|*kids*|*cleaner*|*optimizer*|*partnerbookmarks*|*office*|*onenote*|*outlook*|*skype*)
+      return 0 ;;
   esac
   return 1
 }
 
-motorola_vendor_candidates_safe() {
-  all_packages | while IFS= read -r p; do
-    case "$p" in
-      com.motorola.help|com.motorola.gamemode|com.motorola.gamespace|com.motorola.discovery|com.motorola.android.fmradio)
-        echo "$p"
-        ;;
-    esac
-  done
+queue_disable() {
+  p="$1"
+  [ -z "$p" ] && return 0
+  pkg_installed "$p" || return 0
+  is_protected_package "$p" && return 0
+  append_unique_line "$TMP_DISABLE_LIST" "$p"
 }
 
-motorola_vendor_candidates_aggressive() {
-  all_packages | while IFS= read -r p; do
-    case "$p" in
-      com.motorola.help|com.motorola.gamemode|com.motorola.gamespace|com.motorola.discovery|com.motorola.android.fmradio|com.motorola.mototour|com.motorola.ccc.notification)
-        echo "$p"
-        ;;
-    esac
-  done
+queue_uninstall_user0() {
+  p="$1"
+  [ -z "$p" ] && return 0
+  pkg_installed "$p" || return 0
+  is_protected_package "$p" && return 0
+  [ "$PARANOID_SAFE" = "1" ] && { append_unique_line "$TMP_DISABLE_LIST" "$p"; return 0; }
+  append_unique_line "$TMP_UNINSTALL_LIST" "$p"
+}
+
+consume_list_to_disable() {
+  LIST="$1"
+  echo "$LIST" | sed '/^$/d' | while IFS= read -r p; do queue_disable "$p"; done
+}
+
+consume_list_to_uninstall() {
+  LIST="$1"
+  echo "$LIST" | sed '/^$/d' | while IFS= read -r p; do queue_uninstall_user0 "$p"; done
 }
 
 debloat_disable_user() {
@@ -957,109 +1338,144 @@ debloat_hide_user0() {
   run "pm uninstall -k --user 0 '$p'" || true
 }
 
-debloat_phase() {
-  [ "$AUTO_DEBLOAT" = "1" ] || return 0
-  build_protected_packages
-
-  say "\n${P}[7/9] DEBLOAT REVERSIBLE${NC}"
-  say "${C}[i] Nivel: ${DEBLOAT_LEVEL}${NC}"
+build_debloat_queue() {
+  : > "$TMP_DISABLE_LIST"
+  : > "$TMP_UNINSTALL_LIST"
 
   case "$DEBLOAT_LEVEL" in
     safe)
-      motorola_vendor_candidates_safe | while IFS= read -r p; do
-        debloat_disable_user "$p"
-      done
+      consume_list_to_disable "$COMMON_DISABLE"
+      consume_list_to_disable "$MOTOROLA_SAFE_DISABLE"
       ;;
     balanced)
-      user_packages | while IFS= read -r p; do
-        looks_like_bloat "$p" || continue
-        debloat_disable_user "$p"
-      done
-      motorola_vendor_candidates_safe | while IFS= read -r p; do
-        debloat_disable_user "$p"
-      done
+      consume_list_to_disable "$COMMON_DISABLE"
+      consume_list_to_disable "$MOTOROLA_SAFE_DISABLE"
+      [ "$ALLOW_SOCIAL_REMOVAL" = "1" ] && consume_list_to_disable "$SOCIAL_BLOAT"
+      [ "$ALLOW_MICROSOFT_REMOVAL" = "1" ] && consume_list_to_disable "$MICROSOFT_BLOAT"
+      [ "$ALLOW_AMAZON_REMOVAL" = "1" ] && consume_list_to_disable "$AMAZON_BLOAT"
+      [ "$ALLOW_MEDIA_APP_REMOVAL" = "1" ] && consume_list_to_disable "$MEDIA_BLOAT"
+      [ "$ALLOW_STREAMING_REMOVAL" = "1" ] && consume_list_to_disable "$STREAMING_BLOAT"
+      [ "$ALLOW_TRAVEL_SHOP_REMOVAL" = "1" ] && consume_list_to_disable "$TRAVEL_SHOP_BLOAT"
+      [ "$ALLOW_GAMING_REMOVAL" = "1" ] && consume_list_to_disable "$GAMING_BLOAT"
+      [ "$ALLOW_EDUCATION_REMOVAL" = "1" ] && consume_list_to_disable "$EDUCATION_BLOAT"
+      [ "$ALLOW_PRODUCTIVITY_REMOVAL" = "1" ] && consume_list_to_disable "$PRODUCTIVITY_BLOAT"
+      [ "$ALLOW_CLOUD_REMOVAL" = "1" ] && consume_list_to_disable "$CLOUD_BLOAT"
       ;;
     aggressive)
-      user_packages | while IFS= read -r p; do
-        looks_like_bloat "$p" || continue
-        debloat_hide_user0 "$p"
-      done
+      consume_list_to_disable "$COMMON_DISABLE"
+
+      [ "$ALLOW_SOCIAL_REMOVAL" = "1" ] && consume_list_to_uninstall "$SOCIAL_BLOAT"
+      [ "$ALLOW_MICROSOFT_REMOVAL" = "1" ] && consume_list_to_uninstall "$MICROSOFT_BLOAT"
+      [ "$ALLOW_AMAZON_REMOVAL" = "1" ] && consume_list_to_uninstall "$AMAZON_BLOAT"
+      [ "$ALLOW_MEDIA_APP_REMOVAL" = "1" ] && consume_list_to_uninstall "$MEDIA_BLOAT"
+      [ "$ALLOW_STREAMING_REMOVAL" = "1" ] && consume_list_to_uninstall "$STREAMING_BLOAT"
+      [ "$ALLOW_TRAVEL_SHOP_REMOVAL" = "1" ] && consume_list_to_uninstall "$TRAVEL_SHOP_BLOAT"
+      [ "$ALLOW_GAMING_REMOVAL" = "1" ] && consume_list_to_uninstall "$GAMING_BLOAT"
+      [ "$ALLOW_EXTRA_CHINA_REMOVAL" = "1" ] && consume_list_to_uninstall "$EXTRA_CHINA_BLOAT"
+      [ "$ALLOW_EDUCATION_REMOVAL" = "1" ] && consume_list_to_uninstall "$EDUCATION_BLOAT"
+      [ "$ALLOW_PRODUCTIVITY_REMOVAL" = "1" ] && consume_list_to_uninstall "$PRODUCTIVITY_BLOAT"
+      [ "$ALLOW_CLOUD_REMOVAL" = "1" ] && consume_list_to_uninstall "$CLOUD_BLOAT"
+
       if [ "$ALLOW_VENDOR_AGGRESSIVE" = "1" ]; then
-        motorola_vendor_candidates_aggressive | while IFS= read -r p; do
-          debloat_hide_user0 "$p"
-        done
+        consume_list_to_uninstall "$MOTOROLA_AGGRESSIVE_UNINSTALL"
       else
-        motorola_vendor_candidates_safe | while IFS= read -r p; do
-          debloat_disable_user "$p"
-        done
-        say "${Y}[i] Vendor aggressive desactivado. Usa --allow-vendor-aggressive si querés más agresividad.${NC}"
+        consume_list_to_disable "$MOTOROLA_SAFE_DISABLE"
       fi
-      ;;
-    *)
-      DEBLOAT_LEVEL="balanced"
-      debloat_phase
-      return
+
+      if [ "$ALLOW_GOOGLE_AGGRESSIVE" = "1" ]; then
+        consume_list_to_uninstall "$GOOGLE_OPTIONAL_AGGRESSIVE"
+      elif [ "$ALLOW_OPTIONAL_GOOGLE_DISABLE" = "1" ]; then
+        consume_list_to_disable "$GOOGLE_OPTIONAL_AGGRESSIVE"
+      fi
+
+      user_packages | while IFS= read -r p; do
+        looks_like_bloat_by_name "$p" || continue
+        queue_disable "$p"
+      done
       ;;
   esac
 
-  say "${G}[✓] Debloat reversible completado.${NC}"
+  [ -f "$EXTERNAL_DISABLE_LIST" ] && sed '/^$/d' "$EXTERNAL_DISABLE_LIST" | while IFS= read -r p; do queue_disable "$p"; done
+  [ -f "$EXTERNAL_UNINSTALL_LIST" ] && sed '/^$/d' "$EXTERNAL_UNINSTALL_LIST" | while IFS= read -r p; do queue_uninstall_user0 "$p"; done
 }
 
-force_stop_candidates() {
-  pm list packages -3 2>/dev/null | cut -d: -f2
+debloat_phase() {
+  [ "$AUTO_DEBLOAT" = "1" ] || return 0
+  build_protected_packages
+  build_debloat_queue
+
+  say "\n${P}[7/13] DEBLOAT REVERSIBLE${NC}"
+  disable_count="$(sed '/^$/d' "$TMP_DISABLE_LIST" 2>/dev/null | wc -l | tr -d ' ')"
+  uninstall_count="$(sed '/^$/d' "$TMP_UNINSTALL_LIST" 2>/dev/null | wc -l | tr -d ' ')"
+
+  say "${C}[i] disable-user: ${disable_count}${NC}"
+  say "${C}[i] uninstall-user0: ${uninstall_count}${NC}"
+
+  [ -f "$TMP_DISABLE_LIST" ] && sed '/^$/d' "$TMP_DISABLE_LIST" | while IFS= read -r p; do debloat_disable_user "$p"; done
+  [ -f "$TMP_UNINSTALL_LIST" ] && sed '/^$/d' "$TMP_UNINSTALL_LIST" | while IFS= read -r p; do debloat_hide_user0 "$p"; done
+
+  note "Disable_count=$disable_count"
+  note "Uninstall_count=$uninstall_count"
+}
+
+force_stop_candidates() { pm list packages -3 2>/dev/null | cut -d: -f2; }
+
+is_forcestop_excluded() {
+  p="$1"
+  [ -f "$EXTERNAL_FORCESTOP_EXCLUDE" ] || return 1
+  grep -Fxq "$p" "$EXTERNAL_FORCESTOP_EXCLUDE" 2>/dev/null
 }
 
 memory_relief() {
-  say "\n${P}[8/9] ALIVIO DE MEMORIA${NC}"
+  say "\n${P}[8/13] ALIVIO DE MEMORIA${NC}"
   build_protected_packages
+  : > "$TMP_FORCESTOP_LIST"
 
   if [ "$AUTO_FORCE_STOP" = "1" ] && [ "$FORCE_STOP_NONCRITICAL" = "1" ]; then
-    cnt=0
-    for p in $(force_stop_candidates); do
+    force_stop_candidates | while IFS= read -r p; do
       [ -z "$p" ] && continue
       is_protected_package "$p" && continue
+      is_forcestop_excluded "$p" && continue
       case "$p" in
         *camera*|*dialer*|*contacts*|*clock*|*alarm*|*systemui*|*whatsapp*|*typeless*|com.motorola.moto*|com.motorola.genie*|com.motorola.launcher)
-          continue
-          ;;
+          continue ;;
       esac
+      append_unique_line "$TMP_FORCESTOP_LIST" "$p"
+    done
+
+    cnt=0
+    sed '/^$/d' "$TMP_FORCESTOP_LIST" 2>/dev/null | while IFS= read -r p; do
       run "am force-stop '$p'"
       cnt=$((cnt+1))
       [ "$cnt" -ge "$FORCE_STOP_MAX_COUNT" ] && break
     done
-    say "${C}[i] Force-stop realizados: $cnt${NC}"
-  else
-    say "${C}[i] Sin cierres masivos. Se prioriza estabilidad.${NC}"
-  fi
 
-  say "${G}[✓] Alivio de memoria completado.${NC}"
+    say "${C}[i] Force-stop: hasta ${FORCE_STOP_MAX_COUNT}${NC}"
+    note "Force_stop_max=$FORCE_STOP_MAX_COUNT"
+  else
+    note "Force_stop=off"
+  fi
 }
 
 update_local_apks() {
   [ "$UPDATE_APKS" = "1" ] || return 0
 
-  say "\n${P}[9/9] UPDATE DE APKS LOCALES${NC}"
-  if [ ! -d "$APK_DIR" ]; then
-    say "${Y}[i] No existe el directorio: $APK_DIR${NC}"
-    return 0
-  fi
+  say "\n${P}[9/13] UPDATE DE APKS LOCALES${NC}"
+  [ ! -d "$APK_DIR" ] && { say "${Y}[i] No existe $APK_DIR${NC}"; return 0; }
 
   : > "$UPDATED_APKS_LOG" 2>/dev/null
 
-  find "$APK_DIR" -maxdepth 2 -type f \( -iname "*.apk" -o -iname "*.apks" -o -iname "*.xapk" -o -iname "*.apkm" \) 2>/dev/null | while IFS= read -r apk; do
-    [ -z "$apk" ] && continue
+  find "$APK_DIR" -maxdepth 2 -type f \\( -iname "*.apk" -o -iname "*.apks" -o -iname "*.xapk" -o -iname "*.apkm" \\) 2>/dev/null | while IFS= read -r apk; do
     case "$apk" in
       *.apk)
         run "pm install -r '$apk'"
         append_unique_line "$UPDATED_APKS_LOG" "$apk"
         ;;
-      *.apks|*.xapk|*.apkm)
-        say "${Y}[i] Formato bundle no universal por shell stock. Omitido: $apk${NC}"
+      *)
+        say "${Y}[i] Bundle no universal omitido: $apk${NC}"
         ;;
     esac
   done
-
-  say "${G}[✓] Revisión de APKs locales completada.${NC}"
 }
 
 media_scan_hint() {
@@ -1068,18 +1484,79 @@ media_scan_hint() {
   run_quiet "am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard" || true
 }
 
+smart_recommendations_phase() {
+  say "\n${P}[10/13] SMART RECOMMENDATIONS${NC}"
+  detect_environment_phase
+  generate_smart_recommendations
+  say "${G}[✓] Recomendaciones guardadas.${NC}"
+}
+
+postcheck_phase() {
+  say "\n${P}[11/13] POST-CHECKS${NC}"
+
+  ime="$(current_ime)"
+  launcher="$(current_launcher)"
+  dialer="$(default_dialer_pkg)"
+  sms="$(default_sms_pkg)"
+
+  ok=1
+  for p in "$ime" "$launcher" "$dialer" "$sms"; do
+    [ -z "$p" ] && continue
+    if ! pkg_installed "$p"; then
+      say "${R}[x] Crítico ausente: $p${NC}"
+      ok=0
+    fi
+  done
+
+  if [ "$ok" = "1" ]; then
+    say "${G}[✓] Post-checks OK.${NC}"
+    note "Postcheck=ok"
+  else
+    say "${Y}[i] Si algo falla, usa restore.${NC}"
+    note "Postcheck=warning"
+  fi
+}
+
+report_only_phase() {
+  detect_environment_phase
+  generate_smart_recommendations
+  snapshot_before
+  snapshot_after
+  generate_before_after_report
+  say "${G}[✓] Reporte generado: ${SNAPSHOT_REPORT}${NC}"
+}
+
 diagnostics_post() {
-  say "\n${P}[FINAL] DIAGNÓSTICO FINAL${NC}"
-  exists dumpsys && run "dumpsys meminfo | head -80" || true
-  exists top && run "top -n 1 | head -40" || true
+  say "\n${P}[12/13] DIAGNÓSTICO FINAL${NC}"
+  exists dumpsys && run "dumpsys meminfo | head -100" || true
+  exists top && run "top -n 1 | head -50" || true
   exists df && run "df -h /data /sdcard" || true
+  exists pm && run "pm list packages -d | head -150" || true
   say "${G}[✓] Diagnóstico final listo.${NC}"
 }
 
+final_summary() {
+  say "\n${P}[13/13] RESUMEN${NC}"
+  say "${C}[i] Summary: ${SUMMARYFILE}${NC}"
+  say "${C}[i] Log: ${LOGFILE}${NC}"
+  say "${C}[i] Report: ${SNAPSHOT_REPORT}${NC}"
+  say "${C}[i] Smart recs: ${SMART_RECOMMENDATIONS}${NC}"
+  say "${C}[i] Environment: ${ENV_REPORT}${NC}"
+  say "${C}[i] Restore: adb shell sh /data/local/tmp/titan_razr60_v46_omega.sh --restore${NC}"
+  [ "$AUTO_REBOOT_HINT" = "1" ] && say "${C}[i] Recomendado reinicio manual.${NC}"
+}
+
 main() {
-  mkdir -p "$LOGDIR" 2>/dev/null
   log_init
+
+  if [ "$MODE" = "menu" ]; then
+    interactive_menu
+  fi
+
   apply_profile
+  apply_usage_mode
+  auto_tune_profile
+  require_omega_confirmation
   banner
 
   if [ "$MODE" = "restore" ]; then
@@ -1087,16 +1564,29 @@ main() {
     exit $?
   fi
 
+  if [ "$MODE" = "report-only" ]; then
+    report_only_phase
+    exit $?
+  fi
+
+  snapshot_before
   diagnostics_pre
   ota_best_effort
   report_cleanup_inventory
 
   if [ "$DEBLOAT_ONLY" = "1" ]; then
+    save_state
     debloat_phase
-    say "\n${G}[🎉] TITAN v38 debloat-only completado.${NC}"
+    smart_recommendations_phase
+    postcheck_phase
+    snapshot_after
+    generate_before_after_report
+    final_summary
+    say "\n${G}[🎉] TITAN v46 OMEGA debloat-only completado.${NC}"
     exit 0
   fi
 
+  save_state
   cleanup_storage
   tune_fluidity
   dexopt_phase
@@ -1104,14 +1594,17 @@ main() {
   memory_relief
   update_local_apks
   media_scan_hint
+  smart_recommendations_phase
+  postcheck_phase
   diagnostics_post
+  snapshot_after
+  generate_before_after_report
+  final_summary
 
-  say "\n${G}[🎉] TITAN v38 RAZR60 completado.${NC}"
+  say "\n${G}[🎉] TITAN v46 OMEGA completado.${NC}"
   say "${C}[i] Perfil: ${PROFILE}${NC}"
+  say "${C}[i] Usage: ${USAGE_MODE}${NC}"
   say "${C}[i] Debloat: ${DEBLOAT_LEVEL}${NC}"
-  say "${C}[i] Log: ${LOGFILE}${NC}"
-  say "${C}[i] Restore: adb shell sh /data/local/tmp/titan_razr60_v38.sh --restore${NC}"
-  [ "$AUTO_REBOOT_HINT" = "1" ] && say "${C}[i] Recomendado: reinicio manual para consolidar cambios.${NC}"
   exit 0
 }
 
@@ -1191,7 +1684,7 @@ main "$@"</script>
     };
 
     window.copyOneLiner = function () {
-      const cmd = `adb shell sh /data/local/tmp/titan_razr60_v38.sh --profile extreme --debloat-level aggressive --allow-vendor-aggressive --keep-apks`;
+      const cmd = `adb shell sh /data/local/tmp/titan_razr60_v46_omega.sh --profile=omega --usage-mode=auto --omega-confirm`;
       copyText(cmd, 'COMANDO ADB COPIADO');
     };
 
