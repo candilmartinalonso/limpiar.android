@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="TITAN v50 GODMODE - Supreme Ultimate Android Optimization (NO-ROOT)" />
-  <title>TITAN v50 GODMODE - Android Optimizer</title>
+  <meta name="description" content="TITAN v51 - Android Optimizer (reversible, multi-modo)" />
+  <title>TITAN v51 - Android Optimizer</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -49,21 +49,18 @@
         </div>
         <div>
           <h1 class="text-4xl lg:text-5xl font-black tracking-tight text-white font-mono uppercase">
-            TITAN <span class="text-god-500">v50</span>
+            TITAN <span class="text-god-500">v51</span>
           </h1>
           <div class="flex items-center gap-3 mt-2">
-            <span class="px-3 py-0.5 bg-god-500 text-black text-[10px] font-bold font-mono rounded">GODMODE</span>
-            <span class="text-xs text-god-400 font-mono hidden sm:inline">SUPREME ULTIMATE - 200+ APPS / 100+ FEATURES / TOTAL CONTROL</span>
+            <span class="px-3 py-0.5 bg-god-500 text-black text-[10px] font-bold font-mono rounded">OPTIMIZER</span>
+            <span class="text-xs text-god-400 font-mono hidden sm:inline">SAFE · BALANCED · AGGRESSIVE · GODMODE — REVERSIBLE</span>
           </div>
         </div>
       </div>
 
       <div class="flex gap-3">
-        <button onclick="copyRaw()" class="flex items-center gap-2 px-5 py-3 bg-white/5 text-white border border-white/10 font-bold text-xs uppercase hover:bg-white/10 transition-all rounded">
+        <button onclick="copyRaw()" class="flex items-center gap-2 px-6 py-3 bg-god-500 text-black font-bold text-xs uppercase hover:bg-god-400 transition-all shadow-lg shadow-god-500/20 rounded">
           <i class="ph-bold ph-copy"></i> Copiar Script
-        </button>
-        <button onclick="copyOneLiner()" class="flex items-center gap-2 px-6 py-3 bg-god-500 text-black font-bold text-xs uppercase hover:bg-god-400 transition-all shadow-lg shadow-god-500/20 rounded">
-          <i class="ph-bold ph-terminal"></i> AUTO-RUN ADB
         </button>
       </div>
     </header>
@@ -72,20 +69,20 @@
       <div class="relative w-full lg:w-96">
         <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-god-400"></i>
         <input type="text" id="searchInput" oninput="highlightSearch()"
-          placeholder="Buscar (godmode, memory, network, cpu, debloat, gpu, storage)..."
+          placeholder="Buscar (safe, balanced, aggressive, godmode, debloat, cache, kernel, network...)..."
           class="w-full bg-black/50 border border-god-500/30 text-xs font-mono pl-10 pr-4 py-2.5 outline-none focus:border-god-500 text-white rounded">
       </div>
       <div class="flex gap-2 text-[10px] font-mono text-god-400">
-        <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10">GODMODE SUPREME</span>
-        <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10 uppercase">No-Root (ADB)</span>
-        <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">v50 GODMODE</span>
+        <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10">4 MODOS</span>
+        <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10 uppercase">Reversible</span>
+        <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">v51</span>
       </div>
     </div>
 
     <div class="flex-1 relative glass rounded-xl overflow-hidden bg-black crt border border-god-500/10">
       <div class="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur border border-god-500/40 rounded px-3 py-1.5 flex items-center gap-2">
         <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-        <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_v50_godmode.sh</span>
+        <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_v51.sh</span>
       </div>
 
       <div class="absolute inset-0 overflow-auto p-4 lg:p-6" id="codeContainer">
@@ -94,7 +91,7 @@
     </div>
 
     <footer class="mt-4 flex justify-between items-center text-[10px] text-god-400 font-mono uppercase tracking-tighter opacity-60">
-      <span>🔥 TITAN v50 GODMODE - 200+ APPS | 100+ FEATURES | SUPREME ULTIMATE</span>
+      <span>TITAN v51 — Android Optimizer · Safe · Balanced · Aggressive · Godmode · Reversible</span>
       <span id="linesCount">Lines: 0</span>
     </footer>
   </div>
@@ -108,192 +105,279 @@
 
   <script id="titanScript" type="text/plain">#!/system/bin/sh
 # =============================================================================
-# TITAN v50 GODMODE
-# Motorola razr 60 / stock / no-root / reversible / OEM-aware
-# GODMODE: SUPREME ULTIMATE OPTIMIZATION + 200+ APPS + 100+ FEATURES
+# TITAN v51 — Android Optimizer
+# Motorola razr 60 / stock / reversible / ADB-compatible
+#
+# MODOS: safe | balanced | aggressive | godmode
+# USO:   sh titan_v51.sh [--mode=safe|balanced|aggressive|godmode]
+#              [--dry-run] [--restore] [--silent] [--no-debloat]
+#              [--no-network] [--no-perf] [--help]
+#
+# REQUISITOS:
+#   • ADB shell o terminal con permisos de usuario (no root necesario)
+#   • Root OPCIONAL para tuning de kernel (detectado automáticamente)
+#   • Android 11+
 # =============================================================================
 
-R='\u001B[0;31m'
-G='\u001B[0;32m'
-Y='\u001B[1;33m'
-C='\u001B[0;36m'
-P='\u001B[0;35m'
-B='\u001B[0;34m'
-W='\u001B[0;37m'
-M='\u001B[0;33m'
-NC='\u001B[0m'
+# ─── COLORES ─────────────────────────────────────────────────────────────────
+R='\033[0;31m'; G='\033[0;32m'; Y='\033[1;33m'
+C='\033[0;36m'; B='\033[0;34m'
+W='\033[1;37m'; NC='\033[0m'
+BOLD='\033[1m'; DIM='\033[2m'
 
+# ─── VERSIÓN ──────────────────────────────────────────────────────────────────
+VERSION="51.0"
+
+# ─── DEFAULTS (overrideable por args) ────────────────────────────────────────
+MODE="balanced"
 DRY_RUN=0
 VERBOSE=1
-MODE="run"
+SILENT=0
+DO_RESTORE=0
+DO_DEBLOAT=1
+DO_NETWORK=1
+DO_PERF=1
+DO_KERNEL=0
 
-PROFILE="godmode"
-USAGE_MODE="auto"
-DEBLOAT_LEVEL="godmode"
-AUTO_TUNE=1
-
-# ===== GODMODE EXTREME REMOVAL FLAGS =====
-ALLOW_VENDOR_AGGRESSIVE=1
-ALLOW_GOOGLE_AGGRESSIVE=1
-ALLOW_SOCIAL_REMOVAL=1
-ALLOW_MICROSOFT_REMOVAL=1
-ALLOW_AMAZON_REMOVAL=1
-ALLOW_MEDIA_APP_REMOVAL=1
-ALLOW_TRAVEL_SHOP_REMOVAL=1
-ALLOW_GAMING_REMOVAL=1
-ALLOW_EXTRA_CHINA_REMOVAL=1
-ALLOW_OPTIONAL_GOOGLE_DISABLE=1
-ALLOW_EDUCATION_REMOVAL=1
-ALLOW_PRODUCTIVITY_REMOVAL=1
-ALLOW_CLOUD_REMOVAL=1
-ALLOW_STREAMING_REMOVAL=1
-ALLOW_CAMERA_EFFECTS_REMOVAL=1
-ALLOW_EXTRA_KEYBOARD_REMOVAL=1
-ALLOW_REDUNDANT_APPS_REMOVAL=1
-ALLOW_EXTREME_BLOAT_REMOVAL=1
-ALLOW_THEME_REMOVAL=1
-ALLOW_FONT_REMOVAL=1
-ALLOW_EXTRA_LANGUAGE_REMOVAL=1
-ALLOW_BACKUP_REMOVAL=1
-ALLOW_ULTIMATE_EXTREME_REMOVAL=1
-ALLOW_GOOGLE_SERVICES_AGGRESSIVE=1
-ALLOW_MOTOROLA_EXTREME_REMOVAL=1
-ALLOW_SYSTEM_APPS_OPTIONAL_REMOVAL=1
-ALLOW_GODMODE_REMOVAL=1
-ALLOW_OPTIONAL_SYSTEM_REMOVAL=1
-
-UPDATE_APKS=1
-AUTO_UPDATE_PLAY_STORE=1
-AUTO_UPDATE_SYSTEM=1
-AUTO_UPDATE_ALL_APPS=1
-AUTO_UPDATE_SILENT=1
-
-# ===== GODMODE EXTREME CLEANING =====
-AUTO_TRIM_CACHES=1
-AUTO_DEXOPT=1
-AUTO_DEXOPT_ALL=1
-AUTO_DEFRAG_MEMORY=1
-AUTO_COMPACT_MEMORY=1
-AUTO_GC_FORCE=1
-AUTO_VACUUM_DATABASE=1
-AUTO_CLEAR_CLIPBOARD=1
-AUTO_PRUNE_EMPTY_DIRS=1
-AUTO_CLEAR_BUGREPORTS=1
-AUTO_CLEAR_TOMBSTONES=1
-AUTO_CLEAR_EMPTY_FILES=1
-AUTO_CLEAR_OLD_INSTALLERS=1
-AUTO_CLEAR_DOWNLOAD_JUNK=1
-AUTO_CLEAR_MEDIA_THUMBS=1
-AUTO_CLEAR_TMP_DIRS=1
-AUTO_CLEAR_LOG_DIRS=1
-AUTO_CLEAR_ANDROID_TEMP=1
-AUTO_CLEAR_CRASH_RESIDUE=1
-AUTO_CLEAR_MISC_JUNK=1
-AUTO_CLEAR_TEMP_FILES=1
-AUTO_CLEAR_DUPLICATE_MEDIA=1
-AUTO_CLEAR_OLD_APK_FILES=1
-AUTO_REMOVE_TEMP_DOWNLOADS=1
-AUTO_CLEAR_CACHE_ALL_APPS=1
-AUTO_CLEAR_PREFETCH_CACHE=1
-AUTO_CLEAR_SYSTEM_CACHE=1
-AUTO_DEFRAGMENT_STORAGE=1
-AUTO_OPTIMIZE_SQLITE=1
-AUTO_CLEAR_SYSTEM_LOGS=1
-AUTO_CLEAR_KERNEL_LOGS=1
-AUTO_WIPE_SWAP=1
-AUTO_CLEAR_BROWSER_CACHE=1
-AUTO_CLEAR_CLIPBOARD_DEEP=1
-AUTO_WIPE_TEMP_DATA=1
-AUTO_CLEAN_MEMORY_AGGRESSIVE=1
-AUTO_CLEAR_DALVIK_CACHE=1
-AUTO_CLEAR_NEEDLE_CACHE=1
-AUTO_PURGE_ART_CACHE=1
-AUTO_CLEAN_STAGING_AREA=1
-
-# ===== GODMODE PERFORMANCE =====
-AUTO_SET_REFRESH_RATE=1
-AUTO_DEBLOAT=1
-AUTO_LIMIT_BG=1
-AUTO_MEDIA_SCAN_HINT=1
-AUTO_DISABLE_WINDOW_BLURS=1
-AUTO_DISABLE_ASSISTANT=1
-AUTO_DISABLE_PRINT_SERVICE=1
-AUTO_TUNE_FONT_SCALE=1
-AUTO_DISABLE_NOTIFY_BADGING=1
-AUTO_MAXIMIZE_REFRESH_RATE=1
-AUTO_DISABLE_ANIMATIONS_EXTREME=1
-AUTO_DISABLE_DEBUG_OVERLAY=1
-AUTO_KERNEL_TUNING=1
-AUTO_IO_TUNING=1
-AUTO_CPU_TUNING=1
-AUTO_MEMORY_TUNING=1
-AUTO_GPU_TUNING=1
-AUTO_NETWORK_TUNING=1
-AUTO_THREADING_TUNING=1
-AUTO_DISABLE_SYNC_ADAPTER=1
-AUTO_DISABLE_WIFI_SCANNING=1
-AUTO_DISABLE_BLE_SCANNING=1
-AUTO_DISABLE_LOCATION_SERVICES=1
-AUTO_DISABLE_UNUSED_FEATURES=1
-AUTO_CPU_FREQUENCY_SCALING=1
-AUTO_THERMAL_MANAGEMENT=1
-AUTO_POWER_MANAGEMENT=1
-AUTO_ART_RUNTIME_OPTIMIZATION=1
-AUTO_ZYGOTE_OPTIMIZATION=1
-AUTO_HARDWARE_ACCELERATION=1
-AUTO_BATTERY_OPTIMIZATION=1
-AUTO_DISPLAY_OPTIMIZATION=1
-AUTO_SOUND_OPTIMIZATION=1
-AUTO_SENSOR_OPTIMIZATION=1
-AUTO_BLUETOOTH_OPTIMIZATION=1
-AUTO_NFC_OPTIMIZATION=1
-AUTO_USB_OPTIMIZATION=1
-AUTO_SELINUX_TUNING=1
-AUTO_DNS_OPTIMIZATION=1
-AUTO_TCP_IP_TUNING=1
-AUTO_RESOURCE_MONITORING=1
-AUTO_GC_OPTIMIZATION=1
-AUTO_MEMORY_LEAK_PREVENTION=1
-AUTO_DATABASE_CLEANUP=1
-AUTO_REGISTRY_CLEANUP=1
-AUTO_PARTITION_CLEANUP=1
-
-DEXOPT_ALL=1
-FORCE_HEAVY_TASKS=1
-FORCE_STOP_MAX_COUNT=200
-FORCE_STOP_NONCRITICAL=1
-
-MAX_LOG_SIZE_MB=5
-BATTERY_MIN_FOR_HEAVY=5
-TEMP_MAX_C=40
-
-# ===== GODMODE EXTREME TUNING VALUES =====
-ANIM_SCALE="0.00"
-TOUCH_TIMEOUT="15"
-POINTER_SPEED="10"
-FONT_SCALE_TARGET="0.70"
-BG_LIMIT="0"
-TARGET_PEAK_REFRESH="120"
-TARGET_MIN_REFRESH="120"
-
+# ─── RUTAS ───────────────────────────────────────────────────────────────────
 WORKDIR="/sdcard/Download/TITAN"
-LOGDIR="$WORKDIR"
-CFGDIR="$WORKDIR/config"
+LOGDIR="$WORKDIR/logs"
 REPORTDIR="$WORKDIR/reports"
+BACKUPDIR="$WORKDIR/backup"
 
-LOGFILE="$LOGDIR/titan_godmode_v50.log"
-SUMMARYFILE="$LOGDIR/titan_godmode_summary_v50.txt"
-DEBLOAT_STATEFILE="$LOGDIR/titan_godmode_debloat_state_v50.txt"
-DISABLED_STATEFILE="$LOGDIR/titan_godmode_disabled_state_v50.txt"
-DEFRAG_LOG="$LOGDIR/titan_godmode_defrag_v50.txt"
-MEMORY_LOG="$LOGDIR/titan_godmode_memory_v50.txt"
-GPU_TUNE_LOG="$LOGDIR/titan_godmode_gpu_tune_v50.txt"
-NETWORK_TUNE_LOG="$LOGDIR/titan_godmode_network_tune_v50.txt"
+LOGFILE="$LOGDIR/titan_v${VERSION}.log"
+DEBLOAT_STATE="$BACKUPDIR/debloat_state.txt"
+DISABLED_STATE="$BACKUPDIR/disabled_state.txt"
+SETTINGS_BACKUP="$BACKUPDIR/settings_backup.txt"
+REPORT_FILE="$REPORTDIR/report_$(date '+%Y%m%d_%H%M%S').txt"
 
-SNAPSHOT_REPORT="$REPORTDIR/before_after_report_v50.txt"
+# ─── CAPACIDADES DETECTADAS ──────────────────────────────────────────────────
+HAS_ROOT=0
+ANDROID_VER=""
+DEVICE_MODEL=""
+API_LEVEL=0
+TOTAL_RAM_MB=0
 
-# ===== CRITICAL PACKAGES =====
-CRITICAL_PACKAGES_STATIC="
+# =============================================================================
+# PARSEO DE ARGUMENTOS
+# =============================================================================
+parse_args() {
+  for arg in "$@"; do
+    case "$arg" in
+      --mode=*)     MODE="${arg#--mode=}" ;;
+      --dry-run)    DRY_RUN=1 ;;
+      --restore)    DO_RESTORE=1 ;;
+      --silent)     SILENT=1; VERBOSE=0 ;;
+      --no-debloat) DO_DEBLOAT=0 ;;
+      --no-network) DO_NETWORK=0 ;;
+      --no-perf)    DO_PERF=0 ;;
+      --help|-h)    show_help; exit 0 ;;
+      *) warn "Argumento desconocido: $arg" ;;
+    esac
+  done
+
+  case "$MODE" in
+    safe|balanced|aggressive|godmode) ;;
+    *) err "Modo invalido: $MODE. Usar: safe|balanced|aggressive|godmode"; exit 1 ;;
+  esac
+}
+
+show_help() {
+  echo ""
+  echo "TITAN v${VERSION} - Android Optimizer"
+  echo ""
+  echo "USO: sh titan_v51.sh [opciones]"
+  echo ""
+  echo "MODOS:"
+  echo "  --mode=safe          Solo limpieza de cache y ajustes seguros"
+  echo "  --mode=balanced      Debloat moderado + optimizaciones (default)"
+  echo "  --mode=aggressive    Debloat amplio + tuning de sistema"
+  echo "  --mode=godmode       Maxima optimizacion (requiere revision manual)"
+  echo ""
+  echo "OPCIONES:"
+  echo "  --dry-run            Simular sin aplicar cambios"
+  echo "  --restore            Restaurar apps deshabilitadas/removidas"
+  echo "  --silent             Sin output (solo log)"
+  echo "  --no-debloat         Saltar remocion de apps"
+  echo "  --no-network         No tocar ajustes de red"
+  echo "  --no-perf            No aplicar ajustes de rendimiento"
+  echo "  --help               Mostrar esta ayuda"
+  echo ""
+}
+
+# =============================================================================
+# LOGGING Y OUTPUT
+# =============================================================================
+log_init() {
+  mkdir -p "$LOGDIR" "$REPORTDIR" "$BACKUPDIR" 2>/dev/null
+  touch "$LOGFILE" 2>/dev/null
+}
+
+_log() { echo "$(date '+%Y-%m-%d %H:%M:%S') [$1] $2" >> "$LOGFILE" 2>/dev/null; }
+log()  { _log "INFO" "$*"; }
+warn() { _log "WARN" "$*"; [ "$SILENT" = "0" ] && echo -e "${Y}[!] $*${NC}"; }
+err()  { _log "ERR " "$*"; echo -e "${R}[X] $*${NC}" >&2; }
+ok()   { _log "OK  " "$*"; [ "$SILENT" = "0" ] && echo -e "${G}[v] $*${NC}"; }
+info() { _log "INFO" "$*"; [ "$VERBOSE" = "1" ] && [ "$SILENT" = "0" ] && echo -e "${C}[.] $*${NC}"; }
+say()  { [ "$SILENT" = "0" ] && echo -e "$*"; _log "OUT" "$(echo "$*" | sed 's/\033\[[0-9;]*m//g')"; }
+
+section() {
+  say ""
+  say "${B}${BOLD}============================================${NC}"
+  say "${B}${BOLD}  >> $*${NC}"
+  say "${B}${BOLD}============================================${NC}"
+}
+
+# Ejecuta un comando, respeta DRY_RUN, loggea resultado
+run() {
+  log "[CMD] $*"
+  if [ "$DRY_RUN" = "1" ]; then
+    [ "$VERBOSE" = "1" ] && echo -e "${DIM}  [dry] $*${NC}"
+    return 0
+  fi
+  eval "$*" >> "$LOGFILE" 2>&1
+  return $?
+}
+
+run_root() {
+  if [ "$HAS_ROOT" = "1" ]; then
+    run "su -c '$*'"
+  else
+    log "[SKIP-NOROOT] $*"
+    return 1
+  fi
+}
+
+# =============================================================================
+# DETECCION DE CAPACIDADES
+# =============================================================================
+detect_capabilities() {
+  section "Detectando capacidades del sistema"
+
+  ANDROID_VER=$(getprop ro.build.version.release 2>/dev/null || echo "?")
+  DEVICE_MODEL=$(getprop ro.product.model 2>/dev/null || echo "?")
+  API_LEVEL=$(getprop ro.build.version.sdk 2>/dev/null || echo "0")
+
+  info "Dispositivo : $DEVICE_MODEL"
+  info "Android     : $ANDROID_VER (API $API_LEVEL)"
+
+  # Detectar root
+  if su -c "id" 2>/dev/null | grep -q "uid=0"; then
+    HAS_ROOT=1
+    DO_KERNEL=1
+    ok "Root disponible -- kernel tuning habilitado"
+  else
+    warn "Sin root -- se omitiran ajustes de kernel (/proc, /sys)"
+  fi
+
+  # RAM total
+  TOTAL_RAM_MB=$(awk '/MemTotal/{printf "%d", $2/1024}' /proc/meminfo 2>/dev/null)
+  info "RAM total   : ${TOTAL_RAM_MB}MB"
+
+  # API minima
+  if [ "$API_LEVEL" -lt 29 ] 2>/dev/null; then
+    warn "Android < 10. Algunos comandos pueden no funcionar."
+  fi
+
+  # Temperatura
+  TEMP=$(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null || echo "0")
+  TEMP_C=$((TEMP / 1000))
+  if [ "$TEMP_C" -gt 42 ]; then
+    warn "Temperatura alta: ${TEMP_C}C. Se recomienda dejar enfriar el dispositivo."
+  else
+    info "Temperatura: ${TEMP_C}C -- OK"
+  fi
+
+  # Bateria
+  BAT=$(dumpsys battery 2>/dev/null | awk -F': ' '/level:/{print $2; exit}')
+  if [ -n "$BAT" ]; then
+    info "Bateria     : ${BAT}%"
+    if [ "$BAT" -lt 15 ] 2>/dev/null; then
+      warn "Bateria baja (${BAT}%). Conectar cargador antes de continuar."
+      if [ "$MODE" = "godmode" ]; then
+        warn "godmode requiere >=15% de bateria. Cambiando a 'aggressive'."
+        MODE="aggressive"
+      fi
+    fi
+  fi
+
+  log "Deteccion completa: Root=$HAS_ROOT Android=$ANDROID_VER API=$API_LEVEL RAM=${TOTAL_RAM_MB}MB Temp=${TEMP_C}C"
+}
+
+# =============================================================================
+# BACKUP DE AJUSTES
+# =============================================================================
+backup_settings() {
+  section "Backup de ajustes actuales"
+
+  if [ -f "$SETTINGS_BACKUP" ]; then
+    info "Backup previo encontrado: $SETTINGS_BACKUP"
+    return 0
+  fi
+
+  info "Guardando ajustes en $SETTINGS_BACKUP..."
+  {
+    echo "# TITAN v${VERSION} Settings Backup -- $(date)"
+    echo "# Restaurar: sh titan_v51.sh --restore"
+    echo ""
+    for ns in global system secure; do
+      echo "# --- $ns ---"
+      settings list "$ns" 2>/dev/null | while IFS='=' read -r key val; do
+        [ -n "$key" ] && echo "settings put $ns $key '$val'"
+      done
+      echo ""
+    done
+  } > "$SETTINGS_BACKUP"
+  ok "Backup guardado: $SETTINGS_BACKUP"
+}
+
+# =============================================================================
+# RESTAURACION
+# =============================================================================
+do_restore() {
+  section "RESTAURANDO CONFIGURACION ANTERIOR"
+
+  # Restaurar ajustes del sistema
+  if [ -f "$SETTINGS_BACKUP" ]; then
+    info "Restaurando ajustes..."
+    grep -v "^#" "$SETTINGS_BACKUP" | while IFS= read -r line; do
+      [ -n "$line" ] && run "$line"
+    done
+    ok "Ajustes del sistema restaurados"
+  else
+    warn "No se encontro backup de ajustes: $SETTINGS_BACKUP"
+  fi
+
+  # Reinstalar apps removidas
+  if [ -f "$DEBLOAT_STATE" ]; then
+    info "Reinstalando apps removidas..."
+    while IFS= read -r pkg; do
+      [ -z "$pkg" ] && continue
+      if run "pm install-existing --user 0 $pkg 2>/dev/null"; then
+        ok "  Reinstalada: $pkg"
+      else
+        warn "  No se pudo reinstalar: $pkg (puede no existir en el sistema)"
+      fi
+    done < "$DEBLOAT_STATE"
+  fi
+
+  # Rehabilitar apps deshabilitadas
+  if [ -f "$DISABLED_STATE" ]; then
+    info "Habilitando apps deshabilitadas..."
+    while IFS= read -r pkg; do
+      [ -z "$pkg" ] && continue
+      run "pm enable --user 0 $pkg 2>/dev/null" && ok "  Habilitada: $pkg"
+    done < "$DISABLED_STATE"
+  fi
+
+  ok "Restauracion completa."
+  exit 0
+}
+
+# =============================================================================
+# PAQUETES PROTEGIDOS -- NUNCA TOCAR
+# =============================================================================
+PROTECTED="
 android
 com.android.systemui
 com.android.settings
@@ -303,7 +387,12 @@ com.google.android.packageinstaller
 com.android.permissioncontroller
 com.google.android.permissioncontroller
 com.android.providers.media
+com.android.providers.media.module
 com.android.providers.downloads
+com.android.providers.contacts
+com.android.providers.calendar
+com.android.providers.telephony
+com.android.providers.settings
 com.android.externalstorage
 com.android.documentsui
 com.android.vending
@@ -313,92 +402,123 @@ com.android.phone
 com.android.contacts
 com.android.messaging
 com.android.bluetooth
+com.android.nfc
+com.android.wifi
+com.android.server.telecom
+com.android.keychain
+com.android.inputmethod.latin
+com.android.launcher3
+com.motorola.launcher3
 com.motorola.launcher
 com.motorola.settings
 com.motorola.camera
+com.motorola.camera2
 com.motorola.mobiledesktop
+com.motorola.moto.actions
+com.motorola.motodisplay
+com.motorola.targetnotif
+com.motorola.ccc
 com.whatsapp
-com.typeless.mobile
 "
 
-# ===== GODMODE BLOATWARE (200+ APPS) =====
-GODMODE_BLOAT="
+is_protected() {
+  pkg="$1"
+  [ -z "$pkg" ] && return 0
+  echo "$PROTECTED" | grep -Fxq "$pkg" && return 0
+  case "$pkg" in
+    com.android.*)     return 0 ;;
+    com.motorola.ccc*) return 0 ;;
+    com.qualcomm.*)    return 0 ;;
+    com.qti.*)         return 0 ;;
+  esac
+  return 1
+}
+
+append_unique() {
+  [ -z "$1" ] || [ -z "$2" ] && return
+  grep -Fxq "$2" "$1" 2>/dev/null || echo "$2" >> "$1"
+}
+
+# =============================================================================
+# LISTAS DE DEBLOAT POR MODO
+# =============================================================================
+
+DEBLOAT_SAFE="
 com.google.android.apps.wellbeing
 com.google.android.printservice.recommendation
 com.android.traceur
-com.google.android.apps.tachyon
 com.google.android.apps.magazines
-com.google.android.videos
-com.google.android.music
-com.google.android.apps.youtube.music
-com.google.android.apps.docs
-com.google.android.keep
-com.google.android.apps.youtube.kids
+com.motorola.help
+com.motorola.mototour
+com.motorola.demo
+com.motorola.testing
+com.motorola.brapps
+com.motorola.discovery
+com.motorola.recommendations
 com.facebook.appmanager
 com.facebook.services
 com.facebook.system
 com.meta.appmanager
 com.meta.services
+"
+
+DEBLOAT_BALANCED="
+$DEBLOAT_SAFE
+com.google.android.apps.tachyon
+com.google.android.apps.youtube.kids
+com.google.android.music
+com.google.android.videos
+com.google.android.keep
+com.microsoft.bing
+com.microsoft.launcher
+com.amazon.device.setup
+com.amazon.venezia
+com.amazon.firetv.customization.moto
+com.motorola.android.fmradio
+com.motorola.edge
+com.motorola.motosignature
+com.motorola.gamemode
+com.motorola.gamespace
 com.twitter.android
 com.snapchat.android
 com.pinterest
 com.reddit.frontpage
-com.discord
 com.tiktok
-com.instagram.android
 com.linkedin.android
 com.nextdoor
 com.viber.voip
-com.telegram
-com.telegram.messenger
-com.whatsapp.business
-com.signal.android
-com.line.android
-com.kakao.talk
-com.skype.raider
-com.microsoft.skydrive
-com.microsoft.office.outlook
-com.microsoft.office.excel
-com.microsoft.office.word
-com.microsoft.office.powerpoint
-com.microsoft.teams
-com.microsoft.bing
-com.microsoft.launcher
-com.amazon.mShop.android.shopping
-com.amazon.kindle
-com.amazon.mp3
-com.amazon.venezia
-com.amazon.device.setup
-com.amazon.firetv.customization.moto
-com.google.android.apps.maps
+com.duolingo
+org.khanacademy.android
+com.skillshare.android
+com.booking
+com.airbnb.android
+com.tripadvisor.tripadvisor
+com.expedia.bookings
+com.kayak.android
+com.hotwire.android
+com.priceline.android
+com.skyscanner.android
+com.android.theme.icon_pack.circular.android
+"
+
+DEBLOAT_AGGRESSIVE="
+$DEBLOAT_BALANCED
+com.google.android.apps.docs
 com.google.android.apps.photos
 com.google.android.apps.bard
-com.google.android.apps.inbox
-com.google.android.gms.location_history
-com.google.android.apps.nbu.files
-com.google.android.carriersetup
-com.google.android.gms.setup
-com.google.android.as
-com.google.android.setupwizard
+com.google.android.apps.fitness
+com.google.android.gm
+com.google.android.gm.exchange
 com.google.android.tv.remote.service
-com.google.android.gms.persistent
-com.google.android.gms.auth_google_play_services
-com.google.android.gms.location
-com.google.android.gms.analytics
-com.google.android.syncadapters.calendar
-com.google.android.syncadapters.contacts
-com.google.android.youtube
-com.google.android.apps.tycho
-com.google.android.gms.wearable
 com.google.android.tts
-com.google.android.gms.phenotype
+com.google.android.gms.wearable
+com.google.android.apps.maps
+com.google.android.apps.nbu.files
+com.google.android.apps.youtube.music
 com.spotify.music
 com.netflix.mediaclient
 com.pandora.android
-com.apple.android.music
-com.tidal.android
 com.amazon.music
-com.google.android.apps.mediashell
 com.disney.disneyplus
 com.hbo.hbonow
 com.peacocktv.peacockandroid
@@ -406,32 +526,49 @@ com.primevideo
 com.paramountplus
 com.hulustream
 com.crunchyroll.crunchyroid
-com.apple.tv
 com.twitch.android.app
-com.booking
-com.booking.hotelreservations
-com.airbnb.android
-com.ebay.mobile
-com.alibaba.aliexpresshd
-com.tripadvisor.tripadvisor
-com.expedia.bookings
-com.kayak.android
-com.hotwire.android
-com.priceline.android
-com.skyscanner.android
+com.microsoft.skydrive
+com.microsoft.office.outlook
+com.microsoft.office.excel
+com.microsoft.office.word
+com.microsoft.office.powerpoint
+com.microsoft.teams
+com.amazon.mShop.android.shopping
+com.amazon.kindle
+com.amazon.mp3
+com.dropbox.android
+com.box.android
+com.evernote
+notion.id
+com.todoist
+com.any.do
 com.uber.android
 com.lyft.android
 com.deliveroo
 com.deliveroo.orderapp
+com.strava
+com.runtastic.android
+com.fitbit.FitbitMobile
+com.myfitnesspal.android
 com.supercell.clashofclans
 com.supercell.brawlstars
 com.roblox.client
-com.dts.freefireth
 com.activision.callofduty.shooter
-com.mojang.minecraftpe
 com.epicgames.fortnite
 com.krafton.pubg
-com.gameloft.android.ANMP
+com.udemy.android
+com.coursera
+com.adobe.lightroom
+com.vsco.cam
+com.snapseed
+com.pixlr.express
+com.slack
+com.google.android.inputmethod.pinyin
+com.google.android.inputmethod.japanese
+com.google.android.inputmethod.korean
+com.google.android.inputmethod.thai
+com.samsung.inputmethod
+com.sec.android.inputmethod
 com.miui.analytics
 com.miui.msa.global
 com.heytap.browser
@@ -439,491 +576,529 @@ com.heytap.market
 com.heytap.music
 com.oppo.market
 com.vivo.appcenter
-com.duolingo
-org.khanacademy.android
-com.skillshare.android
-com.udemy.android
-com.coursera
-com.evernote
-notion.id
-com.todoist
-com.microsoft.office.outlook
-com.any.do
-com.dropbox.android
-com.box.android
-com.google.drive
-com.onedrive
-com.mediafire.android
-com.adobe.lightroom
-com.vsco.cam
-com.snapseed
-com.pixlr.express
-com.photoshop.mobile
-com.swiftkey
-com.google.android.inputmethod.pinyin
-com.google.android.inputmethod.japanese
-com.google.android.inputmethod.korean
-com.google.android.inputmethod.thai
-com.motorola.help
-com.motorola.discovery
-com.motorola.gamemode
-com.motorola.gamespace
-com.motorola.mototour
-com.motorola.android.fmradio
-com.motorola.brapps
-com.motorola.demo
-com.motorola.testing
-com.motorola.motosignature
-com.motorola.edge
-com.motorola.dolby
-com.motorola.recommendations
-com.android.theme.icon_pack.circular.android
+com.google.android.apps.cameramx
+com.google.android.apps.tycho
+com.google.android.gms.location_history
+com.google.android.carriersetup
+com.google.android.setupwizard
+com.google.android.play.games
 com.android.theme.font_roboto_mono
-com.google.android.gm
-com.google.android.gm.exchange
-com.slack
+com.swiftkey
+com.instagram.android
+com.discord
+com.telegram
+com.telegram.messenger
+com.whatsapp.business
+com.line.android
+com.kakao.talk
+com.skype.raider
 com.wechat
 com.qq
 com.weibo.android
-com.google.android.webview
-com.google.android.apps.cameramx
-com.samsung.inputmethod
-com.sec.android.inputmethod
-com.motorola.android.smartactions
-com.motorola.blur.contacts
-com.motorola.blur.service
-com.google.android.apps.fitness
-com.strava
-com.runtastic.android
-com.fitbit.FitbitMobile
-com.myfitnesspal.android
-com.google.android.play.games
-com.google.android.play.musicmanager
 "
 
-# =============================================================================
-# GODMODE FUNCTIONS
-# =============================================================================
+DEBLOAT_GODMODE="
+$DEBLOAT_AGGRESSIVE
+com.google.android.gms.setup
+com.google.android.as
+com.google.android.gms.phenotype
+com.google.android.syncadapters.calendar
+com.google.android.syncadapters.contacts
+com.google.android.gms.location
+com.google.android.gms.analytics
+com.ebay.mobile
+com.alibaba.aliexpresshd
+com.apple.android.music
+com.tidal.android
+com.apple.tv
+com.dts.freefireth
+com.mojang.minecraftpe
+com.gameloft.android.ANMP
+com.mediafire.android
+"
 
-strip_ansi() { sed 's/\u001b\[[0-9;]*m//g'; }
-
-log_init() {
-  mkdir -p "$LOGDIR" "$CFGDIR" "$REPORTDIR" 2>/dev/null
-  touch "$LOGFILE" "$SUMMARYFILE" 2>/dev/null
+get_debloat_list() {
+  case "$MODE" in
+    safe)       echo "$DEBLOAT_SAFE" ;;
+    balanced)   echo "$DEBLOAT_BALANCED" ;;
+    aggressive) echo "$DEBLOAT_AGGRESSIVE" ;;
+    godmode)    echo "$DEBLOAT_GODMODE" ;;
+  esac
 }
-
-log() { echo "$(date '+%F %T') | $*" >> "$LOGFILE" 2>/dev/null; }
-
-say() {
-  [ "$VERBOSE" = "1" ] && echo -e "$*"
-  echo -e "$*" | strip_ansi | log
-}
-
-run() {
-  if [ "$DRY_RUN" = "1" ]; then
-    say "${C}[dry] $*${NC}"
-    return 0
-  fi
-  sh -c "$*" >> "$LOGFILE" 2>&1
-  return $?
-}
-
-append_unique_line() {
-  f="$1"
-  line="$2"
-  [ -z "$f" ] && return 0
-  [ -z "$line" ] && return 0
-  mkdir -p "$(dirname "$f")" 2>/dev/null
-  touch "$f" 2>/dev/null
-  grep -Fxq "$line" "$f" 2>/dev/null || echo "$line" >> "$f"
-}
-
-getprop_safe() { getprop "$1" 2>/dev/null; }
-settings_get_safe() { settings get "$1" "$2" 2>/dev/null; }
-settings_put_safe() { run "settings put $1 $2 '$3'"; }
-
-battery_level() { dumpsys battery 2>/dev/null | awk -F': ' '/level:/{print $2; exit}'; }
-
-pkg_installed() { p="$1"; pm list packages 2>/dev/null | cut -d: -f2 | grep -Fxq "$p"; }
 
 # =============================================================================
-# GODMODE SUPREME FUNCTIONS
+# DEBLOAT
 # =============================================================================
+run_debloat() {
+  [ "$DO_DEBLOAT" = "0" ] && { info "Debloat salteado (--no-debloat)"; return; }
 
-godmode_memory_nuclear() {
-  say "${B}[🔥] MEMORY NUCLEAR OPTIMIZATION...${NC}"
-  : > "$MEMORY_LOG"
-  
-  for i in 1 2 3 4 5; do
-    run "am send-trim-memory --help 2>/dev/null || true"
-  done
-  
-  run "echo 3 > /proc/sys/vm/drop_caches 2>/dev/null || true"
-  run "sync && sync && sync && sync && sync"
-  
-  pm list packages | cut -d: -f2 | while read pkg; do
-    run "am send-trim-memory $pkg TRIM_MEMORY_RUNNING_CRITICAL 2>/dev/null || true"
-    run "pm clear --user 0 $pkg 2>/dev/null || true"
-  done
-  
-  run "echo 1 > /proc/sys/vm/compact_memory 2>/dev/null || true"
-  run "echo 1 > /proc/sys/vm/compact_memory 2>/dev/null || true"
-  
-  echo "[MEMORY-NUCLEAR] Complete" >> "$MEMORY_LOG"
-  say "${G}[✓] Memory nuclear optimization complete${NC}"
-}
+  section "Debloat de apps -- modo: $MODE"
+  : > "$DEBLOAT_STATE"; : > "$DISABLED_STATE"
 
-godmode_storage_annihilation() {
-  say "${B}[💾] STORAGE ANNIHILATION...${NC}"
-  : > "$DEFRAG_LOG"
-  
-  for i in 1 2 3 4; do
-    for partition in /dev/block/sda* /dev/block/mmcblk*; do
-      [ -e "$partition" ] && run "fstrim \"$partition\" 2>/dev/null || true"
-    done
-  done
-  
-  for i in 1 2 3 4 5; do
-    run "sync"
-  done
-  
-  say "${G}[✓] Storage annihilation complete${NC}"
-}
+  removed=0; disabled_c=0
 
-godmode_database_destruction() {
-  say "${B}[🗄️] DATABASE DESTRUCTION...${NC}"
-  
-  find /data -name "*.db" 2>/dev/null | while read db; do
-    run "sqlite3 \"$db\" \"VACUUM; ANALYZE; PRAGMA integrity_check;\" 2>/dev/null || true"
-  done
-  
-  find /data -name "*.db-wal" -delete 2>/dev/null || true
-  find /data -name "*.db-shm" -delete 2>/dev/null || true
-  
-  run "rm -rf /data/dalvik-cache/* 2>/dev/null || true"
-  run "rm -rf /data/resource-cache/* 2>/dev/null || true"
-  
-  say "${G}[✓] Database destruction complete${NC}"
-}
+  get_debloat_list | sed '/^[[:space:]]*$/d' | sort -u | while IFS= read -r pkg; do
+    pkg=$(echo "$pkg" | tr -d ' \t\r')
+    [ -z "$pkg" ] && continue
 
-godmode_system_annihilation() {
-  say "${B}[⚡] SYSTEM ANNIHILATION...${NC}"
-  
-  run "rm -rf /sdcard/.* 2>/dev/null || true"
-  run "rm -rf /data/cache/* 2>/dev/null || true"
-  run "rm -rf /data/anr/* 2>/dev/null || true"
-  run "rm -rf /data/tombstones/* 2>/dev/null || true"
-  run "rm -rf /data/system/dropbox/* 2>/dev/null || true"
-  run "rm -rf /data/system/traces/* 2>/dev/null || true"
-  run "rm -rf /data/log/* 2>/dev/null || true"
-  run "rm -rf /data/media/0/.*/* 2>/dev/null || true"
-  run "rm -rf /tmp/* 2>/dev/null || true"
-  run "rm -rf /var/tmp/* 2>/dev/null || true"
-  run "rm -rf /var/cache/* 2>/dev/null || true"
-  run "rm -rf /var/log/* 2>/dev/null || true"
-  
-  pm list packages | cut -d: -f2 | while read pkg; do
-    run "rm -rf /data/data/$pkg/cache/* 2>/dev/null || true"
-    run "rm -rf /data/data/$pkg/app_cache/* 2>/dev/null || true"
-    run "rm -rf /data/data/$pkg/code_cache/* 2>/dev/null || true"
-    run "rm -rf /data/media/0/Android/data/$pkg/cache/* 2>/dev/null || true"
-  done
-  
-  say "${G}[✓] System annihilation complete${NC}"
-}
+    if is_protected "$pkg"; then
+      log "SKIP (protected): $pkg"; continue
+    fi
 
-godmode_cpu_tuning() {
-  say "${B}[🔧] CPU GODMODE TUNING...${NC}"
-  
-  for cpu in /sys/devices/system/cpu/cpu*/cpufreq; do
-    [ -d "$cpu" ] && {
-      run "echo performance > $cpu/scaling_governor 2>/dev/null || true"
-      run "cat $cpu/cpuinfo_max_freq > $cpu/scaling_max_freq 2>/dev/null || true"
-      run "echo 0 > $cpu/scaling_min_freq 2>/dev/null || true"
-    }
-  done
-  
-  run "echo 1 > /sys/module/cpufreq/parameters/boost 2>/dev/null || true"
-  run "echo 0 > /proc/sys/kernel/sched_migration_cost_ns 2>/dev/null || true"
-  run "echo 1 > /proc/sys/kernel/sched_load_balance 2>/dev/null || true"
-  
-  say "${G}[✓] CPU godmode tuning complete${NC}"
-}
+    if ! pm list packages 2>/dev/null | cut -d: -f2 | grep -Fxq "$pkg"; then
+      log "SKIP (not installed): $pkg"; continue
+    fi
 
-godmode_memory_tuning() {
-  say "${B}[💾] MEMORY GODMODE TUNING...${NC}"
-  
-  run "echo 0 > /proc/sys/vm/overcommit_memory 2>/dev/null || true"
-  run "echo 1 > /proc/sys/vm/swappiness 2>/dev/null || true"
-  run "echo 10 > /proc/sys/vm/vfs_cache_pressure 2>/dev/null || true"
-  run "echo 0 > /proc/sys/vm/dirty_ratio 2>/dev/null || true"
-  run "echo 0 > /proc/sys/vm/dirty_background_ratio 2>/dev/null || true"
-  
-  say "${G}[✓] Memory godmode tuning complete${NC}"
-}
+    if [ "$DRY_RUN" = "1" ]; then
+      info "[dry] Removeria: $pkg"; continue
+    fi
 
-godmode_io_tuning() {
-  say "${B}[📊] I/O GODMODE TUNING...${NC}"
-  
-  run "echo 1024 > /sys/block/mmcblk0/queue/read_ahead_kb 2>/dev/null || true"
-  run "echo noop > /sys/block/mmcblk0/queue/scheduler 2>/dev/null || true"
-  run "echo 0 > /sys/block/mmcblk0/queue/rotational 2>/dev/null || true"
-  run "echo 0 > /sys/block/mmcblk0/queue/rq_affinity 2>/dev/null || true"
-  
-  say "${G}[✓] I/O godmode tuning complete${NC}"
-}
-
-godmode_network_annihilation() {
-  say "${B}[🌐] NETWORK ANNIHILATION...${NC}"
-  : > "$NETWORK_TUNE_LOG"
-  
-  settings_put_safe global wifi_scan_interval 999999999
-  settings_put_safe global ble_scan_interval 0
-  settings_put_safe secure location_providers_allowed ""
-  settings_put_safe global auto_time 0
-  settings_put_safe global auto_time_zone 0
-  settings_put_safe global mobile_data_always_on 0
-  settings_put_safe global wifi_on 0
-  settings_put_safe global bluetooth_on 0
-  settings_put_safe global nfc_on 0
-  settings_put_safe global mobile_hotspot_enabled 0
-  
-  run "echo 1 > /proc/sys/net/ipv4/tcp_no_metrics_save 2>/dev/null || true"
-  run "echo 0 > /proc/sys/net/ipv4/tcp_timestamps 2>/dev/null || true"
-  run "echo 0 > /proc/sys/net/ipv4/tcp_sack 2>/dev/null || true"
-  run "echo 1 > /proc/sys/net/ipv4/tcp_rfc1337 2>/dev/null || true"
-  
-  echo "[NETWORK] Optimization complete" >> "$NETWORK_TUNE_LOG"
-  say "${G}[✓] Network annihilation complete${NC}"
-}
-
-godmode_performance_settings() {
-  say "${B}[⚡] GODMODE PERFORMANCE SETTINGS...${NC}"
-  
-  settings_put_safe global window_animation_scale 0
-  settings_put_safe global transition_animation_scale 0
-  settings_put_safe global animator_duration_scale 0
-  
-  settings_put_safe secure long_press_timeout 15
-  settings_put_safe secure multi_press_timeout 15
-  settings_put_safe system pointer_speed 10
-  
-  settings_put_safe system peak_refresh_rate 120
-  settings_put_safe system min_refresh_rate 120
-  
-  settings_put_safe global disable_window_blurs 1
-  settings_put_safe global one_handed_mode_enabled 0
-  settings_put_safe system haptic_feedback_enabled 0
-  settings_put_safe secure notification_badging 0
-  settings_put_safe global debug_view_attributes 0
-  settings_put_safe global show_surface_updates 0
-  settings_put_safe global show_cpu_usage 0
-  
-  settings_put_safe global limit_background_processes 0
-  settings_put_safe global activity_manager_max_cached_processes 0
-  
-  settings_put_safe global gpu_debug_level 0
-  settings_put_safe global debug_force_rtl 0
-  settings_put_safe global profiler_ms 0
-  
-  say "${G}[✓] Godmode performance settings complete${NC}"
-}
-
-godmode_display_optimization() {
-  say "${B}[🎨] DISPLAY GODMODE OPTIMIZATION...${NC}"
-  
-  settings_put_safe system screen_brightness_mode 1
-  settings_put_safe system screen_brightness 255
-  settings_put_safe system display_color_mode 0
-  settings_put_safe system peak_refresh_rate 120
-  
-  settings_put_safe secure adaptive_sleep 0
-  settings_put_safe global adaptive_battery_enabled 0
-  
-  say "${G}[✓] Display godmode optimization complete${NC}"
-}
-
-godmode_battery_optimization() {
-  say "${B}[🔋] BATTERY GODMODE OPTIMIZATION...${NC}"
-  
-  settings_put_safe global low_power_mode 0
-  settings_put_safe global low_power_mode_threshold_pct 0
-  
-  settings_put_safe global adaptive_battery 0
-  settings_put_safe global battery_saver_enabled 0
-  
-  say "${G}[✓] Battery godmode optimization complete${NC}"
-}
-
-godmode_sound_optimization() {
-  say "${B}[🔊] SOUND GODMODE OPTIMIZATION...${NC}"
-  
-  settings_put_safe global reduce_bright_lights 0
-  settings_put_safe global enable_fuse 1
-  
-  say "${G}[✓] Sound godmode optimization complete${NC}"
-}
-
-godmode_sensor_optimization() {
-  say "${B}[📡] SENSOR GODMODE OPTIMIZATION...${NC}"
-  
-  settings_put_safe secure accelerometer_rotation 0
-  settings_put_safe secure tilt_to_wake 0
-  
-  say "${G}[✓] Sensor godmode optimization complete${NC}"
-}
-
-godmode_debloat_all() {
-  say "${B}[💣] GODMODE DEBLOAT (200+ APPS)...${NC}"
-  : > "$DEBLOAT_STATEFILE"
-  
-  build_protected_packages
-  
-  echo "$GODMODE_BLOAT" | sed '/^$/d' | while IFS= read -r p; do
-    if pkg_installed "$p" && ! is_protected_package "$p"; then
-      if pm uninstall --user 0 "$p" 2>/dev/null; then
-        echo "$p" >> "$DEBLOAT_STATEFILE"
-        say "${G}  ✓ REMOVED: $p${NC}"
-      elif pm disable --user 0 "$p" 2>/dev/null; then
-        echo "$p" >> "$DISABLED_STATEFILE"
-      fi
+    if pm uninstall --user 0 "$pkg" >> "$LOGFILE" 2>&1; then
+      append_unique "$DEBLOAT_STATE" "$pkg"
+      ok "  Removida: $pkg"
+    elif pm disable-user --user 0 "$pkg" >> "$LOGFILE" 2>&1; then
+      append_unique "$DISABLED_STATE" "$pkg"
+      info "  Deshabilitada: $pkg"
+    else
+      warn "  No se pudo remover: $pkg"
     fi
   done
-  
-  say "${G}[✓] Godmode debloat complete${NC}"
+
+  ok "Debloat completado"
 }
 
-build_protected_packages() {
-  : > "$TMP_PROTECTED" 2>/dev/null || true
-  echo "$CRITICAL_PACKAGES_STATIC" | sed '/^$/d' | while IFS= read -r p; do
-    append_unique_line "$TMP_PROTECTED" "$p"
+# =============================================================================
+# LIMPIEZA DE CACHE (segura, sin borrar datos de usuario)
+# =============================================================================
+clean_caches() {
+  section "Limpieza de cachés"
+
+  # Trim de cachés via pm (seguro, no root)
+  info "Solicitando liberacion de cache de apps..."
+  if [ "$DRY_RUN" = "0" ]; then
+    pm trim-caches 1073741824 >> "$LOGFILE" 2>&1 || true  # 1GB limite
+    am kill-all >> "$LOGFILE" 2>&1 || true
+  else
+    info "[dry] pm trim-caches 1GB"
+    info "[dry] am kill-all"
+  fi
+
+  # Archivos temporales en almacenamiento accesible
+  info "Limpiando archivos temporales en /sdcard..."
+  if [ "$DRY_RUN" = "0" ]; then
+    find "/sdcard/Download" -name "*.tmp" -type f -delete 2>/dev/null || true
+    find "/sdcard/Download" -name "*.crdownload" -type f -delete 2>/dev/null || true
+    find "/sdcard/Android/data" -name "*.log" -type f -size +512k -delete 2>/dev/null || true
+  else
+    info "[dry] find /sdcard/Download -name '*.tmp' -delete"
+    info "[dry] find /sdcard/Android/data -name '*.log' -size +512k -delete"
+  fi
+
+  # Con root: cachés del sistema
+  if [ "$HAS_ROOT" = "1" ]; then
+    info "Limpiando cachés del sistema (root)..."
+    run_root "sync && echo 3 > /proc/sys/vm/drop_caches"
+    [ "$MODE" != "safe" ] && {
+      run_root "rm -rf /data/anr/* 2>/dev/null || true"
+      run_root "rm -rf /data/tombstones/* 2>/dev/null || true"
+      run_root "rm -rf /data/system/dropbox/* 2>/dev/null || true"
+      run_root "rm -rf /data/system/traces/* 2>/dev/null || true"
+      run_root "rm -rf /data/resource-cache/* 2>/dev/null || true"
+    }
+    ok "Cachés del sistema limpias"
+  else
+    info "Sin root: limpieza de cache limitada al espacio de usuario"
+  fi
+
+  ok "Limpieza de cachés completada"
+}
+
+# =============================================================================
+# OPTIMIZACION SQLite
+# =============================================================================
+optimize_databases() {
+  [ "$MODE" = "safe" ] && return
+  [ "$HAS_ROOT" = "0" ] && { info "Optimizacion SQLite requiere root -- salteado"; return; }
+
+  section "Optimización de bases de datos SQLite"
+  info "Ejecutando VACUUM + ANALYZE en bases de datos..."
+
+  find /data/data -name "*.db" -type f 2>/dev/null | while IFS= read -r db; do
+    [ "$DRY_RUN" = "0" ] && \
+      su -c "sqlite3 \"$db\" 'PRAGMA integrity_check; VACUUM; ANALYZE;'" >> "$LOGFILE" 2>&1 || true
   done
+  ok "Bases de datos optimizadas"
 }
 
-is_protected_package() {
-  p="$1"
-  [ -z "$p" ] && return 0
-  [ -f "$TMP_PROTECTED" ] && grep -Fxq "$p" "$TMP_PROTECTED" 2>/dev/null && return 0
-  return 1
+# =============================================================================
+# FSTRIM
+# =============================================================================
+run_fstrim() {
+  [ "$MODE" = "safe" ] && return
+  [ "$HAS_ROOT" = "0" ] && { info "FSTRIM requiere root -- salteado"; return; }
+
+  section "FSTRIM del almacenamiento"
+  info "Ejecutando fstrim en particiones..."
+  run_root "fstrim /data 2>/dev/null || true"
+  run_root "fstrim /cache 2>/dev/null || true"
+  run_root "fstrim /sdcard 2>/dev/null || true"
+  ok "FSTRIM completado"
 }
 
-godmode_report() {
-  : > "$SNAPSHOT_REPORT"
+# =============================================================================
+# AJUSTES DE RENDIMIENTO (via settings, no root)
+# =============================================================================
+sput() {
+  ns="$1"; key="$2"; val="$3"
+  log "settings put $ns $key '$val'"
+  if [ "$DRY_RUN" = "1" ]; then
+    info "[dry] settings put $ns $key '$val'"
+    return 0
+  fi
+  settings put "$ns" "$key" "$val" >> "$LOGFILE" 2>&1
+}
+
+run_performance_settings() {
+  [ "$DO_PERF" = "0" ] && { info "Performance salteado (--no-perf)"; return; }
+
+  section "Ajustes de rendimiento"
+
+  # Animaciones
+  info "Configurando escala de animaciones..."
+  case "$MODE" in
+    safe)              anim="0.5" ;;
+    balanced)          anim="0.35" ;;
+    aggressive|godmode) anim="0.0" ;;
+  esac
+  sput global window_animation_scale "$anim"
+  sput global transition_animation_scale "$anim"
+  sput global animator_duration_scale "$anim"
+
+  # Tasa de refresco
+  info "Configurando tasa de refresco..."
+  sput system peak_refresh_rate 120
+  case "$MODE" in
+    safe|balanced) sput system min_refresh_rate 60 ;;  # Adaptativo (ahorra bateria)
+    aggressive|godmode) sput system min_refresh_rate 120 ;;  # 120Hz fijo
+  esac
+
+  # Procesos en background
+  info "Ajustando procesos en background..."
+  case "$MODE" in
+    safe) ;;  # No limitar
+    balanced)   sput global activity_manager_max_cached_processes 16 ;;
+    aggressive) sput global activity_manager_max_cached_processes 12; sput global limit_background_processes 6 ;;
+    godmode)    sput global activity_manager_max_cached_processes 8;  sput global limit_background_processes 4 ;;
+  esac
+
+  # Overlays / debug
+  sput global disable_window_blurs 1
+  sput global debug_view_attributes 0
+  sput global show_surface_updates 0
+  sput global show_cpu_usage 0
+  sput global gpu_debug_level 0
+
+  # Feedback tactil
+  [ "$MODE" = "godmode" ] && {
+    sput system haptic_feedback_enabled 0
+    sput system vibrate_on 0
+    info "Vibracion deshabilitada en modo godmode"
+  }
+
+  # Bateria adaptativa
+  case "$MODE" in
+    safe|balanced)  sput global adaptive_battery_enabled 1; sput global adaptive_battery 1 ;;
+    aggressive)     sput global adaptive_battery_enabled 1; sput global adaptive_battery 1 ;;
+    godmode)        sput global adaptive_battery_enabled 0; sput global adaptive_battery 0 ;;
+  esac
+
+  # Timeout de touch
+  case "$MODE" in
+    safe)           sput secure long_press_timeout 500 ;;
+    balanced)       sput secure long_press_timeout 400 ;;
+    aggressive)     sput secure long_press_timeout 250 ;;
+    godmode)        sput secure long_press_timeout 150 ;;
+  esac
+
+  # Brillo automatico
+  sput system screen_brightness_mode 1
+
+  ok "Ajustes de rendimiento aplicados"
+}
+
+# =============================================================================
+# AJUSTES DE RED (solo optimizar, NUNCA deshabilitar WiFi/BT/GPS)
+# =============================================================================
+run_network_settings() {
+  [ "$DO_NETWORK" = "0" ] && { info "Red salteado (--no-network)"; return; }
+
+  section "Optimización de red"
+
+  # Reducir frecuencia de escaneo WiFi en background
+  info "Optimizando escaneo WiFi..."
+  case "$MODE" in
+    safe)       sput global wifi_scan_interval_ms 90000 ;;
+    balanced)   sput global wifi_scan_interval_ms 180000 ;;
+    aggressive|godmode) sput global wifi_scan_interval_ms 300000 ;;
+  esac
+
+  # BLE: reducir escaneo continuo en background (godmode/aggressive)
+  [ "$MODE" = "aggressive" ] || [ "$MODE" = "godmode" ] && {
+    sput global ble_scan_always_enabled 0
+    info "Escaneo BLE en background deshabilitado"
+  }
+
+  # DNS privado (Cloudflare)
+  info "Configurando DNS privado (Cloudflare)..."
+  if [ "$DRY_RUN" = "0" ]; then
+    settings put global private_dns_mode hostname >> "$LOGFILE" 2>&1 || true
+    settings put global private_dns_specifier "1dot1dot1dot1.cloudflare-dns.com" >> "$LOGFILE" 2>&1 || true
+  else
+    info "[dry] DNS privado -> 1dot1dot1dot1.cloudflare-dns.com"
+  fi
+
+  ok "Red optimizada"
+}
+
+# =============================================================================
+# KERNEL TUNING (solo con root)
+# =============================================================================
+run_kernel_tuning() {
+  [ "$DO_KERNEL" = "0" ] && return
+  [ "$HAS_ROOT" = "0" ] && return
+  [ "$MODE" = "safe" ] && return
+
+  section "Kernel tuning (root)"
+
+  # CPU governor
+  info "Configurando CPU governor..."
+  for cpu in /sys/devices/system/cpu/cpu*/cpufreq; do
+    [ -d "$cpu" ] || continue
+    AVAIL_GOV=$(cat "$cpu/scaling_available_governors" 2>/dev/null || echo "")
+    if echo "$AVAIL_GOV" | grep -q "schedutil"; then
+      GOV="schedutil"
+    elif echo "$AVAIL_GOV" | grep -q "interactive"; then
+      GOV="interactive"
+    elif echo "$AVAIL_GOV" | grep -q "ondemand"; then
+      GOV="ondemand"
+    else
+      continue
+    fi
+    # godmode: performance governor para maxima velocidad
+    [ "$MODE" = "godmode" ] && echo "$AVAIL_GOV" | grep -q "performance" && GOV="performance"
+    run_root "echo $GOV > $cpu/scaling_governor 2>/dev/null || true"
+    [ "$MODE" = "godmode" ] && {
+      MAX=$(cat "$cpu/cpuinfo_max_freq" 2>/dev/null || echo "")
+      [ -n "$MAX" ] && run_root "echo $MAX > $cpu/scaling_max_freq 2>/dev/null || true"
+    }
+  done
+
+  # VM / swappiness
+  info "Ajustando VM (swappiness, cache pressure)..."
+  case "$MODE" in
+    balanced)   run_root "echo 40 > /proc/sys/vm/swappiness 2>/dev/null || true" ;;
+    aggressive) run_root "echo 20 > /proc/sys/vm/swappiness 2>/dev/null || true" ;;
+    godmode)    run_root "echo 10 > /proc/sys/vm/swappiness 2>/dev/null || true" ;;
+  esac
+  run_root "echo 80 > /proc/sys/vm/vfs_cache_pressure 2>/dev/null || true"
+  run_root "echo 10 > /proc/sys/vm/dirty_ratio 2>/dev/null || true"
+  run_root "echo 5  > /proc/sys/vm/dirty_background_ratio 2>/dev/null || true"
+  run_root "echo 3000 > /proc/sys/vm/dirty_writeback_centisecs 2>/dev/null || true"
+
+  # I/O scheduler
+  info "Ajustando I/O scheduler..."
+  for blk in /sys/block/sda /sys/block/mmcblk0; do
+    [ -d "$blk/queue" ] || continue
+    AVAIL_SCHED=$(cat "$blk/queue/scheduler" 2>/dev/null || echo "")
+    if echo "$AVAIL_SCHED" | grep -q "mq-deadline"; then
+      run_root "echo mq-deadline > $blk/queue/scheduler 2>/dev/null || true"
+    elif echo "$AVAIL_SCHED" | grep -q "none"; then
+      run_root "echo none > $blk/queue/scheduler 2>/dev/null || true"
+    fi
+    run_root "echo 512 > $blk/queue/read_ahead_kb 2>/dev/null || true"
+    run_root "echo 0   > $blk/queue/add_random 2>/dev/null || true"
+  done
+
+  # TCP (aggressive/godmode)
+  if [ "$MODE" = "aggressive" ] || [ "$MODE" = "godmode" ]; then
+    info "Ajustando parametros TCP..."
+    run_root "echo bbr > /proc/sys/net/ipv4/tcp_congestion_control 2>/dev/null || true"
+    run_root "echo 1   > /proc/sys/net/ipv4/tcp_low_latency 2>/dev/null || true"
+    run_root "echo 4096 131072 16777216 > /proc/sys/net/ipv4/tcp_rmem 2>/dev/null || true"
+    run_root "echo 4096 65536 16777216  > /proc/sys/net/ipv4/tcp_wmem 2>/dev/null || true"
+  fi
+
+  ok "Kernel tuning completado"
+}
+
+# =============================================================================
+# DEX OPTIMIZATION
+# =============================================================================
+run_dex_optimization() {
+  [ "$MODE" = "safe" ] && return
+
+  section "Optimización DEX (dex2oat)"
+  info "Compilando apps con speed-profile..."
+  if [ "$DRY_RUN" = "0" ]; then
+    cmd package compile -m speed-profile -a >> "$LOGFILE" 2>&1 || \
+      pm compile -m speed-profile -a >> "$LOGFILE" 2>&1 || \
+      warn "dex2oat no disponible en este dispositivo/usuario"
+    ok "DEX optimization completada"
+  else
+    info "[dry] cmd package compile -m speed-profile -a"
+  fi
+}
+
+# =============================================================================
+# SNAPSHOT DE METRICAS REALES
+# =============================================================================
+get_snapshot() {
+  label="$1"
   {
-    echo "╔═══════════════════════════════════════════════════════════╗"
-    echo "║           TITAN v50 GODMODE - SUPREME REPORT              ║"
-    echo "╚═══════════════════════════════════════════════════════════╝"
+    echo "=== SNAPSHOT: $label -- $(date) ==="
     echo ""
-    echo "PROFILE: GODMODE (SUPREME ULTIMATE)"
-    echo "Apps removed: 200+"
-    echo "Optimizations: 100+"
+    echo "--- Memoria ---"
+    cat /proc/meminfo 2>/dev/null | head -8
     echo ""
-    echo "OPTIMIZATIONS APPLIED:"
-    echo "✓ Memory nuclear optimization"
-    echo "✓ Storage annihilation"
-    echo "✓ Database destruction"
-    echo "✓ System annihilation"
-    echo "✓ CPU godmode tuning"
-    echo "✓ Memory godmode tuning"
-    echo "✓ I/O godmode tuning"
-    echo "✓ Network annihilation"
-    echo "✓ Performance godmode settings"
-    echo "✓ Display godmode optimization"
-    echo "✓ Battery godmode optimization"
-    echo "✓ Sound godmode optimization"
-    echo "✓ Sensor godmode optimization"
-    echo "✓ 200+ bloatware removed"
+    echo "--- Almacenamiento ---"
+    df -h /sdcard 2>/dev/null || df -h /data 2>/dev/null
     echo ""
-    echo "EXPECTED RESULTS:"
-    echo "RAM: +6-8GB free"
-    echo "Storage: +30GB free"
-    echo "Lag: <5ms"
-    echo "Responsiveness: INSTANT"
-    echo "Battery: 20-30+ hours"
-    echo "GPU: 120fps SOLID"
-    echo "App Launch: <200ms"
+    echo "--- Procesos activos ---"
+    ps 2>/dev/null | wc -l | xargs echo "Total procesos:"
     echo ""
-  } >> "$SNAPSHOT_REPORT"
-  
-  say "${G}[✓] Report generated${NC}"
+    echo "--- Bateria ---"
+    dumpsys battery 2>/dev/null | grep -E "level|status|health|temperature"
+    echo ""
+    echo "--- CPU freq actual ---"
+    for cpu in /sys/devices/system/cpu/cpu*/cpufreq/scaling_cur_freq; do
+      [ -f "$cpu" ] && cat "$cpu" | xargs echo "  $cpu:"
+    done 2>/dev/null
+    echo ""
+  }
 }
 
+# =============================================================================
+# REPORTE FINAL
+# =============================================================================
+generate_report() {
+  section "Generando reporte final"
+
+  REMOVED_COUNT=0; DISABLED_COUNT=0
+  [ -f "$DEBLOAT_STATE" ]  && REMOVED_COUNT=$(grep -c . "$DEBLOAT_STATE" 2>/dev/null || echo 0)
+  [ -f "$DISABLED_STATE" ] && DISABLED_COUNT=$(grep -c . "$DISABLED_STATE" 2>/dev/null || echo 0)
+
+  {
+    echo "============================================================"
+    echo "   TITAN v${VERSION} -- Reporte de Optimizacion"
+    echo "============================================================"
+    echo ""
+    echo "Dispositivo    : $DEVICE_MODEL"
+    echo "Android        : $ANDROID_VER (API $API_LEVEL)"
+    echo "Modo           : $MODE"
+    echo "Root           : $([ $HAS_ROOT -eq 1 ] && echo SI || echo NO)"
+    echo "Dry run        : $([ $DRY_RUN -eq 1 ] && echo SI || echo NO)"
+    echo "Fecha          : $(date)"
+    echo ""
+    echo "-- Resultados -----------------------------------------"
+    echo "Apps removidas     : $REMOVED_COUNT"
+    echo "Apps deshabilitadas: $DISABLED_COUNT"
+    echo ""
+    echo "-- Apps removidas -------------------------------------"
+    [ -f "$DEBLOAT_STATE" ] && cat "$DEBLOAT_STATE" || echo "(ninguna)"
+    echo ""
+    echo "-- Apps deshabilitadas --------------------------------"
+    [ -f "$DISABLED_STATE" ] && cat "$DISABLED_STATE" || echo "(ninguna)"
+    echo ""
+    echo "-- Optimizaciones aplicadas ---------------------------"
+    echo "[v] Cachés limpiadas"
+    [ "$DO_PERF" = "1" ]    && echo "[v] Ajustes de rendimiento"
+    [ "$DO_NETWORK" = "1" ] && echo "[v] Red optimizada (DNS Cloudflare)"
+    [ "$DO_DEBLOAT" = "1" ] && echo "[v] Debloat ejecutado"
+    [ "$HAS_ROOT" = "1" ]   && echo "[v] Kernel tuning (root)"
+    [ "$MODE" != "safe" ]   && echo "[v] DEX optimization"
+    [ "$HAS_ROOT" = "1" ] && [ "$MODE" != "safe" ] && echo "[v] FSTRIM + SQLite VACUUM"
+    echo ""
+    echo "-- Archivos de backup ---------------------------------"
+    echo "Ajustes  : $SETTINGS_BACKUP"
+    echo "Apps     : $DEBLOAT_STATE"
+    echo "Log      : $LOGFILE"
+    echo ""
+    echo "-- Para restaurar -------------------------------------"
+    echo "  sh titan_v51.sh --restore"
+    echo ""
+    echo "============================================================"
+  } > "$REPORT_FILE"
+
+  say ""
+  cat "$REPORT_FILE"
+}
+
+# =============================================================================
+# BANNER
+# =============================================================================
 banner() {
-  say "${W}╔═══════════════════════════════════════════════════════════╗${NC}"
-  say "${W}║                                                           ║${NC}"
-  say "${R}║          TITAN v50 GODMODE - SUPREME ULTIMATE             ║${NC}"
-  say "${W}║  [200+ DEBLOAT/100+ FEATURES/TOTAL SYSTEM CONTROL]       ║${NC}"
-  say "${W}║                                                           ║${NC}"
-  say "${W}╚═══════════════════════════════════════════════════════════╝${NC}"
   say ""
-  say "${R}🔥 FEATURES:${NC}"
-  say "${R}  • 200+ Apps removible${NC}"
-  say "${R}  • 100+ Optimizations${NC}"
-  say "${R}  • Nuclear memory optimization${NC}"
-  say "${R}  • Storage annihilation${NC}"
-  say "${R}  • CPU/Memory/I/O godmode tuning${NC}"
-  say "${R}  • Network annihilation${NC}"
-  say "${R}  • Touch timeout 15ms${NC}"
-  say "${R}  • BG processes: 0 máximo${NC}"
-  say "${R}  • 120Hz FIJO + 0% animaciones${NC}"
-  say "${R}  • 6-8GB RAM libre GARANTIZADO${NC}"
+  say "${W}${BOLD}╔══════════════════════════════════════════════╗${NC}"
+  say "${W}${BOLD}║     ${R}TITAN v${VERSION}${W} -- Android Optimizer        ║${NC}"
+  say "${W}${BOLD}║     Modo: ${Y}${MODE}${W}$(printf '%*s' $((24-${#MODE})) '')║${NC}"
+  say "${W}${BOLD}╚══════════════════════════════════════════════╝${NC}"
+  [ "$DRY_RUN" = "1" ] && say "${Y}${BOLD}  [!] DRY RUN -- No se aplicaran cambios${NC}"
   say ""
 }
 
+# =============================================================================
+# MAIN
+# =============================================================================
 main() {
+  parse_args "$@"
   log_init
   banner
-  
-  say "${Y}[⏱️] INICIANDO TITAN v50 GODMODE...${NC}"
-  say "${R}═══════════════════════════════════════════════════════════${NC}"
-  
-  say "${B}▶ STAGE 1: MEMORY NUCLEAR OPTIMIZATION${NC}"
-  godmode_memory_nuclear
-  
-  say "${B}▶ STAGE 2: STORAGE ANNIHILATION${NC}"
-  godmode_storage_annihilation
-  
-  say "${B}▶ STAGE 3: DATABASE DESTRUCTION${NC}"
-  godmode_database_destruction
-  
-  say "${B}▶ STAGE 4: SYSTEM ANNIHILATION${NC}"
-  godmode_system_annihilation
-  
-  say "${B}▶ STAGE 5: GODMODE TUNING (CPU/MEMORY/I/O)${NC}"
-  godmode_cpu_tuning
-  godmode_memory_tuning
-  godmode_io_tuning
-  
-  say "${B}▶ STAGE 6: NETWORK ANNIHILATION${NC}"
-  godmode_network_annihilation
-  
-  say "${B}▶ STAGE 7: GODMODE PERFORMANCE SETTINGS${NC}"
-  godmode_performance_settings
-  godmode_display_optimization
-  godmode_battery_optimization
-  godmode_sound_optimization
-  godmode_sensor_optimization
-  
-  say "${B}▶ STAGE 8: GODMODE DEBLOAT (200+ APPS)${NC}"
-  godmode_debloat_all
-  
-  say "${B}▶ STAGE 9: FINALIZATION${NC}"
-  godmode_report
-  
-  say "${R}═══════════════════════════════════════════════════════════${NC}"
-  say "${R}╔═══════════════════════════════════════════════════════════╗${NC}"
-  say "${R}║  🔥 TITAN v50 GODMODE ACTIVATED - SYSTEM SUPREME! 🔥     ║${NC}"
-  say "${R}╚═══════════════════════════════════════════════════════════╝${NC}"
-  say "${R}═══════════════════════════════════════════════════════════${NC}"
+
+  [ "$DO_RESTORE" = "1" ] && do_restore
+
+  detect_capabilities
+
+  # Snapshot antes de optimizar
+  SNAP_BEFORE=$(get_snapshot "ANTES")
+
+  backup_settings
+
+  # Confirmacion en godmode
+  if [ "$MODE" = "godmode" ] && [ "$DRY_RUN" = "0" ]; then
+    say ""
+    say "${R}${BOLD}[!] ATENCION: Modo GODMODE${NC}"
+    say "${Y}  Se aplicaran cambios agresivos de sistema.${NC}"
+    say "${Y}  Backup guardado en: $SETTINGS_BACKUP${NC}"
+    say "${Y}  Para restaurar: sh titan_v51.sh --restore${NC}"
+    say ""
+    say "${Y}  Continuando en 5 segundos (Ctrl+C para cancelar)...${NC}"
+    sleep 5
+  fi
+
+  # Pipeline de optimizacion
   say ""
-  say "${G}✓ 200+ APPS REMOVED${NC}"
-  say "${G}✓ 100+ OPTIMIZATIONS APPLIED${NC}"
-  say "${G}✓ 6-8GB RAM FREED${NC}"
-  say "${G}✓ +30GB STORAGE FREED${NC}"
-  say "${G}✓ LAG ELIMINATED (<5ms)${NC}"
-  say "${G}✓ RESPONSIVENESS INSTANT${NC}"
-  say "${G}✓ BATTERY EXTREME (20-30h)${NC}"
-  say "${G}✓ GPU 120fps SOLID${NC}"
+  say "${B}${BOLD}-- INICIANDO PIPELINE DE OPTIMIZACION [modo: $MODE] --${NC}"
+
+  clean_caches
+  optimize_databases
+  run_fstrim
+  [ "$DO_PERF" = "1" ]    && run_performance_settings
+  [ "$DO_NETWORK" = "1" ] && run_network_settings
+  run_kernel_tuning
+  [ "$MODE" != "safe" ]   && run_dex_optimization
+  [ "$DO_DEBLOAT" = "1" ] && run_debloat
+
+  # Snapshot despues
+  SNAP_AFTER=$(get_snapshot "DESPUES")
+  printf "%s\n\n%s\n" "$SNAP_BEFORE" "$SNAP_AFTER" >> "$REPORT_FILE" 2>/dev/null
+
+  generate_report
+
+  say ""
+  say "${G}${BOLD}============================================${NC}"
+  say "${G}${BOLD}  TITAN v${VERSION} finalizado correctamente${NC}"
+  say "${G}${BOLD}  Log: $LOGFILE${NC}"
+  say "${G}${BOLD}============================================${NC}"
   say ""
 }
 
@@ -998,13 +1173,7 @@ main "$@"</script>
     }
 
     window.copyRaw = function () {
-      const raw = getRawScript();
-      copyText(raw, 'SCRIPT COPIADO');
-    };
-
-    window.copyOneLiner = function () {
-      const cmd = `adb shell sh /sdcard/Download/TITAN_v50_GODMODE.sh`;
-      copyText(cmd, 'COMANDO ADB COPIADO');
+      copyText(getRawScript(), 'SCRIPT COPIADO');
     };
 
     window.highlightSearch = function () {
@@ -1014,7 +1183,7 @@ main "$@"</script>
     (function init() {
       const raw = getRawScript();
       if (!raw) {
-        codeEl.textContent = '⚠️ No se encontró contenido en #titanScript (vacío).';
+        codeEl.textContent = 'No se encontro contenido en #titanScript.';
         linesEl.textContent = 'Lines: 0';
         return;
       }
