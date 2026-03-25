@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="TITAN v66.6 - Android Optimizer ABSOLUTE BERSERK EDITION (Auto-Extreme, Root-Enhanced)" />
-  <title>TITAN v66.6 - Android Optimizer ABSOLUTE BERSERK</title>
+  <meta name="description" content="TITAN v77 - Android Optimizer QUANTUM EFFICIENCY (Smart-Extreme, Root-Enhanced)" />
+  <title>TITAN v77 - Android Optimizer QUANTUM EFFICIENCY</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
         extend: {
           fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
           colors: {
-            god: { 400: '#ff4444', 500: '#ff0000', 600: '#cc0000', 900: '#330000', dark: '#010101' }
+            quantum: { 300: '#67e8f9', 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2', 900: '#164e63', dark: '#020617' }
           }
         }
       }
@@ -26,99 +26,98 @@
 
   <style>
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-thumb { background: #ff4444; border-radius: 3px; }
-    .glass { background: rgba(8,8,8,0.98); backdrop-filter: blur(20px); border: 1px solid rgba(255,68,68,0.25); }
+    ::-webkit-scrollbar-thumb { background: #06b6d4; border-radius: 3px; }
+    .glass { background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(6, 182, 212, 0.3); }
     .crt::before {
       content: " "; display: block; position: absolute; inset: 0;
       background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.15) 50%),
-                  linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,0,0,0.01),rgba(255,0,0,0.03));
+                  linear-gradient(90deg,rgba(6,182,212,0.03),rgba(0,0,0,0.01),rgba(6,182,212,0.03));
       z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none;
     }
-    .line-num { color: #374151; display: inline-block; width: 44px; text-align: right; margin-right: 12px; user-select: none; }
+    .line-num { color: #334155; display: inline-block; width: 44px; text-align: right; margin-right: 12px; user-select: none; }
     mark { border-radius: 4px; }
   </style>
 </head>
 
-<body class="bg-god-dark text-gray-200 antialiased min-h-screen flex flex-col overflow-hidden">
+<body class="bg-quantum-dark text-slate-300 antialiased min-h-screen flex flex-col overflow-hidden">
   <div class="relative z-10 flex flex-col h-screen max-w-7xl mx-auto p-4 lg:p-6 w-full">
 
     <header class="flex flex-col lg:flex-row justify-between items-center mb-6 gap-6">
       <div class="flex items-center gap-5">
-        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-god-500 to-red-700 flex items-center justify-center shadow-2xl border-2 border-god-400/50">
-          <i class="ph-fill ph-skull text-black text-3xl"></i>
+        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-quantum-400 to-blue-800 flex items-center justify-center shadow-2xl border-2 border-quantum-300/50 shadow-quantum-500/50">
+          <i class="ph-fill ph-snowflake text-black text-4xl"></i>
         </div>
         <div>
           <h1 class="text-4xl lg:text-5xl font-black tracking-tight text-white font-mono uppercase">
-            TITAN <span class="text-god-500">v66.6</span>
+            TITAN <span class="text-quantum-400">v77</span>
           </h1>
           <div class="flex items-center gap-3 mt-2">
-            <span class="px-3 py-0.5 bg-god-500 text-black text-[10px] font-bold font-mono rounded">ABSOLUTE BERSERK EDITION</span>
-            <span class="text-xs text-god-400 font-mono hidden sm:inline">AUTO-EXTREME · MODO DIOS POR DEFECTO</span>
+            <span class="px-3 py-0.5 bg-quantum-500 text-black text-[10px] font-bold font-mono rounded">QUANTUM EFFICIENCY EDITION</span>
+            <span class="text-xs text-quantum-300 font-mono hidden sm:inline">MAX BATTERY · AI SMART SCALING</span>
           </div>
         </div>
       </div>
       <div class="flex gap-3">
-        <button onclick="copyRaw()" class="flex items-center gap-2 px-6 py-3 bg-god-500 text-black font-bold text-xs uppercase hover:bg-god-400 transition-all shadow-lg shadow-god-500/20 rounded">
+        <button onclick="copyRaw()" class="flex items-center gap-2 px-6 py-3 bg-quantum-500 text-black font-bold text-xs uppercase hover:bg-quantum-400 transition-all shadow-lg shadow-quantum-500/30 rounded">
           <i class="ph-bold ph-copy"></i> Copiar Script
         </button>
-        <button onclick="downloadScript()" class="flex items-center gap-2 px-6 py-3 bg-black border border-god-500 text-god-400 font-bold text-xs uppercase hover:bg-god-500/10 transition-all rounded">
+        <button onclick="downloadScript()" class="flex items-center gap-2 px-6 py-3 bg-slate-900 border border-quantum-500 text-quantum-400 font-bold text-xs uppercase hover:bg-quantum-500/10 transition-all rounded">
           <i class="ph-bold ph-download-simple"></i> Descargar
         </button>
       </div>
     </header>
 
-    <div class="glass rounded-xl p-3 border border-god-500/20 flex flex-col lg:flex-row gap-4 items-center justify-between mb-4">
+    <div class="glass rounded-xl p-3 border border-quantum-500/20 flex flex-col lg:flex-row gap-4 items-center justify-between mb-4">
       <div class="relative w-full lg:w-96">
-        <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-god-400"></i>
+        <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-quantum-400"></i>
         <input type="text" id="searchInput" oninput="highlightSearch()"
-          placeholder="Buscar (berserk, zram, msaa, cstates, gpu_max_lock...)..."
-          class="w-full bg-black/50 border border-god-500/30 text-xs font-mono pl-10 pr-4 py-2.5 outline-none focus:border-god-500 text-white rounded">
+          placeholder="Buscar (doze, schedutil, battery, lz4, gms...)..."
+          class="w-full bg-slate-900/50 border border-quantum-500/40 text-xs font-mono pl-10 pr-4 py-2.5 outline-none focus:border-quantum-400 text-white rounded shadow-inner">
       </div>
-      <div class="flex gap-2 text-[10px] font-mono text-god-400 flex-wrap justify-center">
-        <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10">AUTO-MODE</span>
-        <span class="px-2 py-1 bg-black/50 rounded border border-god-500/10 uppercase">Root-Enhanced</span>
-        <span class="px-2 py-1 bg-god-500/10 text-god-500 rounded border border-god-500/20">v66.6 ABSOLUTE</span>
-        <span class="px-2 py-1 bg-red-900/30 text-red-400 rounded border border-red-500/20 animate-pulse">☠ EXTREME DANGER</span>
+      <div class="flex gap-2 text-[10px] font-mono text-quantum-300 flex-wrap justify-center">
+        <span class="px-2 py-1 bg-slate-900 rounded border border-quantum-500/20">COLD-MODE</span>
+        <span class="px-2 py-1 bg-slate-900 rounded border border-quantum-500/20 uppercase">Root-Enhanced</span>
+        <span class="px-2 py-1 bg-quantum-500/20 text-quantum-400 rounded border border-quantum-500/40">v77 QUANTUM</span>
+        <span class="px-2 py-1 bg-blue-900/40 text-blue-300 rounded border border-blue-500/30 animate-pulse">❄ HYPER EFFICIENCY</span>
       </div>
     </div>
 
-    <div class="glass rounded-xl p-3 border border-god-500/10 mb-4 overflow-x-auto">
+    <div class="glass rounded-xl p-3 border border-quantum-500/10 mb-4 overflow-x-auto">
       <div class="flex gap-2 text-[9px] font-mono whitespace-nowrap">
-        <span class="text-gray-500 mr-1">MÓDULOS v66.6:</span>
-        <span class="px-2 py-0.5 bg-god-500/10 text-god-400 rounded border border-god-500/30">ZRAM Killer</span>
-        <span class="px-2 py-0.5 bg-god-500/10 text-god-400 rounded border border-god-500/30">C-States OFF</span>
-        <span class="px-2 py-0.5 bg-god-500/10 text-god-400 rounded border border-god-500/30">Force MSAA 4x</span>
-        <span class="px-2 py-0.5 bg-god-500/10 text-god-400 rounded border border-god-500/30">DNS Cloudflare</span>
-        <span class="px-2 py-0.5 bg-god-500/10 text-god-400 rounded border border-god-500/30">OOM Extreme</span>
-        <span class="px-2 py-0.5 bg-god-500/10 text-god-400 rounded border border-god-500/30">GPU Max-Lock</span>
-        <span class="px-2 py-0.5 bg-god-500/10 text-god-400 rounded border border-god-500/30">VM Dirty Ratio</span>
-        <span class="px-2 py-0.5 bg-god-500/10 text-god-400 rounded">I/O FSTRIM</span>
-        <span class="px-2 py-0.5 bg-god-500/10 text-god-400 rounded">TCP BBR</span>
-        <span class="px-2 py-0.5 bg-god-500/10 text-god-400 rounded">Dalvik SPEED</span>
-        <span class="px-2 py-0.5 bg-red-900/30 text-red-400 rounded">☠ AUTO BERSERK</span>
-        <span class="px-2 py-0.5 bg-red-900/30 text-red-400 rounded">☠ THERMAL BYPASS</span>
+        <span class="text-slate-400 mr-1">MÓDULOS v77:</span>
+        <span class="px-2 py-0.5 bg-quantum-500/10 text-quantum-300 rounded border border-quantum-500/30">Ultra Deep-Doze</span>
+        <span class="px-2 py-0.5 bg-quantum-500/10 text-quantum-300 rounded border border-quantum-500/30">LZ4 ZRAM</span>
+        <span class="px-2 py-0.5 bg-quantum-500/10 text-quantum-300 rounded border border-quantum-500/30">Schedutil AI</span>
+        <span class="px-2 py-0.5 bg-quantum-500/10 text-quantum-300 rounded border border-quantum-500/30">Radio Power Save</span>
+        <span class="px-2 py-0.5 bg-quantum-500/10 text-quantum-300 rounded border border-quantum-500/30">GMS Tame</span>
+        <span class="px-2 py-0.5 bg-quantum-500/10 text-quantum-300 rounded border border-quantum-500/30">Wakelock Block</span>
+        <span class="px-2 py-0.5 bg-quantum-500/10 text-quantum-300 rounded border border-quantum-500/30">Adreno Idler</span>
+        <span class="px-2 py-0.5 bg-quantum-500/10 text-quantum-300 rounded">Smart VRR</span>
+        <span class="px-2 py-0.5 bg-quantum-500/10 text-quantum-300 rounded">I/O FSTRIM</span>
+        <span class="px-2 py-0.5 bg-quantum-500/10 text-quantum-300 rounded">IPv4 Only</span>
+        <span class="px-2 py-0.5 bg-blue-900/40 text-blue-300 rounded">❄ BATTERY++</span>
       </div>
     </div>
 
-    <div class="flex-1 relative glass rounded-xl overflow-hidden bg-black crt border border-god-500/10">
-      <div class="absolute top-4 right-4 z-20 bg-black/80 backdrop-blur border border-god-500/40 rounded px-3 py-1.5 flex items-center gap-2">
-        <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-        <span class="text-god-400 font-mono text-[10px] font-bold uppercase tracking-widest">titan_v66.sh</span>
+    <div class="flex-1 relative glass rounded-xl overflow-hidden bg-slate-950 crt border border-quantum-500/20 shadow-2xl">
+      <div class="absolute top-4 right-4 z-20 bg-slate-900/80 backdrop-blur border border-quantum-500/40 rounded px-3 py-1.5 flex items-center gap-2 shadow-lg">
+        <div class="w-2 h-2 bg-quantum-400 rounded-full animate-pulse shadow-[0_0_8px_#22d3ee]"></div>
+        <span class="text-quantum-300 font-mono text-[10px] font-bold uppercase tracking-widest">titan_v77.sh</span>
       </div>
       <div class="absolute inset-0 overflow-auto p-4 lg:p-6" id="codeContainer">
-        <pre class="font-mono text-[12px] leading-relaxed"><code id="codeBlock" class="block min-w-max"></code></pre>
+        <pre class="font-mono text-[12px] leading-relaxed"><code id="codeBlock" class="block min-w-max text-slate-300"></code></pre>
       </div>
     </div>
 
-    <footer class="mt-4 flex justify-between items-center text-[10px] text-god-400 font-mono uppercase tracking-tighter opacity-60">
-      <span>TITAN v66.6 ABSOLUTE BERSERK EDITION — Auto-Extreme · Motorola razr 60</span>
+    <footer class="mt-4 flex justify-between items-center text-[10px] text-quantum-500 font-mono uppercase tracking-tighter opacity-80">
+      <span>TITAN v77 QUANTUM EFFICIENCY EDITION — Smart-Extreme · Max Battery</span>
       <span id="linesCount">Lines: 0</span>
     </footer>
   </div>
 
   <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none transition-all duration-300 z-50">
-    <div class="bg-white text-black px-6 py-3 font-bold font-mono text-xs shadow-2xl flex items-center gap-3 rounded-full border border-god-500">
-      <i class="ph-bold ph-check-circle text-lg"></i>
+    <div class="bg-white text-black px-6 py-3 font-bold font-mono text-xs shadow-[0_0_20px_rgba(6,182,212,0.5)] flex items-center gap-3 rounded-full border border-quantum-500">
+      <i class="ph-bold ph-check-circle text-lg text-quantum-600"></i>
       <span id="toastText">COPIADO AL PORTAPAPELES</span>
     </div>
   </div>
@@ -126,15 +125,16 @@
   <script type="text/plain" id="rawScriptData">
 #!/system/bin/sh
 # =============================================================================
-# TITAN v66.6 — Android Optimizer UNLEASHED BERSERK EDITION
-# Motorola razr 60 / Root-Enhanced / AUTO-EXTREME
+# TITAN v77.0 — Android Optimizer QUANTUM EFFICIENCY EDITION
+# Motorola razr 60 / Root-Enhanced / SMART-EXTREME
 #
-# USO:   sh titan_v66.sh [--restore] [--reboot]
+# USO:   sh titan_v77.sh [--restore] [--reboot]
 #
-# NOVEDADES v66.6 (ABSOLUTE UNLEASHED):
-#   • MODO BERSERK: CPU C-States desactivados, ZRAM OFF, MSAA 4x, DNS Cloudflare.
-#   • OOM KILLER: Modificado para gaming. App en primer plano NUNCA se cierra.
-#   • ADVERTENCIA: Thermal Throttling desactivado permanentemente. Riesgo de calor.
+# NOVEDADES v77 (QUANTUM BATTERY):
+#   • ULTRA DEEP-DOZE: Suspensión profunda agresiva a los 5 segundos de apagar pantalla.
+#   • CPU SCHEDUTIL: Frecuencia dinámica inteligente. Alta velocidad solo al tocar.
+#   • LZ4 ZRAM: Reactivada la ZRAM pero con algoritmo de cero consumo de CPU.
+#   • GMS TAME: Servicios de Google removidos de la lista blanca de ahorro.
 # =============================================================================
 
 # ─── COLORES ─────────────────────────────────────────────────────────────────
@@ -143,11 +143,11 @@ C='\033[0;36m'; B='\033[0;34m'; M='\033[0;35m'
 W='\033[1;37m'; NC='\033[0m'
 BOLD='\033[1m'; DIM='\033[2m'
 
-VERSION="66.6"
+VERSION="77.0"
 
-# ─── DEFAULTS Y VARIABLES (MODIFICADO PARA MÁXIMO PODER) ─────────────────────
-MODE="berserk"        # <--- FORZADO AL MODO MÁS EXTREMO
-PROFILE="performance" # <--- FORZADO AL PERFIL MÁS RÁPIDO
+# ─── DEFAULTS Y VARIABLES (MODIFICADO PARA BATERÍA MÁXIMA) ───────────────────
+MODE="quantum"        # <--- MODO ALTA EFICIENCIA
+PROFILE="schedutil"   # <--- ESCALADO INTELIGENTE
 DRY_RUN=0
 VERBOSE=1
 SILENT=0
@@ -155,9 +155,9 @@ DO_RESTORE=0
 DO_DEBLOAT=1
 DO_REBOOT=0
 
-ANIM_SCALE="0.0"      # Sin animaciones para latencia cero
-REFRESH_RATE="144"    # Tasa de refresco máxima
-TOTAL_STEPS=27        # Ajustado a los nuevos módulos
+ANIM_SCALE="0.3"      # Animaciones muy rápidas pero no en cero absoluto
+REFRESH_RATE="144"    # Pico máximo, pero variable
+TOTAL_STEPS=27        
 CURRENT_STEP=0
 DISABLED_COUNT=0
 PROCS_BEFORE=0
@@ -192,8 +192,8 @@ parse_args() {
 }
 
 show_help() {
-  echo "TITAN v${VERSION} - Unleashed Berserk Edition"
-  echo "Ejecución automática al máximo nivel. Opciones: [--restore] [--reboot]"
+  echo "TITAN v${VERSION} - Quantum Efficiency Edition (Battery+)"
+  echo "Ejecución automática. Opciones: [--restore] [--reboot]"
 }
 
 # =============================================================================
@@ -207,7 +207,7 @@ log_init() {
 
 log()  { echo "$(date '+%Y-%m-%d %H:%M:%S') [INFO] $*" >> "$LOGFILE" 2>/dev/null; }
 warn() { echo "$(date '+%Y-%m-%d %H:%M:%S') [WARN] $*" >> "$LOGFILE" 2>/dev/null; [ "$SILENT" = "0" ] && echo -e "${Y}[!] $*${NC}"; }
-ok()   { echo "$(date '+%Y-%m-%d %H:%M:%S') [OK] $*" >> "$LOGFILE" 2>/dev/null; [ "$SILENT" = "0" ] && echo -e "${G}[✓] $*${NC}"; }
+ok()   { echo "$(date '+%Y-%m-%d %H:%M:%S') [OK] $*" >> "$LOGFILE" 2>/dev/null; [ "$SILENT" = "0" ] && echo -e "${C}[✓] $*${NC}"; }
 say()  { [ "$SILENT" = "0" ] && echo -e "$*"; echo "[OUT] $(echo "$*" | sed 's/\033\[[0-9;]*m//g')" >> "$LOGFILE" 2>/dev/null; }
 
 progress() {
@@ -217,12 +217,12 @@ progress() {
   filled=$((pct / 5))
   bar=""
   i=0; while [ $i -lt 20 ]; do if [ $i -lt $filled ]; then bar="${bar}█"; else bar="${bar}░"; fi; i=$((i + 1)); done
-  [ "$SILENT" = "0" ] && printf "\r${R}  [%s] %3d%%  %s${NC}          " "$bar" "$pct" "$1"
+  [ "$SILENT" = "0" ] && printf "\r${C}  [%s] %3d%%  %s${NC}          " "$bar" "$pct" "$1"
   log "[PROGRESS $pct%] $1"
 }
 
 nl()  { [ "$SILENT" = "0" ] && echo ""; }
-section() { nl; say "${R}${BOLD}🔥 ══════════════════════════════════════════════════${NC}"; say "${R}${BOLD}  ▶  $*${NC}"; say "${R}${BOLD}════════════════════════════════════════════════════🔥${NC}"; }
+section() { nl; say "${C}${BOLD}❄ ══════════════════════════════════════════════════${NC}"; say "${C}${BOLD}  ▶  $*${NC}"; say "${C}${BOLD}════════════════════════════════════════════════════❄${NC}"; }
 
 run() { log "[CMD] $*"; if [ "$DRY_RUN" = "1" ]; then return 0; fi; eval "$*" >> "$LOGFILE" 2>&1; return $?; }
 run_root() { if [ "$HAS_ROOT" = "1" ]; then run "su -c '$*'"; else return 1; fi; }
@@ -235,16 +235,15 @@ detect_capabilities() {
   section "Detección de Hardware"
   if su -c "id" 2>/dev/null | grep -q "uid=0"; then
     HAS_ROOT=1
-    ok "Root detectado. Inyecciones EXTREMAS de Kernel habilitadas."
+    ok "Root detectado. Inyecciones de Batería EXTREMAS habilitadas."
   else
-    warn "Sin root. Modificaciones de Kernel/CPU omitidas."
+    warn "Sin root. Optimizaciones profundas de batería limitadas."
   fi
   
   TOTAL_RAM_MB=$(awk '/MemTotal/{printf "%d", $2/1024}' /proc/meminfo 2>/dev/null); TOTAL_RAM_MB=${TOTAL_RAM_MB:-0}
   FREE_RAM_BEFORE=$(awk '/MemAvailable/{printf "%d", $2/1024}' /proc/meminfo 2>/dev/null); FREE_RAM_BEFORE=${FREE_RAM_BEFORE:-0}
   PROCS_BEFORE=$(ps 2>/dev/null | wc -l | tr -d ' '); PROCS_BEFORE=${PROCS_BEFORE:-0}
   WAKELOCKS_BEFORE=$(dumpsys power 2>/dev/null | grep -c "PARTIAL_WAKE_LOCK" | tr -d ' '); WAKELOCKS_BEFORE=${WAKELOCKS_BEFORE:-0}
-  say "${W}  RAM Total: ${Y}${TOTAL_RAM_MB}MB (Libre: ${FREE_RAM_BEFORE}MB)${NC}"
 }
 
 backup_settings() {
@@ -270,275 +269,159 @@ do_restore() {
 }
 
 # =============================================================================
-# MEMORIA AVANZADA: ZRAM, KSM, OOM KILLER
+# OPTIMIZACIÓN DE SUSPENSIÓN (BATERÍA MÁXIMA)
 # =============================================================================
-run_zram_killer() {
+run_ultra_doze() {
+  section "Ultra Deep-Doze (Suspensión Instantánea)"
+  # Modifica los tiempos nativos de Android para entrar en Doze en segundos, no horas.
+  if [ "$DRY_RUN" = "0" ]; then
+    sput global device_idle_constants "inactive_to=2500,sensing_to=0,locating_to=0,location_accuracy=20.0,motion_inactive_to=0,idle_after_inactive_to=0,idle_pending_to=0,max_idle_pending_to=0,idle_pending_factor=1.0,idle_to=10000,max_idle_to=10000,idle_factor=1.0,min_time_to_alarm=30000,max_temp_app_whitelist_duration=10000,mms_temp_app_whitelist_duration=10000,sms_temp_app_whitelist_duration=10000"
+    run "dumpsys deviceidle force-idle"
+  fi
+  ok "El sistema entrará en sueño profundo a los 5 segundos de apagar pantalla."
+}
+
+run_gms_tame() {
+  section "Google Play Services Tamer"
+  if [ "$DRY_RUN" = "0" ]; then
+    # Sacar a GMS de la lista blanca de energía
+    run "dumpsys deviceidle whitelist -com.google.android.gms 2>/dev/null"
+    run "cmd appops set com.google.android.gms RUN_IN_BACKGROUND ignore 2>/dev/null"
+    run "cmd appops set com.google.android.gms RUN_ANY_IN_BACKGROUND ignore 2>/dev/null"
+    run "cmd appops set com.google.android.gms WAKE_LOCK ignore 2>/dev/null"
+  fi
+  ok "Google Play Services contenido. Wakelocks bloqueados."
+}
+
+run_radio_power_save() {
   [ "$HAS_ROOT" = "0" ] && return
-  section "ZRAM & KSM Killer (Cero compresión)"
+  section "Radio & Network Power Collapse"
+  run_root "setprop ro.ril.power_collapse 1"
+  run_root "setprop pm.sleep_mode 1"
+  run_root "setprop ro.config.hw_power_saving 1"
+  run_root "echo 1 > /sys/devices/system/cpu/cpu0/core_ctl/is_scroff_idle 2>/dev/null"
+  ok "Antenas configuradas para colapso de energía agresivo en reposo."
+}
+
+# =============================================================================
+# CPU, GPU Y MEMORIA INTELIGENTES
+# =============================================================================
+run_cpu_smart_tuning() {
+  [ "$HAS_ROOT" = "0" ] && return
+  section "CPU Smart Schedutil Tuning"
+  # Schedutil sube rápido al tocar, pero baja inmediatamente al soltar.
+  TARGET_GOV="schedutil"
+  run_root "for cpu in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo $TARGET_GOV > \$cpu 2>/dev/null; done"
+  
+  # Latencias ajustadas para eficiencia
+  run_root "for util in /sys/devices/system/cpu/cpufreq/schedutil; do
+    echo 500 > \$util/up_rate_limit_us 2>/dev/null
+    echo 2000 > \$util/down_rate_limit_us 2>/dev/null
+    echo 85 > \$util/hispeed_load 2>/dev/null
+  done"
+  ok "Procesador en modo Inteligente: Aceleración solo bajo demanda."
+}
+
+run_gpu_energy_aware() {
+  [ "$HAS_ROOT" = "0" ] && return
+  section "GPU Adreno Idler & Energy Aware"
+  for gpu_dir in /sys/class/kgsl/kgsl-3d0 /sys/devices/platform/*gpu*; do
+    if [ -d "$gpu_dir" ]; then
+      run_root "echo msm-adreno-tz > $gpu_dir/devfreq/governor 2>/dev/null"
+      run_root "echo simple_ondemand > $gpu_dir/devfreq/governor 2>/dev/null"
+      run_root "echo 1 > $gpu_dir/adreno_idler_active 2>/dev/null"
+      run_root "echo 5 > $gpu_dir/idle_timer 2>/dev/null"
+    fi
+  done
+  ok "GPU configurada para reposo inmediato (Idler activo)."
+}
+
+run_zram_efficiency() {
+  [ "$HAS_ROOT" = "0" ] && return
+  section "LZ4/ZSTD ZRAM Efficiency"
+  # En vez de matar ZRAM (que gasta más disco), usamos algoritmos súper ligeros
   run_root "swapoff -a 2>/dev/null"
-  run_root "echo 0 > /proc/sys/vm/swappiness 2>/dev/null"
-  run_root "echo 0 > /sys/kernel/mm/ksm/run 2>/dev/null"
-  ok "ZRAM desactivado. La RAM ahora trabaja de forma cruda y sin latencia."
-}
-
-run_oom_extreme() {
-  [ "$HAS_ROOT" = "0" ] && return
-  section "OOM Killer Gaming Profile"
-  # Mantiene la app activa sí o sí, destruye background agresivamente
-  run_root "echo '18432,23040,27648,32256,73728,100000' > /sys/module/lowmemorykiller/parameters/minfree 2>/dev/null"
-  run_root "echo 0 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 2>/dev/null"
-  ok "Low Memory Killer enfocado al 100% en la app en primer plano."
+  if run_root "grep -q lz4 /sys/block/zram0/comp_algorithm 2>/dev/null"; then
+    run_root "echo lz4 > /sys/block/zram0/comp_algorithm 2>/dev/null"
+  else
+    run_root "echo zstd > /sys/block/zram0/comp_algorithm 2>/dev/null"
+  fi
+  run_root "echo 60 > /proc/sys/vm/swappiness 2>/dev/null"
+  run_root "swapon /dev/block/zram0 2>/dev/null"
+  ok "ZRAM reactivada con compresión de latencia cero (Battery Friendly)."
 }
 
 # =============================================================================
-# DAEMONS, ENTROPY E IPv6 KILLER
+# PANTALLA, UI Y MULTIMEDIA
+# =============================================================================
+run_smart_display() {
+  section "Smart Refresh Rate (VRR)"
+  # Permitimos que la pantalla baje a 60Hz si no se toca
+  sput system min_refresh_rate 60.0
+  sput system peak_refresh_rate "$REFRESH_RATE"
+  sput global window_animation_scale "$ANIM_SCALE"
+  sput global transition_animation_scale "$ANIM_SCALE"
+  sput global animator_duration_scale "$ANIM_SCALE"
+  run "setprop ro.surface_flinger.use_smart_90_for_video true 2>/dev/null"
+  ok "Pantalla en modo dinámico (60Hz reposo / ${REFRESH_RATE}Hz pico)."
+}
+
+run_hardware_offload() {
+  section "Hardware Offload (Multimedia sin CPU)"
+  run "setprop audio.offload.video true"
+  run "setprop audio.offload.pcm.16bit.enable true"
+  run "setprop audio.offload.pcm.24bit.enable true"
+  run "setprop video.accelerate.hw 1"
+  run "setprop debug.composition.type gpu"
+  ok "Procesamiento de audio y video delegado al DSP (Ahorro Masivo)."
+}
+
+# =============================================================================
+# TELEMETRÍA, DEBLOAT Y RED
 # =============================================================================
 run_daemon_killer() {
   [ "$HAS_ROOT" = "0" ] && return
-  section "Aniquilación de Telemetría Nativa"
+  section "Telemetría y Logging OFF"
   run_root "stop logd 2>/dev/null"
   run_root "stop traced 2>/dev/null"
   run_root "stop statsd 2>/dev/null"
-  run_root "stop dumpstate 2>/dev/null"
-  run_root "stop tombstoned 2>/dev/null"
-  ok "Daemons de logueo, trazado y estadísticas DETENIDOS."
-}
-
-run_entropy_engine() {
-  [ "$HAS_ROOT" = "0" ] && return
-  section "Kernel Entropy RNG Boost"
-  run_root "echo 256 > /proc/sys/kernel/random/read_wakeup_threshold 2>/dev/null"
-  run_root "echo 512 > /proc/sys/kernel/random/write_wakeup_threshold 2>/dev/null"
-  ok "Motor de Entropía optimizado (Prevención de UI freeze)"
+  run_root "setprop ro.config.nocheckin yes"
+  run_root "setprop profiler.force_disable_err_rpt 1"
+  ok "Loggers de sistema apagados para evitar I/O constante."
 }
 
 run_ipv6_disable() {
   [ "$HAS_ROOT" = "0" ] && return
-  section "IPv6 Network Disable (Ping ultra bajo)"
+  section "Disable IPv6 Network Overhead"
   run_root "echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6 2>/dev/null"
   run_root "echo 1 > /proc/sys/net/ipv6/conf/default/disable_ipv6 2>/dev/null"
-  ok "Ruteo IPv4 Puro activado."
+  ok "IPv6 desactivado para evitar sondeos innecesarios de red."
 }
 
-# =============================================================================
-# MEMORIA SUCIA Y FILESYSTEM
-# =============================================================================
-run_vm_dirty_tuning() {
-  [ "$HAS_ROOT" = "0" ] && return
-  section "VM Dirty Ratio & Page-Cluster (RAM Fix)"
-  run_root "echo 0 > /proc/sys/vm/page-cluster 2>/dev/null"
-  run_root "echo 20 > /proc/sys/vm/dirty_ratio 2>/dev/null"
-  run_root "echo 5 > /proc/sys/vm/dirty_background_ratio 2>/dev/null"
-  run_root "echo 3000 > /proc/sys/vm/dirty_expire_centisecs 2>/dev/null"
-  ok "Sincronización de RAM/Disco calibrada (Anti-Stuttering)"
-}
-
-run_fs_mount_tweaks() {
-  [ "$HAS_ROOT" = "0" ] && return
-  section "Filesystem Remount (noatime/nodiratime)"
-  run_root "mount -o remount,noatime,nodiratime /data 2>/dev/null"
-  run_root "mount -o remount,noatime,nodiratime /cache 2>/dev/null"
-  ok "Particiones remounted sin seguimiento de tiempo. I/O Maximizado."
-}
-
-# =============================================================================
-# UI, GAMING, MULTIMEDIA Y MSAA
-# =============================================================================
-run_ui_animations() {
-  section "Escalado de Animaciones UI"
-  sput global window_animation_scale "$ANIM_SCALE"
-  sput global transition_animation_scale "$ANIM_SCALE"
-  sput global animator_duration_scale "$ANIM_SCALE"
-  run "setprop debug.sf.nobootanimation 1"
-  ok "Animaciones a ${ANIM_SCALE}x (Apagadas por completo)"
-}
-
-run_touch_display() {
-  section "Touch Responsiveness & Display"
-  sput system min_refresh_rate "$REFRESH_RATE"
-  sput system peak_refresh_rate "$REFRESH_RATE"
-  sput system pointer_speed 7
-  run "setprop windowsmgr.max_events_per_sec 400"
-  run "setprop touch.presure.scale 0.001"
-  ok "Display forzado a ${REFRESH_RATE}Hz y eventos maximizados"
-}
-
-run_system_ui_tweaks() {
-  section "System UI Tweaks"
-  sput global heads_up_notifications_enabled 0
-  run "setprop debug.hwui.renderer opengl"
-  run "setprop debug.hwui.disable_hw_overlays true"
-  run "setprop ro.config.hw_quickpoweron true"
-  ok "Interfaz acelerada (HW Overlays OFF)"
-}
-
-run_gaming_hw_props() {
-  section "Gaming & Hardware Props"
-  run "setprop debug.composition.type c2d"
-  run "setprop debug.performance.tuning 1"
-  run "setprop video.accelerate.hw 1"
-  run "setprop ro.config.nocheckin yes"
-  run "setprop profiler.force_disable_err_rpt 1"
-  run "setprop profiler.force_disable_ulog 1"
-  ok "Composición C2D, Hardware Acceleration y Telemetría bloqueada por prop"
-}
-
-run_force_msaa() {
-  section "Forzar MSAA 4x (Calidad Gráfica)"
-  sput global debug.force_msaa true
-  ok "Multi-Sample Anti-Aliasing (4x MSAA) Activado para OpenGL ES 2.0"
-}
-
-run_multimedia_tweaks() {
-  section "Multimedia, Audio Hi-Fi & Camera"
-  run "setprop ro.media.enc.jpeg.quality 100"
-  run "setprop audio.offload.pcm.16bit.enable true"
-  run "setprop audio.offload.pcm.24bit.enable true"
-  sput system audio_safe_volume_state 2
-  ok "Calidad JPEG 100% y Hi-Fi Audio"
-}
-
-# =============================================================================
-# KERNEL, CPU, GPU LOCK Y LATENCIA
-# =============================================================================
-run_cstates_disable() {
-  [ "$HAS_ROOT" = "0" ] && return
-  section "Desactivar Deep Sleep (C-States) en Pantalla Activa"
-  run_root "for cpu in /sys/devices/system/cpu/cpu*/cpuidle/state*/disable; do echo 1 > \$cpu 2>/dev/null; done"
-  ok "C-States deshabilitados. Retraso de reactivación del CPU es igual a 0ms."
-}
-
-run_gpu_max_lock() {
-  [ "$HAS_ROOT" = "0" ] && return
-  section "GPU Adreno/Mali Max-Lock (EXTREMO)"
-  for gpu_dir in /sys/class/kgsl/kgsl-3d0 /sys/devices/platform/*gpu*; do
-    if [ -d "$gpu_dir" ] && [ -f "$gpu_dir/devfreq/max_freq" ]; then
-      MAX_FREQ=$(cat "$gpu_dir/devfreq/max_freq" 2>/dev/null)
-      [ -n "$MAX_FREQ" ] && run_root "echo $MAX_FREQ > $gpu_dir/devfreq/min_freq 2>/dev/null"
-      run_root "echo performance > $gpu_dir/devfreq/governor 2>/dev/null"
-      run_root "echo 0 > $gpu_dir/adreno_idler_active 2>/dev/null"
-    fi
-  done
-  ok "GPU forzada al máximo de reloj constantemente"
-}
-
-run_thermal_control() {
-  [ "$HAS_ROOT" = "0" ] && return
-  section "Control de Throttling Termal"
-  run_root "stop thermal-engine 2>/dev/null"
-  run_root "setprop sys.thermal.enable false"
-  ok "Límites termales DESACTIVADOS. El procesador no frenará."
-}
-
-run_cpu_tuning() {
-  [ "$HAS_ROOT" = "0" ] && return
-  section "CPU Governor Tuning"
-  TARGET_GOV="performance"
-  run_root "for cpu in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo $TARGET_GOV > \$cpu 2>/dev/null; done"
-  ok "Procesador fijado en rendimiento máximo"
-}
-
-run_kernel_panic_disable() {
-  [ "$HAS_ROOT" = "0" ] && return
-  section "Prevención de Kernel Panics (Anti-Reboot)"
-  run_root "echo 0 > /proc/sys/kernel/panic 2>/dev/null"
-  run_root "echo 0 > /proc/sys/kernel/panic_on_oops 2>/dev/null"
-  ok "El sistema ignorará errores menores de hardware/kernel sin reiniciarse."
-}
-
-# =============================================================================
-# DEBLOAT Y ALMACENAMIENTO
-# =============================================================================
 run_debloater() {
   [ "$DO_DEBLOAT" = "0" ] && return
-  section "Motor de Debloat y Suspensión"
-  LIST="com.motorola.audiomonitor com.motorola.motocit com.facebook.katana com.facebook.system com.facebook.appmanager com.motorola.bug2go com.google.android.gms.analytics com.motorola.motolog com.qualcomm.qti.perfdump"
+  section "Motor de Debloat Liviano"
+  LIST="com.motorola.audiomonitor com.motorola.motocit com.facebook.katana com.facebook.system com.facebook.appmanager com.motorola.bug2go com.motorola.motolog"
   if [ "$DRY_RUN" = "0" ]; then
     for pkg in $LIST; do
       if pm list packages 2>/dev/null | grep -q "$pkg"; then
         run "pm disable-user --user 0 $pkg 2>/dev/null || true"
-        run "am force-stop $pkg 2>/dev/null || true"
         DISABLED_COUNT=$((DISABLED_COUNT + 1))
       fi
     done
   fi
-  ok "Debloat agresivo aplicado. $DISABLED_COUNT apps congeladas."
+  ok "Apps de fondo dudosas suspendidas: $DISABLED_COUNT"
 }
 
 run_fstrim_io() {
-  section "I/O FSTRIM y Buffers de Almacenamiento"
+  section "I/O FSTRIM"
   run "sm fstrim" 
   if [ "$HAS_ROOT" = "1" ]; then
     for block in /sys/block/*/queue; do
-      [ -f "$block/scheduler" ] && run_root "echo deadline > $block/scheduler 2>/dev/null"
       [ -f "$block/iostats" ] && run_root "echo 0 > $block/iostats 2>/dev/null"
-      [ -f "$block/read_ahead_kb" ] && run_root "echo 4096 > $block/read_ahead_kb 2>/dev/null"
     done
   fi
-  ok "Trim emitido, colas ampliadas a 4MB y scheduler Deadline."
-}
-
-run_sqlite_vacuum() {
-  [ "$HAS_ROOT" = "0" ] && return
-  section "Defragmentación SQLite (VACUUM)"
-  if run_root "which sqlite3 > /dev/null"; then
-    run_root "find /data/data -name \"*.db\" -exec sqlite3 {} \"VACUUM; REINDEX;\" \; 2>/dev/null"
-    ok "Bases de datos SQLite defragmentadas"
-  else
-    skip "Binario 'sqlite3' no encontrado"
-  fi
-}
-
-# =============================================================================
-# OPTIMIZACIÓN DE CÓDIGO Y RED
-# =============================================================================
-run_dalvik_extreme() {
-  section "Dalvik/ART Extreme Compiler"
-  run "setprop pm.dexopt.bg-dexopt speed"
-  run "setprop pm.dexopt.install speed"
-  run "setprop dalvik.vm.dex2oat-filter speed"
-  run "setprop dalvik.vm.heapgrowthlimit $((TOTAL_RAM_MB / 2))m"
-  run "setprop dalvik.vm.heapsize $((TOTAL_RAM_MB / 1))m"
-  ok "Compilador ART forzado a código máquina puro (SPEED)"
-}
-
-run_gms_wakelocks() {
-  section "GMS Wakelock Blocker"
-  if [ "$DRY_RUN" = "0" ]; then
-    run "cmd appops set com.google.android.gms WAKE_LOCK ignore 2>/dev/null"
-    run "cmd appops set com.google.android.gms RUN_IN_BACKGROUND ignore 2>/dev/null"
-  fi
-  ok "Wakelocks de Google bloqueados permanentemente"
-}
-
-run_doze_enhanced() {
-  section "Doze & AppStandby Forzado"
-  run "dumpsys deviceidle enable all"
-  run "dumpsys deviceidle force-idle"
-  sput global app_standby_enabled 1
-  ok "Deep Doze activo para apps de fondo"
-}
-
-run_dns_optimization() {
-  section "DNS Cloudflare Optimization"
-  run "setprop net.dns1 1.1.1.1"
-  run "setprop net.dns2 1.0.0.1"
-  run "setprop net.rmnet0.dns1 1.1.1.1"
-  run "setprop net.rmnet0.dns2 1.0.0.1"
-  ok "Resolución DNS forzada a Cloudflare (Baja Latencia)"
-}
-
-run_net_buffers() {
-  section "Network TCP Buffers"
-  sput global private_dns_mode hostname
-  sput global private_dns_specifier "dns.adguard-dns.com"
-  if [ "$HAS_ROOT" = "1" ]; then
-    run_root "echo 3 > /proc/sys/net/ipv4/tcp_fastopen 2>/dev/null"
-    run_root "sysctl -w net.ipv4.tcp_congestion_control=bbr 2>/dev/null"
-    run_root "echo '262144 1048576 4194304' > /proc/sys/net/ipv4/tcp_rmem"
-    run_root "echo '262144 1048576 4194304' > /proc/sys/net/ipv4/tcp_wmem"
-  fi
-  ok "Buffers expandidos al máximo y BBR activo"
+  ok "Trim emitido y estadísticas I/O apagadas."
 }
 
 clean_caches() {
@@ -546,20 +429,18 @@ clean_caches() {
   run "pm trim-caches 2147483647"
   if [ "$HAS_ROOT" = "1" ]; then
     run_root "sync; echo 3 > /proc/sys/vm/drop_caches"
-    run_root "rm -rf /data/anr/* /data/tombstones/* /data/system/dropbox/* 2>/dev/null"
   fi
   if [ "$DRY_RUN" = "0" ]; then
-    for pkg in $(pm list packages -3 2>/dev/null | cut -d: -f2); do am send-trim-memory "$pkg" RUNNING_CRITICAL >> "$LOGFILE" 2>&1 || true; done
     run "am compact-system"
   fi
-  ok "Memoria RAM barrida al 100%"
+  ok "Cachés limpiadas y memoria compactada."
 }
 
 # =============================================================================
 # REPORTE Y FINALIZACIÓN
 # =============================================================================
 generate_report() {
-  section "Reporte Final UNLEASHED v66.6"
+  section "Reporte Final QUANTUM v77"
 
   FREE_RAM_AFTER=$(awk '/MemAvailable/{printf "%d", $2/1024}' /proc/meminfo 2>/dev/null); FREE_RAM_AFTER=${FREE_RAM_AFTER:-0}
   PROCS_AFTER=$(ps 2>/dev/null | wc -l | tr -d ' '); PROCS_AFTER=${PROCS_AFTER:-0}
@@ -571,18 +452,18 @@ generate_report() {
 
   {
     echo "╔══════════════════════════════════════════════════════════════╗"
-    echo "║     TITAN v${VERSION} — UNLEASHED BERSERK EDITION Report       ║"
+    echo "║      TITAN v${VERSION} — QUANTUM EFFICIENCY EDITION Report     ║"
     echo "╚══════════════════════════════════════════════════════════════╝"
-    echo "ESTADO: PODER ABSOLUTO (C-States OFF / ZRAM OFF / Throttling OFF)"
+    echo "ESTADO: AHORRO EXTREMO (Ultra-Doze ON / Schedutil ON)"
     echo "═══════════════════════════════════════"
     echo " RESULTADOS NUMÉRICOS"
     echo "═══════════════════════════════════════"
     echo "Apps congeladas      : $DISABLED_COUNT"
-    echo "Procesos purgados    : $PROCS_KILLED"
-    echo "RAM liberada (delta) : +${RAM_FREED}MB"
     echo "Wakelocks bloqueados : $WAKE_KILLED"
+    echo "RAM optimizada       : ~${RAM_FREED}MB"
     echo ""
-    echo "Para revertir a modo de fábrica: sh titan_v66.sh --restore"
+    echo "Tu dispositivo ahora dormirá profundamente al apagar pantalla."
+    echo "Para revertir a modo de fábrica: sh titan_v77.sh --restore"
   } > "$REPORT_TXT"
 
   cat "$REPORT_TXT"
@@ -595,42 +476,29 @@ main() {
   parse_args "$@"
   log_init
 
-  say "${R}${BOLD}╔════════════════════════════════════════════════════════╗${NC}"
-  say "${R}${BOLD}║  ☠️ TITAN v${VERSION} — ABSOLUTE BERSERK EDITION             ║${NC}"
-  say "${R}${BOLD}║  PELIGRO: Límites de hardware completamente removidos  ║${NC}"
-  say "${R}${BOLD}╚════════════════════════════════════════════════════════╝${NC}"
+  say "${C}${BOLD}╔════════════════════════════════════════════════════════╗${NC}"
+  say "${C}${BOLD}║  ❄️ TITAN v${VERSION} — QUANTUM EFFICIENCY EDITION           ║${NC}"
+  say "${C}${BOLD}║  MAX BATTERY: Fluidéz dinámica con cero consumo en     ║${NC}"
+  say "${C}${BOLD}║               reposo (Ultra Deep-Doze).                ║${NC}"
+  say "${C}${BOLD}╚════════════════════════════════════════════════════════╝${NC}"
 
   detect_capabilities
   [ "$DO_RESTORE" = "1" ] && do_restore
   backup_settings
 
-  # PIPELINE v66.6 AUTO-BERSERK
+  # PIPELINE v77 QUANTUM
   progress "Debloat System";          run_debloater; nl
-  progress "UI & Animations";         run_ui_animations; nl
-  progress "Touch & Display";         run_touch_display; nl
-  progress "System UI Tweaks";        run_system_ui_tweaks; nl
-  progress "Gaming & HW Props";       run_gaming_hw_props; nl
-  progress "Force MSAA 4x";           run_force_msaa; nl
-  progress "Multimedia & Camera";     run_multimedia_tweaks; nl
+  progress "Ultra Deep-Doze";         run_ultra_doze; nl
+  progress "Google Services Tame";    run_gms_tame; nl
+  progress "Smart Refresh Rate";      run_smart_display; nl
+  progress "Hardware Offload";        run_hardware_offload; nl
   progress "Daemon Killer";           run_daemon_killer; nl
-  progress "Entropy Engine";          run_entropy_engine; nl
-  progress "Thermal Control";         run_thermal_control; nl
-  progress "CPU Tuning";              run_cpu_tuning; nl
-  progress "CPU C-States / Latency";  run_cstates_disable; nl
-  progress "GPU Max-Lock";            run_gpu_max_lock; nl
-  progress "ZRAM & KSM Killer";       run_zram_killer; nl
-  progress "OOM Killer Extreme";      run_oom_extreme; nl
-  progress "VM Dirty Ratio";          run_vm_dirty_tuning; nl
-  progress "Filesystem Remount";      run_fs_mount_tweaks; nl
-  progress "I/O FSTRIM";              run_fstrim_io; nl
-  progress "SQLite Vacuum";           run_sqlite_vacuum; nl
-  progress "Dalvik/ART Extreme";      run_dalvik_extreme; nl
-  progress "GMS Wakelock Block";      run_gms_wakelocks; nl
-  progress "Doze & Standby";          run_doze_enhanced; nl
+  progress "CPU Smart Tuning";        run_cpu_smart_tuning; nl
+  progress "GPU Energy Aware";        run_gpu_energy_aware; nl
+  progress "ZRAM Efficiency";         run_zram_efficiency; nl
+  progress "Radio Power Save";        run_radio_power_save; nl
   progress "IPv6 Disable";            run_ipv6_disable; nl
-  progress "DNS Optimization";        run_dns_optimization; nl
-  progress "Network TCP Buffers";     run_net_buffers; nl
-  progress "Kernel Panic Disable";    run_kernel_panic_disable; nl
+  progress "I/O FSTRIM";              run_fstrim_io; nl
   progress "Clean Caches & GC";       clean_caches; nl
 
   progress "Generando Reporte";       nl
@@ -696,7 +564,7 @@ main "$@"
       const qRe = q ? new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi') : null;
       const html = lines.map((line, i) => {
         let safe = escapeHtml(line);
-        if (qRe) safe = safe.replace(qRe, m => '<mark class="bg-god-500/30 text-god-400 px-0.5">' + m + '</mark>');
+        if (qRe) safe = safe.replace(qRe, m => '<mark class="bg-quantum-500/40 text-quantum-300 px-0.5">' + m + '</mark>');
         return '<span class="line-num">' + String(i+1).padStart(3,' ') + '</span>' + safe;
       }).join('\n');
       codeEl.innerHTML = html;
@@ -708,14 +576,15 @@ main "$@"
       const blob = new Blob([RAW_SCRIPT], { type: 'text/x-sh' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'titan_v66.sh';
+      a.download = 'titan_v77.sh';
       a.click();
       URL.revokeObjectURL(a.href);
-      showToast('DESCARGANDO titan_v66.sh');
+      showToast('DESCARGANDO titan_v77.sh');
     };
 
     render('');
   </script>
 </body>
 </html>
+
 
