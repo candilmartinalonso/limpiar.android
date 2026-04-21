@@ -1,453 +1,471 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TITAN v102.0 — NO-ROOT HYPER QUANTUM ULTIMATE MAX EXTREME</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TITAN v103.0 — ANDROID OPTIMIZER</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-    :root {
-      --cyan: #22d3ee;
-      --cyan2: #06b6d4;
-      --bg: #020617;
-      --surface: #0a1628;
-      --surface2: #0d1f3a;
-      --border: rgba(6,182,212,0.35);
-      --green: #4ade80;
-      --yellow: #facc15;
-      --red: #f87171;
-      --blue: #60a5fa;
-      --slate: #94a3b8;
-    }
+:root{
+  --acid:#b8ff00;
+  --acid2:#7dda00;
+  --bg:#080a08;
+  --panel:#0c0f0c;
+  --panel2:#111411;
+  --border:rgba(184,255,0,0.2);
+  --border2:rgba(184,255,0,0.08);
+  --red:#ff4040;
+  --amber:#ffaa00;
+  --blue:#00d4ff;
+  --slate:#4a5240;
+  --text:#c8d4b0;
+  --dim:#3a4035;
+}
 
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(var(--cyan), var(--cyan2)); border-radius: 4px; }
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--acid);border-radius:2px}
 
-    body {
-      background: var(--bg);
-      color: #cbd5e1;
-      font-family: 'JetBrains Mono', monospace;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Space Mono',monospace;
+  min-height:100vh;
+  overflow:hidden;
+  position:relative;
+}
 
-    /* Grid background */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(6,182,212,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(6,182,212,0.04) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-    }
+/* Noise texture overlay */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:0.4;
+}
 
-    .app {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 16px 20px;
-      gap: 12px;
-      width: 100%;
-    }
+/* Scanlines */
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.12) 3px,rgba(0,0,0,0.12) 4px);
+  pointer-events:none;z-index:0;
+}
 
-    /* HEADER */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-shrink: 0;
-    }
+.app{
+  position:relative;z-index:1;
+  display:grid;
+  grid-template-rows:auto auto auto 1fr auto;
+  height:100vh;
+  padding:14px 16px;
+  gap:10px;
+  max-width:1600px;
+  margin:0 auto;
+}
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+/* ── HEADER ── */
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid var(--border);
+  padding-bottom:12px;
+}
 
-    .logo-icon {
-      width: 72px;
-      height: 72px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, var(--cyan), var(--cyan2));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 36px;
-      box-shadow: 0 0 30px rgba(6,182,212,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
-      position: relative;
-      flex-shrink: 0;
-    }
+.logo-row{display:flex;align-items:center;gap:14px}
 
-    .no-root-badge {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: #ef4444;
-      color: #fff;
-      font-size: 9px;
-      font-weight: 800;
-      padding: 2px 6px;
-      border-radius: 8px;
-      letter-spacing: 0.5px;
-      border: 2px solid var(--bg);
-    }
+.logo-glyph{
+  width:58px;height:58px;
+  background:var(--acid);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  flex-shrink:0;
+  animation:hex-pulse 3s ease infinite;
+  position:relative;
+}
 
-    .title-block h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(28px, 4vw, 52px);
-      font-weight: 900;
-      color: #fff;
-      letter-spacing: -1px;
-      line-height: 1;
-    }
+@keyframes hex-pulse{0%,100%{box-shadow:0 0 20px rgba(184,255,0,0.4)}50%{box-shadow:0 0 40px rgba(184,255,0,0.8)}}
 
-    .title-block h1 span { color: var(--cyan); }
+.logo-badge{
+  position:absolute;top:-6px;right:-6px;
+  background:var(--red);
+  color:#fff;font-size:7px;font-weight:700;
+  padding:2px 5px;border-radius:4px;
+  font-family:'Space Mono',monospace;
+  letter-spacing:0.5px;
+}
 
-    .title-block p {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--green);
-      letter-spacing: 2px;
-      margin-top: 4px;
-    }
+.brand h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(32px,5vw,64px);
+  color:#fff;
+  line-height:1;
+  letter-spacing:2px;
+}
 
-    .header-btns {
-      display: flex;
-      gap: 10px;
-      flex-shrink: 0;
-    }
+.brand h1 em{
+  font-style:normal;
+  color:var(--acid);
+  -webkit-text-stroke:1px var(--acid2);
+}
 
-    .btn-primary {
-      padding: 10px 22px;
-      background: var(--cyan);
-      color: #000;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      font-size: 13px;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
-      white-space: nowrap;
-    }
+.brand p{
+  font-size:9px;
+  color:var(--slate);
+  letter-spacing:3px;
+  margin-top:2px;
+}
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(6,182,212,0.5);
-    }
+.hdr-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
 
-    .btn-outline {
-      padding: 10px 22px;
-      background: transparent;
-      color: var(--cyan);
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      font-size: 13px;
-      border: 2px solid var(--cyan);
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.15s;
-      white-space: nowrap;
-    }
+.btn-row{display:flex;gap:8px}
 
-    .btn-outline:hover {
-      background: rgba(6,182,212,0.1);
-      transform: translateY(-2px);
-    }
+.btn{
+  padding:8px 18px;
+  font-family:'Space Mono',monospace;
+  font-size:11px;font-weight:700;
+  border:none;border-radius:0;
+  cursor:pointer;
+  letter-spacing:1px;
+  transition:all 0.12s;
+  white-space:nowrap;
+  clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+}
 
-    /* STATS BAR */
-    .stats-bar {
-      display: flex;
-      gap: 10px;
-      flex-shrink: 0;
-    }
+.btn-a{background:var(--acid);color:#000}
+.btn-a:hover{background:#fff;box-shadow:0 0 20px rgba(184,255,0,0.6)}
 
-    .stat-pill {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      padding: 6px 16px;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--slate);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+.btn-b{background:transparent;color:var(--acid);border:1px solid var(--acid)}
+.btn-b:hover{background:rgba(184,255,0,0.08);box-shadow:0 0 12px rgba(184,255,0,0.3)}
 
-    .stat-pill .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 6px var(--green);
-      animation: pulse 2s ease infinite;
-    }
+.btn-c{background:transparent;color:var(--red);border:1px solid var(--red)}
+.btn-c:hover{background:rgba(255,64,64,0.08)}
 
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+/* ── STATUS BAR ── */
+.status-bar{
+  display:flex;gap:8px;flex-wrap:wrap;
+}
 
-    /* SEARCH */
-    .search-bar {
-      flex-shrink: 0;
-    }
+.chip{
+  background:var(--panel);
+  border:1px solid var(--border2);
+  padding:4px 12px;
+  font-size:10px;
+  color:var(--slate);
+  display:flex;align-items:center;gap:6px;
+  clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%);
+}
 
-    .search-input {
-      width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 10px 18px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      color: #e2e8f0;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
+.chip .dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--acid);
+  box-shadow:0 0 6px var(--acid);
+  animation:blink 1.5s ease infinite;
+}
 
-    .search-input::placeholder { color: #475569; }
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 
-    .search-input:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 0 3px rgba(6,182,212,0.1);
-    }
+/* ── TABS + SEARCH ── */
+.toolbar{display:flex;gap:8px;align-items:center}
 
-    /* CODE VIEWER */
-    .code-viewer {
-      flex: 1;
-      min-height: 0;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
+.tabs{display:flex;gap:4px}
 
-    /* CRT scanlines */
-    .code-viewer::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.08) 2px,
-        rgba(0,0,0,0.08) 4px
-      );
-      pointer-events: none;
-      z-index: 10;
-    }
+.tab{
+  padding:6px 14px;
+  font-family:'Space Mono',monospace;
+  font-size:10px;font-weight:700;
+  letter-spacing:1px;
+  background:var(--panel);
+  color:var(--slate);
+  border:1px solid var(--border2);
+  cursor:pointer;
+  transition:all 0.12s;
+  clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%);
+}
 
-    .terminal-bar {
-      background: #0d1f3a;
-      border-bottom: 1px solid var(--border);
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
+.tab:hover{color:var(--text);border-color:var(--border)}
 
-    .terminal-dots {
-      display: flex;
-      gap: 6px;
-    }
+.tab.active{
+  background:var(--acid);
+  color:#000;
+  border-color:var(--acid);
+}
 
-    .terminal-dots span {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-    }
+.search-wrap{flex:1;position:relative}
 
-    .terminal-dots span:nth-child(1) { background: #ef4444; }
-    .terminal-dots span:nth-child(2) { background: var(--yellow); }
-    .terminal-dots span:nth-child(3) { background: var(--green); }
+.search-input{
+  width:100%;
+  background:var(--panel);
+  border:1px solid var(--border2);
+  padding:7px 14px 7px 32px;
+  font-family:'Share Tech Mono',monospace;
+  font-size:12px;color:var(--text);
+  outline:none;
+  clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
 
-    .terminal-title {
-      font-size: 11px;
-      color: var(--green);
-      letter-spacing: 0.5px;
-      opacity: 0.9;
-    }
+.search-input:focus{border-color:var(--acid);box-shadow:0 0 0 2px rgba(184,255,0,0.1)}
+.search-input::placeholder{color:var(--dim)}
 
-    .code-scroll {
-      flex: 1;
-      overflow: auto;
-      padding: 16px 0;
-    }
+.search-icon{
+  position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  color:var(--slate);font-size:13px;pointer-events:none;
+}
 
-    .code-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+/* ── CODE AREA ── */
+.code-wrap{
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+  border:1px solid var(--border);
+  background:var(--panel);
+  overflow:hidden;
+  position:relative;
+}
 
-    .code-table tr {
-      transition: background 0.1s;
-    }
+.term-bar{
+  background:var(--panel2);
+  border-bottom:1px solid var(--border);
+  padding:8px 14px;
+  display:flex;align-items:center;gap:10px;
+  flex-shrink:0;
+}
 
-    .code-table tr:hover {
-      background: rgba(6,182,212,0.04);
-    }
+.term-dots{display:flex;gap:5px}
+.term-dots span{width:10px;height:10px;border-radius:50%}
+.term-dots span:nth-child(1){background:var(--red)}
+.term-dots span:nth-child(2){background:var(--amber)}
+.term-dots span:nth-child(3){background:var(--acid)}
 
-    .line-num {
-      width: 52px;
-      text-align: right;
-      padding: 1px 16px 1px 0;
-      color: #1e3a5f;
-      font-size: 12px;
-      user-select: none;
-      vertical-align: top;
-      white-space: nowrap;
-    }
+.term-title{
+  font-family:'Share Tech Mono',monospace;
+  font-size:11px;color:var(--acid);
+  opacity:0.8;flex:1;
+}
 
-    .line-code {
-      padding: 1px 16px 1px 0;
-      font-size: 12.5px;
-      line-height: 1.6;
-      white-space: pre;
-      color: #94a3b8;
-    }
+.term-stats{
+  font-size:10px;color:var(--slate);
+  display:flex;gap:14px;
+}
 
-    /* Syntax colors */
-    .t-comment { color: #334155; font-style: italic; }
-    .t-shebang { color: var(--cyan); font-weight: 700; }
-    .t-section { color: var(--cyan); font-weight: 700; }
-    .t-cmd { color: #60a5fa; }
-    .t-string { color: var(--green); }
-    .t-var { color: #f0abfc; }
-    .t-fn { color: var(--yellow); }
-    .t-ok { color: var(--green); }
-    .t-pkg { color: #fb923c; }
+.term-stat span{color:var(--acid)}
 
-    mark {
-      background: rgba(250,204,21,0.35);
-      color: #fef08a;
-      border-radius: 3px;
-      padding: 0 2px;
-    }
+.code-scroll{flex:1;overflow:auto;padding:8px 0}
 
-    /* FOOTER */
-    footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 10px;
-      color: #1e3a5f;
-      flex-shrink: 0;
-      padding: 0 4px;
-    }
+.code-tbl{width:100%;border-collapse:collapse}
 
-    footer span { letter-spacing: 0.5px; }
-    footer .line-count { color: var(--cyan); opacity: 0.6; }
+.code-tbl tr:hover{background:rgba(184,255,0,0.025)}
 
-    /* Toast */
-    #toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: var(--cyan);
-      color: #000;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      font-size: 13px;
-      padding: 12px 28px;
-      border-radius: 50px;
-      z-index: 9999;
-      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-      pointer-events: none;
-    }
+.ln{
+  width:46px;text-align:right;
+  padding:0 12px 0 0;
+  color:#1e2a18;font-size:11px;
+  font-family:'Share Tech Mono',monospace;
+  user-select:none;vertical-align:top;
+  white-space:nowrap;
+}
 
-    #toast.show { transform: translateX(-50%) translateY(0); }
-  </style>
+.lc{
+  padding:1px 14px 1px 0;
+  font-size:12px;line-height:1.65;
+  white-space:pre;
+  font-family:'Share Tech Mono',monospace;
+  color:#6b7c5a;
+}
+
+/* Token colors */
+.t-sh{color:var(--acid);font-weight:700}
+.t-sec{color:var(--acid);font-weight:700;letter-spacing:1px}
+.t-ok{color:#7dda00}
+.t-warn{color:var(--amber)}
+.t-err{color:var(--red)}
+.t-cmd{color:var(--blue)}
+.t-pkg{color:#ff8c42}
+.t-var{color:#c084fc}
+.t-fn{color:var(--amber)}
+.t-str{color:#a8d672}
+.t-flag{color:var(--red);font-weight:700}
+
+mark{
+  background:rgba(255,170,0,0.3);
+  color:#ffd166;
+  border-radius:2px;padding:0 1px;
+}
+
+/* ── FOOTER ── */
+footer{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:9px;color:var(--dim);
+  letter-spacing:1px;
+  border-top:1px solid var(--border2);
+  padding-top:8px;
+  flex-shrink:0;
+}
+
+footer .fc{color:var(--acid);opacity:0.5}
+
+/* ── TOAST ── */
+#toast{
+  position:fixed;bottom:24px;left:50%;
+  transform:translateX(-50%) translateY(80px);
+  background:var(--acid);color:#000;
+  font-family:'Space Mono',monospace;
+  font-weight:700;font-size:12px;
+  padding:10px 24px;
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
+  z-index:9999;
+  transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events:none;
+}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ── DANGER MODAL ── */
+.modal-bg{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.85);
+  z-index:1000;
+  display:none;align-items:center;justify-content:center;
+}
+.modal-bg.open{display:flex}
+
+.modal{
+  background:var(--panel2);
+  border:1px solid var(--red);
+  padding:28px 32px;
+  max-width:480px;width:90%;
+  box-shadow:0 0 60px rgba(255,64,64,0.3);
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));
+}
+.modal h2{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;color:var(--red);
+  letter-spacing:2px;margin-bottom:14px;
+}
+.modal p{font-size:11px;line-height:1.7;color:var(--text);margin-bottom:20px}
+.modal-btns{display:flex;gap:10px;justify-content:flex-end}
+</style>
 </head>
 <body>
 
 <div class="app">
 
+  <!-- HEADER -->
   <header>
-    <div class="logo-area">
-      <div class="logo-icon">
-        ❄️
-        <span class="no-root-badge">NO ROOT</span>
+    <div class="logo-row">
+      <div class="logo-glyph">
+        ⚡
+        <span class="logo-badge">NO ROOT</span>
       </div>
-      <div class="title-block">
-        <h1>TITAN <span>v102.0</span></h1>
-        <p>NO-ROOT • ANDROID 16 • BINDER-SAFE • EXTREMO</p>
+      <div class="brand">
+        <h1>TITAN <em>v103.0</em></h1>
+        <p>ANDROID PERFORMANCE ENGINE • NO-ROOT • ADB / SHIZUKU / TERMUX</p>
       </div>
     </div>
-    <div class="header-btns">
-      <button class="btn-primary" onclick="copyScript()">📋 COPIAR SCRIPT</button>
-      <button class="btn-outline" onclick="downloadScript()">⬇ DESCARGAR .sh</button>
+    <div class="hdr-right">
+      <div class="btn-row">
+        <button class="btn btn-a" onclick="copyScript()">▶ COPIAR SCRIPT</button>
+        <button class="btn btn-b" onclick="downloadScript()">↓ DESCARGAR .sh</button>
+        <button class="btn btn-c" onclick="document.getElementById('dangerModal').classList.add('open')">⚠ ADVERTENCIAS</button>
+      </div>
     </div>
   </header>
 
-  <div class="stats-bar">
-    <div class="stat-pill"><span class="dot"></span> ACTIVO</div>
-    <div class="stat-pill">🤖 Android 16 / SDK 36</div>
-    <div class="stat-pill">📱 Motorola Razr 60</div>
-    <div class="stat-pill">⚡ ADB / Shizuku / Termux</div>
-    <div class="stat-pill" id="linesStat">📄 — líneas</div>
+  <!-- STATUS -->
+  <div class="status-bar">
+    <div class="chip"><span class="dot"></span>ACTIVO</div>
+    <div class="chip">🤖 Android 10–16 / SDK 29–36</div>
+    <div class="chip">📱 Universal (Moto, Samsung, Pixel…)</div>
+    <div class="chip">⚡ ADB / Shizuku / Termux</div>
+    <div class="chip" id="linesStat">📄 — líneas</div>
+    <div class="chip" id="blocksStat">🧩 — bloques</div>
   </div>
 
-  <div class="search-bar">
-    <input class="search-input" id="searchInput" oninput="doSearch()" placeholder="🔍  Buscar tweak, paquete, setting...">
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="tabs">
+      <button class="tab active" onclick="setTab('all',this)">TODO</button>
+      <button class="tab" onclick="setTab('debloat',this)">DEBLOAT</button>
+      <button class="tab" onclick="setTab('battery',this)">BATERÍA</button>
+      <button class="tab" onclick="setTab('perf',this)">RENDIMIENTO</button>
+      <button class="tab" onclick="setTab('net',this)">RED</button>
+      <button class="tab" onclick="setTab('privacy',this)">PRIVACIDAD</button>
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input class="search-input" id="searchInput" oninput="doSearch()" placeholder="Buscar paquete, setting, tweak...">
+    </div>
   </div>
 
-  <div class="code-viewer">
-    <div class="terminal-bar">
-      <div class="terminal-dots">
-        <span></span><span></span><span></span>
+  <!-- CODE VIEWER -->
+  <div class="code-wrap">
+    <div class="term-bar">
+      <div class="term-dots"><span></span><span></span><span></span></div>
+      <span class="term-title">$ adb shell sh /sdcard/Download/titan_v103.0.sh</span>
+      <div class="term-stats">
+        <div>LINES <span id="tLines">0</span></div>
+        <div>PKGS <span id="tPkgs">0</span></div>
+        <div>SETTINGS <span id="tSettings">0</span></div>
       </div>
-      <span class="terminal-title">shell@razr60:/sdcard/Download # ./titan_v102.0.sh</span>
     </div>
     <div class="code-scroll" id="codeScroll">
-      <table class="code-table" id="codeTable"></table>
+      <table class="code-tbl" id="codeTable"></table>
     </div>
   </div>
 
+  <!-- FOOTER -->
   <footer>
-    <span>TITAN v102.0 • Android 16 Compatible • Anti-Binder-Saturation Batching • 100% SIN ROOT</span>
-    <span class="line-count" id="footerLines">Lines: 000</span>
+    <span>TITAN v103.0 • ANTI-BINDER-SATURATION • BATCHMODE • 100% SIN ROOT • RESTAURACIÓN AUTOMÁTICA</span>
+    <span class="fc" id="footerLines">LINES: 000</span>
   </footer>
 
 </div>
 
-<div id="toast">✓ Copiado al portapapeles</div>
+<!-- DANGER MODAL -->
+<div class="modal-bg" id="dangerModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <h2>⚠ ADVERTENCIAS</h2>
+    <p>
+      <strong style="color:var(--acid)">ANTES DE EJECUTAR:</strong><br><br>
+      • Este script <strong>NO requiere root</strong>, pero necesita permisos ADB o Shizuku.<br><br>
+      • <strong>Lee cada sección</strong> antes de correrla completa. Algunos tweaks (batería nuclear, GPS OFF, Bluetooth OFF) pueden afectar funciones que uses.<br><br>
+      • Se genera un <strong>script de restauración automático</strong> en <code>/sdcard/Download/TITAN/backup/restore_titan.sh</code>. Úsalo si algo falla.<br><br>
+      • Deshabilitar paquetes de sistema puede romper apps. Si eso pasa, ejecuta el restore.<br><br>
+      • <strong style="color:var(--amber)">Reinicia el dispositivo</strong> después de aplicar todos los cambios para que surtan efecto.<br><br>
+      • Probado en Android 10–16. En versiones anteriores algunos settings pueden no existir (se ignoran sin error).
+    </p>
+    <div class="modal-btns">
+      <button class="btn btn-a" onclick="document.getElementById('dangerModal').classList.remove('open')">ENTENDIDO</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast">✓ Copiado</div>
 
 <script>
 // ─────────────────────────────────────────────────────────────────────────────
-//  TITAN v102.0 — Script completo
+//  TITAN v103.0 — Script completo y expandido
 // ─────────────────────────────────────────────────────────────────────────────
-const SCRIPT_LINES = `#!/system/bin/sh
+const RAW = `#!/system/bin/sh
 # =============================================================================
-# TITAN v102.0 — NO-ROOT HYPER QUANTUM ULTIMATE MAX EXTREME
-# 100% SIN ROOT • ADB / Shizuku / Termux / Terminal Emulator
-# CORREGIDO PARA ANDROID 16 (SDK 36) — Motorola Razr 60
+# TITAN v103.0 — NO-ROOT ANDROID PERFORMANCE ENGINE
+# Compatible: Android 10-16 (SDK 29-36) | ADB / Shizuku / Termux
+# SIN ROOT | Con restauración automática | Motorola / Samsung / Pixel / etc.
+# =============================================================================
+# TAGS: all perf battery debloat net privacy
 # =============================================================================
 
 TITAN_DIR="/sdcard/Download/TITAN"
 BACKUP_DIR="$TITAN_DIR/backup"
-LOG_FILE="$TITAN_DIR/titan_v102.log"
+LOG_FILE="$TITAN_DIR/titan_v103.log"
 DISABLED_LIST="$BACKUP_DIR/disabled_packages.txt"
 RESTORE_SCRIPT="$BACKUP_DIR/restore_titan.sh"
 
 mkdir -p "$BACKUP_DIR" 2>/dev/null
+echo "" > "$LOG_FILE" 2>/dev/null
 
 log()  { echo "[$(date '+%H:%M:%S')] $*" >> "$LOG_FILE" 2>/dev/null; }
 ok()   { echo -e "\\033[0;32m[✓]\\033[0m $*"; log "OK: $*"; }
@@ -457,55 +475,81 @@ info() { echo -e "\\033[0;34m[i]\\033[0m $*"; log "INFO: $*"; }
 
 section() {
   echo ""
-  echo -e "\\033[0;36m════════════════════════════════════════════════════════════\\033[0m"
-  echo -e "\\033[1;36m▶ $*\\033[0m"
-  echo -e "\\033[0;36m════════════════════════════════════════════════════════════\\033[0m"
+  echo -e "\\033[0;32m▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\\033[0m"
+  echo -e "\\033[1;32m  ▶ $*\\033[0m"
+  echo -e "\\033[0;32m▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\\033[0m"
 }
 
-# Función batch para evitar saturación del binder en Android 16
+# Batch seguro: evita saturación de binder en Android 16+
 batch_settings() {
-  local namespace="$1"
-  shift
+  local namespace="$1"; shift
   while [ $# -gt 0 ]; do
-    local key="$1"
-    local val="$2"
-    shift 2
-    cmd settings put "$namespace" "$key" "$val" 2>/dev/null
+    cmd settings put "$namespace" "$1" "$2" 2>/dev/null
     sleep 0.005
+    shift 2
   done
 }
 
-# =============================================================================
-section "INICIANDO TITAN v102.0 (SIN ROOT — ANDROID 16 OPTIMIZADO)"
-ok "Directorio: $TITAN_DIR"
-ok "Dispositivo: $(getprop ro.product.model 2>/dev/null || echo 'Desconocido')"
-ok "Android: $(getprop ro.build.version.release 2>/dev/null || echo 'Desconocido')"
-ok "SDK: $(getprop ro.build.version.sdk 2>/dev/null || echo 'N/A')"
-ok "Kernel: $(uname -r 2>/dev/null || echo 'N/A')"
+# Deshabilitar paquete con registro para restore
+disable_pkg() {
+  local pkg="$1"
+  pm disable-user --user 0 "$pkg" 2>/dev/null
+  if [ $? -eq 0 ]; then
+    echo "$pkg" >> "$DISABLED_LIST"
+    ok "Desactivado: $pkg"
+  else
+    warn "No encontrado o ya desactivado: $pkg"
+  fi
+}
 
 # =============================================================================
-section "GENERANDO SCRIPT DE RESTAURACIÓN AUTOMÁTICO"
-cat > "$RESTORE_SCRIPT" << 'EOF'
+# TAGS: all
+section "TITAN v103.0 — INICIANDO (SIN ROOT)"
+ok "Dispositivo : $(getprop ro.product.model 2>/dev/null)"
+ok "Android     : $(getprop ro.build.version.release 2>/dev/null)"
+ok "SDK         : $(getprop ro.build.version.sdk 2>/dev/null)"
+ok "Build       : $(getprop ro.build.display.id 2>/dev/null)"
+ok "Kernel      : $(uname -r 2>/dev/null)"
+ok "Memoria RAM : $(cat /proc/meminfo 2>/dev/null | grep MemTotal | awk '{print $2, $3}')"
+
+# =============================================================================
+# TAGS: all
+section "GENERANDO SCRIPT DE RESTAURACIÓN"
+cat > "$RESTORE_SCRIPT" << 'RESTORE_EOF'
 #!/system/bin/sh
-echo "════════════════════════════════════════════════════════════"
-echo "  RESTAURANDO TITAN v102.0"
-echo "════════════════════════════════════════════════════════════"
-while read pkg; do
-  [ -n "$pkg" ] && pm enable --user 0 "$pkg" 2>/dev/null && echo "[✓] Habilitado: $pkg"
-done < /sdcard/Download/TITAN/backup/disabled_packages.txt
+echo "Restaurando TITAN v103.0..."
+BACKUP_DIR="/sdcard/Download/TITAN/backup"
+DISABLED_LIST="$BACKUP_DIR/disabled_packages.txt"
+if [ -f "$DISABLED_LIST" ]; then
+  while IFS= read -r pkg; do
+    [ -n "$pkg" ] && pm enable --user 0 "$pkg" 2>/dev/null && echo "[✓] Habilitado: $pkg"
+  done < "$DISABLED_LIST"
+fi
 cmd settings put global window_animation_scale 1.0
 cmd settings put global transition_animation_scale 1.0
 cmd settings put global animator_duration_scale 1.0
 cmd settings put global low_power_mode 0
-cmd settings put global location_mode 3
+cmd settings put global battery_saver_trigger_level 20
+cmd settings put secure location_mode 3
 cmd settings put global bluetooth_on 1
-cmd settings put global mobile_data 1
-echo "✅ Restauración completa. Reinicia el dispositivo."
-EOF
+cmd settings put global nfc_on 1
+cmd settings put global wifi_scan_always_enabled 1
+cmd settings put global ble_scan_always_enabled 1
+cmd settings put global sync_disabled 0
+cmd settings put global heads_up_notifications_enabled 1
+cmd settings put global zen_mode 0
+cmd settings put global notification_bubbles 1
+cmd settings put global forced_app_standby_enabled 0
+cmd settings put global app_standby_enabled 0
+cmd settings put global device_idle_constants ""
+echo ""
+echo "✅ Restauración completa. REINICIA el dispositivo."
+RESTORE_EOF
 chmod +x "$RESTORE_SCRIPT" 2>/dev/null
-ok "Script de restauración creado: $RESTORE_SCRIPT"
+ok "Restore script: $RESTORE_SCRIPT"
 
 # =============================================================================
+# TAGS: all
 section "BACKUP COMPLETO DE SEGURIDAD"
 settings list global   > "$BACKUP_DIR/settings_global.txt"   2>/dev/null
 settings list system   > "$BACKUP_DIR/settings_system.txt"   2>/dev/null
@@ -513,16 +557,17 @@ settings list secure   > "$BACKUP_DIR/settings_secure.txt"   2>/dev/null
 pm list packages -s    > "$BACKUP_DIR/packages_system.txt"   2>/dev/null
 pm list packages -3    > "$BACKUP_DIR/packages_user.txt"     2>/dev/null
 pm list packages -d    > "$BACKUP_DIR/packages_disabled.txt" 2>/dev/null
-dumpsys deviceidle     > "$BACKUP_DIR/deviceidle_dump.txt"   2>/dev/null
 dumpsys battery        > "$BACKUP_DIR/battery_dump.txt"      2>/dev/null
 dumpsys meminfo        > "$BACKUP_DIR/meminfo_dump.txt"      2>/dev/null
-getprop                > "$BACKUP_DIR/prop_dump.txt"         2>/dev/null
-ok "Backup ultra-completo guardado en $BACKUP_DIR"
+dumpsys deviceidle     > "$BACKUP_DIR/deviceidle_dump.txt"   2>/dev/null
+getprop                > "$BACKUP_DIR/getprop_dump.txt"      2>/dev/null
+ok "Backup guardado en: $BACKUP_DIR"
 
 # =============================================================================
-section "KILL MASIVO DE APPS Y SERVICIOS"
+# TAGS: all perf
+section "KILL MASIVO — LIBERAR RAM ANTES DE OPTIMIZAR"
 am kill-all 2>/dev/null
-for pkg in $(pm list packages -3 | cut -d: -f2); do
+for pkg in $(pm list packages -3 2>/dev/null | cut -d: -f2); do
   am force-stop "$pkg" 2>/dev/null
 done
 for svc in \
@@ -530,459 +575,647 @@ for svc in \
   com.google.android.gsf \
   com.facebook.katana \
   com.facebook.system \
-  com.facebook.appmanager \
-  com.facebook.services \
   com.instagram.android \
   com.whatsapp \
-  com.whatsapp.w4b \
   com.snapchat.android \
   com.twitter.android \
   com.zhiliaoapp.musically \
-  com.linkedin.android \
   com.spotify.music \
-  com.netflix.mediaclient; do
+  com.netflix.mediaclient \
+  com.amazon.mShop.android.shopping; do
   am force-stop "$svc" 2>/dev/null
 done
-ok "Todas las apps de usuario y servicios pesados terminados"
+ok "Apps de usuario y servicios pesados terminados"
 
 # =============================================================================
-section "ULTRA DEEP-DOZE 6.0 (ANDROID 16 COMPATIBLE)"
-batch_settings global \\
-  device_idle_constants "inactive_to=500,sensing_to=0,locating_to=0,location_accuracy=5000,motion_inactive_to=0,idle_after_inactive_to=0,idle_pending_to=0,max_idle_pending_to=0,idle_pending_factor=10.0,idle_to=60000,max_idle_to=86400000,idle_factor=10.0,min_time_to_alarm=60000,max_temp_app_whitelist_duration=0,mms_temp_app_whitelist_duration=0,sms_temp_app_whitelist_duration=0,notification_whitelist_duration=0" \\
-  forced_app_standby_enabled 1 \\
-  app_standby_enabled 1 \\
-  app_standby_by_user_enabled 1 \\
-  app_auto_restriction_enabled 1 \\
-  forced_app_standby_for_small_battery_enabled 1 \\
+# TAGS: all battery
+section "ULTRA DEEP-DOZE v6.0 (ANDROID 10-16)"
+batch_settings global \
+  device_idle_constants "inactive_to=500,sensing_to=0,locating_to=0,location_accuracy=5000,motion_inactive_to=0,idle_after_inactive_to=0,idle_pending_to=0,max_idle_pending_to=0,idle_pending_factor=10.0,idle_to=60000,max_idle_to=86400000,idle_factor=10.0,min_time_to_alarm=60000,max_temp_app_whitelist_duration=0,mms_temp_app_whitelist_duration=0,sms_temp_app_whitelist_duration=0,notification_whitelist_duration=0" \
+  forced_app_standby_enabled 1 \
+  app_standby_enabled 1 \
+  app_standby_by_user_enabled 1 \
+  app_auto_restriction_enabled 1 \
+  forced_app_standby_for_small_battery_enabled 1 \
   cached_apps_freezer enabled
-ok "Deep-Doze 6.0 activado (Android 16 compatible)"
+ok "Deep-Doze v6.0 aplicado"
 
 # =============================================================================
-section "OPTIMIZACIÓN NUCLEAR DE BATERÍA (BATCH)"
-batch_settings global \\
-  low_power_mode 1 \\
-  low_power_mode_suggestion 1 \\
-  low_power_mode_sticky 0 \\
-  adaptive_battery_management_enabled 1 \\
-  app_auto_restriction_enabled 1 \\
-  app_standby_battery_1 0 \\
-  app_standby_battery_2 0 \\
-  app_standby_battery_3 0 \\
-  app_standby_battery_4 0 \\
-  app_standby_battery_5 0 \\
-  enable_battery_saver 1 \\
-  battery_saver_trigger_level 100
-ok "Modo ahorro nuclear activado (100% del tiempo)"
+# TAGS: all battery
+section "BATTERY SAVER NUCLEAR + ADAPTIVE BATTERY"
+batch_settings global \
+  low_power_mode 1 \
+  low_power_mode_suggestion 1 \
+  low_power_mode_sticky 0 \
+  adaptive_battery_management_enabled 1 \
+  adaptive_charging_enabled 1 \
+  app_auto_restriction_enabled 1 \
+  enable_battery_saver 1 \
+  battery_saver_trigger_level 100 \
+  power_manager_constants "no_cached_wake_locks=true" \
+  job_scheduler_constants "min_ready_non_active_jobs_count=3,min_ready_jobs_count=5,bg_job_counts_bad=1" \
+  alarm_manager_constants "min_futurity=2000,min_interval=60000,allow_while_idle_short_time=2000"
+ok "Battery Saver Nuclear activado (100% del tiempo)"
 
 # =============================================================================
-section "ELIMINACIÓN TOTAL DE ANIMACIONES (BATCH)"
-batch_settings global \\
-  window_animation_scale 0.0 \\
-  transition_animation_scale 0.0 \\
-  animator_duration_scale 0.0 \\
-  transition_animation_scale_down_duration 0 \\
+# TAGS: all perf
+section "ELIMINAR ANIMACIONES COMPLETAMENTE"
+batch_settings global \
+  window_animation_scale 0.0 \
+  transition_animation_scale 0.0 \
+  animator_duration_scale 0.0 \
+  fancy_ime_animations 0 \
   fancy_ime_animations 0
-ok "Animaciones ELIMINADAS completamente"
+ok "Todas las animaciones eliminadas"
 
 # =============================================================================
-section "OPTIMIZACIÓN DE RENDERIZADO Y GPU (BATCH)"
-batch_settings global \\
-  hwui_disable_vsync 1 \\
-  disable_hw_overlays 1 \\
-  persist.sys.ui.hw 1 \\
-  debug.hwui.fps_divisor 1 \\
-  debug.hwui.show_dirty_regions false \\
-  debug.sf.hw 1 \\
-  debug.egl.hw 1 \\
-  debug.egl.swapinterval 0 \\
-  persist.sys.use_dithering 0 \\
-  debug.hwui.disable_vsync true \\
-  debug.hwui.render_dirty_regions false
+# TAGS: all perf
+section "OPTIMIZACIÓN DE GPU Y RENDERIZADO"
+batch_settings global \
+  debug.sf.hw 1 \
+  debug.egl.hw 1 \
+  debug.egl.swapinterval 0 \
+  debug.hwui.fps_divisor 1 \
+  debug.hwui.show_dirty_regions false \
+  debug.hwui.disable_vsync true \
+  debug.hwui.render_dirty_regions false \
+  persist.sys.ui.hw 1 \
+  persist.sys.use_dithering 0 \
+  persist.sys.use_16bpp_alpha 1 \
+  ro.surface_flinger.use_color_management false \
+  ro.surface_flinger.has_wide_color_display false \
+  ro.surface_flinger.has_HDR_display false
 ok "GPU y renderizado optimizados"
 
 # =============================================================================
-section "GESTIÓN NUCLEAR DE MEMORIA RAM (BATCH)"
-batch_settings global \\
-  sys_vm_stats 0 \\
-  sys_vm_stats_duration_hours 0 \\
-  ram_expand_size 0 \\
-  zram_enabled 0 \\
-  ro.config.swappiness 0 \\
-  vm.swappiness 0 \\
-  persist.sys.purgeable_assets 1 \\
-  persist.sys.use_16bpp_alpha 1 \\
-  dalvik.vm.heapstartsize 4m \\
-  dalvik.vm.heapgrowthlimit 48m \\
-  dalvik.vm.heapsize 128m \\
-  dalvik.vm.heaptargetutilization 0.9 \\
-  dalvik.vm.heapminfree 512k \\
-  dalvik.vm.heapmaxfree 2m
-ok "RAM optimizada: zRAM OFF, swappiness 0, heap agresivo"
-
-# =============================================================================
-section "DESHABILITAR TELEMETRÍA, LOGS Y RASTREO (BATCH)"
-batch_settings global \\
-  dropbox_max_files 0 \\
-  send_action_app_error 0 \\
-  anr_show_dialog 0 \\
-  profiler_force_enable_err_rpt 0 \\
-  logd_logging_enabled 0 \\
-  logd_kernel_logging_enabled 0 \\
-  logd_logpersistd_enable 0 \\
-  logd_logpersistd 0 \\
-  logd_size 0 \\
-  logger_size 0 \\
-  bugreport_in_power_menu 0 \\
-  debug_metrics 0 \\
-  debug_tracing 0 \\
-  fstrim_mandatory_interval 0
-ok "Telemetría, logs y rastreo NULIFICADOS"
-
-# =============================================================================
-section "OPTIMIZACIÓN DE RED Y CONECTIVIDAD (BATCH)"
-batch_settings global \\
-  sync_disabled 1 \\
-  wifi_scan_always_enabled 0 \\
-  ble_scan_always_enabled 0 \\
-  network_recommendations_enabled 0 \\
-  wifi_wakeup_enabled 0 \\
-  mobile_data_always_on 0 \\
-  bluetooth_on 0 \\
-  nfc_on 0 \\
-  wifi_networks_available_notification_on 0 \\
-  captive_portal_detection_enabled 0 \\
-  captive_portal_mode 0 \\
-  captive_portal_server "" \\
-  data_roaming 0 \\
-  global_http_proxy_host "" \\
-  global_http_proxy_port 0
-ok "Red, WiFi, Bluetooth, NFC optimizados/apagados"
-
-# =============================================================================
-section "OPTIMIZACIÓN DE AUDIO (BATCH)"
-batch_settings global \\
-  safe_media_volume_enabled 0 \\
-  audio_safe_volume_state 0
-ok "Audio optimizado"
-
-# =============================================================================
-section "OPTIMIZACIÓN DE PANTALLA Y BRILLO (BATCH)"
-batch_settings system \\
-  screen_brightness_mode 0 \\
-  screen_brightness 10
-batch_settings global \\
-  screen_off_timeout 15000 \\
-  stay_on_while_plugged_in 0 \\
-  doze_pulse_on_pick_up 0 \\
-  doze_pulse_on_long_press 0 \\
-  doze_pulse_on_double_tap 0 \\
-  doze_use_accelerometer 0 \\
-  doze_vibrate_on_pickup 0 \\
-  doze_vibrate_on_significant_motion 0
-ok "Pantalla y Doze optimizados al mínimo consumo"
-
-# =============================================================================
-section "OPTIMIZACIÓN DE TECLADO Y ENTRADA (BATCH)"
-batch_settings global \\
-  show_ime_with_hard_keyboard 0
-batch_settings secure \\
-  spell_checker_enabled 0 \\
-  selected_spell_checker "" \\
-  selected_spell_checker_subtype 0
-ok "Teclado y spell-checker optimizados"
-
-# =============================================================================
-section "OPTIMIZACIÓN DE UBICACIÓN Y GPS (BATCH)"
-batch_settings secure \\
-  location_mode 0 \\
-  location_providers_allowed ""
-batch_settings global \\
-  location_global_kill_switch 1 \\
-  assisted_gps_enabled 0 \\
-  network_provider_enabled 0 \\
-  passive_provider_enabled 0 \\
-  fused_provider_enabled 0 \\
-  geocoder_provider_enabled 0 \\
-  geofence_provider_enabled 0 \\
-  activity_recognition_enabled 0 \\
-  significant_motion_detector_enabled 0
-ok "GPS y ubicación NULIFICADOS"
-
-# =============================================================================
-section "OPTIMIZACIÓN DE SENSORES (BATCH)"
-batch_settings system \\
-  accelerometer_rotation 0 \\
-  user_rotation 0
-batch_settings global \\
-  show_touches 0 \\
-  pointer_location 0 \\
-  window_orientation_listening_enabled 0 \\
-  sensors_device_pause_supported 1 \\
-  sensors_device_pause 1
-ok "Sensores optimizados/pausados"
-
-# =============================================================================
-section "OPTIMIZACIÓN DE NOTIFICACIONES (BATCH)"
-batch_settings global \\
-  notification_bubbles 0 \\
-  heads_up_notifications_enabled 0 \\
-  show_notification_channel_warnings 0 \\
-  zen_mode 2 \\
-  zen_mode_ringer_level 0 \\
-  notification_badging 0 \\
-  notification_pulse 0 \\
-  notification_light_pulse 0 \\
-  notification_vibration 0
-ok "Notificaciones silenciadas y optimizadas"
-
-# =============================================================================
-section "OPTIMIZACIÓN DE ALMACENAMIENTO (BATCH)"
-batch_settings global \\
-  storage_threshold_percentage 1 \\
-  storage_threshold_max_bytes 1048576 \\
-  disk_free_change_reporting_threshold 1048576 \\
-  cache_max_temp_app_space 1048576 \\
-  storage_benchmark_interval 0
-ok "Almacenamiento optimizado"
-
-# =============================================================================
-section "DEBLOAT — GOOGLE SERVICES (SEGURO, SIN ROOT)"
-GOOGLE_SAFE_DISABLE="
-com.google.android.gms.location.history
-com.google.android.gms.supervision
-com.google.android.gms.wearable
-com.google.android.gms.fit
-com.google.android.gms.games
-com.google.android.gms.cast
-com.google.android.gms.nearby
-com.google.android.gms.tagmanager
-com.google.android.gms.measurement
-com.google.android.gms.feedback
-com.google.android.gms.locationsharing
-com.google.android.gms.magictether
-com.google.android.gms.matchstick
-com.google.android.gms.photos
-com.google.android.gms.primes
-com.google.android.gms.recorder
-com.google.android.gms.reporting
-com.google.android.gms.smartdevice
-com.google.android.gms.telephonyspam
-com.google.android.gms.trustagent
-com.google.android.gms.udc
-com.google.android.gms.usagereporting
-com.google.android.gms.vision
-"
-for pkg in $GOOGLE_SAFE_DISABLE; do
-  pm disable-user --user 0 "$pkg" 2>/dev/null && echo "[✓] Disabled: $pkg" >> "$DISABLED_LIST"
-done
-ok "Google sub-services innecesarios desactivados"
-
-# =============================================================================
-section "DEBLOAT — FACEBOOK Y REDES SOCIALES"
-SOCIAL_PKGS="
-com.facebook.katana
-com.facebook.system
-com.facebook.appmanager
-com.facebook.services
-com.facebook.orca
-com.facebook.lite
-com.instagram.android
-com.snapchat.android
-com.twitter.android
-com.zhiliaoapp.musically
-com.linkedin.android
-com.pinterest
-com.tumblr
-"
-for pkg in $SOCIAL_PKGS; do
-  pm disable-user --user 0 "$pkg" 2>/dev/null && echo "$pkg" >> "$DISABLED_LIST"
-  ok "Bloqueado: $pkg"
-done
-
-# =============================================================================
-section "DEBLOAT — MOTOROLA BLOATWARE"
-MOTO_PKGS="
-com.motorola.cameralytics
-com.motorola.focusedinbox
-com.motorola.helpme
-com.motorola.motocit
-com.motorola.motocare
-com.motorola.motodisplay
-com.motorola.motosignage
-com.motorola.MotoChinaLocationProxy
-com.motorola.targetnotif
-com.motorola.demo
-com.motorola.audiomonitor
-com.motorola.epdg
-com.motorola.omadm
-com.motorola.MotoChinaSetup
-"
-for pkg in $MOTO_PKGS; do
-  pm disable-user --user 0 "$pkg" 2>/dev/null && echo "$pkg" >> "$DISABLED_LIST"
-  ok "Bloqueado Moto: $pkg"
-done
-
-# =============================================================================
-section "DEBLOAT — GOOGLE APPS INNECESARIAS"
-GOOGLE_APPS="
-com.google.android.apps.tachyon
-com.google.android.apps.docs
-com.google.android.apps.magazines
-com.google.android.apps.books
-com.google.android.apps.movies
-com.google.android.apps.music
-com.google.android.apps.fitness
-com.google.android.apps.wellbeing
-com.google.android.apps.nbu.files
-com.google.android.apps.podcasts
-com.google.android.feedback
-com.google.android.partnersetup
-com.google.android.marvin.talkback
-com.google.android.onetimeinitializer
-com.google.android.printservice.recommendation
-com.google.android.apps.restore
-com.google.android.setupwizard
-com.google.android.storagemanager
-com.google.android.tag
-com.google.android.GoogleCamera
-com.google.android.videos
-com.google.android.youtube
-"
-for pkg in $GOOGLE_APPS; do
-  pm disable-user --user 0 "$pkg" 2>/dev/null && echo "$pkg" >> "$DISABLED_LIST"
-  ok "Bloqueado Google App: $pkg"
-done
-
-# =============================================================================
-section "CONFIGURACIÓN DE DATOS MÓVILES Y ROAMING"
-batch_settings global \\
-  data_roaming 0 \\
-  preferred_network_mode 9 \\
-  lte_service_forced 0 \\
-  force_lte_ca 0
-ok "Datos móviles configurados: sin roaming, LTE estable"
-
-# =============================================================================
-section "AJUSTES FINALES DE RENDIMIENTO"
-# Forzar modo rendimiento en scheduler
+# TAGS: all perf
+section "OPTIMIZACIÓN DE MEMORIA RAM Y DALVIK/ART"
+batch_settings global \
+  sys_vm_stats 0 \
+  zram_enabled 0 \
+  vm.swappiness 0 \
+  persist.sys.purgeable_assets 1 \
+  dalvik.vm.heapstartsize 4m \
+  dalvik.vm.heapgrowthlimit 48m \
+  dalvik.vm.heapsize 128m \
+  dalvik.vm.heaptargetutilization 0.9 \
+  dalvik.vm.heapminfree 512k \
+  dalvik.vm.heapmaxfree 2m \
+  dalvik.vm.dex2oat-filter speed-profile \
+  dalvik.vm.dex2oat-cpu-set 0,1 \
+  dalvik.vm.dex2oat-threads 2
 cmd device_config put activity_manager max_cached_processes 32 2>/dev/null
 cmd device_config put activity_manager max_phantom_processes 2147483647 2>/dev/null
 cmd device_config put activity_manager background_settle_time 500 2>/dev/null
-# Limitar wakelocks innecesarios
-cmd device_config put attention_manager_service max_staleness_millis 0 2>/dev/null
-# Reducir uso de radio en background
-batch_settings global \\
-  restricted_networking_mode 0 \\
-  wifi_sleep_policy 2 \\
-  wifi_idle_ms 15000
-ok "Ajustes de rendimiento del sistema aplicados"
+ok "RAM, ZRAM OFF, Dalvik/ART optimizados"
 
 # =============================================================================
+# TAGS: all perf battery
+section "OPTIMIZACIÓN DE CPU Y SCHEDULER"
+cmd device_config put activity_manager max_service_inactivity 30000 2>/dev/null
+cmd device_config put activity_manager bg_start_timeout 5000 2>/dev/null
+cmd device_config put activity_manager service_start_foreground_timeout 10000 2>/dev/null
+cmd device_config put activity_manager process_start_async true 2>/dev/null
+cmd device_config put activity_manager min_assoc_log_duration_ms 5000 2>/dev/null
+cmd device_config put activity_manager max_assoc_log_duration_ms 30000 2>/dev/null
+batch_settings global \
+  cpu_scheduling_groups_enabled 1 \
+  efficient_network_policy_enabled 1
+ok "CPU scheduler y process manager optimizados"
+
+# =============================================================================
+# TAGS: all privacy
+section "ELIMINAR TELEMETRÍA, LOGS Y RASTREO"
+batch_settings global \
+  dropbox_max_files 0 \
+  send_action_app_error 0 \
+  anr_show_dialog 0 \
+  profiler_force_enable_err_rpt 0 \
+  logd_logging_enabled 0 \
+  logd_kernel_logging_enabled 0 \
+  logd_logpersistd_enable 0 \
+  logd_logpersistd 0 \
+  logd_size 0 \
+  logger_size 0 \
+  bugreport_in_power_menu 0 \
+  debug_metrics 0 \
+  debug_tracing 0 \
+  fstrim_mandatory_interval 0 \
+  enable_accessibility_global_gesture_enabled 0 \
+  assisted_gps_enabled 0
+cmd logcat -c 2>/dev/null
+ok "Telemetría, logs y rastreo nulificados"
+
+# =============================================================================
+# TAGS: all net
+section "OPTIMIZACIÓN DE RED Y CONECTIVIDAD"
+batch_settings global \
+  sync_disabled 1 \
+  wifi_scan_always_enabled 0 \
+  ble_scan_always_enabled 0 \
+  network_recommendations_enabled 0 \
+  wifi_wakeup_enabled 0 \
+  mobile_data_always_on 0 \
+  bluetooth_on 0 \
+  nfc_on 0 \
+  wifi_networks_available_notification_on 0 \
+  captive_portal_detection_enabled 0 \
+  captive_portal_mode 0 \
+  data_roaming 0 \
+  wifi_sleep_policy 2 \
+  wifi_idle_ms 15000 \
+  wifi_enhanced_auto_join 0 \
+  wifi_network_show_rssi 0 \
+  use_open_wifi_package "" \
+  recommended_network_evaluator_cache_expiry_ms 0 \
+  network_scorer_app ""
+ok "WiFi, Bluetooth, NFC y red optimizados"
+
+# =============================================================================
+# TAGS: all privacy net
+section "BLOQUEAR DNS DE TELEMETRÍA (CAPTIVE PORTAL)"
+batch_settings global \
+  captive_portal_http_url "" \
+  captive_portal_https_url "" \
+  captive_portal_fallback_url "" \
+  captive_portal_other_fallback_urls ""
+cmd settings put global captive_portal_server "localhost" 2>/dev/null
+ok "Captive portal y telemetría de red bloqueados"
+
+# =============================================================================
+# TAGS: all privacy
+section "DESACTIVAR GPS Y SERVICIOS DE UBICACIÓN"
+batch_settings secure \
+  location_mode 0 \
+  location_providers_allowed ""
+batch_settings global \
+  location_global_kill_switch 1 \
+  assisted_gps_enabled 0 \
+  network_provider_enabled 0 \
+  passive_provider_enabled 0 \
+  fused_provider_enabled 0 \
+  geocoder_provider_enabled 0 \
+  geofence_provider_enabled 0 \
+  activity_recognition_enabled 0 \
+  significant_motion_detector_enabled 0 \
+  location_time_zone_detection_enabled 0 \
+  gnss_satellite_blocklist ""
+ok "GPS y todos los servicios de ubicación desactivados"
+
+# =============================================================================
+# TAGS: all perf battery
+section "OPTIMIZACIÓN DE PANTALLA Y DOZE"
+batch_settings system \
+  screen_brightness_mode 0 \
+  screen_brightness 10 \
+  vibrate_when_ringing 0 \
+  haptic_feedback_enabled 0 \
+  dtmf_tone_when_dialing 0 \
+  sound_effects_enabled 0
+batch_settings global \
+  screen_off_timeout 15000 \
+  stay_on_while_plugged_in 0 \
+  doze_pulse_on_pick_up 0 \
+  doze_pulse_on_long_press 0 \
+  doze_pulse_on_double_tap 0 \
+  doze_use_accelerometer 0 \
+  doze_vibrate_on_pickup 0 \
+  doze_vibrate_on_significant_motion 0 \
+  always_on_display_constants "" \
+  aod_enabled 0
+ok "Pantalla, haptics y Doze optimizados"
+
+# =============================================================================
+# TAGS: all perf
+section "OPTIMIZACIÓN DE SENSORES"
+batch_settings system \
+  accelerometer_rotation 0 \
+  user_rotation 0
+batch_settings global \
+  show_touches 0 \
+  pointer_location 0 \
+  window_orientation_listening_enabled 0 \
+  sensors_device_pause_supported 1 \
+  sensors_device_pause 1 \
+  camera_sound_forced 0
+ok "Sensores optimizados/pausados"
+
+# =============================================================================
+# TAGS: all perf
+section "SILENCIAR Y OPTIMIZAR NOTIFICACIONES"
+batch_settings global \
+  notification_bubbles 0 \
+  heads_up_notifications_enabled 0 \
+  show_notification_channel_warnings 0 \
+  zen_mode 2 \
+  zen_mode_ringer_level 0 \
+  notification_badging 0 \
+  notification_pulse 0 \
+  notification_light_pulse 0 \
+  notification_vibration 0 \
+  max_notification_enqueue_rate 5
+ok "Notificaciones optimizadas y silenciadas"
+
+# =============================================================================
+# TAGS: all battery
+section "OPTIMIZACIÓN DE ALMACENAMIENTO"
+batch_settings global \
+  storage_threshold_percentage 1 \
+  storage_threshold_max_bytes 1048576 \
+  disk_free_change_reporting_threshold 1048576 \
+  cache_max_temp_app_space 1048576 \
+  storage_benchmark_interval 0
+# Limpieza de caché del sistema
+pm trim-caches 1073741824 2>/dev/null
+ok "Almacenamiento optimizado y caché recortado"
+
+# =============================================================================
+# TAGS: all perf battery
+section "OPTIMIZACIÓN DE INPUT Y TECLADO"
+batch_settings global \
+  show_ime_with_hard_keyboard 0 \
+  long_press_timeout 300
+batch_settings secure \
+  spell_checker_enabled 0 \
+  selected_spell_checker "" \
+  selected_spell_checker_subtype 0 \
+  autofill_service "" \
+  enabled_accessibility_services ""
+ok "Input, spell-checker y autofill optimizados"
+
+# =============================================================================
+# TAGS: all privacy
+section "LIMITAR PUBLICIDAD Y TRACKING"
+batch_settings global \
+  limit_ad_tracking 1 \
+  app_ops_constant ""
+batch_settings secure \
+  android_id "" \
+  usage_stats_enable 0 \
+  interaction_jank_reporter_enabled 0
+ok "Ad tracking y reportes de uso desactivados"
+
+# =============================================================================
+# TAGS: debloat
+section "DEBLOAT — GOOGLE SERVICES INNECESARIOS"
+disable_pkg com.google.android.gms.location.history
+disable_pkg com.google.android.gms.supervision
+disable_pkg com.google.android.gms.wearable
+disable_pkg com.google.android.gms.fit
+disable_pkg com.google.android.gms.games
+disable_pkg com.google.android.gms.cast
+disable_pkg com.google.android.gms.nearby
+disable_pkg com.google.android.gms.tagmanager
+disable_pkg com.google.android.gms.measurement
+disable_pkg com.google.android.gms.feedback
+disable_pkg com.google.android.gms.locationsharing
+disable_pkg com.google.android.gms.magictether
+disable_pkg com.google.android.gms.matchstick
+disable_pkg com.google.android.gms.photos
+disable_pkg com.google.android.gms.primes
+disable_pkg com.google.android.gms.recorder
+disable_pkg com.google.android.gms.reporting
+disable_pkg com.google.android.gms.smartdevice
+disable_pkg com.google.android.gms.telephonyspam
+disable_pkg com.google.android.gms.trustagent
+disable_pkg com.google.android.gms.udc
+disable_pkg com.google.android.gms.usagereporting
+disable_pkg com.google.android.gms.vision
+disable_pkg com.google.android.gms.chimera
+disable_pkg com.google.android.gms.mdm
+
+# =============================================================================
+# TAGS: debloat
+section "DEBLOAT — GOOGLE APPS INNECESARIAS"
+disable_pkg com.google.android.apps.tachyon
+disable_pkg com.google.android.apps.docs
+disable_pkg com.google.android.apps.magazines
+disable_pkg com.google.android.apps.books
+disable_pkg com.google.android.apps.movies
+disable_pkg com.google.android.apps.music
+disable_pkg com.google.android.apps.fitness
+disable_pkg com.google.android.apps.wellbeing
+disable_pkg com.google.android.apps.nbu.files
+disable_pkg com.google.android.apps.podcasts
+disable_pkg com.google.android.feedback
+disable_pkg com.google.android.partnersetup
+disable_pkg com.google.android.marvin.talkback
+disable_pkg com.google.android.onetimeinitializer
+disable_pkg com.google.android.printservice.recommendation
+disable_pkg com.google.android.apps.restore
+disable_pkg com.google.android.setupwizard
+disable_pkg com.google.android.storagemanager
+disable_pkg com.google.android.tag
+disable_pkg com.google.android.GoogleCamera
+disable_pkg com.google.android.videos
+disable_pkg com.google.android.apps.subscriptions.red
+disable_pkg com.google.android.apps.youtube.music
+disable_pkg com.google.android.apps.safetyhub
+disable_pkg com.google.android.apps.dynamite
+disable_pkg com.google.android.apps.cloudprint
+disable_pkg com.google.android.apps.enterprise.authenticator
+disable_pkg com.google.ar.lens
+disable_pkg com.google.android.wallpaper.res
+
+# =============================================================================
+# TAGS: debloat
+section "DEBLOAT — FACEBOOK, INSTAGRAM Y REDES SOCIALES"
+disable_pkg com.facebook.katana
+disable_pkg com.facebook.system
+disable_pkg com.facebook.appmanager
+disable_pkg com.facebook.services
+disable_pkg com.facebook.orca
+disable_pkg com.facebook.lite
+disable_pkg com.facebook.mlite
+disable_pkg com.instagram.android
+disable_pkg com.instagram.lite
+disable_pkg com.snapchat.android
+disable_pkg com.twitter.android
+disable_pkg com.zhiliaoapp.musically
+disable_pkg com.ss.android.ugc.trill
+disable_pkg com.linkedin.android
+disable_pkg com.pinterest
+disable_pkg com.tumblr
+disable_pkg com.reddit.frontpage
+
+# =============================================================================
+# TAGS: debloat
+section "DEBLOAT — MOTOROLA BLOATWARE"
+disable_pkg com.motorola.cameralytics
+disable_pkg com.motorola.focusedinbox
+disable_pkg com.motorola.helpme
+disable_pkg com.motorola.motocit
+disable_pkg com.motorola.motocare
+disable_pkg com.motorola.motodisplay
+disable_pkg com.motorola.motosignage
+disable_pkg com.motorola.MotoChinaLocationProxy
+disable_pkg com.motorola.targetnotif
+disable_pkg com.motorola.demo
+disable_pkg com.motorola.audiomonitor
+disable_pkg com.motorola.epdg
+disable_pkg com.motorola.omadm
+disable_pkg com.motorola.MotoChinaSetup
+disable_pkg com.motorola.motokeyboard
+disable_pkg com.motorola.app.motorprofile
+disable_pkg com.motorola.android.bugreporter
+disable_pkg com.motorola.ccc.deviceconfig
+disable_pkg com.motorola.clevernet
+disable_pkg com.motorola.enterprise
+disable_pkg com.motorola.mobile.number.checker
+disable_pkg com.motorola.motolauncher
+disable_pkg com.motorola.mymerlin
+disable_pkg com.motorola.pen
+disable_pkg com.motorola.settings.intelligence
+disable_pkg com.motorola.timeweatherwidget
+disable_pkg com.motorola.voicerecorder
+
+# =============================================================================
+# TAGS: debloat
+section "DEBLOAT — SAMSUNG BLOATWARE (si aplica)"
+disable_pkg com.samsung.android.bixby.agent
+disable_pkg com.samsung.android.bixby.service
+disable_pkg com.samsung.android.bixby.wakeup
+disable_pkg com.samsung.android.bixbyvision.framework
+disable_pkg com.samsung.android.app.tips
+disable_pkg com.samsung.android.app.watchmanagerstub
+disable_pkg com.samsung.android.dialer
+disable_pkg com.samsung.android.email.provider
+disable_pkg com.samsung.android.scloud
+disable_pkg com.samsung.android.service.peoplestripe
+disable_pkg com.samsung.android.smartswitchassistant
+disable_pkg com.samsung.android.wellbeing
+disable_pkg com.samsung.systemui.bixby2
+disable_pkg com.sec.android.app.kidshome
+disable_pkg com.sec.android.easyMover.Agent
+disable_pkg com.sec.android.daemonapp
+
+# =============================================================================
+# TAGS: debloat
+section "DEBLOAT — OEM GENÉRICO / MEDIATEK / QUALCOMM"
+disable_pkg com.qualcomm.qti.qms.service.telemetry
+disable_pkg com.qualcomm.qti.telephony.embmsservice
+disable_pkg com.qualcomm.timeservice
+disable_pkg com.qualcomm.qti.poweroffalarm
+disable_pkg com.mediatek.fmradio
+disable_pkg com.mediatek.gnss.debug
+disable_pkg com.mediatek.mdmconfig
+disable_pkg com.mediatek.mdmems
+disable_pkg com.mediatek.telecom.td.assistant
+disable_pkg com.qti.qualcomm.datastatusnotification
+disable_pkg com.android.cts.priv.ctsshim
+disable_pkg com.android.providers.partnerbookmarks
+disable_pkg com.android.companiondevicemanager
+
+# =============================================================================
+# TAGS: debloat
+section "DEBLOAT — APPS PRE-INSTALADAS GENÉRICAS"
+disable_pkg com.microsoft.teams
+disable_pkg com.microsoft.office.word
+disable_pkg com.microsoft.office.excel
+disable_pkg com.microsoft.office.powerpoint
+disable_pkg com.microsoft.office.onenote
+disable_pkg com.microsoft.skydrive
+disable_pkg com.netflix.mediaclient
+disable_pkg com.netflix.partner.activation
+disable_pkg com.amazon.mShop.android.shopping
+disable_pkg com.amazon.kindle
+disable_pkg com.booking.android
+disable_pkg com.spotify.music
+disable_pkg com.audible.application
+disable_pkg com.duolingo
+disable_pkg com.gameloft.android.anmp.GloftA9HM
+disable_pkg com.rovio.baba
+
+# =============================================================================
+# TAGS: all privacy debloat
+section "DESACTIVAR SERVICIOS DE DIAGNÓSTICO Y CRASH REPORTS"
+disable_pkg com.android.statementservice
+disable_pkg com.android.printspooler
+disable_pkg com.android.dreams.basic
+disable_pkg com.android.dreams.phototable
+disable_pkg com.android.nfc
+disable_pkg com.android.beams
+disable_pkg com.android.server.telecom
+cmd appops set com.google.android.gms CHANGE_WIFI_STATE deny 2>/dev/null
+cmd appops set com.google.android.gms CHANGE_NETWORK_STATE deny 2>/dev/null
+cmd appops set com.google.android.gms ACCESS_BACKGROUND_LOCATION deny 2>/dev/null
+cmd appops set com.google.android.gms BLUETOOTH_CONNECT deny 2>/dev/null
+ok "Servicios de diagnóstico y permisos de GMS restringidos"
+
+# =============================================================================
+# TAGS: all perf battery
+section "AJUSTES FINALES DE RENDIMIENTO — DEVICE_CONFIG"
+cmd device_config put attention_manager_service max_staleness_millis 0 2>/dev/null
+cmd device_config put window_manager large_screen_user_min_aspect_ratio_config_enabled false 2>/dev/null
+cmd device_config put systemui quick_settings_show_auto_brightness true 2>/dev/null
+cmd device_config put systemui reduce_preview_fps true 2>/dev/null
+cmd device_config put runtime_native_boot iorap_perfetto_enable false 2>/dev/null
+cmd device_config put runtime_native_boot iorap_readahead_enable true 2>/dev/null
+cmd device_config put connectivity captive_portal_mode 0 2>/dev/null
+cmd device_config put connectivity network_avoid_bad_wifi 0 2>/dev/null
+cmd device_config put adservices global_kill_switch true 2>/dev/null
+cmd device_config put on_device_personalization enable_on_device_personalization false 2>/dev/null
+ok "Device_config ajustado"
+
+# =============================================================================
+# TAGS: all
 section "VERIFICACIÓN Y RESUMEN FINAL"
+DISABLED_COUNT=$(wc -l < "$DISABLED_LIST" 2>/dev/null || echo 0)
 echo ""
-echo -e "\\033[1;36m╔══════════════════════════════════════════════════════════╗\\033[0m"
-echo -e "\\033[1;36m║         TITAN v102.0 — EJECUCIÓN COMPLETADA             ║\\033[0m"
-echo -e "\\033[1;36m╚══════════════════════════════════════════════════════════╝\\033[0m"
+echo -e "\\033[1;32m▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\\033[0m"
+echo -e "\\033[1;32m    TITAN v103.0 — COMPLETADO EXITOSAMENTE           \\033[0m"
+echo -e "\\033[1;32m▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\\033[0m"
 echo ""
-ok "Log completo: $LOG_FILE"
-ok "Backup guardado: $BACKUP_DIR"
-ok "Restauración: sh $RESTORE_SCRIPT"
+ok "Paquetes desactivados : $DISABLED_COUNT"
+ok "Log completo          : $LOG_FILE"
+ok "Backup guardado       : $BACKUP_DIR"
+ok "Script de restauración: sh $RESTORE_SCRIPT"
 echo ""
-echo -e "\\033[1;33m[!] RECOMENDADO: Reinicia el dispositivo para aplicar todos los cambios.\\033[0m"
-echo -e "\\033[1;33m[!] Para restaurar: sh $RESTORE_SCRIPT\\033[0m"
-echo ""
-ok "✅ TITAN v102.0 finalizado exitosamente"`.trim().split('\n');
+warn "REINICIA el dispositivo para aplicar todos los cambios."
+warn "Para restaurar: sh $RESTORE_SCRIPT"`.trim().split('\n');
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  SYNTAX HIGHLIGHTING
+//  TAGS MAP
 // ─────────────────────────────────────────────────────────────────────────────
-function syntaxHighlight(line) {
-  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const raw = esc(line);
+const SECTION_TAGS = {};
+let currentTags = ['all'];
+let currentTag = 'all';
+let searchTerm = '';
 
-  if (raw.startsWith('#!')) return `<span class="t-shebang">${raw}</span>`;
-  if (/^\s*#/.test(raw)) return `<span class="t-comment">${raw}</span>`;
-  if (/^section\s/.test(raw.trim())) return `<span class="t-section">${raw}</span>`;
-  if (/^\s*ok\s/.test(raw)) return `<span class="t-ok">${raw}</span>`;
-  if (/^\s*(warn|err|info)\s/.test(raw)) return `<span class="t-fn">${raw}</span>`;
-  if (/^\s*(batch_settings|log|section|ok|warn|err|info)\s*\(\)/.test(raw)) return `<span class="t-fn">${raw}</span>`;
-  if (/\bcom\.[a-z]/.test(raw)) return `<span class="t-pkg">${raw}</span>`;
-  if (/^\s*(cmd|am|pm|settings|dumpsys|getprop|chmod|mkdir|cat|while|for|done|do|echo|sleep|shift|local)\b/.test(raw.trim())) return `<span class="t-cmd">${raw}</span>`;
-  if (/[A-Z_]{3,}=/.test(raw)) return `<span class="t-var">${raw}</span>`;
-  return raw;
+// Parse tags from comments
+function getTagsForLine(idx) {
+  // Look back up to 3 lines for a TAGS comment
+  for (let i = idx; i >= Math.max(0, idx - 3); i--) {
+    const m = RAW[i].match(/^#\s*TAGS:\s*(.+)/);
+    if (m) return m[1].trim().split(/\s+/);
+  }
+  return ['all'];
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  SYNTAX HIGHLIGHT
+// ─────────────────────────────────────────────────────────────────────────────
+function hl(line) {
+  const e = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const r = e(line);
+
+  if (r.startsWith('#!'))                     return `<span class="t-sh">${r}</span>`;
+  if (/^\s*#\s*TAGS:/.test(r))               return `<span class="t-flag">${r}</span>`;
+  if (/^\s*#/.test(r))                        return `<span class="t-comment" style="color:#1e2a18;font-style:italic">${r}</span>`;
+  if (/^section\s/.test(r.trim()))            return `<span class="t-sec">${r}</span>`;
+  if (/^\s*ok\s/.test(r))                     return `<span class="t-ok">${r}</span>`;
+  if (/^\s*(warn|err)\s/.test(r))             return `<span class="t-warn">${r}</span>`;
+  if (/\bdisable_pkg\b/.test(r))             return `<span class="t-pkg">${r}</span>`;
+  if (/\bcom\.[a-z]/.test(r) && !/^#/.test(r.trim())) return `<span class="t-pkg">${r}</span>`;
+  if (/^\s*(cmd|am|pm|settings|dumpsys|getprop|chmod|mkdir|cat|while|for|done|do|echo|sleep|shift|local|chmod)\b/.test(r.trim())) return `<span class="t-cmd">${r}</span>`;
+  if (/[A-Z_]{4,}=/.test(r) && !/^\s*#/.test(r)) return `<span class="t-var">${r}</span>`;
+  if (/^\s*(batch_settings|log|section|ok|warn|err|info|disable_pkg)\s*\(\)/.test(r)) return `<span class="t-fn">${r}</span>`;
+  return r;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  RENDER
 // ─────────────────────────────────────────────────────────────────────────────
-let searchTerm = '';
-
-function renderLines(lines) {
+function render() {
   const table = document.getElementById('codeTable');
   const frag = document.createDocumentFragment();
+  let lineNum = 0;
+  let visibleLines = 0;
+  let pkgCount = 0;
+  let settingsCount = 0;
 
-  lines.forEach((line, i) => {
-    const tr = document.createElement('tr');
-    const tdNum = document.createElement('td');
-    const tdCode = document.createElement('td');
+  // Count all
+  RAW.forEach(l => {
+    if (/\bdisable_pkg\b/.test(l) || /\bpm disable-user\b/.test(l)) pkgCount++;
+    if (/\bcmd settings put\b/.test(l) || /\bbatch_settings\b/.test(l)) settingsCount++;
+  });
 
-    tdNum.className = 'line-num';
-    tdNum.textContent = String(i + 1).padStart(4, ' ');
-
-    tdCode.className = 'line-code';
-
-    let html = syntaxHighlight(line);
+  RAW.forEach((line, i) => {
+    lineNum++;
+    const tags = getTagsForLine(i);
+    const tagMatch = currentTag === 'all' || tags.includes(currentTag);
+    if (!tagMatch) return;
     if (searchTerm) {
-      const re = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
+      const re = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i');
+      if (!re.test(line)) return;
+    }
+
+    visibleLines++;
+    const tr = document.createElement('tr');
+    const tdN = document.createElement('td');
+    const tdC = document.createElement('td');
+
+    tdN.className = 'ln';
+    tdN.textContent = String(lineNum).padStart(4,' ');
+
+    tdC.className = 'lc';
+    let html = hl(line);
+    if (searchTerm) {
+      const re = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
       html = html.replace(re, m => `<mark>${m}</mark>`);
     }
-    tdCode.innerHTML = html;
+    tdC.innerHTML = html;
 
-    tr.appendChild(tdNum);
-    tr.appendChild(tdCode);
+    tr.appendChild(tdN);
+    tr.appendChild(tdC);
     frag.appendChild(tr);
   });
 
   table.innerHTML = '';
   table.appendChild(frag);
 
-  const n = lines.length;
-  document.getElementById('linesStat').textContent = `📄 ${n} líneas`;
-  document.getElementById('footerLines').textContent = `Lines: ${String(n).padStart(3,'0')}`;
+  const total = RAW.length;
+  document.getElementById('linesStat').textContent = `📄 ${total} líneas`;
+  document.getElementById('blocksStat').textContent = `🧩 ${RAW.filter(l=>/^section\b/.test(l.trim())).length} bloques`;
+  document.getElementById('tLines').textContent = visibleLines;
+  document.getElementById('tPkgs').textContent = pkgCount;
+  document.getElementById('tSettings').textContent = settingsCount;
+  document.getElementById('footerLines').textContent = `LINES: ${String(total).padStart(3,'0')}`;
+}
+
+function setTab(tag, el) {
+  currentTag = tag;
+  searchTerm = '';
+  document.getElementById('searchInput').value = '';
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  render();
+  document.getElementById('codeScroll').scrollTop = 0;
 }
 
 function doSearch() {
   searchTerm = document.getElementById('searchInput').value.trim();
-  renderLines(SCRIPT_LINES);
-
+  currentTag = 'all';
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.tab').classList.add('active');
+  render();
   if (searchTerm) {
-    // Scroll to first match
-    const firstMark = document.querySelector('#codeTable mark');
-    if (firstMark) firstMark.closest('tr').scrollIntoView({ block: 'center', behavior: 'smooth' });
+    const m = document.querySelector('#codeTable mark');
+    if (m) m.closest('tr').scrollIntoView({ block: 'center', behavior: 'smooth' });
   }
 }
 
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
 function copyScript() {
-  navigator.clipboard.writeText(SCRIPT_LINES.join('\n')).then(() => {
-    const t = document.getElementById('toast');
-    t.textContent = '✓ Script copiado al portapapeles!';
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2500);
-  });
+  navigator.clipboard.writeText(RAW.join('\n')).then(() => toast('✓ Script copiado al portapapeles'));
 }
 
 function downloadScript() {
-  const blob = new Blob([SCRIPT_LINES.join('\n')], { type: 'text/plain' });
+  const blob = new Blob([RAW.join('\n')], { type: 'text/plain' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url;
-  a.download = 'titan_v102.0.sh';
-  a.click();
+  a.href = url; a.download = 'titan_v103.0.sh'; a.click();
   URL.revokeObjectURL(url);
+  toast('↓ Descargando titan_v103.0.sh...');
 }
 
-// Init
-renderLines(SCRIPT_LINES);
+render();
 </script>
 </body>
 </html>
